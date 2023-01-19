@@ -60,3 +60,28 @@ class Questionnaire:
             d['title'],
             [Section.from_dict(s) for s in d['sections']],
         )
+
+
+@dataclass
+class ResponseRow:
+    section_id: str
+    section_title: str
+    question_id: str
+    question_body: str
+    choices: list[AnswerChoice]
+    min_sum: float
+    max_sum: float
+    score_sum: float
+
+    @staticmethod
+    def from_dict(d: dict):
+        return ResponseRow(
+            d['section_id'],
+            d['section_title'],
+            d['question_id'],
+            d['question_body'],
+            [AnswerChoice.from_dict(c) for c in d['choices']],
+            d['min_sum'],
+            d['max_sum'],
+            d['score_sum'],
+        )
