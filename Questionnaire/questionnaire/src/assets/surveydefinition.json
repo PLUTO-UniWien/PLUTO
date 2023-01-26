@@ -1,0 +1,615 @@
+{
+ "title": "PLUTO",
+ "description": "This is a survey description.",
+ "logoPosition": "right",
+ "completedHtml": "<h3>Thank you for your feedback</h3>",
+ "completedHtmlOnCondition": [
+  {
+   "html": "<h3>Thank you for your feedback</h3> <h4>We are glad that you love our product. Your ideas and suggestions will help us make it even better.</h4>"
+  },
+  {
+   "html": "<h3>Thank you for your feedback</h3> <h4>We are glad that you shared your ideas with us. They will help us make our product better.</h4>"
+  }
+ ],
+ "pages": [
+  {
+   "name": "page1",
+   "elements": [
+    {
+     "type": "checkbox",
+     "name": "question1",
+     "title": "Q1: Which of the answers below best describe the primary activity of the applicant? (tick up to two)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "ItemSell a product/service",
+       "text": "Sell a product/service"
+      },
+      {
+       "value": " 1",
+       "text": "Fulfill a government task"
+      },
+      {
+       "value": "Item 2",
+       "text": "Conduct applied research"
+      },
+      {
+       "value": "Item 3",
+       "text": "Conduct basic research "
+      }
+     ],
+     "separateSpecialChoices": true,
+     "showNoneItem": true,
+     "noneText": "None of the Above",
+     "maxSelectedChoices": 2
+    },
+    {
+     "type": "checkbox",
+     "name": "question2",
+     "title": "Q2: Which of the answers below best describe the financial structure of the applicant’s organisation? (tick up to two)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "ItemSell a product/service",
+       "text": "Largely financed through income from own activities or parent/partner company"
+      },
+      {
+       "value": " 1",
+       "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)"
+      },
+      {
+       "value": "Item 2",
+       "text": "Largely financed by governments or international organisations"
+      },
+      {
+       "value": "Item 3",
+       "text": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)"
+      }
+     ],
+     "separateSpecialChoices": true,
+     "showNoneItem": true,
+     "noneText": "None of the Above",
+     "maxSelectedChoices": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "question3",
+     "title": "Q3: Which of the answers below best describe the applicant’s public reporting requirements? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No reporting requirements"
+      },
+      {
+       "value": "Item 2",
+       "text": "Annual report on key financials to financial institution"
+      },
+      {
+       "value": "Item 3",
+       "text": "Annual non-public report on activities to the funder (or other entities)"
+      },
+      {
+       "value": "Item 4",
+       "text": "Annual report on activities to the public"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question4",
+     "title": "Q4: Which of the answers below best describe the applicant’s legal obligations to provide information to the public? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No legal options to compel disclosure of information about it data use activities to the public beyond civil or criminal proceedings"
+      },
+      {
+       "value": "Item 2",
+       "text": "Can be compelled to disclose information about its data use activities via freedom of information laws"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question5",
+     "title": "Q5: Which of the answers below best describe the applicant’s track record in providing information about all its activities to the public? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Demonstrated track record of rejecting information requests (Irrespective of byway of FOI laws, other laws, or voluntarily) "
+      },
+      {
+       "value": "Item 2",
+       "text": "No track record "
+      },
+      {
+       "value": "Item 3",
+       "text": "Demonstrated track record of promptly responding to information requests (Irrespective of byway of FOI laws, other laws, or voluntarily)"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)"
+    }
+   ],
+   "title": "Information About the Applicant",
+   "description": "Description of this section"
+  },
+  {
+   "name": "page2",
+   "elements": [
+    {
+     "type": "checkbox",
+     "name": "question6",
+     "title": "Q6: Which of the answers below best describe the applicant’s motivation for data use? (tick up to two)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "ItemSell a product/service",
+       "text": "Develop/ improve new drug/ medical treatment"
+      },
+      {
+       "value": " 1",
+       "text": "Combat climate change"
+      },
+      {
+       "value": "Item 2",
+       "text": "Combat social and economic inequality "
+      }
+     ],
+     "separateSpecialChoices": true,
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "maxSelectedChoices": 2
+    },
+    {
+     "type": "radiogroup",
+     "name": "question7",
+     "title": "Q7: Which of the answers below best describe the main beneficiary of the applicant’s data use? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Benefits accrue largely to the organisation"
+      },
+      {
+       "value": "Item 2",
+       "text": "Benefits largely accrue to users of the product/service resulting from the data use"
+      },
+      {
+       "value": "Item 3",
+       "text": "Benefits accrue to users and non-users of product/service resulting from data use"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question8",
+     "title": "Q8: Which of the answers below best describe the applicant’s track record in increasing the benefits of the applicant’s data use in the Global South? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No track record of adjusting the data use to expand the range of beneficiaries in the Global South"
+      },
+      {
+       "value": "Item 2",
+       "text": "Track record of adjusting the data use to expand the range of beneficiaries in the Global South"
+      },
+      {
+       "value": "Item 3",
+       "text": "Strong track record of adjusting the data use to expand the range of beneficiaries in the Global South"
+      }
+     ],
+     "noneText": "None of the above (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question9",
+     "title": "Q9: Which of the answers below best describe the applicant’s track record in strengthening benefits of the applicant’s data use for groups that are granted additional protection by way of anti-discrimination law? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No track record of  strengthening benefits for groups that are granted additional protection by way of anti-discrimination law"
+      },
+      {
+       "value": "Item 2",
+       "text": "Track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law "
+      },
+      {
+       "value": "Item 3",
+       "text": "Strong track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law "
+      }
+     ],
+     "noneText": "None of the above (please specify)"
+    },
+    {
+     "type": "checkbox",
+     "name": "question10",
+     "title": "Q10: Which of the answers below best describe the applicant’s data use’s benefits for future generations? (tick up to two)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "ItemSell a product/service",
+       "text": "Benefits primarily cover issues of current relevance"
+      },
+      {
+       "value": " 1",
+       "text": "Benefits primarily cover issues of relevance for future generations"
+      },
+      {
+       "value": "Item 2",
+       "text": "Benefits are likely to increase in the future"
+      }
+     ],
+     "separateSpecialChoices": true,
+     "showOtherItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)",
+     "maxSelectedChoices": 2
+    }
+   ],
+   "title": "Benefits of the Applicant’s Activity",
+   "description": "Description of this section"
+  },
+  {
+   "name": "page3",
+   "elements": [
+    {
+     "type": "checkbox",
+     "name": "question11",
+     "title": "Q11: Which of the answers below best describe risks entailed in the applicant’s data use? (tick as many as necessary)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "ItemSell a product/service",
+       "text": "Physical risk"
+      },
+      {
+       "value": " 1",
+       "text": "Financial risk"
+      },
+      {
+       "value": "Item 2",
+       "text": "Informational risk"
+      }
+     ],
+     "separateSpecialChoices": true,
+     "showOtherItem": true,
+     "showNoneItem": true,
+     "noneText": "None of the above",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question12",
+     "title": "Q12: Which of the answers below best describe effects of the applicant’s data use on the environment? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Environment is negatively impacted"
+      },
+      {
+       "value": "Item 2",
+       "text": "Environment is positively impacted"
+      }
+     ],
+     "showOtherItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question13",
+     "title": "Q13: Which of the answers below best describe the relationship between the applicant’s data use and risks? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Risks stem directly from the applicant’s data use (direct cause)"
+      },
+      {
+       "value": "Item 2",
+       "text": "Risks are incidental to the applicant’s data use (indirect cause)"
+      }
+     ],
+     "showOtherItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question14",
+     "title": "Q14: Which of the answers below best describe the risks for groups afforded special protection under the law (including, but not limited to, children, persons with disabilities, ethnic minorities, sexual minorities)? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Applicant’s data use entails risk for groups afforded special protection under the law"
+      },
+      {
+       "value": "Item 2",
+       "text": "Applicant’s data use entails no risk for groups afforded special protection under the law"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question15",
+     "title": "Q15: Which of the answers below best describe the applicant’s communication about risks of its data to the public? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No information provided"
+      },
+      {
+       "value": "Item 2",
+       "text": "Information about risks provided to the public at some point during the data use"
+      },
+      {
+       "value": "Item 3",
+       "text": "Information about risks provided to the public prior to commencement of data use"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question17",
+     "title": "Q15: Which of the answers below best describe the applicant’s communication about risks of its data to the public? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No information provided"
+      },
+      {
+       "value": "Item 2",
+       "text": "Information about risks provided to the public at some point during the data use"
+      },
+      {
+       "value": "Item 3",
+       "text": "Information about risks provided to the public prior to commencement of data use"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question16",
+     "title": "Q16: Which of the answers below best describe the risk of dual use (tick one)?",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Dual use is likely"
+      },
+      {
+       "value": "Item 2",
+       "text": "Dual use is unlikely but conceivable"
+      },
+      {
+       "value": "Item 3",
+       "text": "Dual use is extremely unlikely"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question19",
+     "title": "Q17: Which of the answers below best describe the likelihood of a risk of dual use materializing and creating harm (tick one)? ",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Risk from dual use are likely to materialise"
+      },
+      {
+       "value": "Item 2",
+       "text": "Risks from dual use are unlikely to materialise"
+      },
+      {
+       "value": "Item 3",
+       "text": "Likelihood of risks from dual use cannot be assessed"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    }
+   ],
+   "title": "Risks of the Applicant’s Activity ",
+   "description": "Description of this section"
+  },
+  {
+   "name": "page4",
+   "elements": [
+    {
+     "type": "radiogroup",
+     "name": "question18",
+     "title": "Q18: Which of the answers below best describe the applicant’s way of assessing risk (tick one)?",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No risk assessment in place"
+      },
+      {
+       "value": "Item 2",
+       "text": "Ex ante institutionalized/ad-hoc risk assessment is voluntary"
+      },
+      {
+       "value": "Item 3",
+       "text": "Ex ante institutionalized risk assessment is mandatory"
+      }
+     ],
+     "showOtherItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question19",
+     "title": "Q19: Which of the answers below best describe the applicant’s way of assessing risk? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No involvement of persons from outside the organisation "
+      },
+      {
+       "value": "Item 2",
+       "text": "Occasional/Needs-based involvement of persons from outside the organisation"
+      },
+      {
+       "value": "Item 3",
+       "text": "Routine involvement of persons from outside the organisation"
+      },
+      {
+       "value": "Item 4",
+       "text": "No risk assessment in place"
+      }
+     ],
+     "showOtherItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question20",
+     "title": "Q20: Which of the answers below best describe the status of findings from the risk assessment? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Findings are recommendations"
+      },
+      {
+       "value": "Item 2",
+       "text": "Findings are binding and cannot be overruled"
+      }
+     ],
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question21",
+     "title": "Q21: Which of the answers below best describe the involvement of trained ethicists in the process of assessing risks? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Trained ethicists are not included in the risk assessment "
+      },
+      {
+       "value": "Item 2",
+       "text": "No risk assessment in place"
+      },
+      {
+       "value": "Item 3",
+       "text": "Trained ethicists are included in the risk assessment"
+      },
+      {
+       "value": "Item 4",
+       "text": "No risk assessment in place"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question22",
+     "title": "Q22: Which of the answers below best describe the process of harm monitoring? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No monitoring of harms"
+      },
+      {
+       "value": "Item 2",
+       "text": "Harms monitored for a limited period during the data use and the deployment of the data use and the deployment of the product/service"
+      },
+      {
+       "value": "Item 3",
+       "text": "Harms are monitored throughout the data use and the deployment of the product/service"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "radiogroup",
+     "name": "question23",
+     "title": "Q23: Which of the answers below best describe the ability of the applicant to stop/reverse their activity, once unexpected harms occur? (tick one)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Harm-causing activity cannot be ended immediately"
+      },
+      {
+       "value": "Item 2",
+       "text": "Harm-causing activity Harms can be ended immediately"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above (please specify)",
+     "otherText": "Other (please specify)"
+    },
+    {
+     "type": "checkbox",
+     "name": "question24",
+     "title": "Q24: Which of the answers below best describe the remedies available to individuals? (tick as many as necessary)",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "No complaint procedure in place"
+      },
+      {
+       "value": "Item 2",
+       "text": "Complaint procedure can be initiated online"
+      },
+      {
+       "value": "Item 3",
+       "text": "Complaint procedure designed in an accessible manner"
+      },
+      {
+       "value": "Item 4",
+       "text": "Guaranteed respond times (under 4 weeks)"
+      }
+     ]
+    }
+   ],
+   "title": "Institutional Safeguards",
+   "description": "Desription of this section"
+  }
+ ],
+ "showQuestionNumbers": "on"
+}
