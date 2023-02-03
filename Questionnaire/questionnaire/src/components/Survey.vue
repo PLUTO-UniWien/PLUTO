@@ -1,73 +1,71 @@
 <template>
   <div>
-    <Survey :survey="survey" />
+    <Survey :survey="survey"> </Survey>
+
+    <!-- <b-modal id="resultmodal" title="BootstrapVue">
+   <p class="my-4">Your score is {{this.totalScore}}</p>
+  </b-modal> -->
+  <ResultView v-if="showResults"/>
   </div>
+
 </template>
 
 <script>
 
 // import * as d3 from 'd3';
+import ResultView from './Result.vue'
 import 'survey-core/defaultV2.min.css';
-import json from '../assets/surveydefinition.json'
-// StylesManager.applyTheme("defaultV2");
+import json from '../assets/surveydefinition_test.json'
 import { Survey } from 'survey-vue-ui';
-import {Model } from 'survey-core';
+import { StylesManager, Model, Serializer} from 'survey-core';
+StylesManager.applyTheme("defaultV2");
 const surveyJson = json
+Serializer.addProperty("itemvalue", {
+    name: "points:number"
+  });
+Serializer.addProperty("itemvalue", {
+    name: "axis:string"
+  });
 
 export default {
   name: 'SurveyView',
   components: {
-    Survey
+    Survey,
+    ResultView
   },
   props: {
   },
   data() {
     const survey = new Model(surveyJson);
+    survey.onComplete.add(this.surveyComplete);
     return {
-      survey
-      // svgWidth: 0,
-      // svgHeight: 500,
-      // svgPadding: {
-      //   top: 25, right: 20, bottom: 70, left: 40,
-      // },
+      survey,
+      // totalScore: 0,
+      showResults: false
     }
   },
   mounted() {
-    // this.drawChart();
   },
   methods: {
+    surveyComplete (sender) {
+      console.log("RESULT DATA:")
+      console.log(JSON.stringify(sender.data, null, 3))
+      const plainData = sender.getPlainData({
+       // Include `score` values into the data array
+       calculations: [{ propertyName: "points" }, { propertyName: "axis" }]
+     });
+     console.log(plainData)
+     // this.calculateTotalScore(plainData);
+     console.log(this.totalScore)
+     // this.$bvModal.show("resultmodal")
+     this.showResults = true;
+     this.$store.commit('saveResult', plainData);
+     console.log(this.$store.getters.result)
+     // window.location.href = "http://stackoverflow.com";
+   }
   },
   computed: {
-    // disposablePersonaleIncome: {
-    //   get() {
-    //     return this.$store.getters.disposablePersonaleIncome;
-    //   }
-    // },
-    // dataMax() {
-    //   return d3.max(this.disposablePersonaleIncome, (d) => d.value);
-    // },
-    // dataMin() {
-    //   return d3.min(this.disposablePersonaleIncome, (d) => d.value);
-    // },
-    // xScale() {
-    //   return d3.scaleBand()
-    //     .rangeRound([0, this.svgWidth - this.svgPadding.left - this.svgPadding.right]).padding(0.1)
-    //     .domain(this.disposablePersonaleIncome.map((d) => d.state));
-    // },
-    // yScale() {
-    //   return d3.scaleLinear()
-    //     .rangeRound([this.svgHeight - this.svgPadding.top - this.svgPadding.bottom, 0])
-    //     .domain([this.dataMin > 0 ? 0 : this.dataMin, this.dataMax]);
-    // },
   },
-  // watch: {
-  //   disposablePersonaleIncome: {
-  //     handler() {
-  //       this.drawChart();
-  //     },
-  //     deep: true,
-  //   },
-  // },
 }
 </script>
 

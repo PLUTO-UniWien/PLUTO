@@ -1,62 +1,29 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as d3 from 'd3';
+import calc from "./calculations.js"
 
 Vue.use(Vuex);
 
+
 const store = new Vuex.Store({
   state: {
-    selectedYear: 1984,
-    selectedStates: [],
-    disposablePersonaleIncome: [],
-    burglaryRates: [],
+    result: ["Test"],
+    totalScore: 0,
+    axisScore: {x: 0, y: 0}
   },
   mutations: {
-    changeSelectedYear (state, year) {
-      state.selectedYear = year;
-    },
-    changeSelectedState(state, val) {
-      state.selectedStates.push(val);
-    }   
+    saveResult(state, results){
+      state.result = results
+      state.totalScore = calc.calculateTotalScore(results)
+      state.axisScore = calc.calculateAxisScore(results)
+    }
   },
   getters: {
-    selectedYear: (state) => state.selectedYear,
-    selectedStates: (state) => state.selectedStates,
-    disposablePersonaleIncome (state) {
-      let result = [];
-      for (let i = 0; i < state.disposablePersonaleIncome.length; i++) {
-        if (state.selectedYear in state.disposablePersonaleIncome[i]) {
-          result.push({
-            state: state.disposablePersonaleIncome[i].State,
-            value: +state.disposablePersonaleIncome[i][state.selectedYear]
-          })
-        }
-      }
-      return result;
-    },
-    burglaryRates (state) {
-      let result = [];
-      for (let i = 0; i < state.burglaryRates.length; i++) {
-        if (state.selectedYear in state.burglaryRates[i]) {
-          result.push({
-            state: state.burglaryRates[i].State,
-            value: state.burglaryRates[i][state.selectedYear]
-          })
-        }
-      }
-      return result;
-    },
+    result: (state) => state.result,
+    totalScore: (state) => state.totalScore,
+    axisScore: (state) => state.axisScore,
   },
   actions: {
-    loadData({state}) {
-      d3.csv('./usa_disposable_personal_income_1984_2014.csv').then((data) => { 
-        state.disposablePersonaleIncome = data;
-      })
-
-      d3.csv('./usa_burglary_rates_1984-2014.csv').then((data) => { 
-        state.burglaryRates = data;
-      })
-    },
   }
 })
 

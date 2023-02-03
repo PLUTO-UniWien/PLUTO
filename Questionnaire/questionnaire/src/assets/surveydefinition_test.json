@@ -1,0 +1,141 @@
+{
+ "title": "PLUTO",
+ "description": "This is a survey description.",
+ "showProgressBar": "top",
+ "logoPosition": "right",
+ "completedHtml": "These are your results: ",
+ "completedHtmlOnCondition": [
+  {
+   "html": "<ResultView/>"
+  },
+  {
+   "html": "<ResultView/><h3>Thank you for your feedback</h3> <h4>We are glad that you shared your ideas with us. They will help us make our product better.</h4>"
+  }
+ ],
+ "pages": [
+  {
+   "name": "page1",
+   "elements": [
+    {
+     "type": "checkbox",
+     "name": "question1",
+     "title": "Q1: Which of the answers below best describe the primary activity of the applicant? (tick up to two)",
+     "isRequired": true,
+     "axis" : "y",
+     "choices": [
+      {
+       "value": "Item 1",
+       "text": "Sell a product/service",
+       "points": 1,
+       "axis" : "y"
+      },
+      {
+       "value": "Item 2",
+       "points": 1,
+       "text": "Fulfill a government task",
+       "axis" : "y"
+      },
+      {
+       "value": "Item 3",
+       "points": 1,
+       "text": "Conduct applied research",
+       "axis" : "y"
+      },
+      {
+       "value": "Item 4",
+       "points": 1,
+       "text": "Conduct basic research ",
+       "axis" : "y"
+      }
+     ],
+     "separateSpecialChoices": true,
+     "showNoneItem": true,
+     "noneText": "None of the Above",
+     "maxSelectedChoices": 2
+    }]},
+    {
+     "name": "page1",
+     "elements": [
+
+    {
+     "type": "checkbox",
+     "name": "question2",
+     "title": "Q2: Which of the answers below best describe the financial structure of the applicant’s organisation? (tick up to two)",
+     "isRequired": true,
+     "axis" : "y",
+     "choices": [
+      {
+       "value": "ItemSell a product/service",
+       "points": 1,
+       "text": "Largely financed through income from own activities or parent/partner company",
+       "axis" : "y"
+      },
+      {
+       "value": " 1",
+       "points": 1,
+       "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
+       "axis" : "y"
+      },
+      {
+       "value": "Item 2",
+       "points": 1,
+       "text": "Largely financed by governments or international organisations",
+       "axis" : "y"
+      },
+      {
+       "value": "Item 3",
+       "points": 1,
+       "text": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)",
+       "axis" : "y"
+      }
+     ],
+     "separateSpecialChoices": true,
+     "showNoneItem": true,
+     "noneText": "None of the Above",
+     "maxSelectedChoices": 2
+    }]},
+    {
+     "name": "page1",
+     "elements": [
+    {
+     "type": "radiogroup",
+     "name": "question3",
+     "title": "Q3: Which of the answers below best describe the applicant’s public reporting requirements? (tick one)",
+     "isRequired": true,
+     "axis" : "y",
+     "choices": [
+      {
+       "value": "Item 1",
+       "points": 1,
+       "text": "No reporting requirements",
+       "axis" : "x"
+      },
+      {
+       "value": "Item 2",
+       "points": 1,
+       "text": "Annual report on key financials to financial institution",
+       "axis" : "x"
+      },
+      {
+       "value": "Item 3",
+       "points": 1,
+       "text": "Annual non-public report on activities to the funder (or other entities)",
+       "axis" : "x"
+      },
+      {
+       "value": "Item 4",
+       "points": 1,
+       "text": "Annual report on activities to the public",
+       "axis" : "x"
+      }
+     ],
+     "showNoneItem": true,
+     "noneText": "None of the above"
+    }
+   ],
+   "title": "Institutional Safeguards",
+   "description": "Desription of this section"
+  }
+ ],
+ "showQuestionNumbers": "on"
+}

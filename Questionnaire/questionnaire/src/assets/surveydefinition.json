@@ -22,20 +22,24 @@
      "isRequired": true,
      "choices": [
       {
-       "value": "ItemSell a product/service",
-       "text": "Sell a product/service"
-      },
-      {
-       "value": " 1",
-       "text": "Fulfill a government task"
+       "value": "Item 1",
+       "text": "Sell a product/service",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Conduct applied research"
+       "text": "Fulfill a government task",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Conduct basic research "
+       "text": "Conduct applied research",
+       "points": 0
+      },
+      {
+       "value": "Item 4",
+       "text": "Conduct basic research ",
+       "points": 1
       }
      ],
      "separateSpecialChoices": true,
@@ -51,19 +55,23 @@
      "choices": [
       {
        "value": "ItemSell a product/service",
-       "text": "Largely financed through income from own activities or parent/partner company"
+       "text": "Largely financed through income from own activities or parent/partner company",
+       "points": -1
       },
       {
        "value": " 1",
-       "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)"
+       "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Largely financed by governments or international organisations"
+       "text": "Largely financed by governments or international organisations",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)"
+       "text": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)",
+       "points": 1
       }
      ],
      "separateSpecialChoices": true,
@@ -79,19 +87,23 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No reporting requirements"
+       "text": "No reporting requirements",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Annual report on key financials to financial institution"
+       "text": "Annual report on key financials to financial institution",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Annual non-public report on activities to the funder (or other entities)"
+       "text": "Annual non-public report on activities to the funder (or other entities)",
+       "points": 1
       },
       {
        "value": "Item 4",
-       "text": "Annual report on activities to the public"
+       "text": "Annual report on activities to the public",
+       "points": 2
       }
      ],
      "showNoneItem": true,
@@ -105,11 +117,13 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No legal options to compel disclosure of information about it data use activities to the public beyond civil or criminal proceedings"
+       "text": "No legal options to compel disclosure of information about it data use activities to the public beyond civil or criminal proceedings",
+       "points": -2
       },
       {
        "value": "Item 2",
-       "text": "Can be compelled to disclose information about its data use activities via freedom of information laws"
+       "text": "Can be compelled to disclose information about its data use activities via freedom of information laws",
+       "points": 2
       }
      ],
      "showNoneItem": true,
@@ -123,15 +137,18 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Demonstrated track record of rejecting information requests (Irrespective of byway of FOI laws, other laws, or voluntarily) "
+       "text": "Demonstrated track record of rejecting information requests (Irrespective of byway of FOI laws, other laws, or voluntarily) ",
+       "points": -2
       },
       {
        "value": "Item 2",
-       "text": "No track record "
+       "text": "No track record ",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Demonstrated track record of promptly responding to information requests (Irrespective of byway of FOI laws, other laws, or voluntarily)"
+       "text": "Demonstrated track record of promptly responding to information requests (Irrespective of byway of FOI laws, other laws, or voluntarily)",
+       "points": 2
       }
      ],
      "showNoneItem": true,
@@ -152,15 +169,18 @@
      "choices": [
       {
        "value": "ItemSell a product/service",
-       "text": "Develop/ improve new drug/ medical treatment"
+       "text": "Develop/ improve new drug/ medical treatment",
+       "points": 2
       },
       {
        "value": " 1",
-       "text": "Combat climate change"
+       "text": "Combat climate change",
+       "points": 2
       },
       {
        "value": "Item 2",
-       "text": "Combat social and economic inequality "
+       "text": "Combat social and economic inequality ",
+       "points": 2
       }
      ],
      "separateSpecialChoices": true,
@@ -176,15 +196,18 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Benefits accrue largely to the organisation"
+       "text": "Benefits accrue largely to the organisation",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Benefits largely accrue to users of the product/service resulting from the data use"
+       "text": "Benefits largely accrue to users of the product/service resulting from the data use",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Benefits accrue to users and non-users of product/service resulting from data use"
+       "text": "Benefits accrue to users and non-users of product/service resulting from data use",
+       "points": 2
       }
      ],
      "showNoneItem": true,
@@ -198,15 +221,18 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No track record of adjusting the data use to expand the range of beneficiaries in the Global South"
+       "text": "No track record of adjusting the data use to expand the range of beneficiaries in the Global South",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Track record of adjusting the data use to expand the range of beneficiaries in the Global South"
+       "text": "Track record of adjusting the data use to expand the range of beneficiaries in the Global South",
+       "points": 1
       },
       {
        "value": "Item 3",
-       "text": "Strong track record of adjusting the data use to expand the range of beneficiaries in the Global South"
+       "text": "Strong track record of adjusting the data use to expand the range of beneficiaries in the Global South",
+       "points": 2
       }
      ],
      "noneText": "None of the above (please specify)"
@@ -219,15 +245,18 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No track record of  strengthening benefits for groups that are granted additional protection by way of anti-discrimination law"
+       "text": "No track record of  strengthening benefits for groups that are granted additional protection by way of anti-discrimination law",
+       "points": -2
       },
       {
        "value": "Item 2",
-       "text": "Track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law "
+       "text": "Track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law ",
+       "points": 1
       },
       {
        "value": "Item 3",
-       "text": "Strong track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law "
+       "text": "Strong track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law ",
+       "points": 2
       }
      ],
      "noneText": "None of the above (please specify)"
@@ -240,15 +269,18 @@
      "choices": [
       {
        "value": "ItemSell a product/service",
-       "text": "Benefits primarily cover issues of current relevance"
+       "text": "Benefits primarily cover issues of current relevance",
+       "points": 0
       },
       {
        "value": " 1",
-       "text": "Benefits primarily cover issues of relevance for future generations"
+       "text": "Benefits primarily cover issues of relevance for future generations",
+       "points": 1
       },
       {
        "value": "Item 2",
-       "text": "Benefits are likely to increase in the future"
+       "text": "Benefits are likely to increase in the future",
+       "points": 2
       }
      ],
      "separateSpecialChoices": true,
@@ -271,23 +303,26 @@
      "isRequired": true,
      "choices": [
       {
-       "value": "ItemSell a product/service",
-       "text": "Physical risk"
-      },
-      {
-       "value": " 1",
-       "text": "Financial risk"
+       "value": "Item 1",
+       "text": "Physical risk",
+       "points": -3
       },
       {
        "value": "Item 2",
-       "text": "Informational risk"
+       "text": "Financial risk",
+       "points": -3
+      },
+      {
+       "value": "Item 3",
+       "text": "Informational risk",
+       "points": -3
       }
      ],
      "separateSpecialChoices": true,
      "showOtherItem": true,
      "showNoneItem": true,
      "noneText": "None of the above",
-     "otherText": "Other (please specify)"
+     "otherText": "Other (please specify) TODO add points"
     },
     {
      "type": "radiogroup",
@@ -297,11 +332,13 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Environment is negatively impacted"
+       "text": "Environment is negatively impacted",
+       "points": -4
       },
       {
        "value": "Item 2",
-       "text": "Environment is positively impacted"
+       "text": "Environment is positively impacted",
+       "points": 4
       }
      ],
      "showOtherItem": true,
@@ -316,11 +353,13 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Risks stem directly from the applicant’s data use (direct cause)"
+       "text": "Risks stem directly from the applicant’s data use (direct cause)",
+       "points": -3
       },
       {
        "value": "Item 2",
-       "text": "Risks are incidental to the applicant’s data use (indirect cause)"
+       "text": "Risks are incidental to the applicant’s data use (indirect cause)",
+       "points": -2
       }
      ],
      "showOtherItem": true,
@@ -335,16 +374,18 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Applicant’s data use entails risk for groups afforded special protection under the law"
+       "text": "Applicant’s data use entails risk for groups afforded special protection under the law",
+       "points": -5
       },
       {
        "value": "Item 2",
-       "text": "Applicant’s data use entails no risk for groups afforded special protection under the law"
+       "text": "Applicant’s data use entails no risk for groups afforded special protection under the law",
+       "points": 0
       }
      ],
      "showNoneItem": true,
      "noneText": "None of the above (please specify)",
-     "otherText": "Other (please specify)"
+     "otherText": "Other (please specify) TODO add points"
     },
     {
      "type": "radiogroup",
@@ -354,44 +395,24 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No information provided"
+       "text": "No information provided",
+       "points": -2
       },
       {
        "value": "Item 2",
-       "text": "Information about risks provided to the public at some point during the data use"
+       "text": "Information about risks provided to the public at some point during the data use",
+       "points": -1
       },
       {
        "value": "Item 3",
-       "text": "Information about risks provided to the public prior to commencement of data use"
+       "text": "Information about risks provided to the public prior to commencement of data use",
+       "points": 2
       }
      ],
      "showNoneItem": true,
      "noneText": "None of the above (please specify)",
-     "otherText": "Other (please specify)"
-    },
-    {
-     "type": "radiogroup",
-     "name": "question17",
-     "title": "Q15: Which of the answers below best describe the applicant’s communication about risks of its data to the public? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No information provided"
-      },
-      {
-       "value": "Item 2",
-       "text": "Information about risks provided to the public at some point during the data use"
-      },
-      {
-       "value": "Item 3",
-       "text": "Information about risks provided to the public prior to commencement of data use"
-      }
-     ],
-     "showNoneItem": true,
-     "noneText": "None of the above (please specify)",
-     "otherText": "Other (please specify)"
-    },
+     "otherText": "Other (please specify) TODO add points"
+   },
     {
      "type": "radiogroup",
      "name": "question16",
@@ -400,38 +421,44 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Dual use is likely"
+       "text": "Dual use is likely",
+       "points": -4
       },
       {
        "value": "Item 2",
-       "text": "Dual use is unlikely but conceivable"
+       "text": "Dual use is unlikely but conceivable",
+       "points": -2
       },
       {
        "value": "Item 3",
-       "text": "Dual use is extremely unlikely"
+       "text": "Dual use is extremely unlikely",
+       "points": 0
       }
      ],
      "showNoneItem": true,
      "noneText": "None of the above (please specify)",
-     "otherText": "Other (please specify)"
+     "otherText": "Other (please specify) TODO add points"
     },
     {
      "type": "radiogroup",
-     "name": "question19",
+     "name": "question17",
      "title": "Q17: Which of the answers below best describe the likelihood of a risk of dual use materializing and creating harm (tick one)? ",
      "isRequired": true,
      "choices": [
       {
        "value": "Item 1",
-       "text": "Risk from dual use are likely to materialise"
+       "text": "Risk from dual use are likely to materialise",
+       "points": -4
       },
       {
        "value": "Item 2",
-       "text": "Risks from dual use are unlikely to materialise"
+       "text": "Risks from dual use are unlikely to materialise",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Likelihood of risks from dual use cannot be assessed"
+       "text": "Likelihood of risks from dual use cannot be assessed",
+       "points": -3
       }
      ],
      "showNoneItem": true,
@@ -453,15 +480,18 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No risk assessment in place"
+       "text": "No risk assessment in place",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Ex ante institutionalized/ad-hoc risk assessment is voluntary"
+       "text": "Ex ante institutionalized/ad-hoc risk assessment is voluntary",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Ex ante institutionalized risk assessment is mandatory"
+       "text": "Ex ante institutionalized risk assessment is mandatory",
+       "points": 1
       }
      ],
      "showOtherItem": true,
@@ -476,19 +506,23 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No involvement of persons from outside the organisation "
+       "text": "No involvement of persons from outside the organisation ",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Occasional/Needs-based involvement of persons from outside the organisation"
+       "text": "Occasional/Needs-based involvement of persons from outside the organisation",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Routine involvement of persons from outside the organisation"
+       "text": "Routine involvement of persons from outside the organisation",
+       "points": 2
       },
       {
        "value": "Item 4",
-       "text": "No risk assessment in place"
+       "text": "No risk assessment in place",
+       "points": 0
       }
      ],
      "showOtherItem": true,
@@ -503,11 +537,13 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Findings are recommendations"
+       "text": "Findings are recommendations",
+       "points": -3
       },
       {
        "value": "Item 2",
-       "text": "Findings are binding and cannot be overruled"
+       "text": "Findings are binding and cannot be overruled",
+       "points": 2
       }
      ],
      "noneText": "None of the above (please specify)",
@@ -521,19 +557,23 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Trained ethicists are not included in the risk assessment "
+       "text": "Trained ethicists are not included in the risk assessment ",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "No risk assessment in place"
+       "text": "No risk assessment in place",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Trained ethicists are included in the risk assessment"
+       "text": "Trained ethicists are included in the risk assessment",
+       "points": 2
       },
       {
        "value": "Item 4",
-       "text": "No risk assessment in place"
+       "text": "No risk assessment in place",
+       "points": 0
       }
      ],
      "showNoneItem": true,
@@ -548,15 +588,18 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No monitoring of harms"
+       "text": "No monitoring of harms",
+       "points": -1
       },
       {
        "value": "Item 2",
-       "text": "Harms monitored for a limited period during the data use and the deployment of the data use and the deployment of the product/service"
+       "text": "Harms monitored for a limited period during the data use and the deployment of the data use and the deployment of the product/service",
+       "points": 0
       },
       {
        "value": "Item 3",
-       "text": "Harms are monitored throughout the data use and the deployment of the product/service"
+       "text": "Harms are monitored throughout the data use and the deployment of the product/service",
+       "points": 1
       }
      ],
      "showNoneItem": true,
@@ -571,11 +614,13 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Harm-causing activity cannot be ended immediately"
+       "text": "Harm-causing activity cannot be ended immediately",
+       "points": -3
       },
       {
        "value": "Item 2",
-       "text": "Harm-causing activity Harms can be ended immediately"
+       "text": "Harm-causing activity Harms can be ended immediately",
+       "points": 0
       }
      ],
      "showNoneItem": true,
@@ -590,19 +635,23 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "No complaint procedure in place"
+       "text": "No complaint procedure in place",
+       "points": -3
       },
       {
        "value": "Item 2",
-       "text": "Complaint procedure can be initiated online"
+       "text": "Complaint procedure can be initiated online",
+       "points": 1
       },
       {
        "value": "Item 3",
-       "text": "Complaint procedure designed in an accessible manner"
+       "text": "Complaint procedure designed in an accessible manner",
+       "points": 2
       },
       {
        "value": "Item 4",
-       "text": "Guaranteed respond times (under 4 weeks)"
+       "text": "Guaranteed respond times (under 4 weeks)",
+       "points": 2
       }
      ]
     }
