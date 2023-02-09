@@ -5,6 +5,7 @@
       "title": "Information About the Applicant",
       "questions": [
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the primary activity of the applicant?",
           "selection_range": {
             "start": 1,
@@ -34,6 +35,7 @@
           ]
         },
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the financial structure of the applicant\u2019s organisation?",
           "selection_range": {
             "start": 1,
@@ -63,6 +65,7 @@
           ]
         },
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the applicant\u2019s public reporting requirements?",
           "selection_range": {
             "start": 1,
@@ -92,6 +95,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the applicant\u2019s legal obligations to provide information to the public?",
           "selection_range": {
             "start": 1,
@@ -113,6 +117,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the applicant\u2019s track record in providing information about all its activities to the public?",
           "selection_range": {
             "start": 1,
@@ -143,6 +148,7 @@
       "title": "Benefits of the Applicant\u2019s Activity",
       "questions": [
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the applicant\u2019s motivation for data use?",
           "selection_range": {
             "start": 1,
@@ -168,6 +174,7 @@
           ]
         },
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the main beneficiary of the applicant\u2019s data use?",
           "selection_range": {
             "start": 1,
@@ -193,6 +200,7 @@
           ]
         },
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the applicant\u2019s track record in increasing the benefits of the applicant\u2019s data use in the Global South?",
           "selection_range": {
             "start": 1,
@@ -214,6 +222,7 @@
           ]
         },
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the applicant\u2019s track record in strengthening benefits of the applicant\u2019s data use for groups that are granted additional protection by way of anti-discrimination law?",
           "selection_range": {
             "start": 1,
@@ -235,6 +244,7 @@
           ]
         },
         {
+          "impact_keys": ["y"],
           "body": "Which of the answers below best describe the applicant\u2019s data use\u2019s benefits for future generations?",
           "selection_range": {
             "start": 1,
@@ -265,6 +275,7 @@
       "title": "Risks of the Applicant\u2019s Activity",
       "questions": [
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe risks entailed in the applicant\u2019s data use?",
           "selection_range": {
             "start": 1,
@@ -294,6 +305,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe effects of the applicant\u2019s data use on the environment?",
           "selection_range": {
             "start": 1,
@@ -315,6 +327,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the relationship between the applicant\u2019s data use and risks?",
           "selection_range": {
             "start": 1,
@@ -336,6 +349,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the risks for groups afforded special protection under the law (including, but not limited to, children, persons with disabilities, ethnic minorities, sexual minorities)?",
           "selection_range": {
             "start": 1,
@@ -357,6 +371,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the applicant\u2019s communication about risks of its data to the public?",
           "selection_range": {
             "start": 1,
@@ -382,6 +397,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the risk of dual use?",
           "selection_range": {
             "start": 1,
@@ -407,6 +423,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the likelihood of a risk of dual use materializing and creating harm?",
           "selection_range": {
             "start": 1,
@@ -437,6 +454,7 @@
       "title": "Institutional Safeguards",
       "questions": [
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the applicant\u2019s way of assessing risk?",
           "selection_range": {
             "start": 1,
@@ -462,6 +480,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the applicant\u2019s way of assessing risk?",
           "selection_range": {
             "start": 1,
@@ -491,6 +510,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the status of findings from the risk assessment?",
           "selection_range": {
             "start": 1,
@@ -508,6 +528,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the involvement of trained ethicists in the process of assessing risks?",
           "selection_range": {
             "start": 1,
@@ -533,6 +554,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the process of harm monitoring?",
           "selection_range": {
             "start": 1,
@@ -558,6 +580,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the ability of the applicant to stop/reverse their activity, once unexpected harms occur?",
           "selection_range": {
             "start": 1,
@@ -579,6 +602,7 @@
           ]
         },
         {
+          "impact_keys": ["x"],
           "body": "Which of the answers below best describe the remedies available to individuals?",
           "selection_range": {
             "start": 1,

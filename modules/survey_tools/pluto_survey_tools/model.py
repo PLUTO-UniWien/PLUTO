@@ -26,6 +26,7 @@ class Question:
     body: str
     selection_range: SelectionRange
     choices: list[AnswerChoice]
+    impact_keys: list[str]
 
     @staticmethod
     def from_dict(d: dict):
@@ -33,6 +34,7 @@ class Question:
             d['body'],
             SelectionRange.from_dict(d['selection_range']),
             [AnswerChoice.from_dict(c) for c in d['choices']],
+            d['impact_keys'],
         )
 
 
