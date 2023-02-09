@@ -63,6 +63,11 @@ class Questionnaire:
             [Section.from_dict(s) for s in d['sections']],
         )
 
+    @property
+    def questions(self) -> list[Question]:
+        """Return a list of all questions in the questionnaire."""
+        return [q for s in self.sections for q in s.questions]
+
 
 @dataclass
 class ResponseRow:
