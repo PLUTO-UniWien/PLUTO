@@ -13,6 +13,7 @@ numpy = "^1.24.1"
 jupyter = "^1.0.0"
 notebook = "^6.5.2"
 altair = "^4.2.0"
+vl-convert-python = "^0.7.0"
 
 
 [build-system]
