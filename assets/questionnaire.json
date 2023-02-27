@@ -276,7 +276,7 @@
       "questions": [
         {
           "impact_keys": ["x"],
-          "body": "Which of the answers below best describe risks entailed in the applicant\u2019s data use?",
+          "body": "Which of the answers below best describe the risks entailed in the applicant\u2019s data use?",
           "selection_range": {
             "start": 1,
             "end": 5
@@ -306,7 +306,7 @@
         },
         {
           "impact_keys": ["x"],
-          "body": "Which of the answers below best describe effects of the applicant\u2019s data use on the environment?",
+          "body": "Which of the answers below best describe the effects of the applicant\u2019s data use on the environment?",
           "selection_range": {
             "start": 1,
             "end": 1
