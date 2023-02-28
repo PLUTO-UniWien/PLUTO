@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="background-color: #f3f3f3; height: 100vh" >
     <Survey/>
 
   </div>
@@ -26,6 +26,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
+  margin-top: 0px;
+  padding-bottom: 40px;
+  line-height: 1.6
 }
+
+p {line-height: 1.4}
+
 </style>

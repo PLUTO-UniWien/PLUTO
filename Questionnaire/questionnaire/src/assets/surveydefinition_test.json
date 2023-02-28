@@ -1,9 +1,9 @@
 {
- "title": "PLUTO",
- "description": "This is a survey description.",
+  "title": "Public Value Tool",
+  "description": "Assessing Public Value: A Tool for Structured Assessment",
  "showProgressBar": "top",
  "logoPosition": "right",
- "completedHtml": "These are your results: ",
+ "completedHtml": " ",
  "completedHtmlOnCondition": [
   {
    "html": "<ResultView/>"
@@ -27,7 +27,8 @@
        "value": "Item 1",
        "text": "Sell a product/service",
        "points": 1,
-       "axis" : "y"
+       "axis" : "y",
+       "feedback" : "if the organisation served a public purpose or prioritised the collective good beyond seeking to create commercial profits"
       },
       {
        "value": "Item 2",
@@ -68,13 +69,15 @@
        "value": "ItemSell a product/service",
        "points": 1,
        "text": "Largely financed through income from own activities or parent/partner company",
-       "axis" : "y"
+       "axis" : "y",
+       "feedback" : "if the financial structure of the organisation was different"
       },
       {
        "value": " 1",
        "points": 1,
        "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
-       "axis" : "y"
+       "axis" : "y",
+       "feedback" : "if the financial structure of the organisation was different"
       },
       {
        "value": "Item 2",
@@ -108,7 +111,8 @@
        "value": "Item 1",
        "points": 1,
        "text": "No reporting requirements",
-       "axis" : "x"
+       "axis" : "x",
+       "feedback" : "if the organisation had public reporting requirements in place related to data use"
       },
       {
        "value": "Item 2",
