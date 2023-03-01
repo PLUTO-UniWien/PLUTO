@@ -110,7 +110,7 @@
     {
      "type": "radiogroup",
      "name": "question3",
-     "title": "Which of the answers below best describe the applicant’s public reporting requirements? (tick one)",
+     "title": "Which of the answers below best describe the applicant’s public reporting requirements? (tick the one that fits best)",
      "isRequired": true,
      "choices": [
       {
@@ -445,6 +445,9 @@
        "axis" : "x"
       }
      ]
+     ,
+     "showOtherItem": true,
+     "otherText": "None of the above (please specify)"
     }
     ]},
     {
@@ -474,7 +477,8 @@
       }
      ],
      "showOtherItem": true,
-     "noneText": "None of the above (please specify)",
+     "showNoneItem": true,
+     "noneText": "None of the above",
      "otherText": "Other (please specify)"
     }
     ]},
@@ -491,14 +495,14 @@
      "choices": [
       {
        "value": "Item 1",
-       "text": "Applicant’s data use entails risk for groups afforded special protection under the law",
+       "text": "Data use entails risk for groups afforded special protection under the law",
        "points": -5,
        "axis" : "x",
-       "feedback" : "if the orgnisation's data use did not entail risks for groups afforded special protection under the law"
+       "feedback" : "if the organisation's data use did not entail risks for groups afforded special protection under the law"
       },
       {
        "value": "Item 2",
-       "text": "Applicant’s data use entails no risk for groups afforded special protection under the law",
+       "text": "Data use entails no risk for groups afforded special protection under the law",
        "points": 0,
        "axis" : "x"
       }
@@ -631,13 +635,13 @@
       },
       {
        "value": "Item 2",
-       "text": "Ex ante institutionalized/ad-hoc risk assessment is voluntary",
+       "text": "Ex ante institutionalised/ad-hoc risk assessment is voluntary",
        "points": 0,
        "axis" : "x"
       },
       {
        "value": "Item 3",
-       "text": "Ex ante institutionalized risk assessment is mandatory",
+       "text": "Ex ante institutionalised risk assessment is mandatory",
        "points": 1,
        "axis" : "x"
       }
@@ -706,7 +710,9 @@
        "points": 2,
        "axis" : "x"
       }
-     ]
+     ]     ,
+     "showNoneItem": true,
+     "noneText": "None of the above"
     }
     ]},
     {
@@ -803,7 +809,7 @@
       },
       {
        "value": "Item 2",
-       "text": "Harm-causing activity Harms can be ended immediately",
+       "text": "Harm-causing activity can be ended immediately",
        "points": 0,
        "axis" : "x"
       }

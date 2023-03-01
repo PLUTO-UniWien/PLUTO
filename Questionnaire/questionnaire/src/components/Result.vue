@@ -11,8 +11,8 @@
               <g id="chartElements">
               </g>
               <g id="labels">
-                <text id="muchBenefit">Much benefit</text>
-                <text id="littleBenefit">Little benefit </text>
+                <text id="muchBenefit">High benefit</text>
+                <text id="littleBenefit">Low benefit </text>
                 <text id="lowRisk">Low risk </text>
                 <text id="highRisk">High risk</text>
 
@@ -29,9 +29,9 @@
         <div v-if="showResultsBotton" style="text-align: left; margin: auto;" id="resultXarea">
 
           <br>
-          <h5>Your Benefit would be more...</h5>
+          <h5>The benefits of the data use would be higher...</h5>
           <p v-for="(point, index) in feedback.value" :key="point + index">- {{point}}</p>
-          <h5>Your Risk would be lower...</h5>
+          <h5>The risks would be lower...</h5>
           <p v-for="(point, index) in feedback.risk" :key="point + index">- {{point}}</p>
           <br>
         </div>
@@ -55,7 +55,7 @@
 
     <b-tooltip target="resultPoint" triggers="hover">
       Risk: {{this.normalizedAxisScore.x.toFixed(2)}} <br>
-      Public value: {{this.normalizedAxisScore.y.toFixed(2)}}
+      Benefit: {{this.normalizedAxisScore.y.toFixed(2)}}
     </b-tooltip>
 
     <div v-if="showTooltips">
@@ -89,7 +89,7 @@
 
     <h4>High Public Value</h4>
     <p>If benefits are high and risks are low, this means that the data use that you inquired about creates high public value. It is likely to benefit people or communities without putting anyone at great risk. This means that the data use can (and
-      often: should) go ahead. In some cases, it means that it is so valuable that it <a href="https://www.thelancet.com/journals/landig/article/PIIS2589-7500(22)00189-3/fulltext"> should ideally receive public support </a> - e.g. in terms of
+      often: should) go ahead. In some cases it means that it is so valuable that it <a href="https://www.thelancet.com/journals/landig/article/PIIS2589-7500(22)00189-3/fulltext"> should ideally receive public support </a> - e.g. in terms of
       funding, or by qualifying for regulatory exemptions. We cannot grant such support ourselves, but we hope that the high public value score can help you access it - if not now, then in the future, when public value receives more systematic
       consideration in legislation and regulation. </p>
 
@@ -168,8 +168,6 @@ export default {
       d3.select("#chart")
         .attr("transform", "translate(" + this.svgPadding.left + "," + this.svgPadding.top + ")")
 
-      // chart.append("text")
-      //   .text("High risk")
       d3.select("#lowRisk")
         .attr("x", -10)
         .attr("y", chartsize / 2 + 40)
