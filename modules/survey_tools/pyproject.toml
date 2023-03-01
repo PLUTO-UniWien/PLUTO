@@ -4,16 +4,20 @@ version = "0.1.0"
 description = ""
 authors = ["Péter Ferenc Gyarmati <dev.petergy@gmail.com>"]
 readme = "README.md"
-packages = [{include = "pluto_survey_tools"}]
+packages = [{ include = "pluto_survey_tools" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+altair = "^4.2.2"
+numpy = "^1.24.2"
 pandas = "^1.5.3"
-numpy = "^1.24.1"
+streamlit = "^1.19.0"
+
+[tool.poetry.group.dev.dependencies]
 jupyter = "^1.0.0"
 notebook = "^6.5.2"
-altair = "^4.2.0"
-
+vl-convert-python = "^0.7.0"
+watchdog = "^2.3.0"
 
 [build-system]
 requires = ["poetry-core"]

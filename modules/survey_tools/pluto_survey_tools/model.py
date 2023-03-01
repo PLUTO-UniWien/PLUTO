@@ -1,7 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, replace, asdict
 
 
-@dataclass
+@dataclass(frozen=True)
 class SelectionRange:
     start: int
     end: int
@@ -11,7 +11,7 @@ class SelectionRange:
         return SelectionRange(d['start'], d['end'])
 
 
-@dataclass
+@dataclass(frozen=True)
 class AnswerChoice:
     body: str
     score: float
@@ -21,11 +21,12 @@ class AnswerChoice:
         return AnswerChoice(d['body'], d['score'])
 
 
-@dataclass
+@dataclass(frozen=True)
 class Question:
     body: str
     selection_range: SelectionRange
     choices: list[AnswerChoice]
+    impact_keys: list[str]
 
     @staticmethod
     def from_dict(d: dict):
@@ -33,10 +34,16 @@ class Question:
             d['body'],
             SelectionRange.from_dict(d['selection_range']),
             [AnswerChoice.from_dict(c) for c in d['choices']],
+            d['impact_keys'],
         )
 
+    @property
+    def choice_scores(self) -> list[float]:
+        """Return a list of the scores for each choice."""
+        return [c.score for c in self.choices]
 
-@dataclass
+
+@dataclass(frozen=True)
 class Section:
     title: str
     questions: list[Question]
@@ -49,7 +56,7 @@ class Section:
         )
 
 
-@dataclass
+@dataclass(frozen=True)
 class Questionnaire:
     title: str
     sections: list[Section]
@@ -61,8 +68,36 @@ class Questionnaire:
             [Section.from_dict(s) for s in d['sections']],
         )
 
+    @property
+    def questions(self) -> list[Question]:
+        """Return a list of all questions in the questionnaire."""
+        return [q for s in self.sections for q in s.questions]
 
-@dataclass
+    def copy(self) -> 'Questionnaire':
+        """Return a copy of the questionnaire."""
+        return Questionnaire.from_dict(asdict(self))
+
+    def with_choice_scores(self, scores: list[float]) -> 'Questionnaire':
+        """Return a copy of the questionnaire with the given choice scores."""
+        self_dict = asdict(self)
+        curr_scores = scores.copy()
+        for i, section in enumerate(self.sections):
+            for j, question in enumerate(section.questions):
+                num_choices = len(question.choices)
+                question_scores = curr_scores[:num_choices]
+                curr_scores = curr_scores[num_choices:]
+                edited_choices = [asdict(replace(c, score=s)) for c, s in zip(question.choices, question_scores)]
+                self_dict['sections'][i]['questions'][j]['choices'] = edited_choices
+
+        return Questionnaire.from_dict(self_dict)
+
+    @property
+    def choice_scores(self) -> list[float]:
+        """Return a list of the scores for each choice."""
+        return [c.score for q in self.questions for c in q.choices]
+
+
+@dataclass(frozen=True)
 class ResponseRow:
     section_id: str
     section_title: str
