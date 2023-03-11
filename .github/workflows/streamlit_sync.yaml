@@ -34,14 +34,19 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const relevantFilesChanged = ${{ steps.changes.outputs.survey_tools == 'true' }}
-            core.setOutput('should_run', true)
+            const shouldRun = ${{ steps.changes.outputs.survey_tools == 'true' }}
+            core.info(`shouldRun: ${shouldRun}`)
+            core.setOutput('should_run', shouldRun)
 
   trigger-mirror:
     needs: set_vars
     if: ${{ needs.set_vars.outputs.should_run == 'true' }}
     runs-on: ubuntu-latest
     name: Trigger Mirror
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.MIRROR_WORKFLOW_GITHUB_TOKEN }}
+
     steps:
       - name: Trigger Workflow Dispatch via GH CLI
         run: gh workflow run --repo ${{ env.MIRROR_REPO }} "${{ env.MIRROR_WORKFLOW_NAME }}"
