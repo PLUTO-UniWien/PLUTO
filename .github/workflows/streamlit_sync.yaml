@@ -1,0 +1,47 @@
+name: 'Trigger Mirror Streamlit App'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  MIRROR_REPO: peter-gy/pluto-streamlit-mirror
+  MIRROR_WORKFLOW_NAME: "Mirror Streamlit App"
+
+jobs:
+  set_vars:
+    name: Set Auxiliary Variables
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      should_run: ${{ steps.set_should_run.outputs.should_run }}
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Checking whether relevant files were changed
+        uses: dorny/paths-filter@v2.11.1
+        id: changes
+        with:
+          filters: |
+            survey_tools:
+              - 'modules/survey_tools/**'
+
+      - name: Set `should_run`
+        id: set_should_run
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const relevantFilesChanged = ${{ steps.changes.outputs.survey_tools == 'true' }}
+            core.setOutput('should_run', true)
+
+  trigger-mirror:
+    needs: set_vars
+    if: ${{ needs.set_vars.outputs.should_run == 'true' }}
+    runs-on: ubuntu-latest
+    name: Trigger Mirror
+    steps:
+      - name: Trigger Workflow Dispatch via GH CLI
+        run: gh workflow run --repo ${{ env.MIRROR_REPO }} "${{ env.MIRROR_WORKFLOW_NAME }}"
