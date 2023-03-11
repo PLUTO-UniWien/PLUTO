@@ -1,863 +1,892 @@
 {
   "title": "PLUTO - Public Value Assessment Tool",
   "description": "",
- "showProgressBar": "top",
- "logo": "PLUTO_logo.png",
- "logoPosition": "top",
- "logoWidth": 120,
-"logoHeight": 120,
- "logoFit": "contain",
- "completedHtml": " ",
- "completedHtmlOnCondition": [
-  {
-   "html": "<h3>Thank you for your feedback</h3> <h4>We are glad that you love our product. Your ideas and suggestions will help us make it even better.</h4>"
-  },
-  {
-   "html": "<h3>Thank you for your feedback</h3> <h4>We are glad that you shared your ideas with us. They will help us make our product better.</h4>"
-  }
- ],
- "pages": [
-  {
-   "name": "page1",
-   "title": "Information About the Applicant",
-   "description": "",
-   "elements": [
+  "showProgressBar": "top",
+  "logo": "PLUTO_logo.png",
+  "logoPosition": "top",
+  "logoWidth": 120,
+  "logoHeight": 120,
+  "logoFit": "contain",
+  "completedHtml": " ",
+  "completedHtmlOnCondition": [
     {
-     "type": "checkbox",
-     "name": "question1",
-     "title": "Which of the answers below best describe the primary activity of the applicant? (tick up to two)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Sell a product/service",
-       "points": -1,
-       "axis" : "y",
-       "feedback" : "if the organisation served a public purpose or prioritised the collective good beyond seeking to create commercial profits"
-      },
-      {
-       "value": "Item 2",
-       "text": "Fulfill a government task",
-       "points": 0,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 3",
-       "text": "Conduct applied research",
-       "points": 0,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 4",
-       "text": "Conduct basic research ",
-       "points": 1,
-       "axis" : "y"
-      }
-     ],
-     "separateSpecialChoices": true,
-     "showNoneItem": true,
-     "noneText": "None of the Above",
-     "maxSelectedChoices": 2
+      "html": "<h3>Thank you for your feedback</h3> <h4>We are glad that you love our product. Your ideas and suggestions will help us make it even better.</h4>"
+    },
+    {
+      "html": "<h3>Thank you for your feedback</h3> <h4>We are glad that you shared your ideas with us. They will help us make our product better.</h4>"
     }
-    ]},{
-       "name": "page2",
-       "title": "Information About the Applicant",
-       "description": "",
-       "elements": [
+  ],
+  "pages": [
     {
-     "type": "checkbox",
-     "name": "question2",
-     "title": "Which of the answers below best describe the financial structure of the applicant’s organisation? (tick up to two)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "ItemSell a product/service",
-       "text": "Largely financed through income from own activities or parent/partner company",
-       "points": -1,
-       "axis" : "y",
-       "feedback" : "if the financial structure of the organisation was different"
-      },
-      {
-       "value": " 1",
-       "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
-       "points": -1,
-       "axis" : "y",
-       "feedback" : "if the financial structure of the organisation was different"
-      },
-      {
-       "value": "Item 2",
-       "text": "Largely financed by governments or international organisations",
-       "points": 0,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 3",
-       "text": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)",
-       "points": 1,
-       "axis" : "y"
-      }
-     ],
-     "separateSpecialChoices": true,
-     "showNoneItem": true,
-     "noneText": "None of the Above",
-     "maxSelectedChoices": 2
-    }
-    ]},{
-       "name": "page3",
-       "title": "Information About the Applicant",
-       "description": "",
-       "elements": [
+      "name": "page1",
+      "title": "Information About the Applicant",
+      "description": "",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question1",
+          "title": "Which of the answers below best describe the primary activity of the applicant? (tick up to two)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Sell a product/service",
+              "points": -1,
+              "axis": "y",
+              "feedback": "if the organisation served a public purpose or prioritised the collective good beyond seeking to create commercial profits"
+            },
+            {
+              "value": "Item 2",
+              "text": "Fulfill a government task",
+              "points": 0,
+              "axis": "y"
+            },
+            {
+              "value": "Item 3",
+              "text": "Conduct applied research",
+              "points": 0,
+              "axis": "y"
+            },
+            {
+              "value": "Item 4",
+              "text": "Conduct basic research ",
+              "points": 1,
+              "axis": "y"
+            }
+          ],
+          "separateSpecialChoices": true,
+          "showNoneItem": true,
+          "noneText": "None of the Above",
+          "maxSelectedChoices": 2
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question3",
-     "title": "Which of the answers below best describe the applicant’s public reporting requirements? (tick the one that fits best)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No reporting requirements",
-       "points": -1,
-       "axis" : "y",
-       "feedback" : "if the organisation had public reporting requirements in place related to data use"
-      },
-      {
-       "value": "Item 2",
-       "text": "Annual report on key financials to financial institution",
-       "points": 0,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 3",
-       "text": "Annual non-public report on activities to the funder (or other entities)",
-       "points": 1,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 4",
-       "text": "Annual report on activities to the public",
-       "points": 2,
-       "axis" : "y"
-      }
-     ],
-     "showNoneItem": true,
-     "noneText": "None of the above"
-    }
-    ]},{
-       "name": "page4",
-       "title": "Information About the Applicant",
-       "description": "",
-       "elements": [
+      "name": "page2",
+      "title": "Information About the Applicant",
+      "description": "",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question2",
+          "title": "Which of the answers below best describe the financial structure of the applicant’s organisation? (tick up to two)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "ItemSell a product/service",
+              "text": "Largely financed through income from own activities or parent/partner company",
+              "points": -1,
+              "axis": "y",
+              "feedback": "if the financial structure of the organisation was different"
+            },
+            {
+              "value": " 1",
+              "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
+              "points": -1,
+              "axis": "y",
+              "feedback": "if the financial structure of the organisation was different"
+            },
+            {
+              "value": "Item 2",
+              "text": "Largely financed by governments or international organisations",
+              "points": 0,
+              "axis": "y"
+            },
+            {
+              "value": "Item 3",
+              "text": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)",
+              "points": 1,
+              "axis": "y"
+            }
+          ],
+          "separateSpecialChoices": true,
+          "showNoneItem": true,
+          "noneText": "None of the Above",
+          "maxSelectedChoices": 2
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question4",
-     "title": "Which of the answers below best describe the applicant’s legal obligations to provide information to the public? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No legal options to compel disclosure of information about it data use activities to the public beyond civil or criminal proceedings",
-       "points": -2,
-       "axis" : "x",
-       "feedback" : "if the organisation could be legally compelled to disclose information about data use activities to the public (beyond civil and criminal proceedings)"
-      },
-      {
-       "value": "Item 2",
-       "text": "Can be compelled to disclose information about its data use activities via freedom of information laws",
-       "points": 2,
-       "axis" : "x"
-      }
-     ],
-     "showOtherItem": true,
-     "otherText": "None of the above (please specify)"
-    }]},
+      "name": "page3",
+      "title": "Information About the Applicant",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question3",
+          "title": "Which of the answers below best describe the applicant’s public reporting requirements? (tick the one that fits best)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No reporting requirements",
+              "points": -1,
+              "axis": "y",
+              "feedback": "if the organisation had public reporting requirements in place related to data use"
+            },
+            {
+              "value": "Item 2",
+              "text": "Annual report on key financials to financial institution",
+              "points": 0,
+              "axis": "y"
+            },
+            {
+              "value": "Item 3",
+              "text": "Annual non-public report on activities to the funder (or other entities)",
+              "points": 1,
+              "axis": "y"
+            },
+            {
+              "value": "Item 4",
+              "text": "Annual report on activities to the public",
+              "points": 2,
+              "axis": "y"
+            }
+          ],
+          "showNoneItem": true,
+          "noneText": "None of the above"
+        }
+      ]
+    },
     {
-       "name": "page5",
-       "title": "Information About the Applicant",
-       "description": "",
-       "elements": [
+      "name": "page4",
+      "title": "Information About the Applicant",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question4",
+          "title": "Which of the answers below best describe the applicant’s legal obligations to provide information to the public? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No legal options to compel disclosure of information about it data use activities to the public beyond civil or criminal proceedings",
+              "points": -2,
+              "axis": "x",
+              "feedback": "if the organisation could be legally compelled to disclose information about data use activities to the public (beyond civil and criminal proceedings)"
+            },
+            {
+              "value": "Item 2",
+              "text": "Can be compelled to disclose information about its data use activities via freedom of information laws",
+              "points": 2,
+              "axis": "x"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question5",
-     "title": "Which of the answers below best describe the applicant’s track record in providing information about all its activities to the public? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Demonstrated track record of rejecting information requests (Irrespective of byway of FOI laws, other laws, or voluntarily) ",
-       "points": -2,
-       "axis" : "x",
-       "feedback" : "if the organisation complied (better) with information requests regarding data use"
-      },
-      {
-       "value": "Item 2",
-       "text": "No track record ",
-       "points": 0,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 3",
-       "text": "Demonstrated track record of promptly responding to information requests (Irrespective of byway of FOI laws, other laws, or voluntarily)",
-       "points": 2,
-       "axis" : "x"
-      }
-     ],
-     "showOtherItem": true,
-     "otherText": "None of the above (please specify)"
-    }
-   ]
-  },
-  {
-   "name": "page6",
-   "title": "Benefits of the Applicant’s Activity",
-   "description": "",
-   "elements": [
+      "name": "page5",
+      "title": "Information About the Applicant",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question5",
+          "title": "Which of the answers below best describe the applicant’s track record in providing information about all its activities to the public? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Demonstrated track record of rejecting information requests (Irrespective of byway of FOI laws, other laws, or voluntarily) ",
+              "points": -2,
+              "axis": "x",
+              "feedback": "if the organisation complied (better) with information requests regarding data use"
+            },
+            {
+              "value": "Item 2",
+              "text": "No track record ",
+              "points": 0,
+              "axis": "x"
+            },
+            {
+              "value": "Item 3",
+              "text": "Demonstrated track record of promptly responding to information requests (Irrespective of byway of FOI laws, other laws, or voluntarily)",
+              "points": 2,
+              "axis": "x"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
+        }
+      ]
+    },
     {
-     "type": "checkbox",
-     "name": "question6",
-     "title": "Which of the answers below best describe the applicant’s motivation for data use? (tick up to two)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "ItemSell a product/service",
-       "text": "Develop/improve new drug/medical treatment",
-       "points": 2,
-       "axis" : "y"
-      },
-      {
-       "value": " 1",
-       "text": "Combat climate change",
-       "points": 2,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 2",
-       "text": "Combat social and economic inequality ",
-       "points": 2,
-       "axis" : "y"
-      }
-     ],
-     "separateSpecialChoices": true,
-     "showOtherItem": true,
-     "otherText": "None of the above (please specify)",
-     "maxSelectedChoices": 2
-    }
-    ]},
+      "name": "page6",
+      "title": "Benefits of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question6",
+          "title": "Which of the answers below best describe the applicant’s motivation for data use? (tick up to two)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "ItemSell a product/service",
+              "text": "Develop/improve new drug/medical treatment",
+              "points": 2,
+              "axis": "y"
+            },
+            {
+              "value": " 1",
+              "text": "Combat climate change",
+              "points": 2,
+              "axis": "y"
+            },
+            {
+              "value": "Item 2",
+              "text": "Combat social and economic inequality ",
+              "points": 2,
+              "axis": "y"
+            }
+          ],
+          "separateSpecialChoices": true,
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)",
+          "maxSelectedChoices": 2
+        }
+      ]
+    },
     {
-       "name": "page7",
-       "title": "Benefits of the Applicant’s Activity",
-       "description": "",
-       "elements": [
+      "name": "page7",
+      "title": "Benefits of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question7",
+          "title": "Which of the answers below best describe the main beneficiary of the applicant’s data use? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Benefits accrue largely to the organisation",
+              "points": -1,
+              "axis": "y",
+              "feedback": "if the organisation's data use did not mainly benefit the organisation itself, but also the wider public or specific groups"
+            },
+            {
+              "value": "Item 2",
+              "text": "Benefits largely accrue to users of the product/service resulting from the data use",
+              "points": 0,
+              "axis": "y"
+            },
+            {
+              "value": "Item 3",
+              "text": "Benefits accrue to users and non-users of product/service resulting from data use",
+              "points": 2,
+              "axis": "y"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question7",
-     "title": "Which of the answers below best describe the main beneficiary of the applicant’s data use? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Benefits accrue largely to the organisation",
-       "points": -1,
-       "axis" : "y",
-       "feedback" : "if the organisation's data use did not mainly benefit the organisation itself, but also the wider public or specific groups"
-      },
-      {
-       "value": "Item 2",
-       "text": "Benefits largely accrue to users of the product/service resulting from the data use",
-       "points": 0,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 3",
-       "text": "Benefits accrue to users and non-users of product/service resulting from data use",
-       "points": 2,
-       "axis" : "y"
-      }
-     ],
-     "showOtherItem": true,
-     "otherText": "None of the above (please specify)"
-    }]},
+      "name": "page8",
+      "title": "Benefits of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question8",
+          "title": "Which of the answers below best describe the applicant’s track record in increasing the benefits of the applicant’s data use in the Global South? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No track record of adjusting the data use to expand the range of beneficiaries in the Global South",
+              "points": -2,
+              "axis": "y",
+              "feedback": "if the organisation had previously ensured that their data use benefits people in the Global South"
+            },
+            {
+              "value": "Item 2",
+              "text": "Track record of adjusting the data use to expand the range of beneficiaries in the Global South",
+              "points": 1,
+              "axis": "y"
+            },
+            {
+              "value": "Item 3",
+              "text": "Strong track record of adjusting the data use to expand the range of beneficiaries in the Global South",
+              "points": 2,
+              "axis": "y"
+            }
+          ]
+        }
+      ]
+    },
     {
-       "name": "page8",
-       "title": "Benefits of the Applicant’s Activity",
-       "description": "",
-       "elements": [
+      "name": "page9",
+      "title": "Benefits of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question9",
+          "title": "Which of the answers below best describe the applicant’s track record in strengthening benefits of the applicant’s data use for groups that are granted additional protection by way of anti-discrimination law? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law",
+              "points": -2,
+              "axis": "y",
+              "feedback": "if your organisation had previously ensured that their data use benefits groups that are protected under anti-discrimination rules"
+            },
+            {
+              "value": "Item 2",
+              "text": "Track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law ",
+              "points": 1,
+              "axis": "y"
+            },
+            {
+              "value": "Item 3",
+              "text": "Strong track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law ",
+              "points": 2,
+              "axis": "y"
+            }
+          ]
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question8",
-     "title": "Which of the answers below best describe the applicant’s track record in increasing the benefits of the applicant’s data use in the Global South? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No track record of adjusting the data use to expand the range of beneficiaries in the Global South",
-       "points": -2,
-       "axis" : "y",
-       "feedback" : "if the organisation had previously ensured that their data use benefits people in the Global South"
-      },
-      {
-       "value": "Item 2",
-       "text": "Track record of adjusting the data use to expand the range of beneficiaries in the Global South",
-       "points": 1,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 3",
-       "text": "Strong track record of adjusting the data use to expand the range of beneficiaries in the Global South",
-       "points": 2,
-       "axis" : "y"
-      }
-     ]
-    }
-    ]},
+      "name": "page10",
+      "title": "Benefits of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question10",
+          "title": "Which of the answers below best describe the applicant’s data use’s benefits for future generations? (tick up to two)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "ItemSell a product/service",
+              "text": "Benefits primarily cover issues of current relevance",
+              "points": 0,
+              "axis": "y"
+            },
+            {
+              "value": " 1",
+              "text": "Benefits primarily cover issues of relevance for future generations",
+              "points": 1,
+              "axis": "y"
+            },
+            {
+              "value": "Item 2",
+              "text": "Benefits are likely to increase in the future",
+              "points": 2,
+              "axis": "y"
+            }
+          ],
+          "maxSelectedChoices": 2
+        }
+      ]
+    },
     {
-       "name": "page9",
-       "title": "Benefits of the Applicant’s Activity",
-       "description": "",
-       "elements": [
+      "name": "page11",
+      "title": "Benefits of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question11",
+          "title": "Which of the answers below best describe risks entailed in the applicant’s data use? (tick as many as necessary)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Physical risk",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if the organisation's data use posed lower physical risk to people"
+            },
+            {
+              "value": "Item 2",
+              "text": "Financial risk",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if the organisation's data use posed lower financial risk to people"
+            },
+            {
+              "value": "Item 3",
+              "text": "Informational risk",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if the organisation's data use posed lower informational risk to people"
+            },
+            {
+              "value": "Item 4",
+              "text": "Other risk",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if the organisation's data use posed fewer other (beyond physical, financial and informational) risks to people"
+            }
+          ],
+          "separateSpecialChoices": true,
+          "showNoneItem": true,
+          "noneText": "None of the above"
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question9",
-     "title": "Which of the answers below best describe the applicant’s track record in strengthening benefits of the applicant’s data use for groups that are granted additional protection by way of anti-discrimination law? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law",
-       "points": -2,
-       "axis" : "y",
-       "feedback" : "if your organisation had previously ensured that their data use benefits groups that are protected under anti-discrimination rules"
-      },
-      {
-       "value": "Item 2",
-       "text": "Track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law ",
-       "points": 1,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 3",
-       "text": "Strong track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law ",
-       "points": 2,
-       "axis" : "y"
-      }
-     ]
-    }
-    ]},
+      "name": "page12",
+      "title": "Risks of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question12",
+          "title": "Which of the answers below best describe effects of the applicant’s data use on the natural environment? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Natural environment is negatively impacted",
+              "points": -4,
+              "axis": "x",
+              "feedback": "if the negative environmental impacts of the organisation's data use were lower"
+            },
+            {
+              "value": "Item 2",
+              "text": "Natural environment is positively impacted",
+              "points": 4,
+              "axis": "x"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
+        }
+      ]
+    },
     {
-       "name": "page10",
-       "title": "Benefits of the Applicant’s Activity",
-       "description": "",
-       "elements": [
+      "name": "page13",
+      "title": "Risks of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question13",
+          "title": "Which of the answers below best describe the relationship between the applicant’s data use and risks? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Risks stem directly from the applicant’s data use (direct cause)",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if fewer/lower risks were associated directly with the organisation's data use"
+            },
+            {
+              "value": "Item 2",
+              "text": "Risks are incidental to the applicant’s data use (indirect cause)",
+              "points": -2,
+              "axis": "x",
+              "feedback": "if fewer/lower risks were incidentally associated the organisation's data use"
+            }
+          ],
+          "showOtherItem": true,
+          "showNoneItem": true,
+          "noneText": "None of the above",
+          "otherText": "Other (please specify)"
+        }
+      ]
+    },
     {
-     "type": "checkbox",
-     "name": "question10",
-     "title": "Which of the answers below best describe the applicant’s data use’s benefits for future generations? (tick up to two)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "ItemSell a product/service",
-       "text": "Benefits primarily cover issues of current relevance",
-       "points": 0,
-       "axis" : "y"
-      },
-      {
-       "value": " 1",
-       "text": "Benefits primarily cover issues of relevance for future generations",
-       "points": 1,
-       "axis" : "y"
-      },
-      {
-       "value": "Item 2",
-       "text": "Benefits are likely to increase in the future",
-       "points": 2,
-       "axis" : "y"
-      }
-     ],
-     "maxSelectedChoices": 2
-    }
-   ]
-  },
-  {
-   "name": "page11",
-   "title": "Benefits of the Applicant’s Activity",
-   "description": "",
-   "elements": [
+      "name": "page14",
+      "title": "Risks of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question14",
+          "title": "Which of the answers below best describe the risks for groups afforded special protection under the law (including, but not limited to, children, persons with disabilities, ethnic minorities, sexual minorities)? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Data use entails risk for groups afforded special protection under the law",
+              "points": -5,
+              "axis": "x",
+              "feedback": "if the organisation's data use did not entail risks for groups afforded special protection under the law"
+            },
+            {
+              "value": "Item 2",
+              "text": "Data use entails no risk for groups afforded special protection under the law",
+              "points": 0,
+              "axis": "x"
+            }
+          ],
+          "showOtherItem": "true",
+          "otherText": "Other (please specify)"
+        }
+      ]
+    },
     {
-     "type": "checkbox",
-     "name": "question11",
-     "title": "Which of the answers below best describe risks entailed in the applicant’s data use? (tick as many as necessary)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Physical risk",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if the organisation's data use posed lower physical risk to people"
-      },
-      {
-       "value": "Item 2",
-       "text": "Financial risk",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if the organisation's data use posed lower financial risk to people"
-      },
-      {
-       "value": "Item 3",
-       "text": "Informational risk",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if the organisation's data use posed lower informational risk to people"
-      },
-      {
-       "value": "Item 4",
-       "text": "Other risk",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if the organisation's data use posed fewer other (beyond physical, financial and informational) risks to people"
-      }
-     ],
-     "separateSpecialChoices": true,
-     "showNoneItem": true,
-     "noneText": "None of the above"
-    }]},
+      "name": "page15",
+      "title": "Risks of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question15",
+          "title": "Which of the answers below best describe the applicant’s communication about risks of its data to the public? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No information provided",
+              "points": -2,
+              "axis": "x",
+              "feedback": "if the orgnisation provided more information about risks of its data use to the public"
+            },
+            {
+              "value": "Item 2",
+              "text": "Information about risks provided to the public at some point during the data use",
+              "points": -1,
+              "axis": "x",
+              "feedback": "if the organisation informed the public about its data use prior to the commencement of data use"
+            },
+            {
+              "value": "Item 3",
+              "text": "Information about risks provided to the public prior to commencement of data use",
+              "points": 2,
+              "axis": "x"
+            }
+          ]
+        }
+      ]
+    },
     {
-       "name": "page12",
-       "title": "Risks of the Applicant’s Activity",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question12",
-     "title": "Which of the answers below best describe effects of the applicant’s data use on the natural environment? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Natural environment is negatively impacted",
-       "points": -4,
-       "axis" : "x",
-       "feedback" : "if the negative environmental impacts of the organisation's data use were lower"
-      },
-      {
-       "value": "Item 2",
-       "text": "Natural environment is positively impacted",
-       "points": 4,
-       "axis" : "x"
-      }
-     ]
-     ,
-     "showOtherItem": true,
-     "otherText": "None of the above (please specify)"
-    }
-    ]},
-    {
-       "name": "page13",
-       "title": "Risks of the Applicant’s Activity",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question13",
-     "title": "Which of the answers below best describe the relationship between the applicant’s data use and risks? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Risks stem directly from the applicant’s data use (direct cause)",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if fewer/lower risks were associated directly with the organisation's data use"
-      },
-      {
-       "value": "Item 2",
-       "text": "Risks are incidental to the applicant’s data use (indirect cause)",
-       "points": -2,
-       "axis" : "x",
-       "feedback" : "if fewer/lower risks were incidentally associated the organisation's data use"
-      }
-     ],
-     "showOtherItem": true,
-     "showNoneItem": true,
-     "noneText": "None of the above",
-     "otherText": "Other (please specify)"
-    }
-    ]},
-    {
-       "name": "page14",
-       "title": "Risks of the Applicant’s Activity",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question14",
-     "title": "Which of the answers below best describe the risks for groups afforded special protection under the law (including, but not limited to, children, persons with disabilities, ethnic minorities, sexual minorities)? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Data use entails risk for groups afforded special protection under the law",
-       "points": -5,
-       "axis" : "x",
-       "feedback" : "if the organisation's data use did not entail risks for groups afforded special protection under the law"
-      },
-      {
-       "value": "Item 2",
-       "text": "Data use entails no risk for groups afforded special protection under the law",
-       "points": 0,
-       "axis" : "x"
-      }
-    ],
-    "showOtherItem": "true",
-    "otherText": "Other (please specify)"
-    }
-    ]},
-    {
-       "name": "page15",
-       "title": "Risks of the Applicant’s Activity",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question15",
-     "title": "Which of the answers below best describe the applicant’s communication about risks of its data to the public? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No information provided",
-       "points": -2,
-       "axis" : "x",
-       "feedback" : "if the orgnisation provided more information about risks of its data use to the public"
-      },
-      {
-       "value": "Item 2",
-       "text": "Information about risks provided to the public at some point during the data use",
-       "points": -1,
-       "axis" : "x",
-       "feedback":"if the organisation informed the public about its data use prior to the commencement of data use"
-      },
-      {
-       "value": "Item 3",
-       "text": "Information about risks provided to the public prior to commencement of data use",
-       "points": 2,
-       "axis" : "x"
-      }
-     ]
-   }
-   ]},
-   {
       "name": "page16",
       "title": "Risks of the Applicant’s Activity",
       "description": "",
       "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question16",
+          "title": "Which of the answers below best describe the risk of dual use (tick one)?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Dual use is likely and conceivable in concrete terms",
+              "points": -4,
+              "axis": "x",
+              "feedback": "if the dual use potential of the organisation's data use was lower"
+            },
+            {
+              "value": "Item 2",
+              "text": "Dual use is unlikely but conceivable in principle",
+              "points": -2,
+              "axis": "x",
+              "feedback": "if the dual use potential of the organisation's data use was lower"
+            },
+            {
+              "value": "Item 3",
+              "text": "Dual use is extremely unlikely",
+              "points": 0,
+              "axis": "x"
+            }
+          ]
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question16",
-     "title": "Which of the answers below best describe the risk of dual use (tick one)?",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Dual use is likely and conceivable in concrete terms",
-       "points": -4,
-       "axis" : "x",
-       "feedback": "if the dual use potential of the organisation's data use was lower"
-      },
-      {
-       "value": "Item 2",
-       "text": "Dual use is unlikely but conceivable in principle",
-       "points": -2,
-       "axis" : "x",
-       "feedback": "if the dual use potential of the organisation's data use was lower"
-      },
-      {
-       "value": "Item 3",
-       "text": "Dual use is extremely unlikely",
-       "points": 0,
-       "axis" : "x"
-      }
-     ]
-    }]},
+      "name": "page17",
+      "title": "Risks of the Applicant’s Activity",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question17",
+          "title": "Which of the answers below best describe the likelihood of a risk of dual use materializing and creating harm (tick one)? ",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Risk from dual use are likely to materialise",
+              "points": -4,
+              "axis": "x",
+              "feedback": "if the risk of dual use of the orgnisation's data use was less likely to materalise"
+            },
+            {
+              "value": "Item 2",
+              "text": "Risks from dual use are unlikely to materialise",
+              "points": 0,
+              "axis": "x"
+            },
+            {
+              "value": "Item 3",
+              "text": "Likelihood of risks from dual use cannot be assessed",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if the risk of dual use of the organisation's data use could be assessed"
+            }
+          ],
+          "showNoneItem": true,
+          "noneText": "None of the above (please specify)"
+        }
+      ]
+    },
     {
-       "name": "page17",
-       "title": "Risks of the Applicant’s Activity",
-       "description": "",
-       "elements": [
+      "name": "page18",
+      "title": "Institutional Safeguards",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question18",
+          "title": "Which of the answers below best describe the applicant’s way of assessing risk (tick one)?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No risk assessment in place",
+              "points": -1,
+              "axis": "x",
+              "feedback": "if your organisation had (better) risk assessment in place"
+            },
+            {
+              "value": "Item 2",
+              "text": "Ex ante institutionalised/ad-hoc risk assessment is voluntary",
+              "points": 0,
+              "axis": "x"
+            },
+            {
+              "value": "Item 3",
+              "text": "Ex ante institutionalised risk assessment is mandatory",
+              "points": 1,
+              "axis": "x"
+            }
+          ]
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question17",
-     "title": "Which of the answers below best describe the likelihood of a risk of dual use materializing and creating harm (tick one)? ",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Risk from dual use are likely to materialise",
-       "points": -4,
-       "axis" : "x",
-       "feedback": "if the risk of dual use of the orgnisation's data use was less likely to materalise"
-      },
-      {
-       "value": "Item 2",
-       "text": "Risks from dual use are unlikely to materialise",
-       "points": 0,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 3",
-       "text": "Likelihood of risks from dual use cannot be assessed",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if the risk of dual use of the organisation's data use could be assessed"
-      }
-     ],
-     "showNoneItem": true,
-     "noneText": "None of the above (please specify)"
-   }
-   ]
-  },
-  {
-   "name": "page18",
-   "title": "Institutional Safeguards",
-   "description": "",
-   "elements": [
+      "name": "page19",
+      "title": "Institutional Safeguards",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question19",
+          "title": "Which of the answers below best describe the applicant’s way of assessing risk? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No involvement of persons from outside the organisation ",
+              "points": -1,
+              "axis": "x",
+              "feedback": "if the organisation's risk assessment included independent experts from outside the organisation"
+            },
+            {
+              "value": "Item 2",
+              "text": "Occasional/Needs-based involvement of persons from outside the organisation",
+              "points": 0,
+              "axis": "x"
+            },
+            {
+              "value": "Item 3",
+              "text": "Routine involvement of persons from outside the organisation",
+              "points": 2,
+              "axis": "x"
+            },
+            {
+              "value": "Item 4",
+              "text": "No risk assessment in place",
+              "points": 0,
+              "axis": "x"
+            }
+          ]
+        }
+      ]
+    },
     {
-     "type": "radiogroup",
-     "name": "question18",
-     "title": "Which of the answers below best describe the applicant’s way of assessing risk (tick one)?",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No risk assessment in place",
-       "points": -1,
-       "axis" : "x",
-       "feedback" : "if your organisation had (better) risk assessment in place"
-      },
-      {
-       "value": "Item 2",
-       "text": "Ex ante institutionalised/ad-hoc risk assessment is voluntary",
-       "points": 0,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 3",
-       "text": "Ex ante institutionalised risk assessment is mandatory",
-       "points": 1,
-       "axis" : "x"
-      }
-     ]
+      "name": "page20",
+      "title": "Institutional Safeguards",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question20",
+          "title": "Which of the answers below best describe the status of findings from the risk assessment? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Findings are recommendations",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if findings from your risk assessment could be binding"
+            },
+            {
+              "value": "Item 2",
+              "text": "Findings are binding and cannot be overruled",
+              "points": 2,
+              "axis": "x"
+            }
+          ],
+          "showNoneItem": true,
+          "noneText": "None of the above"
+        }
+      ]
+    },
+    {
+      "name": "page21",
+      "title": "Institutional Safeguards",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question21",
+          "title": "Which of the answers below best describe the involvement of trained ethicists in the process of assessing risks? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Trained ethicists are not included in the risk assessment ",
+              "points": -1,
+              "axis": "x",
+              "feedback": "if the risk assessment included individuals with specific ethics training and expertise"
+            },
+            {
+              "value": "Item 2",
+              "text": "No risk assessment in place",
+              "points": 0,
+              "axis": "x"
+            },
+            {
+              "value": "Item 3",
+              "text": "Trained ethicists are included in the risk assessment",
+              "points": 2,
+              "axis": "x"
+            },
+            {
+              "value": "Item 4",
+              "text": "No risk assessment in place",
+              "points": 0,
+              "axis": "x"
+            }
+          ],
+          "showNoneItem": true,
+          "noneText": "None of the above (please specify)"
+        }
+      ]
+    },
+    {
+      "name": "page22",
+      "title": "Institutional Safeguards",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question22",
+          "title": "Which of the answers below best describe the process of harm monitoring? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No monitoring of harms",
+              "points": -1,
+              "axis": "x",
+              "feedback": "if the organisation monitored harm that is (directly or indirectly) caused by their data use"
+            },
+            {
+              "value": "Item 2",
+              "text": "Harms monitored for a limited period during the data use and the deployment of the data use and the deployment of the product/service",
+              "points": 0,
+              "axis": "x"
+            },
+            {
+              "value": "Item 3",
+              "text": "Harms are monitored throughout the data use and the deployment of the product/service",
+              "points": 1,
+              "axis": "x"
+            }
+          ],
+          "showNoneItem": true,
+          "noneText": "None of the above (please specify)"
+        }
+      ]
+    },
+    {
+      "name": "page23",
+      "title": "Institutional Safeguards",
+      "description": "",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question23",
+          "title": "Which of the answers below best describe the ability of the applicant to stop/reverse their activity, once unexpected harms occur? (tick one)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "Harm-causing activity cannot be ended immediately",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if it were possible to end the harm-causing activity immediately"
+            },
+            {
+              "value": "Item 2",
+              "text": "Harm-causing activity can be ended immediately",
+              "points": 0,
+              "axis": "x"
+            }
+          ],
+          "showNoneItem": true,
+          "noneText": "None of the above (please specify)"
+        }
+      ]
+    },
+    {
+      "name": "page24",
+      "title": "Institutional Safeguards",
+      "description": "",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question24",
+          "title": "Which of the answers below best describe the remedies available to individuals? (tick as many as necessary)",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Item 1",
+              "text": "No complaint procedure in place",
+              "points": -3,
+              "axis": "x",
+              "feedback": "if the organisation had a complaint procedure regarding their data use in place"
+            },
+            {
+              "value": "Item 2",
+              "text": "Complaint procedure can be initiated online",
+              "points": 1,
+              "axis": "x"
+            },
+            {
+              "value": "Item 3",
+              "text": "Complaint procedure designed in an accessible manner",
+              "points": 2,
+              "axis": "x"
+            },
+            {
+              "value": "Item 4",
+              "text": "Guaranteed respond times (under 4 weeks)",
+              "points": 2,
+              "axis": "x"
+            }
+          ]
+        }
+      ]
     }
-    ]},
-    {
-       "name": "page19",
-       "title": "Institutional Safeguards",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question19",
-     "title": "Which of the answers below best describe the applicant’s way of assessing risk? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No involvement of persons from outside the organisation ",
-       "points": -1,
-       "axis" : "x",
-       "feedback" : "if the organisation's risk assessment included independent experts from outside the organisation"
-      },
-      {
-       "value": "Item 2",
-       "text": "Occasional/Needs-based involvement of persons from outside the organisation",
-       "points": 0,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 3",
-       "text": "Routine involvement of persons from outside the organisation",
-       "points": 2,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 4",
-       "text": "No risk assessment in place",
-       "points": 0,
-       "axis" : "x"
-      }
-     ]
-    }]},
-    {
-       "name": "page20",
-       "title": "Institutional Safeguards",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question20",
-     "title": "Which of the answers below best describe the status of findings from the risk assessment? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Findings are recommendations",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if findings from your risk assessment could be binding"
-      },
-      {
-       "value": "Item 2",
-       "text": "Findings are binding and cannot be overruled",
-       "points": 2,
-       "axis" : "x"
-      }
-     ]     ,
-     "showNoneItem": true,
-     "noneText": "None of the above"
-    }
-    ]},
-    {
-       "name": "page21",
-       "title": "Institutional Safeguards",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question21",
-     "title": "Which of the answers below best describe the involvement of trained ethicists in the process of assessing risks? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Trained ethicists are not included in the risk assessment ",
-       "points": -1,
-       "axis" : "x",
-       "feedback" : "if the risk assessment included individuals with specific ethics training and expertise"
-      },
-      {
-       "value": "Item 2",
-       "text": "No risk assessment in place",
-       "points": 0,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 3",
-       "text": "Trained ethicists are included in the risk assessment",
-       "points": 2,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 4",
-       "text": "No risk assessment in place",
-       "points": 0,
-       "axis" : "x"
-      }
-     ],
-     "showNoneItem": true,
-     "noneText": "None of the above (please specify)"
-    }]},
-    {
-       "name": "page22",
-       "title": "Institutional Safeguards",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question22",
-     "title": "Which of the answers below best describe the process of harm monitoring? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No monitoring of harms",
-       "points": -1,
-       "axis" : "x",
-       "feedback" : "if the organisation monitored harm that is (directly or indirectly) caused by their data use"
-      },
-      {
-       "value": "Item 2",
-       "text": "Harms monitored for a limited period during the data use and the deployment of the data use and the deployment of the product/service",
-       "points": 0,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 3",
-       "text": "Harms are monitored throughout the data use and the deployment of the product/service",
-       "points": 1,
-       "axis" : "x"
-      }
-     ],
-     "showNoneItem": true,
-     "noneText": "None of the above (please specify)"
-    }]},
-    {
-       "name": "page23",
-       "title": "Institutional Safeguards",
-       "description": "",
-       "elements": [
-    {
-     "type": "radiogroup",
-     "name": "question23",
-     "title": "Which of the answers below best describe the ability of the applicant to stop/reverse their activity, once unexpected harms occur? (tick one)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "Harm-causing activity cannot be ended immediately",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if it were possible to end the harm-causing activity immediately"
-      },
-      {
-       "value": "Item 2",
-       "text": "Harm-causing activity can be ended immediately",
-       "points": 0,
-       "axis" : "x"
-      }
-     ],
-     "showNoneItem": true,
-     "noneText": "None of the above (please specify)"
-    }
-    ]},
-    {
-       "name": "page24",
-       "title": "Institutional Safeguards",
-       "description": "",
-       "elements": [
-    {
-     "type": "checkbox",
-     "name": "question24",
-     "title": "Which of the answers below best describe the remedies available to individuals? (tick as many as necessary)",
-     "isRequired": true,
-     "choices": [
-      {
-       "value": "Item 1",
-       "text": "No complaint procedure in place",
-       "points": -3,
-       "axis" : "x",
-       "feedback" : "if the organisation had a complaint procedure regarding their data use in place"
-      },
-      {
-       "value": "Item 2",
-       "text": "Complaint procedure can be initiated online",
-       "points": 1,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 3",
-       "text": "Complaint procedure designed in an accessible manner",
-       "points": 2,
-       "axis" : "x"
-      },
-      {
-       "value": "Item 4",
-       "text": "Guaranteed respond times (under 4 weeks)",
-       "points": 2,
-       "axis" : "x"
-      }
-     ]
-    }
-   ]
-  }
- ],
- "showQuestionNumbers": "on"
+  ],
+  "showQuestionNumbers": "on"
 }
