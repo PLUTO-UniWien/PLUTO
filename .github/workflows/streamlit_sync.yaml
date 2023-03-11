@@ -34,7 +34,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const shouldRun = ${{ steps.changes.outputs.survey_tools == 'true' }}
+            const relevantFilesWereChanged = ${{ steps.changes.outputs.survey_tools == 'true' }}
+            const isManualTrigger = context.eventName == 'workflow_dispatch'
+            const shouldRun = relevantFilesWereChanged || isManualTrigger
             core.info(`shouldRun: ${shouldRun}`)
             core.setOutput('should_run', shouldRun)
 
