@@ -66,24 +66,16 @@ def create_histo_heatmap_from_df(
     )
 
     if with_zero_line:
-        zero_line_x = (
-            alt.Chart(
-                pd.DataFrame(
-                    {"score_x": [domain_x[0], domain_x[-1]], "score_y": [0, 0]}
-                )
+
+        def create_zero_line(*, x0: int, x1: int, y0: int, y1: int):
+            return (
+                alt.Chart(pd.DataFrame({"score_x": [x0, x1], "score_y": [y0, y1]}))
+                .mark_line(**zero_line_config)
+                .encode(x="score_x:O", y="score_y:O")
             )
-            .mark_line(**zero_line_config)
-            .encode(x="score_x:O", y="score_y:O")
-        )
-        zero_line_y = (
-            alt.Chart(
-                pd.DataFrame(
-                    {"score_x": [0, 0], "score_y": [domain_y[0], domain_y[-1]]}
-                )
-            )
-            .mark_line(**zero_line_config)
-            .encode(x="score_x:O", y="score_y:O")
-        )
+
+        zero_line_x = create_zero_line(x0=domain_x[0], x1=domain_x[-1], y0=0, y1=0)
+        zero_line_y = create_zero_line(x0=0, x1=0, y0=domain_y[0], y1=domain_y[-1])
         zero_lines = zero_line_x + zero_line_y
         heatmap = heatmap + zero_lines
 
