@@ -8,6 +8,7 @@ from pluto_survey_tools.app import (
     general_settings,
     histo_heatmap,
     how_to_use,
+    question_weights_toolbar,
     question_weigths,
     questionnaire,
 )
@@ -31,6 +32,7 @@ if getenv("LOCAL", False) or check_password():
         )
 
         with tab_question_weights:
+            question_weights_toolbar.render()
             question_weigths.render(base_questionnaire=get_base_questionnaire())
 
         with tab_general_settings:
