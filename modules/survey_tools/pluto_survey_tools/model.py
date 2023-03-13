@@ -99,6 +99,9 @@ class Questionnaire:
         """Return a list of the scores for each choice."""
         return [c.score for q in self.questions for c in q.choices]
 
+    def __repr__(self):
+        return f"Questionnaire(title={self.title}, choice_scores={self.choice_scores})"
+
 
 @dataclass(frozen=True)
 class ResponseRow:
