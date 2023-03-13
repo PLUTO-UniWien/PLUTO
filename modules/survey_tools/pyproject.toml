@@ -18,7 +18,21 @@ jupyter = "^1.0.0"
 notebook = "^6.5.2"
 vl-convert-python = "^0.7.0"
 watchdog = "^2.3.0"
+black = "^23.1.0"
+ruff = "^0.0.254"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+select = [
+    "E",
+    "F",
+    "W",
+    # isort
+    "I001"
+]
+src = ["draco"]
+fix = true
