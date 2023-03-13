@@ -12,6 +12,7 @@ altair = "^4.2.2"
 numpy = "^1.24.2"
 pandas = "^1.5.3"
 streamlit = "^1.20.0"
+loguru = "^0.6.0"
 
 [tool.poetry.group.dev.dependencies]
 jupyter = "^1.0.0"
