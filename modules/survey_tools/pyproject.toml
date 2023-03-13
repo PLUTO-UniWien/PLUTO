@@ -18,7 +18,7 @@ jupyter = "^1.0.0"
 notebook = "^6.5.2"
 vl-convert-python = "^0.7.0"
 watchdog = "^2.3.0"
-black = "^23.1.0"
+black = { extras = ["jupyter"], version = "^23.1.0" }
 ruff = "^0.0.254"
 
 [build-system]
