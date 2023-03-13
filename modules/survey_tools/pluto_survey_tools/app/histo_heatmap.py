@@ -1,9 +1,14 @@
 import streamlit as st
-import pluto_survey_tools.model as model
+
 import pluto_survey_tools.charts as charts
+import pluto_survey_tools.model as model
 
 
-def render(*, base_questionnaire: model.Questionnaire, edited_questionnaire: model.Questionnaire):
+def render(
+    *,
+    base_questionnaire: model.Questionnaire,
+    edited_questionnaire: model.Questionnaire
+):
     @st.cache_data
     def get_histo_heatmap(q1: model.Questionnaire, q2: model.Questionnaire):
         return charts.create_histo_heatmap(q1, q2)

@@ -1,5 +1,6 @@
-from pluto_survey_tools import QUESTIONNAIRE
 from enum import Enum
+
+from pluto_survey_tools import QUESTIONNAIRE
 
 
 class QuestionnaireState(Enum):

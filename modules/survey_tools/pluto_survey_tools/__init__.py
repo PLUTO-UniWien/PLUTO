@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+
 from pluto_survey_tools.model import Questionnaire
 
 questionnaire_path = Path(__file__).parent.parent / "assets" / "questionnaire.json"

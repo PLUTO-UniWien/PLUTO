@@ -1,19 +1,22 @@
 import streamlit as st
+
 import pluto_survey_tools.model as model
-from pluto_survey_tools.app.state import AppState
-from pluto_survey_tools.app.questionnaire import QuestionnaireState
 from pluto_survey_tools.app.general_settings import GeneralSettingsState
+from pluto_survey_tools.app.questionnaire import QuestionnaireState
+from pluto_survey_tools.app.state import AppState
 
 
 def render(*, base_questionnaire: model.Questionnaire):
     choice_scores = []
     question_num = 0
     for i, section in enumerate(base_questionnaire.sections):
-        section_title = f'Section {i + 1}: {section.title}'
+        section_title = f"Section {i + 1}: {section.title}"
         st.header(section_title)
         for j, question in enumerate(section.questions):
             question_num += 1
-            question_title = question.body[len('Which of the answers below best describe the '):-1].capitalize()
+            question_title = question.body[
+                len("Which of the answers below best describe the ") : -1
+            ].capitalize()
             question_axis = question.impact_keys[0].capitalize()
             with st.expander(f"Q{question_num}: {question_title} ({question_axis})"):
                 for k, choice in enumerate(question.choices):

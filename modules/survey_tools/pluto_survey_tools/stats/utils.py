@@ -16,7 +16,9 @@ def all_possible_sums_gen(n: int, nums: list[float]) -> Generator[float, None, N
             yield sum(comb)
 
 
-def all_possible_sums_gen_with_count(n: int, nums: list[float]) -> Generator[tuple[int, float], None, None]:
+def all_possible_sums_gen_with_count(
+    n: int, nums: list[float]
+) -> Generator[tuple[int, float], None, None]:
     """
     This function returns a generator object that yields
     tuples of the number of elements used

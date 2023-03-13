@@ -1,4 +1,4 @@
-from dataclasses import dataclass, replace, asdict
+from dataclasses import asdict, dataclass, replace
 
 
 @dataclass(frozen=True)
@@ -8,7 +8,7 @@ class SelectionRange:
 
     @staticmethod
     def from_dict(d: dict):
-        return SelectionRange(d['start'], d['end'])
+        return SelectionRange(d["start"], d["end"])
 
 
 @dataclass(frozen=True)
@@ -18,7 +18,7 @@ class AnswerChoice:
 
     @staticmethod
     def from_dict(d: dict):
-        return AnswerChoice(d['body'], d['score'])
+        return AnswerChoice(d["body"], d["score"])
 
 
 @dataclass(frozen=True)
@@ -31,10 +31,10 @@ class Question:
     @staticmethod
     def from_dict(d: dict):
         return Question(
-            d['body'],
-            SelectionRange.from_dict(d['selection_range']),
-            [AnswerChoice.from_dict(c) for c in d['choices']],
-            d['impact_keys'],
+            d["body"],
+            SelectionRange.from_dict(d["selection_range"]),
+            [AnswerChoice.from_dict(c) for c in d["choices"]],
+            d["impact_keys"],
         )
 
     @property
@@ -51,8 +51,8 @@ class Section:
     @staticmethod
     def from_dict(d: dict):
         return Section(
-            d['title'],
-            [Question.from_dict(q) for q in d['questions']],
+            d["title"],
+            [Question.from_dict(q) for q in d["questions"]],
         )
 
 
@@ -64,8 +64,8 @@ class Questionnaire:
     @staticmethod
     def from_dict(d: dict):
         return Questionnaire(
-            d['title'],
-            [Section.from_dict(s) for s in d['sections']],
+            d["title"],
+            [Section.from_dict(s) for s in d["sections"]],
         )
 
     @property
@@ -73,11 +73,11 @@ class Questionnaire:
         """Return a list of all questions in the questionnaire."""
         return [q for s in self.sections for q in s.questions]
 
-    def copy(self) -> 'Questionnaire':
+    def copy(self) -> "Questionnaire":
         """Return a copy of the questionnaire."""
         return Questionnaire.from_dict(asdict(self))
 
-    def with_choice_scores(self, scores: list[float]) -> 'Questionnaire':
+    def with_choice_scores(self, scores: list[float]) -> "Questionnaire":
         """Return a copy of the questionnaire with the given choice scores."""
         self_dict = asdict(self)
         curr_scores = scores.copy()
@@ -86,8 +86,11 @@ class Questionnaire:
                 num_choices = len(question.choices)
                 question_scores = curr_scores[:num_choices]
                 curr_scores = curr_scores[num_choices:]
-                edited_choices = [asdict(replace(c, score=s)) for c, s in zip(question.choices, question_scores)]
-                self_dict['sections'][i]['questions'][j]['choices'] = edited_choices
+                edited_choices = [
+                    asdict(replace(c, score=s))
+                    for c, s in zip(question.choices, question_scores)
+                ]
+                self_dict["sections"][i]["questions"][j]["choices"] = edited_choices
 
         return Questionnaire.from_dict(self_dict)
 
@@ -111,12 +114,12 @@ class ResponseRow:
     @staticmethod
     def from_dict(d: dict):
         return ResponseRow(
-            d['section_id'],
-            d['section_title'],
-            d['question_id'],
-            d['question_body'],
-            [AnswerChoice.from_dict(c) for c in d['choices']],
-            d['min_sum'],
-            d['max_sum'],
-            d['score_sum'],
+            d["section_id"],
+            d["section_title"],
+            d["question_id"],
+            d["question_body"],
+            [AnswerChoice.from_dict(c) for c in d["choices"]],
+            d["min_sum"],
+            d["max_sum"],
+            d["score_sum"],
         )

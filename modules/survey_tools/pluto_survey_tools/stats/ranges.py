@@ -1,4 +1,5 @@
 import pluto_survey_tools.model as model
+
 from .utils import all_possible_sums_gen
 
 
@@ -20,7 +21,9 @@ def score_range_section(section: model.Section) -> tuple[float, float]:
     return min_sum, max_sum
 
 
-def score_range_questionnaire(questionnaire: model.Questionnaire) -> tuple[float, float]:
+def score_range_questionnaire(
+    questionnaire: model.Questionnaire,
+) -> tuple[float, float]:
     """Return the range of possible scores for a questionnaire."""
     section_score_ranges = [score_range_section(s) for s in questionnaire.sections]
     section_score_ranges_transposed = zip(*section_score_ranges)
