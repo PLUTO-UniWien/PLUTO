@@ -1,54 +1,47 @@
 import streamlit as st
 from pluto_survey_tools.app.auth import check_password
-from pluto_survey_tools import QUESTIONNAIRE
 import pluto_survey_tools.model as model
-import pluto_survey_tools.charts as charts
+from pluto_survey_tools.app.state import AppState
 
-st.title("PLUTO - Survey Tools Prototype")
+from pluto_survey_tools.app import (question_weigths,
+                                    histo_heatmap,
+                                    general_settings,
+                                    export_options,
+                                    how_to_use, questionnaire)
+from os import getenv
 
 
-@st.cache_data
 def get_base_questionnaire() -> model.Questionnaire:
-    return QUESTIONNAIRE.copy()
+    return AppState.get(questionnaire.QuestionnaireState.base_questionnaire)
 
 
-@st.cache_data
-def get_edited_questionnaire(slider_values: list[float]) -> model.Questionnaire:
-    return base_questionnaire.with_choice_scores(slider_values)
+def get_edited_questionnaire() -> model.Questionnaire:
+
+    return AppState.get(questionnaire.QuestionnaireState.edited_questionnaire)
 
 
-@st.cache_data
-def get_histo_heatmap(q1: model.Questionnaire, q2: model.Questionnaire):
-    return charts.create_histo_heatmap(q1, q2)
-
-
-base_questionnaire = get_base_questionnaire()
-choice_scores: list[float] = []
-
-if check_password():
+st.write("# PLUTO Survey Tools")
+if getenv('LOCAL', False) or check_password():
     with st.sidebar:
-        st.write("# Question Weights")
-        question_num = 0
-        for i, section in enumerate(base_questionnaire.sections):
-            section_title = f'Section {i + 1}: {section.title}'
-            st.header(section_title)
-            for j, question in enumerate(section.questions):
-                question_num += 1
-                question_title = question.body[len('Which of the answers below best describe the '):-1].capitalize()
-                with st.expander(f"Q{question_num}: {question_title}"):
-                    for k, choice in enumerate(question.choices):
-                        choice_title = f"**A{question_num}.{k + 1}**: *{choice.body}*"
-                        choice_score = st.slider(
-                            choice_title,
-                            min_value=-7.5,
-                            max_value=7.5,
-                            value=choice.score,
-                            step=0.5,
-                        )
-                        choice_scores.append(choice_score)
+        tab_question_weights, tab_general_settings, tab_export_options = st.tabs(
+            ["Question Weights", "General Settings", "Export Options"]
+        )
 
-    # Build the edited questionnaire with the new choice scores, obtained from the sliders
-    edited_questionnaire = get_edited_questionnaire(choice_scores)
+        with tab_question_weights:
+            question_weigths.render(base_questionnaire=get_base_questionnaire())
 
-    histo_heatmap = get_histo_heatmap(base_questionnaire, edited_questionnaire)
-    st.altair_chart(histo_heatmap, use_container_width=True, theme=None)
+        with tab_general_settings:
+            general_settings.render()
+
+        with tab_export_options:
+            export_options.render(edited_questionnaire=get_edited_questionnaire())
+
+    tab_heatmap, tab_how_to_use = st.tabs(["Heatmap", "How to use this tool"])
+
+    with tab_heatmap:
+        st.write("## Distribution of possible answers")
+        histo_heatmap.render(base_questionnaire=get_base_questionnaire(),
+                             edited_questionnaire=get_edited_questionnaire())
+
+    with tab_how_to_use:
+        how_to_use.render()
