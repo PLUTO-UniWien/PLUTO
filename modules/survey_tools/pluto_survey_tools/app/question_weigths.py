@@ -6,10 +6,13 @@ from pluto_survey_tools.app.questionnaire import QuestionnaireState
 from pluto_survey_tools.app.state import AppState
 
 
-def render(*, base_questionnaire: model.Questionnaire):
+def render():
+    edited_questionnaire: model.Questionnaire = AppState.get(
+        QuestionnaireState.edited_questionnaire
+    )
     choice_scores = []
     question_num = 0
-    for i, section in enumerate(base_questionnaire.sections):
+    for i, section in enumerate(edited_questionnaire.sections):
         section_title = f"Section {i + 1}: {section.title}"
         st.header(section_title)
         for j, question in enumerate(section.questions):
@@ -30,5 +33,5 @@ def render(*, base_questionnaire: model.Questionnaire):
                     )
                     choice_scores.append(choice_score)
 
-    edited_questionnaire = base_questionnaire.with_choice_scores(choice_scores)
+    edited_questionnaire = edited_questionnaire.with_choice_scores(choice_scores)
     AppState.set(QuestionnaireState.edited_questionnaire, edited_questionnaire)

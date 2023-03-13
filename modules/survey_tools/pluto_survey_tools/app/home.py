@@ -2,53 +2,34 @@ from os import getenv
 
 import streamlit as st
 
-import pluto_survey_tools.model as model
 from pluto_survey_tools.app import (
     export_options,
-    general_settings,
     histo_heatmap,
     how_to_use,
     question_weights_toolbar,
     question_weigths,
-    questionnaire,
 )
 from pluto_survey_tools.app.auth import check_password
-from pluto_survey_tools.app.state import AppState
-
-
-def get_base_questionnaire() -> model.Questionnaire:
-    return AppState.get(questionnaire.QuestionnaireState.base_questionnaire)
-
-
-def get_edited_questionnaire() -> model.Questionnaire:
-    return AppState.get(questionnaire.QuestionnaireState.edited_questionnaire)
-
 
 st.write("# PLUTO Survey Tools")
 if getenv("LOCAL", False) or check_password():
     with st.sidebar:
-        tab_question_weights, tab_general_settings, tab_export_options = st.tabs(
-            ["Question Weights", "General Settings", "Export Options"]
+        tab_question_weights, tab_export_options = st.tabs(
+            ["Question Weights", "Export Options"]
         )
 
         with tab_question_weights:
             question_weights_toolbar.render()
-            question_weigths.render(base_questionnaire=get_base_questionnaire())
-
-        with tab_general_settings:
-            general_settings.render()
+            question_weigths.render()
 
         with tab_export_options:
-            export_options.render(edited_questionnaire=get_edited_questionnaire())
+            export_options.render()
 
     tab_heatmap, tab_how_to_use = st.tabs(["Heatmap", "How to use this tool"])
 
     with tab_heatmap:
         st.write("## Distribution of possible answers")
-        histo_heatmap.render(
-            base_questionnaire=get_base_questionnaire(),
-            edited_questionnaire=get_edited_questionnaire(),
-        )
+        histo_heatmap.render()
 
     with tab_how_to_use:
         how_to_use.render()

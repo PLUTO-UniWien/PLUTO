@@ -12,7 +12,10 @@ def create_histo_heatmap(q1: Questionnaire, q2: Questionnaire, normalize: bool =
 
 
 def create_histo_heatmap_from_df(
-    df1: pd.DataFrame, df2: pd.DataFrame, should_layer: bool
+    df1: pd.DataFrame,
+    df2: pd.DataFrame,
+    should_layer: bool,
+    with_zero_line: bool = True,
 ):
     domain_x = list(sorted(pd.concat([df1["score_x"], df2["score_x"]]).unique()))
     domain_y = list(
@@ -27,6 +30,11 @@ def create_histo_heatmap_from_df(
     diff_mark_config = {
         "color": "yellow",
         "opacity": 0.25,
+    }
+    zero_line_config = {
+        "color": "red",
+        "strokeWidth": 1,
+        "strokeDash": [5, 5],
     }
 
     heatmap = (
@@ -55,8 +63,31 @@ def create_histo_heatmap_from_df(
             ),
             tooltip=["score_x", "score_y", "count"],
         )
-        .properties(width=width_heatmap, height=height_heatmap)
     )
+
+    if with_zero_line:
+        zero_line_x = (
+            alt.Chart(
+                pd.DataFrame(
+                    {"score_x": [domain_x[0], domain_x[-1]], "score_y": [0, 0]}
+                )
+            )
+            .mark_line(**zero_line_config)
+            .encode(x="score_x:O", y="score_y:O")
+        )
+        zero_line_y = (
+            alt.Chart(
+                pd.DataFrame(
+                    {"score_x": [0, 0], "score_y": [domain_y[0], domain_y[-1]]}
+                )
+            )
+            .mark_line(**zero_line_config)
+            .encode(x="score_x:O", y="score_y:O")
+        )
+        zero_lines = zero_line_x + zero_line_y
+        heatmap = heatmap + zero_lines
+
+    heatmap = heatmap.properties(width=width_heatmap, height=height_heatmap)
 
     def create_histogram_x(df: pd.DataFrame, is_diff: bool = False):
         mark_config = diff_mark_config if is_diff else {}
@@ -98,4 +129,5 @@ def create_histo_heatmap_from_df(
     if should_layer:
         histX = histX + create_histogram_x(df2, is_diff=True)
         histY = histY + create_histogram_y(df2, is_diff=True)
+
     return histX & (heatmap | histY)
