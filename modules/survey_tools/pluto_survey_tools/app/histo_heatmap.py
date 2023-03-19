@@ -15,6 +15,8 @@ class HistoHeatmapConfigState(Enum):
     show_edited = (3, True)
     opacity_base = (4, 1.0)
     opacity_edited = (5, 0.75)
+    scheme_base = (6, "plasma")
+    scheme_edited = (7, "bluegreen")
 
 
 def render():
@@ -28,6 +30,8 @@ def render():
         show_edited: bool,
         opacity_base: float,
         opacity_edited: float,
+        scheme_base: str,
+        scheme_edited: str,
     ):
         return charts.create_histo_heatmap(
             q1,
@@ -38,6 +42,8 @@ def render():
             show_edited=show_edited,
             opacity_base=opacity_base,
             opacity_edited=opacity_edited,
+            scheme_base=scheme_base,
+            scheme_edited=scheme_edited,
         )
 
     histo_heatmap = get_histo_heatmap(
@@ -49,6 +55,8 @@ def render():
         show_edited=AppState.get(HistoHeatmapConfigState.show_edited),
         opacity_base=AppState.get(HistoHeatmapConfigState.opacity_base),
         opacity_edited=AppState.get(HistoHeatmapConfigState.opacity_edited),
+        scheme_base=AppState.get(HistoHeatmapConfigState.scheme_base),
+        scheme_edited=AppState.get(HistoHeatmapConfigState.scheme_edited),
     )
     st.write("## Distribution of possible answers")
     st.altair_chart(histo_heatmap, use_container_width=True, theme=None)

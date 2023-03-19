@@ -1,6 +1,7 @@
 import altair as alt
 import pandas as pd
 
+from pluto_survey_tools.charts.utils import VEGA_LITE_COLOR_SCHEME_MAP
 from pluto_survey_tools.model import Questionnaire
 from pluto_survey_tools.stats.frequencies import normalize_df, score_count_df_keyed
 
@@ -17,8 +18,8 @@ def create_histo_heatmap(
     opacity_edited: float = 0.5,
     show_base: bool = True,
     show_edited: bool = False,
-    scheme_base: str = "inferno",
-    scheme_edited: str = "yellowgreenblue",
+    scheme_base: str = "plasma",
+    scheme_edited: str = "bluegreen",
 ):
     df1 = score_count_df_keyed(q1.questions, normalize=normalize)
     df2 = score_count_df_keyed(q2.questions, normalize=normalize)
@@ -82,10 +83,11 @@ def create_histo_heatmap_from_df(
     x_label_expr = "datum.value % 2 ? null : datum.label"
     y_label_expr = "datum.value % 1 ? null : datum.label"
     mark_config_base = {
+        "color": VEGA_LITE_COLOR_SCHEME_MAP[scheme_base],
         "opacity": opacity_base / 2,
     }
     mark_config_edited = {
-        "color": "yellow",
+        "color": VEGA_LITE_COLOR_SCHEME_MAP[scheme_edited],
         "opacity": opacity_edited / 2,
     }
     zero_line_config = {

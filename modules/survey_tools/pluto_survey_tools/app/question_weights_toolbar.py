@@ -2,6 +2,8 @@ from enum import Enum
 
 import streamlit as st
 
+import pluto_survey_tools.app.utils as st_utils
+import pluto_survey_tools.charts.utils as chart_utils
 import pluto_survey_tools.model as model
 from pluto_survey_tools.app.histo_heatmap import HistoHeatmapConfigState
 from pluto_survey_tools.app.questionnaire import QuestionnaireState
@@ -90,6 +92,7 @@ def render():
             "on the histogram heatmap.",
             options=display_options,
             index=display_options.index("Both"),
+            horizontal=True,
         )
         display_selection_index = display_options.index(display_selection)
         [
@@ -98,22 +101,58 @@ def render():
             _handle_show_both_selected,
         ][display_selection_index]()
 
-        opacity_base_value = st.slider(
-            "Base opacity",
-            help="Adjust the opacity of the base questionnaire's histogram heatmap.",
-            min_value=0.0,
-            max_value=1.0,
-            value=AppState.get(HistoHeatmapConfigState.opacity_base),
-            step=0.05,
-        )
-        AppState.set(HistoHeatmapConfigState.opacity_base, opacity_base_value)
+        grid = st_utils.make_grid(rows=2, cols=2)
 
-        opacity_edited_value = st.slider(
-            "Edited opacity",
-            help="Adjust the opacity of the edited questionnaire's histogram heatmap.",
-            min_value=0.0,
-            max_value=1.0,
-            value=AppState.get(HistoHeatmapConfigState.opacity_edited),
-            step=0.05,
-        )
-        AppState.set(HistoHeatmapConfigState.opacity_edited, opacity_edited_value)
+        with grid[0][0]:
+            st.subheader("Base Questionnaire")
+            opacity_base_value = st.slider(
+                "Opacity",
+                help="Adjust the opacity of the base "
+                "questionnaire's histogram heatmap.",
+                min_value=0.0,
+                max_value=1.0,
+                value=AppState.get(HistoHeatmapConfigState.opacity_base),
+                step=0.05,
+            )
+            AppState.set(HistoHeatmapConfigState.opacity_base, opacity_base_value)
+
+        with grid[1][0]:
+            color_scheme_base_default = HistoHeatmapConfigState.scheme_base.value[1]
+            color_scheme_base = st.selectbox(
+                key="base",
+                label="Color Scheme",
+                options=chart_utils.VEGA_LITE_COLOR_SCHEMES,
+                index=chart_utils.VEGA_LITE_COLOR_SCHEMES.index(
+                    color_scheme_base_default
+                ),
+                help=f"Choose a color scheme for the base questionnaire's heatmap. "
+                f"See all options [here]({chart_utils.VEGA_LITE_COLOR_SCHEMES_URL}).",
+            )
+            AppState.set(HistoHeatmapConfigState.scheme_base, color_scheme_base)
+
+        with grid[0][1]:
+            st.subheader("Edited Questionnaire")
+            opacity_edited_value = st.slider(
+                "Opacity",
+                help="Adjust the opacity of the edited"
+                " questionnaire's histogram heatmap.",
+                min_value=0.0,
+                max_value=1.0,
+                value=AppState.get(HistoHeatmapConfigState.opacity_edited),
+                step=0.05,
+            )
+            AppState.set(HistoHeatmapConfigState.opacity_edited, opacity_edited_value)
+
+        with grid[1][1]:
+            color_scheme_edited_default = HistoHeatmapConfigState.scheme_edited.value[1]
+            color_scheme_edited = st.selectbox(
+                key="edited",
+                label="Color Scheme",
+                options=chart_utils.VEGA_LITE_COLOR_SCHEMES,
+                index=chart_utils.VEGA_LITE_COLOR_SCHEMES.index(
+                    color_scheme_edited_default
+                ),
+                help=f"Choose a color scheme for the edited questionnaire's heatmap. "
+                f"See all options [here]({chart_utils.VEGA_LITE_COLOR_SCHEMES_URL}).",
+            )
+            AppState.set(HistoHeatmapConfigState.scheme_edited, color_scheme_edited)
