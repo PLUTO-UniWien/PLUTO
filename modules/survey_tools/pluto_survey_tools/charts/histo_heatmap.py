@@ -18,9 +18,18 @@ def create_histo_heatmap_from_df(
     with_zero_line: bool = True,
 ):
     domain_x = list(sorted(pd.concat([df1["score_x"], df2["score_x"]]).unique()))
+    if with_zero_line and domain_x[0] > 0:
+        domain_x_min = 0
+        domain_x_max = domain_x[-1]
+        domain_x = list(range(domain_x_min, domain_x_max + 1))
+
     domain_y = list(
         sorted(pd.concat([df1["score_y"], df2["score_y"]]).unique(), reverse=True)
     )
+    if with_zero_line and domain_y[-1] > 0:
+        domain_y_min = 0
+        domain_y_max = domain_y[0]
+        domain_y = list(reversed(range(domain_y_min, domain_y_max + 1)))
 
     x_label_expr = "datum.value % 2 ? null : datum.label"
     y_label_expr = "datum.value % 1 ? null : datum.label"
