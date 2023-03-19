@@ -5,17 +5,44 @@ from pluto_survey_tools.model import Questionnaire
 from pluto_survey_tools.stats.frequencies import score_count_df_keyed
 
 
-def create_histo_heatmap(q1: Questionnaire, q2: Questionnaire, normalize: bool = True):
+def create_histo_heatmap(
+    q1: Questionnaire,
+    q2: Questionnaire,
+    normalize: bool = True,
+    with_zero_line: bool = True,
+    width_heatmap: int = 650,
+    height_heatmap: int = 650,
+    size_histogram: int = 100,
+    legendX: int = -150,
+    legendY: int = 0,
+):
     df1 = score_count_df_keyed(q1.questions, normalize=normalize)
     df2 = score_count_df_keyed(q2.questions, normalize=normalize)
-    return create_histo_heatmap_from_df(df1, df2, should_layer=q1 != q2)
+    return create_histo_heatmap_from_df(
+        df1,
+        df2,
+        should_layer=q1 != q2,
+        with_zero_line=with_zero_line,
+        normalize=normalize,
+        width_heatmap=width_heatmap,
+        height_heatmap=height_heatmap,
+        size_histogram=size_histogram,
+        legendX=legendX,
+        legendY=legendY,
+    )
 
 
 def create_histo_heatmap_from_df(
     df1: pd.DataFrame,
     df2: pd.DataFrame,
     should_layer: bool,
-    with_zero_line: bool = True,
+    with_zero_line: bool,
+    normalize: bool,
+    width_heatmap: int,
+    height_heatmap: int,
+    size_histogram: int,
+    legendX: int,
+    legendY: int,
 ):
     domain_x = list(sorted(pd.concat([df1["score_x"], df2["score_x"]]).unique()))
     if with_zero_line and domain_x[0] > 0:
@@ -33,9 +60,6 @@ def create_histo_heatmap_from_df(
 
     x_label_expr = "datum.value % 2 ? null : datum.label"
     y_label_expr = "datum.value % 1 ? null : datum.label"
-    width_heatmap = 650
-    height_heatmap = 650
-    size_histogram = 100
     diff_mark_config = {
         "color": "yellow",
         "opacity": 0.25,
@@ -45,6 +69,8 @@ def create_histo_heatmap_from_df(
         "strokeWidth": 1,
         "strokeDash": [5, 5],
     }
+
+    frequency_title = ("Relative" if normalize else "Absolute") + " frequency"
 
     heatmap = (
         alt.Chart(df1)
@@ -66,11 +92,17 @@ def create_histo_heatmap_from_df(
             ),
             color=alt.Color(
                 "count:Q",
-                title="Frequency",
+                title=frequency_title,
                 scale=alt.Scale(scheme="viridis"),
-                legend=alt.Legend(orient="none", offset=0, legendX=-100, legendY=0),
+                legend=alt.Legend(
+                    orient="none", offset=0, legendX=legendX, legendY=legendY
+                ),
             ),
-            tooltip=["score_x", "score_y", "count"],
+            tooltip=[
+                alt.Tooltip("score_x", title="Benefits"),
+                alt.Tooltip("score_y", title="Public value"),
+                alt.Tooltip("count", title=frequency_title),
+            ],
         )
     )
 
@@ -102,8 +134,11 @@ def create_histo_heatmap_from_df(
                     axis=alt.Axis(labelExpr=x_label_expr),
                     scale=alt.Scale(domain=domain_x),
                 ),
-                y=alt.Y("count:Q", title="Frequency", axis=alt.Axis(labels=False)),
-                tooltip=["score_x", "count"],
+                y=alt.Y("count:Q", title=frequency_title, axis=alt.Axis(labels=False)),
+                tooltip=[
+                    alt.Tooltip("score_x", title="Benefits"),
+                    alt.Tooltip("count", title=frequency_title),
+                ],
             )
         )
 
@@ -113,7 +148,7 @@ def create_histo_heatmap_from_df(
             alt.Chart(df, width=size_histogram, height=height_heatmap)
             .mark_bar(**mark_config)
             .encode(
-                x=alt.X("count:Q", title="Frequency", axis=alt.Axis(labels=False)),
+                x=alt.X("count:Q", title=frequency_title, axis=alt.Axis(labels=False)),
                 y=alt.Y(
                     "score_y:O",
                     title=None,
@@ -121,7 +156,10 @@ def create_histo_heatmap_from_df(
                     axis=alt.Axis(labelExpr=y_label_expr),
                     scale=alt.Scale(domain=domain_y),
                 ),
-                tooltip=["score_y", "count"],
+                tooltip=[
+                    alt.Tooltip("score_y", title="Public value"),
+                    alt.Tooltip("count", title=frequency_title),
+                ],
             )
         )
 

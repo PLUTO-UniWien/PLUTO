@@ -8,12 +8,9 @@ def _base_questionnaire():
 
 
 def _edited_questionnaire():
-    value = QUESTIONNAIRE.copy()
-    choice_scores = value.choice_scores
-    choice_scores[0] += 1
-    return value.with_choice_scores(choice_scores)
+    return QUESTIONNAIRE.copy()
 
 
 class QuestionnaireState(Enum):
-    base_questionnaire = _base_questionnaire()
-    edited_questionnaire = _edited_questionnaire()
+    base_questionnaire = (0, _base_questionnaire())
+    edited_questionnaire = (1, _edited_questionnaire())

@@ -6,8 +6,8 @@ from pluto_survey_tools.app.state import AppState
 
 
 class GeneralSettingsState(Enum):
-    weights_min = -12
-    weights_max = 12
+    weights_min = (0, -12)
+    weights_max = (1, 12)
 
 
 def render():

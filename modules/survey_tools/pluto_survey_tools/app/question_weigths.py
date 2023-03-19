@@ -5,6 +5,11 @@ from pluto_survey_tools.app.general_settings import GeneralSettingsState
 from pluto_survey_tools.app.questionnaire import QuestionnaireState
 from pluto_survey_tools.app.state import AppState
 
+question_axis_map = {
+    "x": "Benefits",
+    "y": "Public value",
+}
+
 
 def render():
     edited_questionnaire: model.Questionnaire = AppState.get(
@@ -20,8 +25,12 @@ def render():
             question_title = question.body[
                 len("Which of the answers below best describe the ") : -1
             ].capitalize()
-            question_axis = question.impact_keys[0].capitalize()
-            with st.expander(f"Q{question_num}: {question_title} ({question_axis})"):
+            question_axis = question.impact_keys[0]
+            question_axis_name = question_axis_map[question_axis]
+            with st.expander(
+                f"Q{question_num}: {question_title} "
+                f"( *{question_axis_name} - {question_axis.capitalize()}* )"
+            ):
                 for k, choice in enumerate(question.choices):
                     choice_title = f"**A{question_num}.{k + 1}**: *{choice.body}*"
                     choice_score = st.slider(
