@@ -57,18 +57,26 @@ def create_histo_heatmap_from_df(
     assert (
         show_base or show_edited
     ), "At least one of `show_base` or `show_edited` must be True"
-    domain_x = list(sorted(pd.concat([df1["score_x"], df2["score_x"]]).unique()))
-    if with_zero_line and domain_x[0] > 0:
-        domain_x_min = 0
-        domain_x_max = domain_x[-1]
+
+    if show_base and show_edited:
+        domain_dfs = [df1, df2]
+    elif show_base:
+        domain_dfs = [df1]
+    else:
+        domain_dfs = [df2]
+
+    domain_x = list(sorted(pd.concat([df["score_x"] for df in domain_dfs]).unique()))
+    if with_zero_line:
+        domain_x_min = -1 if domain_x[0] > -1 else int(domain_x[0])
+        domain_x_max = 1 if domain_x[-1] < 1 else int(domain_x[-1])
         domain_x = list(range(domain_x_min, domain_x_max + 1))
 
     domain_y = list(
-        sorted(pd.concat([df1["score_y"], df2["score_y"]]).unique(), reverse=True)
+        sorted(pd.concat([df["score_y"] for df in domain_dfs]).unique(), reverse=True)
     )
-    if with_zero_line and domain_y[-1] > 0:
-        domain_y_min = 0
-        domain_y_max = domain_y[0]
+    if with_zero_line:
+        domain_y_min = -1 if domain_y[-1] > -1 else int(domain_y[-1])
+        domain_y_max = 1 if domain_y[0] < 1 else int(domain_y[0])
         domain_y = list(reversed(range(domain_y_min, domain_y_max + 1)))
 
     x_label_expr = "datum.value % 2 ? null : datum.label"
