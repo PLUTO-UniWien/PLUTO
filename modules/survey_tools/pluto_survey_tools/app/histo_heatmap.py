@@ -14,7 +14,7 @@ class HistoHeatmapConfigState(Enum):
     show_base = (2, True)
     show_edited = (3, True)
     opacity_base = (4, 1.0)
-    opacity_edited = (5, 0.75)
+    opacity_edited = (5, 0.90)
     scheme_base = (6, "plasma")
     scheme_edited = (7, "bluegreen")
 

@@ -67,18 +67,16 @@ def create_histo_heatmap_from_df(
         domain_dfs = [df2]
 
     domain_x = list(sorted(pd.concat([df["score_x"] for df in domain_dfs]).unique()))
-    if with_zero_line:
-        domain_x_min = -1 if domain_x[0] > -1 else int(domain_x[0])
-        domain_x_max = 1 if domain_x[-1] < 1 else int(domain_x[-1])
-        domain_x = list(range(domain_x_min, domain_x_max + 1))
+    domain_x_min = -1 if domain_x[0] > -1 else int(domain_x[0])
+    domain_x_max = 1 if domain_x[-1] < 1 else int(domain_x[-1])
+    domain_x = list(range(domain_x_min, domain_x_max + 1))
 
     domain_y = list(
         sorted(pd.concat([df["score_y"] for df in domain_dfs]).unique(), reverse=True)
     )
-    if with_zero_line:
-        domain_y_min = -1 if domain_y[-1] > -1 else int(domain_y[-1])
-        domain_y_max = 1 if domain_y[0] < 1 else int(domain_y[0])
-        domain_y = list(reversed(range(domain_y_min, domain_y_max + 1)))
+    domain_y_min = -1 if domain_y[-1] > -1 else int(domain_y[-1])
+    domain_y_max = 1 if domain_y[0] < 1 else int(domain_y[0])
+    domain_y = list(reversed(range(domain_y_min, domain_y_max + 1)))
 
     x_label_expr = "datum.value % 2 ? null : datum.label"
     y_label_expr = "datum.value % 1 ? null : datum.label"

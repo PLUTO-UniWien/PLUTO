@@ -23,6 +23,9 @@ def _set_all_weights_to_zero():
     new_scores = [0] * num_scores
     edited_questionnaire = base_questionnaire.copy().with_choice_scores(new_scores)
     AppState.set(QuestionnaireState.edited_questionnaire, edited_questionnaire)
+    # Show only the edited questionnaire
+    AppState.set(HistoHeatmapConfigState.show_base, False)
+    AppState.set(HistoHeatmapConfigState.show_edited, True)
 
 
 def _toggle_bool_state(state: Enum):
@@ -86,12 +89,17 @@ def render():
             on_change=_toggle_bool_state(HistoHeatmapConfigState.with_zero_line),
         )
         display_options = ("Base", "Edited", "Both")
+        show_base_curr = AppState.get(HistoHeatmapConfigState.show_base)
+        show_edited_curr = AppState.get(HistoHeatmapConfigState.show_edited)
+        display_selection_index = (
+            2 if show_base_curr and show_edited_curr else 1 if show_edited_curr else 0
+        )
         display_selection = st.radio(
             "Displayed questionnaire",
             help="Choose which questionnaire frequencies to display "
             "on the histogram heatmap.",
             options=display_options,
-            index=display_options.index("Both"),
+            index=display_selection_index,
             horizontal=True,
         )
         display_selection_index = display_options.index(display_selection)
