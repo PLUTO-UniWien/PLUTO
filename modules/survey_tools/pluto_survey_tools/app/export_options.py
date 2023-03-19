@@ -18,4 +18,5 @@ def render():
         data=json.dumps(asdict(edited_questionnaire), indent=2),
         file_name="pluto_questionnaire.json",
         mime="application/json",
+        help="Download the edited questionnaire as a JSON file.",
     )
