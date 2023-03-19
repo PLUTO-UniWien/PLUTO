@@ -1,3 +1,5 @@
+from enum import Enum
+
 import streamlit as st
 
 import pluto_survey_tools.model as model
@@ -21,6 +23,14 @@ def _set_all_weights_to_zero():
     AppState.set(QuestionnaireState.edited_questionnaire, edited_questionnaire)
 
 
+def _toggle_bool_state(state: Enum):
+    def toggle():
+        curr = AppState.get(state)
+        AppState.set(state, not curr)
+
+    return toggle
+
+
 def _toggle_normalize():
     normalize_curr = AppState.get(HistoHeatmapConfigState.normalize)
     AppState.set(HistoHeatmapConfigState.normalize, not normalize_curr)
@@ -37,13 +47,25 @@ def render():
         help="If checked, the counts will be shown as relative percentages "
         "instead of absolute values.",
         value=AppState.get(HistoHeatmapConfigState.normalize),
-        on_change=_toggle_normalize,
+        on_change=_toggle_bool_state(HistoHeatmapConfigState.normalize),
     )
     st.checkbox(
         "Show zero lines",
         help="If checked, guidelines will be shown at zero-points of the axes",
         value=AppState.get(HistoHeatmapConfigState.with_zero_line),
-        on_change=_toggle_with_zero_line,
+        on_change=_toggle_bool_state(HistoHeatmapConfigState.with_zero_line),
+    )
+    st.checkbox(
+        "Show base frequencies",
+        help="If checked, the frequencies of the original survey will be shown.",
+        value=AppState.get(HistoHeatmapConfigState.show_base),
+        on_change=_toggle_bool_state(HistoHeatmapConfigState.show_base),
+    )
+    st.checkbox(
+        "Show updated frequencies",
+        help="If checked, the frequencies of the edited survey will be shown.",
+        value=AppState.get(HistoHeatmapConfigState.show_edited),
+        on_change=_toggle_bool_state(HistoHeatmapConfigState.show_edited),
     )
     st.button(
         "Reset original weights",
