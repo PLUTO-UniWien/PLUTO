@@ -87,7 +87,7 @@ def _score_count_df_keyed(counter: Counter) -> pd.DataFrame:
     )
 
 
-def _normalize_df(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
+def normalize_df(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     """
     Normalize the values in the given columns of the given DataFrame.
     :param df: the DataFrame to normalize
@@ -112,7 +112,7 @@ def score_count_df(
     absolute_df = _score_count_df(score_count_freq(questions))
     # sort by score and reset index
     absolute_df = absolute_df.sort_values("score").reset_index(drop=True)
-    return _normalize_df(absolute_df, ["count"]) if normalize else absolute_df
+    return normalize_df(absolute_df, ["count"]) if normalize else absolute_df
 
 
 def score_count_df_keyed(
@@ -127,4 +127,4 @@ def score_count_df_keyed(
     absolute_df = _score_count_df_keyed(score_count_freq_keyed(questions))
     # sort by score and reset index
     absolute_df = absolute_df.sort_values(["score"]).reset_index(drop=True)
-    return _normalize_df(absolute_df, ["count"]) if normalize else absolute_df
+    return normalize_df(absolute_df, ["count"]) if normalize else absolute_df

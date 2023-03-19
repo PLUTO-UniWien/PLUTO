@@ -2,7 +2,7 @@ import altair as alt
 import pandas as pd
 
 from pluto_survey_tools.model import Questionnaire
-from pluto_survey_tools.stats.frequencies import score_count_df_keyed
+from pluto_survey_tools.stats.frequencies import normalize_df, score_count_df_keyed
 
 
 def create_histo_heatmap(
@@ -13,8 +13,8 @@ def create_histo_heatmap(
     width_heatmap: int = 650,
     height_heatmap: int = 650,
     size_histogram: int = 100,
-    legendX: int = -150,
-    legendY: int = 0,
+    opacity_base: float = 1.0,
+    opacity_edited: float = 0.5,
     show_base: bool = True,
     show_edited: bool = False,
     scheme_base: str = "inferno",
@@ -30,8 +30,8 @@ def create_histo_heatmap(
         width_heatmap=width_heatmap,
         height_heatmap=height_heatmap,
         size_histogram=size_histogram,
-        legendX=legendX,
-        legendY=legendY,
+        opacity_base=opacity_base,
+        opacity_edited=opacity_edited,
         show_base=show_base,
         show_edited=show_edited,
         scheme_base=scheme_base,
@@ -47,8 +47,8 @@ def create_histo_heatmap_from_df(
     width_heatmap: int,
     height_heatmap: int,
     size_histogram: int,
-    legendX: int,
-    legendY: int,
+    opacity_base: float,
+    opacity_edited: float,
     show_base: bool,
     show_edited: bool,
     scheme_base: str,
@@ -73,20 +73,23 @@ def create_histo_heatmap_from_df(
 
     x_label_expr = "datum.value % 2 ? null : datum.label"
     y_label_expr = "datum.value % 1 ? null : datum.label"
-    diff_mark_config = {
+    mark_config_base = {
+        "opacity": opacity_base / 2,
+    }
+    mark_config_edited = {
         "color": "yellow",
-        "opacity": 0.25,
+        "opacity": opacity_edited / 2,
     }
     zero_line_config = {
         "color": "red",
-        "strokeWidth": 1,
+        "strokeWidth": 2,
         "strokeDash": [5, 5],
     }
 
     frequency_title = ("Relative" if normalize else "Absolute") + " freq."
     tooltip_count_format = ".1%" if normalize else alt.Undefined
 
-    def create_heatmap(df: pd.DataFrame, scheme: str, label: str):
+    def create_heatmap(df: pd.DataFrame, scheme: str, label: str, opacity: float):
         return (
             alt.Chart(df)
             .mark_rect()
@@ -107,12 +110,11 @@ def create_histo_heatmap_from_df(
                 ),
                 color=alt.Color(
                     "count:Q",
-                    title=frequency_title,
+                    title=f"{frequency_title} ({label})",
                     scale=alt.Scale(scheme=scheme),
-                    legend=alt.Legend(
-                        orient="none", offset=0, legendX=legendX, legendY=legendY
-                    ),
+                    legend=alt.Legend(orient="left"),
                 ),
+                opacity=alt.value(opacity),
                 tooltip=[
                     alt.Tooltip("score_x", title=f"Benefits ({label})"),
                     alt.Tooltip("score_y", title=f"Public value ({label})"),
@@ -125,10 +127,14 @@ def create_histo_heatmap_from_df(
             )
         )
 
-    def create_histogram_x(df: pd.DataFrame, is_diff: bool = False):
-        mark_config = diff_mark_config if is_diff else {}
+    def create_histogram_x(df: pd.DataFrame, mark_config: dict | None = None):
+        if mark_config is None:
+            mark_config = {}
+        df_grouped = df.copy().groupby("score_x").sum().reset_index()
+        if normalize:
+            df_grouped = normalize_df(df_grouped, ["count"])
         return (
-            alt.Chart(df, width=width_heatmap, height=size_histogram)
+            alt.Chart(df_grouped, width=width_heatmap, height=size_histogram)
             .mark_bar(**mark_config)
             .encode(
                 x=alt.X(
@@ -147,10 +153,14 @@ def create_histo_heatmap_from_df(
             )
         )
 
-    def create_histogram_y(df: pd.DataFrame, is_diff: bool = False):
-        mark_config = diff_mark_config if is_diff else {}
+    def create_histogram_y(df: pd.DataFrame, mark_config: dict | None = None):
+        if mark_config is None:
+            mark_config = {}
+        df_grouped = df.copy().groupby("score_y").sum().reset_index()
+        if normalize:
+            df_grouped = normalize_df(df_grouped, ["count"])
         return (
-            alt.Chart(df, width=size_histogram, height=height_heatmap)
+            alt.Chart(df_grouped, width=size_histogram, height=height_heatmap)
             .mark_bar(**mark_config)
             .encode(
                 x=alt.X("count:Q", title=frequency_title, axis=alt.Axis(labels=False)),
@@ -170,20 +180,32 @@ def create_histo_heatmap_from_df(
             )
         )
 
-    heatmap_base = create_heatmap(df=df1, scheme=scheme_base, label="Base")
-    heatmap_edited = create_heatmap(df=df2, scheme=scheme_edited, label="Edited")
+    heatmap_base = create_heatmap(
+        df=df1, scheme=scheme_base, label="Base", opacity=opacity_base
+    )
+    heatmap_edited = create_heatmap(
+        df=df2, scheme=scheme_edited, label="Edited", opacity=opacity_edited
+    )
+    histX_base = create_histogram_x(df1, mark_config=mark_config_base)
+    histX_edited = create_histogram_x(df2, mark_config=mark_config_edited)
+    histY_base = create_histogram_y(df1, mark_config=mark_config_base)
+    histY_edited = create_histogram_y(df2, mark_config=mark_config_edited)
     if show_base and show_edited:
-        heatmap = (heatmap_base + heatmap_edited).resolve_scale(color="independent")
-        histX = create_histogram_x(df1) + create_histogram_x(df2, is_diff=True)
-        histY = create_histogram_y(df1) + create_histogram_y(df2, is_diff=True)
+        heatmap = (
+            (heatmap_base + heatmap_edited)
+            .resolve_scale(color="independent")
+            .resolve_legend(color="independent")
+        )
+        histX = histX_base + histX_edited
+        histY = histY_base + histY_edited
     elif show_base:
         heatmap = heatmap_base
-        histX = create_histogram_x(df1)
-        histY = create_histogram_y(df1)
+        histX = histX_base
+        histY = histY_base
     elif show_edited:
         heatmap = heatmap_edited
-        histX = create_histogram_x(df2)
-        histY = create_histogram_y(df2)
+        histX = histX_edited
+        histY = histY_edited
     else:
         raise ValueError("At least one of `show_base` or `show_edited` must be True")
 
