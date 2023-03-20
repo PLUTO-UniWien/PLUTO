@@ -95,6 +95,10 @@ def normalize_df(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     :return: a copy of the DataFrame with the given columns normalized
     """
     df_copy = df.copy()
+    if len(df) == 1:
+        df_copy[columns] = 1.0
+        return df_copy
+
     df_copy[columns] -= df_copy[columns].min()
     df_copy[columns] /= df_copy[columns].max()
     return df_copy
