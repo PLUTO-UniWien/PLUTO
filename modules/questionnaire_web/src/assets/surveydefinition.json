@@ -73,27 +73,27 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "ItemSell a product/service",
+              "value": "Item 1",
               "text": "Largely financed through income from own activities or parent/partner company",
               "points": -1,
               "axis": "y",
               "feedback": "if the financial structure of the organisation was different"
             },
             {
-              "value": " 1",
+              "value": "Item 2",
               "text": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
               "points": -1,
               "axis": "y",
               "feedback": "if the financial structure of the organisation was different"
             },
             {
-              "value": "Item 2",
+              "value": "Item 3",
               "text": "Largely financed by governments or international organisations",
               "points": 0,
               "axis": "y"
             },
             {
-              "value": "Item 3",
+              "value": "Item 4",
               "text": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)",
               "points": 1,
               "axis": "y"
@@ -226,19 +226,19 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "ItemSell a product/service",
+              "value": "Item 1",
               "text": "Develop/improve new drug/medical treatment",
               "points": 2,
               "axis": "y"
             },
             {
-              "value": " 1",
+              "value": "Item 2",
               "text": "Combat climate change",
               "points": 2,
               "axis": "y"
             },
             {
-              "value": "Item 2",
+              "value": "Item 3",
               "text": "Combat social and economic inequality ",
               "points": 2,
               "axis": "y"
@@ -367,19 +367,19 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "ItemSell a product/service",
+              "value": "Item 1",
               "text": "Benefits primarily cover issues of current relevance",
               "points": 0,
               "axis": "y"
             },
             {
-              "value": " 1",
+              "value": "Item 2",
               "text": "Benefits primarily cover issues of relevance for future generations",
               "points": 1,
               "axis": "y"
             },
             {
-              "value": "Item 2",
+              "value": "Item 3",
               "text": "Benefits are likely to increase in the future",
               "points": 2,
               "axis": "y"
