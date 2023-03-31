@@ -1,7 +1,6 @@
 <template>
   <div id="app" style="background-color: #f3f3f3; height: 100vh" >
     <Survey/>
-
   </div>
 </template>
 
@@ -32,5 +31,10 @@ export default {
 }
 
 p {line-height: 1.4}
+
+/* Left-align the question header and response options */
+.sd-question__header, .sd-selectbase {
+  text-align: left;
+}
 
 </style>
