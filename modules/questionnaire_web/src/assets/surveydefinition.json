@@ -630,8 +630,8 @@
               "feedback": "if the risk of dual use of the organisation's data use could be assessed"
             }
           ],
-          "showNoneItem": true,
-          "noneText": "None of the above (please specify)"
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
         }
       ]
     },
@@ -776,8 +776,8 @@
               "axis": "x"
             }
           ],
-          "showNoneItem": true,
-          "noneText": "None of the above (please specify)"
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
         }
       ]
     },
@@ -812,8 +812,8 @@
               "axis": "x"
             }
           ],
-          "showNoneItem": true,
-          "noneText": "None of the above (please specify)"
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
         }
       ]
     },
@@ -842,8 +842,8 @@
               "axis": "x"
             }
           ],
-          "showNoneItem": true,
-          "noneText": "None of the above (please specify)"
+          "showOtherItem": true,
+          "otherText": "None of the above (please specify)"
         }
       ]
     },
