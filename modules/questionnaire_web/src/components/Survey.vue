@@ -1,21 +1,10 @@
 <template>
-  <div>
-    <div v-if="showStartView">
-      <StartView @startQuestionnaire="showStartView = false" />
-    </div>
-    <div v-if="!showStartView">
-      <Survey :survey="survey" id="surveyElement"> </Survey>
-      <ResultView v-if="showResults" />
-    </div>
-  </div>
+  <Survey :survey="survey" id="surveyElement"> </Survey>
 </template>
 
 <script>
-// import * as d3 from 'd3';
-import ResultView from './Result.vue'
-import StartView from './Start.vue'
 import 'survey-core/defaultV2.min.css'
-import surveyJson from '../assets/surveydefinition.json'
+import surveyJson from '@/assets/surveydefinition.json'
 import { Survey } from 'survey-vue-ui'
 import { StylesManager, Model, Serializer } from 'survey-core'
 StylesManager.applyTheme('defaultV2')
@@ -33,14 +22,13 @@ export default {
   name: 'SurveyView',
   components: {
     Survey,
-    ResultView,
-    StartView,
   },
   props: {},
   data() {
     const survey = new Model(surveyJson)
     survey.onComplete.add(this.surveyComplete)
     survey.onValidateQuestion.add(this.validateOnlyOptionsOrNoneIsSelected)
+    survey.onAfterRenderQuestion.add(this.renderChoiceContentHTML)
     return {
       survey,
       // totalScore: 0,
@@ -48,12 +36,27 @@ export default {
       showStartView: true,
     }
   },
-  mounted() {},
+  mounted() {
+    this.$store.commit('setSurveyJson', surveyJson)
+  },
   methods: {
-    surveyComplete(sender) {
-      console.log('RESULT DATA:')
-      console.log(JSON.stringify(sender.data, null, 2))
-      const plainData = sender.getPlainData({
+    /**
+     *
+     * @param surveyModel surveyModel {import('survey-core').SurveyModel}
+     * @param event event {import('survey-core').CompleteEvent}
+     */
+    async surveyComplete(surveyModel, event) {
+      event.showSaveInProgress()
+
+      // Simulate saving the data to the server
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      event.showSaveSuccess()
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+
+      /**
+       * @type {import('survey-core').IQuestionPlainData[]}
+       */
+      const plainData = surveyModel.getPlainData({
         // Include `score` values into the data array
         calculations: [
           {
@@ -67,14 +70,12 @@ export default {
           },
         ],
       })
-      console.log(plainData)
-      // this.calculateTotalScore(plainData);
-      console.log(this.totalScore)
-      // this.$bvModal.show("resultmodal")
-      this.showResults = true
       this.$store.commit('saveResult', plainData)
-      console.log(this.$store.getters.result)
-      // window.location.href = "http://stackoverflow.com";
+
+      // Navigate to the results page
+      const href = '/result'
+      this.$root.currentRoute = href
+      window.history.pushState(null, '', href)
     },
     validateOnlyOptionsOrNoneIsSelected(survey, options) {
       const isCheckbox = options.question.getType() === 'checkbox'
@@ -87,6 +88,25 @@ export default {
             'You cannot select other options when selecting "None of the above".'
         }
       }
+    },
+    /**
+     * Makes it possible to define HTML content for choices in the survey JSON.
+     * This callback injects the HTML content into the choice span elements.
+     *
+     * @param surveyModel {import('survey-core').SurveyModel}
+     * @param event {import('survey-core').AfterRenderQuestionEvent}
+     */
+    renderChoiceContentHTML(surveyModel, event) {
+      const choiceElements = event.htmlElement.querySelectorAll(
+        '.sd-question__content .sv-string-viewer'
+      )
+      const choiceModels = event.question.choices
+      choiceElements.forEach((choiceElement, i) => {
+        const choiceModel = choiceModels[i]
+        if (choiceModel) {
+          choiceElement.innerHTML = choiceModel.text
+        }
+      })
     },
   },
   computed: {},

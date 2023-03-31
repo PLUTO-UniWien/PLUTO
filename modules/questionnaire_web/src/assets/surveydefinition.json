@@ -56,7 +56,7 @@
           ],
           "separateSpecialChoices": true,
           "showNoneItem": true,
-          "noneText": "None of the Above",
+          "noneText": "None of the above",
           "maxSelectedChoices": 2
         }
       ]
@@ -101,7 +101,7 @@
           ],
           "separateSpecialChoices": true,
           "showNoneItem": true,
-          "noneText": "None of the Above",
+          "noneText": "None of the above",
           "maxSelectedChoices": 2
         }
       ]
@@ -337,7 +337,7 @@
               "text": "No track record of strengthening benefits for groups that are granted additional protection by way of anti-discrimination law",
               "points": -2,
               "axis": "y",
-              "feedback": "if your organisation had previously ensured that their data use benefits groups that are protected under anti-discrimination rules"
+              "feedback": "if the organisation had previously ensured that their data use benefits groups that are protected under anti-discrimination rules"
             },
             {
               "value": "Item 2",
@@ -606,7 +606,7 @@
         {
           "type": "radiogroup",
           "name": "question17",
-          "title": "Which of the answers below best describe the likelihood of a risk of dual use materializing and creating harm (tick one)? ",
+          "title": "Which of the answers below best describe the likelihood of a risk of dual use materialising and creating harm (tick one)? ",
           "isRequired": true,
           "choices": [
             {
@@ -614,7 +614,7 @@
               "text": "Risk from dual use are likely to materialise",
               "points": -4,
               "axis": "x",
-              "feedback": "if the risk of dual use of the orgnisation's data use was less likely to materalise"
+              "feedback": "if the risk of dual use of the organisation's data use was less likely to materialise"
             },
             {
               "value": "Item 2",
@@ -655,13 +655,13 @@
             },
             {
               "value": "Item 2",
-              "text": "Ex ante institutionalised/ad-hoc risk assessment is voluntary",
+              "text": "<i>Ex ante</i> institutionalised/ad-hoc risk assessment is voluntary",
               "points": 0,
               "axis": "x"
             },
             {
               "value": "Item 3",
-              "text": "Ex ante institutionalised risk assessment is mandatory",
+              "text": "<i>Ex ante</i> institutionalised risk assessment is mandatory",
               "points": 1,
               "axis": "x"
             }
@@ -725,7 +725,7 @@
               "text": "Findings are recommendations",
               "points": -3,
               "axis": "x",
-              "feedback": "if findings from your risk assessment could be binding"
+              "feedback": "if findings from the risk assessment could be binding"
             },
             {
               "value": "Item 2",
@@ -767,12 +767,6 @@
               "value": "Item 3",
               "text": "Trained ethicists are included in the risk assessment",
               "points": 2,
-              "axis": "x"
-            },
-            {
-              "value": "Item 4",
-              "text": "No risk assessment in place",
-              "points": 0,
               "axis": "x"
             }
           ],
