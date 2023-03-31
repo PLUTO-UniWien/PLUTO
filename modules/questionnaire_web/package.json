@@ -1,12 +1,12 @@
 {
-  "name": "vis-vue-d3",
-  "version": "1.2.0",
+  "name": "pluto-web",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "format": "prettier --write src/**/*.{json,js,vue} public/index.html"
+    "format": "prettier --write src/**/*.{json,js,vue,css} public/index.html"
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
