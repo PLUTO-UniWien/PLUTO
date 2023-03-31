@@ -37,11 +37,11 @@
             id="resultXarea"
           >
             <br />
-            <h5>The benefits of the data use would be higher...</h5>
+            <h5 v-if="feedback.value.length">The benefits of the data use would be higher...</h5>
             <p v-for="(point, index) in feedback.value" :key="point + index">
               - {{ point }}
             </p>
-            <h5>The risks would be lower...</h5>
+            <h5 v-if="feedback.value.length">The risks would be lower...</h5>
             <p v-for="(point, index) in feedback.risk" :key="point + index">
               - {{ point }}
             </p>
