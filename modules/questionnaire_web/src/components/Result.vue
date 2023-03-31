@@ -252,8 +252,13 @@ export default {
 
       let scaleX = d3.scaleLinear().domain([1, -1]).range([0, chartsize])
       let axisX = d3.axisBottom().tickValues([-1, -0.5, 0.5, 1])
+      // No labels on the X axis
+      axisX.tickFormat('')
+
       let scaleY = d3.scaleLinear().domain([1, -1]).range([0, chartsize])
       let axisY = d3.axisLeft().tickValues([-1, -0.5, 0.5, 1])
+      // No labels on the Y axis
+      axisY.tickFormat('')
 
       axisX.scale(scaleX)
       d3.select('#chartElements')
