@@ -18,7 +18,7 @@ const store = new Vuex.Store({
       state.totalScore = calc.calculateTotalScore(results)
       state.axisScore = calc.calculateAxisScore(results)
       state.normalizedAxisScore = calc.calculateNormalizedAxisScore(results)
-      state.feeback = calc.calculateFeedback(results)
+      state.feedback = calc.calculateFeedback(results)
     },
   },
   getters: {
@@ -26,7 +26,7 @@ const store = new Vuex.Store({
     totalScore: (state) => state.totalScore,
     axisScore: (state) => state.axisScore,
     normalizedAxisScore: (state) => state.normalizedAxisScore,
-    feedback: (state) => state.feeback,
+    feedback: (state) => state.feedback,
   },
   actions: {},
 })
