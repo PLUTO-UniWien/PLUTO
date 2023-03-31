@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <div class="background">
+  <Layout>
+    <Header />
+    <div class="background py-4">
       <h2>This is your result</h2>
-      <b-row style="padding-bottom: 60px; padding-top: 40px">
-        <b-col>
+      <b-row>
+        <b-col cols="12" class="pt-4 pb-5">
           <div ref="chartarea" id="chartArea">
             <svg
               id="axisResultSvg"
@@ -30,22 +31,31 @@
             </svg>
           </div>
         </b-col>
-        <b-col>
-          <div
-            v-if="showResultsBotton"
-            style="text-align: left; margin: auto"
-            id="resultXarea"
-          >
-            <br />
-            <h5 v-if="feedback.value.length">The benefits of the data use would be higher...</h5>
-            <p v-for="(point, index) in feedback.value" :key="point + index">
-              - {{ point }}
-            </p>
-            <h5 v-if="feedback.value.length">The risks would be lower...</h5>
-            <p v-for="(point, index) in feedback.risk" :key="point + index">
-              - {{ point }}
-            </p>
-            <br />
+        <b-col cols="12">
+          <div v-if="showResultsBotton" id="resultXarea" class="m-auto">
+            <h5
+              v-if="feedback.value && feedback.value.length"
+              class="text-left"
+            >
+              The benefits of the data use would be higher...
+            </h5>
+            <ul
+              v-for="(point, index) in feedback.value"
+              :key="point + index"
+              class="text-justify"
+            >
+              <li>{{ point }}</li>
+            </ul>
+            <h5 v-if="feedback.risk && feedback.risk.length" class="text-left">
+              The risks would be lower...
+            </h5>
+            <ul
+              v-for="(point, index) in feedback.risk"
+              :key="point + index"
+              class="text-justify"
+            >
+              <li>{{ point }}</li>
+            </ul>
           </div>
         </b-col>
       </b-row>
@@ -66,8 +76,10 @@
       </div>
 
       <b-tooltip target="resultPoint" triggers="hover">
-        Risk: {{ this.normalizedAxisScore.x.toFixed(2) }} <br />
-        Benefit: {{ this.normalizedAxisScore.y.toFixed(2) }}
+        <div class="d-flex flex-column text-left">
+          <span>Risk: {{ this.normalizedAxisScore.x.toFixed(2) }}</span>
+          <span>Benefit: {{ this.normalizedAxisScore.y.toFixed(2) }}</span>
+        </div>
       </b-tooltip>
 
       <div v-if="showTooltips">
@@ -110,7 +122,7 @@
           benefits of the data use.
         </p>
 
-        <h4>High Public Value</h4>
+        <h4 class="mt-4 mb-2">High Public Value</h4>
         <p>
           If benefits are high and risks are low, this means that the data use
           that you inquired about creates high public value. It is likely to
@@ -129,7 +141,7 @@
           consideration in legislation and regulation.
         </p>
 
-        <h4>Medium Public Value</h4>
+        <h4 class="mt-4 mb-2">Medium Public Value</h4>
         <p>
           If benefits are high, but so are risks, this means that the data use
           that you inquired about creates some public value. It is likely to
@@ -138,7 +150,7 @@
           reduced to an acceptable level.
         </p>
 
-        <h4>Low Public Value</h4>
+        <h4 class="mt-4 mb-2">Low Public Value</h4>
         <p>
           If benefits are low, and so are risks, the data use in question
           creates low public value. Nevertheless, because the associated risks
@@ -151,13 +163,13 @@
           >
         </p>
 
-        <h4>No Public Value</h4>
+        <h4 class="mt-4 mb-2">No Public Value</h4>
         <p>
           If benefits are low and risks are high, the data use in question
           creates no public value. Such data use should not go ahead.
         </p>
 
-        <h3 style="color: #3e85c7">Feedback</h3>
+        <h3 style="color: #3e85c7" class="mt-4">Feedback</h3>
         <p>
           If you feel that this assessment is unfair and misses an important
           type of value that would be created by the data use,
@@ -167,15 +179,17 @@
         </p>
       </div>
     </b-row>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import * as d3 from 'd3'
+import Layout from '@/components/Layout.vue'
+import Header from '@/components/Header.vue'
 
 export default {
   name: 'ResultView',
-  components: {},
+  components: { Header, Layout },
   props: {},
   data() {
     return {
@@ -192,6 +206,12 @@ export default {
     }
   },
   mounted() {
+    if (!this.result.length) {
+      // navigate to survey
+      const href = '/survey'
+      this.$root.currentRoute = href
+      window.history.pushState(null, '', href)
+    }
     this.drawChart()
   },
   methods: {
@@ -379,9 +399,6 @@ export default {
       },
       deep: true,
       immediate: true,
-    },
-    totalScore(old, newone) {
-      console.log(`We have ${newone} fruits now, yay!`)
     },
   },
 }
