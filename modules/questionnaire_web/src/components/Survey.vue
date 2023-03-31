@@ -15,11 +15,10 @@
 import ResultView from './Result.vue'
 import StartView from './Start.vue'
 import 'survey-core/defaultV2.min.css'
-import json from '../assets/surveydefinition.json'
+import surveyJson from '../assets/surveydefinition.json'
 import { Survey } from 'survey-vue-ui'
 import { StylesManager, Model, Serializer } from 'survey-core'
 StylesManager.applyTheme('defaultV2')
-const surveyJson = json
 Serializer.addProperty('itemvalue', {
   name: 'points:number',
 })
@@ -41,6 +40,7 @@ export default {
   data() {
     const survey = new Model(surveyJson)
     survey.onComplete.add(this.surveyComplete)
+    survey.onValidateQuestion.add(this.validateOnlyOptionsOrNoneIsSelected)
     return {
       survey,
       // totalScore: 0,
@@ -52,7 +52,7 @@ export default {
   methods: {
     surveyComplete(sender) {
       console.log('RESULT DATA:')
-      console.log(JSON.stringify(sender.data, null, 3))
+      console.log(JSON.stringify(sender.data, null, 2))
       const plainData = sender.getPlainData({
         // Include `score` values into the data array
         calculations: [
@@ -75,6 +75,18 @@ export default {
       this.$store.commit('saveResult', plainData)
       console.log(this.$store.getters.result)
       // window.location.href = "http://stackoverflow.com";
+    },
+    validateOnlyOptionsOrNoneIsSelected(survey, options) {
+      const isCheckbox = options.question.getType() === 'checkbox'
+      if (isCheckbox) {
+        /** @type {string[]} */
+        const selection = options.value
+        const noneOfTheAboveOptionSelected = selection.includes('other')
+        if (noneOfTheAboveOptionSelected && selection.length > 1) {
+          options.error =
+            'You cannot select other options when selecting "None of the above".'
+        }
+      }
     },
   },
   computed: {},
