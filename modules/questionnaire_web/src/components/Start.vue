@@ -1,25 +1,17 @@
 <template>
-  <div>
-    <b-row style="background-color: #d8ead2">
-      <b-img
-        src="/PLUTO_logo.png"
-        alt="PLUTO logo"
-        fluid
-        class="logo"
-        width="200"
-      />
-    </b-row>
+  <Layout>
+    <Header />
     <b-row style="background-color: #f3f3f3">
       <div
         class="info-text"
         style="background-color: white; box-shadow: 4px 4px 4px #cccccc"
       >
-        <h1 style="margin-bottom: 30px; color: #3e85c7">
+        <h1 style="color: #3e85c7" class="mb-4">
           PLUTO - Public Value Assessment Tool
         </h1>
 
         <p>
-          The risks and harms of digital data do not lie in the data themselves;
+          The risks and harms of digital data do not lie in the data itself;
           they come from how the data is used. PLUTO is a tool for assessing the
           benefits and risks of specific instances of data use. The weighing of
           risks and benefits results in a score that indicates the public value
@@ -32,7 +24,8 @@
           organisations, public bodies, or citizens. It asks 24 questions in
           four categories:
         </p>
-        <ul>
+
+        <ul class="my-3">
           <li>Information about the data user</li>
           <li>Benefits of the data use</li>
           <li>Risks of the data use</li>
@@ -61,8 +54,8 @@
 
         <p>
           The primary purpose of this tool is to provide data users and citizens
-          information on how much public value specific instances of data use
-          create. We, the tool developers, may use your (anonymised) data to
+          with information on how much public value specific instances of data
+          use create. We, the tool developers, may use your (anonymised) data to
           improve the functionality of the PLUTO tool itself, and for our own
           research and publications relating to the development of the tool. We
           will only ever use de-identified information; no personal data will be
@@ -80,7 +73,7 @@
             variant="primary"
             size="lg"
             id="startbutton"
-            @click="$emit('startQuestionnaire')"
+            @click="navigateToSurvey"
             >Start Questionnaire</b-button
           >
         </div>
@@ -98,19 +91,34 @@
         </div>
       </div>
     </b-row>
-  </div>
+  </Layout>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
+import Layout from '@/components/Layout.vue'
+
 export default {
   name: 'StartView',
-  components: {},
+  components: { Layout, Header },
   props: {},
   data() {
     return {}
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    const currentHref = window.location.href
+    const expectedHref = '/'
+    if (currentHref !== expectedHref) {
+      window.history.pushState(null, '', expectedHref)
+    }
+  },
+  methods: {
+    navigateToSurvey() {
+      const href = '/survey'
+      this.$root.currentRoute = href
+      window.history.pushState(null, '', href)
+    },
+  },
   computed: {},
 }
 </script>
@@ -134,7 +142,7 @@ export default {
   margin: auto;
   padding: 50px 30px 80px 30px;
   max-width: 800px;
-  text-align: left;
+  text-align: justify;
 }
 
 .developedText {
