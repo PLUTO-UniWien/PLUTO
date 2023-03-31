@@ -1,0 +1,19 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  padding-bottom: 40px;
+  line-height: 1.6;
+}
+
+p {
+  line-height: 1.4;
+}
+
+/* Left-align the question header and response options */
+.sd-question__header,
+.sd-selectbase {
+  text-align: left;
+}

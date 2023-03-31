@@ -1,36 +1,48 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import calc from "./calculations.js"
+import Vue from 'vue'
+import Vuex from 'vuex'
+import calc from './calculations.js'
 
-Vue.use(Vuex);
-
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    result: ["Test"],
+    result: [],
+    transformedResultForServer: [],
     totalScore: 0,
-    axisScore: {x: 0, y: 0},
-    normalizedAxisScore: {x: 0, y: 0},
-    feedback : {risk: [], value: []}
+    axisScore: { x: 0, y: 0 },
+    normalizedAxisScore: { x: 0, y: 0 },
+    feedback: { risk: [], value: [] },
+    surveyJson: {},
   },
   mutations: {
-    saveResult(state, results){
+    /**
+     * Save the result of the survey
+     * @param state
+     * @param results {import('survey-core').IQuestionPlainData[]}
+     */
+    saveResult(state, results) {
       state.result = results
+      state.transformedResultForServer = calc.transformResultToServerSideShape(
+        state.surveyJson,
+        results
+      )
       state.totalScore = calc.calculateTotalScore(results)
       state.axisScore = calc.calculateAxisScore(results)
       state.normalizedAxisScore = calc.calculateNormalizedAxisScore(results)
-      state.feeback = calc.calculateFeedback(results)
-    }
+      state.feedback = calc.calculateFeedback(results)
+    },
+    setSurveyJson(state, surveyJson) {
+      state.surveyJson = surveyJson
+    },
   },
   getters: {
     result: (state) => state.result,
     totalScore: (state) => state.totalScore,
     axisScore: (state) => state.axisScore,
     normalizedAxisScore: (state) => state.normalizedAxisScore,
-    feedback: (state) => state.feeback,
+    feedback: (state) => state.feedback,
   },
-  actions: {
-  }
+  actions: {},
 })
 
-export default store;
+export default store
