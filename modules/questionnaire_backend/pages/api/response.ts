@@ -24,7 +24,7 @@ export default async function handler(
       createdAt: new Date(),
       questionnaireVersion: 'v1',
       env: process.env.NODE_ENV,
-      host: req.headers.host,
+      headers: req.headers,
     }
     const document = { ...data, serverMetadata }
     const db = await connectToDatabase()
