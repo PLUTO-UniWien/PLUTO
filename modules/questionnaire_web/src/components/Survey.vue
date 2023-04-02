@@ -49,7 +49,7 @@ export default {
      */
     async surveyComplete(surveyModel, event) {
       event.showSaveInProgress()
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 750))
 
       /**
        * @type {import('survey-core').IQuestionPlainData[]}
@@ -75,11 +75,11 @@ export default {
       await submitResult(serverResult)
         .then(async () => {
           event.showSaveSuccess()
-          await new Promise((resolve) => setTimeout(resolve, 1000))
+          await new Promise((resolve) => setTimeout(resolve, 1250))
         })
         .catch(async () => {
           event.showSaveError()
-          await new Promise((resolve) => setTimeout(resolve, 1000))
+          await new Promise((resolve) => setTimeout(resolve, 2500))
         })
 
       // Navigate to the results page

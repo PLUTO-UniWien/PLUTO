@@ -17,3 +17,7 @@ p {
 .sd-selectbase {
   text-align: left;
 }
+
+.sd-root-modern {
+  min-height: 100vh;
+}
