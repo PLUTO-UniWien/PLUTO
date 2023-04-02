@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
   publicPath: './',
   css: {
@@ -6,6 +8,11 @@ module.exports = {
         url: false,
       }
     }
+  },
+  configureWebpack: {
+    plugins: [
+      new Dotenv()
+    ]
   },
   chainWebpack: config => {
     config

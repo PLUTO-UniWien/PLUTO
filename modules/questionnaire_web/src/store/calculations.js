@@ -35,14 +35,149 @@ import * as d3 from 'd3'
  @property {string} showQuestionNumbers - Whether to show question numbers.
  */
 
+/**
+ * @typedef {Object} Response
+ * @property {number} question - The ID of the question being answered.
+ * @property {QuestionType} questionType - The type of the question being answered.
+ * @property {Array<Choice>} choices - An array of choice objects.
+ */
+
+/**
+ * @typedef {Object} Choice
+ * @property {number} choice - The ID of the choice selected.
+ * @property {ChoiceType} choiceType - The type of the choice selected
+ * @property {string|null} comment - The comment associated with the choice, if any.
+ */
+
+/**
+ * @typedef {'otherOrNone' | 'otherAndNone' | 'simple'} QuestionType
+ */
+
+/**
+ * @typedef {'other' | 'none' | 'simple'} ChoiceType
+ */
+
+/**
+ * @param surveyJson {Survey}
+ * @param questionId {number}
+ * @return {number}
+ */
+function getChoicesLength(surveyJson, questionId) {
+  return surveyJson.pages[questionId - 1].elements[0].choices.length
+}
+
+/**
+ * @param surveyJson {Survey}
+ * @param questionId {number}
+ * @return {QuestionType}
+ */
+function getQuestionType(surveyJson, questionId) {
+  const questionElement = surveyJson.pages[questionId - 1].elements[0]
+  const showOtherItem = questionElement.showOtherItem === true
+  const showNoneItem = questionElement.showNoneItem === true
+  if (showOtherItem && showNoneItem) {
+    return 'otherAndNone'
+  }
+  if (showOtherItem || showNoneItem) {
+    return 'otherOrNone'
+  }
+  return 'simple'
+}
+
+/**
+ * @param choiceValue {string}
+ * @return {ChoiceType}
+ */
+function getChoiceType(choiceValue) {
+  if (choiceValue === 'other') {
+    return 'other'
+  }
+  if (choiceValue === 'none') {
+    return 'none'
+  }
+  return 'simple'
+}
+
+/**
+ * @param questionName {string}
+ * @return {number}
+ */
+function getQuestionId(questionName) {
+  return +questionName.split('question')[1]
+}
+
+/**
+ * @param choiceValue {string}
+ * @return {number}
+ */
+function getChoiceIdSimple(choiceValue) {
+  // assert that the format is 'Item <number>', use regex
+  const isValueValid = choiceValue.match(/^Item \d+$/)
+  if (!isValueValid) {
+    throw new Error(`Invalid simple choice value ${choiceValue}`)
+  }
+  return +choiceValue.split(' ')[1]
+}
+
+/**
+ * @param questionType {QuestionType}
+ * @param choicesLength {number}
+ * @param choiceValue {string}
+ * @return {number}
+ */
+function getChoiceId(questionType, choicesLength, choiceValue) {
+  switch (questionType) {
+    case 'otherOrNone':
+      return choiceValue === 'other' || choiceValue === 'none'
+        ? choicesLength + 1
+        : getChoiceIdSimple(choiceValue)
+    case 'otherAndNone':
+      if (choiceValue === 'other') {
+        return choicesLength + 1
+      }
+      if (choiceValue === 'none') {
+        return choicesLength + 2
+      }
+      return getChoiceIdSimple(choiceValue)
+    case 'simple':
+      return getChoiceIdSimple(choiceValue)
+  }
+}
+
+/**
+ * @param surveyJson {Survey}
+ * @param questionData {import('survey-core').IQuestionPlainData}
+ * @return {Response}
+ */
+function getResponse(surveyJson, questionData) {
+  const questionId = getQuestionId(questionData.name)
+  const choicesLength = getChoicesLength(surveyJson, questionId)
+  const questionType = getQuestionType(surveyJson, questionId)
+  /**
+   * @type {Choice[]}
+   */
+  const choices = questionData.data.map((choiceData) => {
+    const choiceValue = choiceData.value
+    const choiceId = getChoiceId(questionType, choicesLength, choiceValue)
+    const choiceType = getChoiceType(choiceValue)
+    return {
+      choice: choiceId,
+      choiceType,
+      comment: choiceValue === 'other' ? choiceData.displayValue : null,
+    }
+  })
+  return { question: questionId, questionType, choices }
+}
+
 export default {
   /**
    * Calculate the normalized result, ready to be used by a server
    * @param surveyJson {Survey}
    * @param data {import('survey-core').IQuestionPlainData[]}
+   * @return {Array<Response>}
    */
   transformResultToServerSideShape(surveyJson, data) {
-    return data
+    return data.map((questionData) => getResponse(surveyJson, questionData))
   },
   /**
    * @param data {import('survey-core').IQuestionPlainData[]}

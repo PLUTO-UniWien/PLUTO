@@ -41,6 +41,12 @@ const store = new Vuex.Store({
     axisScore: (state) => state.axisScore,
     normalizedAxisScore: (state) => state.normalizedAxisScore,
     feedback: (state) => state.feedback,
+    serverResult: (state) => ({
+      choices: state.transformedResultForServer,
+      totalScore: state.totalScore,
+      axisScore: state.axisScore,
+      normalizedAxisScore: state.normalizedAxisScore,
+    }),
   },
   actions: {},
 })
