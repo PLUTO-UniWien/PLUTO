@@ -10,8 +10,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   await initCors(req, res)
-  // const authSucceeded = requireBasicAuth(req, res);
-  // (!authSucceeded) return;
+  const authSucceeded = requireBasicAuth(req, res);
+  if (!authSucceeded) return;
   if (req.method === 'POST') {
     const data = req.body
     // Actual type schema check should happen here, should be in sync with the frontend

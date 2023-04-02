@@ -77,7 +77,8 @@ export default {
           event.showSaveSuccess()
           await new Promise((resolve) => setTimeout(resolve, 1250))
         })
-        .catch(async () => {
+        .catch(async (reason) => {
+          console.error(`Failed to submit result: ${reason}`)
           event.showSaveError()
           await new Promise((resolve) => setTimeout(resolve, 2500))
         })

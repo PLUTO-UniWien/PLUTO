@@ -34,6 +34,8 @@ export default function middleware(request: Request) {
     return credential.username === username && credential.password === password
   })
   if (!isAuthorized) return UNAUTHORIZED_RESPONSE
-  // If authorized, return the request unmodified
-  return next()
+  // If authorized, return the request and store the Authorization header as a cookie
+  const response = next(request)
+  response.headers.set('Set-Cookie', `Authorization=${auth}`)
+  return response
 }
