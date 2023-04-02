@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "cd ../../ && vercel dev --listen 8080",
     "serve": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
-    "format": "prettier --write src/**/*.{json,js,vue,css} public/index.html"
+    "format": "prettier --write src/**/*.{json,js,vue,css} public/index.html middleware.ts"
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
@@ -19,6 +20,7 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
+    "@vercel/edge": "^0.3.1",
     "@vue/cli-plugin-babel": "^4.5.0",
     "@vue/cli-plugin-eslint": "^4.5.0",
     "@vue/cli-service": "^4.5.0",
