@@ -4,9 +4,11 @@
 
 <script>
 import 'survey-core/defaultV2.min.css'
-import surveyJson from '@/assets/surveydefinition.json'
+
 import { Survey } from 'survey-vue-ui'
 import { StylesManager, Model, Serializer } from 'survey-core'
+import { SURVEY_JSON } from '@/constants'
+import { submitResult } from '@/services/response'
 StylesManager.applyTheme('defaultV2')
 Serializer.addProperty('itemvalue', {
   name: 'points:number',
@@ -25,7 +27,7 @@ export default {
   },
   props: {},
   data() {
-    const survey = new Model(surveyJson)
+    const survey = new Model(SURVEY_JSON)
     survey.onComplete.add(this.surveyComplete)
     survey.onValidateQuestion.add(this.validateOnlyOptionsOrNoneIsSelected)
     survey.onAfterRenderQuestion.add(this.renderChoiceContentHTML)
@@ -37,7 +39,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('setSurveyJson', surveyJson)
+    this.$store.commit('setSurveyJson', SURVEY_JSON)
   },
   methods: {
     /**
@@ -47,11 +49,7 @@ export default {
      */
     async surveyComplete(surveyModel, event) {
       event.showSaveInProgress()
-
-      // Simulate saving the data to the server
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      event.showSaveSuccess()
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
       /**
        * @type {import('survey-core').IQuestionPlainData[]}
@@ -71,6 +69,18 @@ export default {
         ],
       })
       this.$store.commit('saveResult', plainData)
+
+      // Persist the result to the server
+      const serverResult = this.$store.getters.serverResult
+      await submitResult(serverResult)
+        .then(async () => {
+          event.showSaveSuccess()
+          await new Promise((resolve) => setTimeout(resolve, 1000))
+        })
+        .catch(async () => {
+          event.showSaveError()
+          await new Promise((resolve) => setTimeout(resolve, 1000))
+        })
 
       // Navigate to the results page
       const href = '/result'

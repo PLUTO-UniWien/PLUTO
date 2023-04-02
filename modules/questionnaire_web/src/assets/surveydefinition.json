@@ -523,7 +523,7 @@
               "axis": "x"
             }
           ],
-          "showOtherItem": "true",
+          "showOtherItem": true,
           "otherText": "Other (please specify)"
         }
       ]
