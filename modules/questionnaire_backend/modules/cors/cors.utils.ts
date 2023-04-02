@@ -16,7 +16,8 @@ export default async function initCors<T>(
   await NextCors(req, res, {
     // Options
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    origin: process.env.NODE_ENV === 'development' ? DEV_ORIGINS : PROD_ORIGINS,
+    // origin: process.env.NODE_ENV === 'development' ? DEV_ORIGINS : PROD_ORIGINS,
+    origin: '*',
     optionsSuccessStatus: 200,
   })
 }
