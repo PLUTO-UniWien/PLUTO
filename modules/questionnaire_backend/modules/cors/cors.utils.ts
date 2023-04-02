@@ -8,7 +8,7 @@ export default async function initCors<T>(
     await NextCors(req, res, {
         // Options
         methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-        origin: '*',
+        origin: ['http://localhost:8080', 'https://pluto-survey.vercel.app', 'https://pluto-survey-git-main-peter-gy.vercel.app', 'http://pluto.vda.univie.ac.at', 'https://pluto.vda.univie.ac.at'],
         optionsSuccessStatus: 200,
     });
 }
