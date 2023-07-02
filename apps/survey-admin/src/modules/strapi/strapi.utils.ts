@@ -1,5 +1,5 @@
 import { env } from '../../env.mjs';
-import { constructFetchUrl, extractError } from '../utils/fetch.utils';
+import { constructFetchUrl, extractError } from '@pluto/utils';
 import { NextResponse } from 'next/server';
 
 function strapiUrl(path: string) {

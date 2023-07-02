@@ -5,7 +5,7 @@ import {
   Survey,
   SurveyResult,
 } from '@pluto/survey-model';
-import { extractError } from '../../../modules/utils/fetch.utils';
+import { extractError } from '@pluto/utils';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

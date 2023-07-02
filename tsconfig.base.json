@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pluto/survey-model": ["libs/survey-model/src/index.ts"]
+      "@pluto/survey-model": ["libs/survey-model/src/index.ts"],
+      "@pluto/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
