@@ -9,9 +9,11 @@ networks:
   db-admin-db:
   cms-survey-admin:
   survey-admin-survey-public:
+  survey-admin-survey-analysis:
 
 services:
-  # Postgres 15
+  # PRIVATE
+  # Postgres
   db:
     build: ./services/db
     env_file: ./services/db/.env
@@ -23,7 +25,8 @@ services:
       db-cms:
       db-admin-db:
 
-  # PgAdmin 4
+  # db.pluto.univie.ac.at
+  # PgAdmin
   db-admin:
     build: ./services/db-admin
     env_file: ./services/db-admin/.env
@@ -39,7 +42,8 @@ services:
       db-cms:
       db-admin-db:
 
-  # Strapi v4
+  # cms.pluto.univie.ac.at
+  # Strapi
   cms:
     build:
       context: .
@@ -54,7 +58,8 @@ services:
       db-cms:
       cms-survey-admin:
 
-  # Next.js 13.4
+  # admin.pluto.univie.ac.at
+  # Next.js
   survey-admin:
     build:
       context: .
@@ -71,7 +76,8 @@ services:
       cms-survey-admin:
       survey-admin-survey-public:
 
-  # Vue 2.7
+  # pluto.univie.ac.at
+  # Vue
   survey-public:
     build:
       context: .
@@ -87,3 +93,15 @@ services:
     networks:
       # Connection to the admin backend for the rebuild CRON job
       survey-admin-survey-public:
+
+  # analysis.pluto.univie.ac.at
+  # (Python - Streamlit)
+  survey-analysis:
+    build: ./apps/survey-analysis
+    restart: always
+    depends_on:
+      - survey-admin
+    ports:
+      - '9004:8501'
+    networks:
+      survey-admin-survey-analysis:
