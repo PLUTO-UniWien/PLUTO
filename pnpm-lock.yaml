@@ -32,6 +32,9 @@ dependencies:
   dompurify:
     specifier: ^3.0.3
     version: 3.0.3
+  js-cookie:
+    specifier: ^3.0.5
+    version: 3.0.5
   marked:
     specifier: ^5.0.5
     version: 5.0.5
@@ -121,6 +124,9 @@ devDependencies:
   '@types/jest':
     specifier: ^29.4.0
     version: 29.4.0
+  '@types/js-cookie':
+    specifier: ^3.0.3
+    version: 3.0.3
   '@types/marked':
     specifier: ^5.0.0
     version: 5.0.0
@@ -8113,6 +8119,13 @@ packages:
       }
     dependencies:
       '@types/sizzle': 2.3.3
+    dev: true
+
+  /@types/js-cookie@3.0.3:
+    resolution:
+      {
+        integrity: sha512-Xe7IImK09HP1sv2M/aI+48a20VX+TdRJucfq4vfRVy6nWN8PYPOEnlMRSgxJAgYQIXJVL8dZ4/ilAM7dWNaOww==,
+      }
     dev: true
 
   /@types/jsdom@20.0.1:
@@ -18132,6 +18145,14 @@ packages:
       {
         integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==,
       }
+    dev: false
+
+  /js-cookie@3.0.5:
+    resolution:
+      {
+        integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==,
+      }
+    engines: { node: '>=14' }
     dev: false
 
   /js-message@1.0.7:

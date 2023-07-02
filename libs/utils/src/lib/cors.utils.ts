@@ -6,9 +6,9 @@ type CorsData = {
 
 export function corsRes(response: Response, corsData: CorsData) {
   const { origin, methods, headers } = corsData;
-  response.headers.set('Access-Control-Allow-Origin', origin);
-  response.headers.set('Access-Control-Allow-Methods', methods);
-  response.headers.set('Access-Control-Allow-Headers', headers);
-  response.headers.set('Access-Control-Allow-Credentials', 'true');
+  response.headers.append('Access-Control-Allow-Origin', origin);
+  response.headers.append('Access-Control-Allow-Methods', methods);
+  response.headers.append('Access-Control-Allow-Headers', headers);
+  response.headers.append('Access-Control-Allow-Credentials', 'true');
   return response;
 }

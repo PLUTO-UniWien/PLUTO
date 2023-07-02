@@ -19,6 +19,7 @@ export function apiFetch(
   const path = constructFetchUrl(baseUrl, params);
   const url = apiUrl(path);
   return fetch(url, {
+    credentials: 'include',
     ...init,
     headers: {
       ...init?.headers,

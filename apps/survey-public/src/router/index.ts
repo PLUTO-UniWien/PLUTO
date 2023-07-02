@@ -1,14 +1,26 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/home/Home.vue';
+import Loading from '../views/loading/Loading.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
+    name: 'Loading',
+    component: Loading,
+  },
+  {
+    path: '/home',
     name: 'Home',
-    component: Home,
+    component: () =>
+      import(/* webpackChunkName: "home" */ '../views/home/Home.vue'),
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/login/Login.vue'),
   },
   {
     path: '/survey',

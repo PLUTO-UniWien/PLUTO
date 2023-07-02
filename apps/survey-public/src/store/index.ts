@@ -4,6 +4,7 @@ import layout, { LayoutState } from './modules/layout';
 import survey, { SurveyState } from './modules/survey';
 import result, { ResultState } from './modules/result';
 import submission, { SubmissionState } from './modules/submission';
+import auth, { AuthState } from './modules/auth';
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export interface RootState {
   survey: SurveyState;
   result: ResultState;
   submission: SubmissionState;
+  auth: AuthState;
 }
 
 const store = new Vuex.Store({
@@ -20,6 +22,7 @@ const store = new Vuex.Store({
     survey,
     result,
     submission,
+    auth,
   },
 });
 

@@ -67,3 +67,9 @@ export async function POST(request: Request) {
   }
   return NextResponse.json(await resultResponse.json());
 }
+
+export async function OPTIONS(request: Request) {
+  return new Response(null, {
+    status: 204,
+  });
+}
