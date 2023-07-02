@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HeaderComponent />
+    <header-component />
     <div class="d-flex flex-column flex-grow-1">
       <main id="intro">
         <markdown-renderer :content="content" />

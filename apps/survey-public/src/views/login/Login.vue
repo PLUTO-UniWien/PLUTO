@@ -1,6 +1,6 @@
 <template>
   <b-container class="min-vw-100">
-    <HeaderComponent />
+    <header-component />
     <b-row align-h="center" class="mt-4">
       <b-col cols="8">
         <b-card title="Login">

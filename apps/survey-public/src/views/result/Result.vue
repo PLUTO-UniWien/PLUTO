@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="result">
-      <HeaderComponent />
+      <header-component />
       <h1>{{ resultsReadyLabel }}</h1>
       <div class="plot-container">
         <b-tooltip target="resultPoint" triggers="hover">
@@ -10,7 +10,7 @@
             <span>Benefit: {{ scoreBenefits }}</span>
           </div>
         </b-tooltip>
-        <ResultPlot
+        <result-plot
           :x-lower-bound="-1"
           :x-upper-bound="1"
           :y-lower-bound="-1"
@@ -26,11 +26,14 @@
         />
       </div>
       <div class="feedback-container">
-        <FeedbackList
+        <feedback-list
           :title="feedbackTitleBenefits"
           :items="feedbackItemsBenefits"
         />
-        <FeedbackList :title="feedbackTitleRisks" :items="feedbackItemsRisks" />
+        <feedback-list
+          :title="feedbackTitleRisks"
+          :items="feedbackItemsRisks"
+        />
       </div>
       <div class="content-container">
         <main>
@@ -44,7 +47,7 @@
       </div>
     </div>
     <div class="bottom">
-      <SubmissionProgressIndicator
+      <submission-progress-indicator
         class="bottom"
         :submit-error="submitError"
         :submit-success="submitSuccess"

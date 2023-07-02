@@ -1,5 +1,5 @@
 <template>
-  <Survey :survey="survey" id="surveyElement" />
+  <survey :survey="survey" id="surveyElement" />
 </template>
 
 <script lang="ts">
