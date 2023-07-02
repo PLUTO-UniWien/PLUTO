@@ -7,7 +7,7 @@
   "dependencies": {
     "@nx-plus/vue": "15.0.0-rc.0",
     "@nx/next": "16.3.2",
-    "@strapi/strapi": "^4.10.6",
+    "@strapi/strapi": "^4.10.8",
     "@t3-oss/env-nextjs": "^0.3.1",
     "bootstrap": "4.6.2",
     "bootstrap-vue": "^2.23.1",
@@ -18,11 +18,11 @@
     "marked": "^5.0.5",
     "marked-gfm-heading-id": "^3.0.3",
     "marked-mangle": "^1.0.1",
-    "next": "13.4.4",
+    "next": "13.4.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "survey-core": "^1.9.88",
-    "survey-vue-ui": "^1.9.88",
+    "survey-core": "^1.9.92",
+    "survey-vue-ui": "^1.9.92",
     "tslib": "^2.3.0",
     "vue": "^2.7.14",
     "vue-router": "^3.6.5",
@@ -66,7 +66,7 @@
     "dotenv": "^16.0.3",
     "dotenv-webpack": "^8.0.1",
     "eslint": "~8.15.0",
-    "eslint-config-next": "13.4.4",
+    "eslint-config-next": "13.4.6",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.27.5",
@@ -89,3 +89,4 @@
     "typescript": "~5.0.2"
   }
 }
+
