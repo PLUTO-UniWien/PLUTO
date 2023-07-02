@@ -116,19 +116,26 @@ export default Vue.extend({
 
     #resultPlot {
       display: block;
-      width: 75%;
+      width: 80%;
       @media (min-width: map-get($grid-breakpoints, sm)) {
+        width: 70%;
+      }
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        width: 60%;
+      }
+      @media (min-width: map-get($grid-breakpoints, lg)) {
         width: 50%;
       }
       @media (min-width: map-get($grid-breakpoints, xl)) {
-        width: 25%;
+        width: 33%;
       }
     }
   }
 
   .feedback-container {
     @extend .mx-auto;
-    max-width: 100vw;
+    max-width: 92.5vw;
+
     @media (min-width: map-get($grid-breakpoints, sm)) {
       width: 75vw;
     }
@@ -141,7 +148,6 @@ export default Vue.extend({
     @media (min-width: map-get($grid-breakpoints, xl)) {
       width: 25vw;
     }
-    margin: auto;
   }
 
   .content-container {
