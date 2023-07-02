@@ -1,6 +1,6 @@
 import { Module } from 'vuex';
 import { RootState } from '../index';
-import { getFeedbackForResult, SurveyResult } from '@pluto/survey-model';
+import { analyzeResults, SurveyResult } from '@pluto/survey-model';
 import DUMMY_STATE from './result.state.json';
 
 export interface ResultState {
@@ -23,8 +23,8 @@ const result: Module<ResultState, RootState> = {
     },
   },
   getters: {
-    resultFeedback(state) {
-      return state.result !== null ? getFeedbackForResult(state.result) : null;
+    resultAnalysis(state) {
+      return state.result !== null ? analyzeResults(state.result) : null;
     },
   },
 };

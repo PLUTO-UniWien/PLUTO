@@ -5,8 +5,8 @@
     <div class="plot-container">
       <b-tooltip target="resultPoint" triggers="hover">
         <div class="d-flex flex-column text-left">
-          <span>Risk: {{ 0.5 }}</span>
-          <span>Benefit: {{ 0.75 }}</span>
+          <span>Risk: {{ scoreRisks }}</span>
+          <span>Benefit: {{ scoreBenefits }}</span>
         </div>
       </b-tooltip>
       <ResultPlot
@@ -14,7 +14,7 @@
         :x-upper-bound="1"
         :y-lower-bound="-1"
         :y-upper-bound="1"
-        :point-coordinate="[0.5, 0.75]"
+        :point-coordinate="[scoreRisks, scoreBenefits]"
         :quadrant-labels="[
           'High benefit',
           'High risk',
@@ -52,6 +52,7 @@ import viewData from './result.json';
 import MarkdownRenderer from '../../components/MarkdownRenderer.vue';
 import ResultPlot from '../../components/ResultPlot.vue';
 import FeedbackList from '../../components/FeedbackList.vue';
+import { SurveyResultAnalysis } from '@pluto/survey-model';
 function getResultViewProps(): ResultViewProps {
   const resultData = viewData as ResultViewData;
   const {
@@ -73,8 +74,10 @@ export default Vue.extend({
     const tooltipElementId = 'resultPointTooltip';
     const { resultsReadyLabel, explanation, feedback } = getResultViewProps();
 
-    const { feedbackX: feedbackItemsBenefits, feedbackY: feedbackItemsRisks } =
-      this.$store.getters['result/resultFeedback'];
+    const {
+      feedback: { x: feedbackItemsRisks, y: feedbackItemsBenefits },
+      scoreNormalized: { x: scoreRisks, y: scoreBenefits },
+    } = this.$store.getters['result/resultAnalysis'] as SurveyResultAnalysis;
 
     const feedbackTitleBenefits =
       'The benefits of the data use would be higher...';
@@ -89,6 +92,8 @@ export default Vue.extend({
       feedbackItemsBenefits,
       feedbackTitleRisks,
       feedbackItemsRisks,
+      scoreBenefits,
+      scoreRisks,
     };
   },
 });
