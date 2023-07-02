@@ -16,7 +16,7 @@ const auth: Module<AuthState, RootState> = {
   namespaced: true,
   state: {
     isLoading: true,
-    token: Cookies.get(USER_JWT_COOKIE_NAME) || null,
+    token: window.localStorage.getItem(USER_JWT_COOKIE_NAME),
     error: null,
   },
   mutations: {
@@ -47,10 +47,12 @@ const auth: Module<AuthState, RootState> = {
         }
       );
       // Credentials valid, set token in state
-      // The server sets the cookie `USER_JWT_COOKIE_NAME`, so we don't need to do anything here
+      // The server sets the cookie `USER_JWT_COOKIE_NAME`, which is HTTP only,
+      // so we just need to set the local storage item
       if (res.ok) {
         const { jwt: token } = await res.json();
         commit('setToken', token);
+        window.localStorage.setItem(USER_JWT_COOKIE_NAME, token);
       }
 
       // Credentials invalid, set error in state
@@ -72,16 +74,13 @@ const auth: Module<AuthState, RootState> = {
     async verifyToken({ commit }) {
       commit('setIsLoading', true);
       if (this.state.auth.token) {
-        const res = await apiFetch(
-          '/auth/me',
-          {},
-          {
-            credentials: 'include',
-          }
-        );
+        const res = await apiFetch('/auth/me', {});
         // Token invalid, set token in state to null, so that `isLoggedIn` returns false
         if (!res.ok) {
           commit('setToken', null);
+          // remove cookie and local storage item
+          Cookies.remove(USER_JWT_COOKIE_NAME);
+          window.localStorage.removeItem(USER_JWT_COOKIE_NAME);
         }
       }
       setTimeout(() => commit('setIsLoading', false), LOADING_TIMEOUT);

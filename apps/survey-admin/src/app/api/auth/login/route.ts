@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     // respond with 200 and set cookie
     const cookie = cookies().set(USER_JWT_COOKIE_NAME, jwt, {
       secure: true,
-      httpOnly: false,
+      httpOnly: true,
       path: '/',
       sameSite: 'none',
     });
