@@ -7,7 +7,7 @@ import {
 import { groupBy } from '../utils';
 import { answerChoiceLabelInverse, questionLabel } from './survey.adapter';
 import { choiceByResultItem, questionByName } from '../survey-model';
-import { STAT_SCORE_RANGES } from './survey.constants';
+import { getMinMaxForQuestions } from './survey.calc';
 
 /**
  * Returns the counteraction feedback for the supplied {@link SurveyResult} grouped
@@ -16,7 +16,13 @@ import { STAT_SCORE_RANGES } from './survey.constants';
  * @param {SurveyResult} result - The survey result to get the feedback for.
  */
 export function analyzeResults(result: SurveyResult) {
-  const answersPerQuestion = getAnswersPerQuestion(result.items);
+  const itemsByType = groupBy(result.items, ({ type }) =>
+    type === 'none' ? 'excluded' : 'included'
+  );
+  const excludedItems = itemsByType['excluded'];
+  const includedItems = itemsByType['included'];
+
+  const answersPerQuestion = getAnswersPerQuestion(includedItems);
   const entriesPerImpact = groupBy(
     answersPerQuestion,
     ({
@@ -25,15 +31,19 @@ export function analyzeResults(result: SurveyResult) {
       },
     }) => impact
   );
-  const entriesX = entriesPerImpact['x'];
-  const entriesY = entriesPerImpact['y'];
+  const entriesX = entriesPerImpact['x'] || [];
+  const entriesY = entriesPerImpact['y'] || [];
 
   const feedbackX = feedbackForEntries(entriesX);
   const feedbackY = feedbackForEntries(entriesY);
   const scoreX = scoreForEntries(entriesX);
   const scoreY = scoreForEntries(entriesY);
 
-  const { x: xScoreRange, y: yScoreRange } = STAT_SCORE_RANGES;
+  const questionsX = entriesX.map(({ question }) => question);
+  const questionsY = entriesY.map(({ question }) => question);
+  const xScoreRange = getMinMaxForQuestions(questionsX);
+  const yScoreRange = getMinMaxForQuestions(questionsY);
+
   const scoreNormalizedX = normalizeScore(
     scoreX,
     xScoreRange.min,
@@ -57,6 +67,11 @@ export function analyzeResults(result: SurveyResult) {
     scoreNormalized: {
       x: formatScore(scoreNormalizedX),
       y: formatScore(scoreNormalizedY),
+    },
+    counts: {
+      included: includedItems.length,
+      excluded: excludedItems.length,
+      total: result.items.length,
     },
   };
 }
