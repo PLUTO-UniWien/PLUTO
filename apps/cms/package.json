@@ -11,10 +11,10 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.10.6",
-    "@strapi/plugin-users-permissions": "4.10.6",
-    "@strapi/plugin-i18n": "4.10.6",
-    "better-sqlite3": "8.0.1"
+    "@strapi/strapi": "4.11.0",
+    "@strapi/plugin-users-permissions": "4.11.0",
+    "@strapi/plugin-i18n": "4.11.0",
+    "better-sqlite3": "^8.4.0"
   },
   "author": {
     "name": "Péter Ferenc Gyarmati <dev.petergy@gmail.com>"
