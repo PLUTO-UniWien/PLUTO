@@ -33,6 +33,11 @@
       "type": "string",
       "required": true,
       "regex": "Q\\d+"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "label",
+      "required": true
     }
   }
 }
