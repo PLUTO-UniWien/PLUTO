@@ -1,4 +1,4 @@
-import surveyStats from './generated/survey-stats.json';
+import surveyStats from '../generated/survey-stats.json';
 
 const { scoreRanges } = surveyStats;
 

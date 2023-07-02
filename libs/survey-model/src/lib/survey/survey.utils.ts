@@ -4,9 +4,9 @@ import {
   ResultItem,
   SurveyResult,
 } from './survey.types';
-import { groupBy } from './utils';
+import { groupBy } from '../utils';
 import { answerChoiceLabelInverse, questionLabel } from './survey.adapter';
-import { choiceByResultItem, questionByName } from './survey-model';
+import { choiceByResultItem, questionByName } from '../survey-model';
 import { STAT_SCORE_RANGES } from './survey.constants';
 
 /**

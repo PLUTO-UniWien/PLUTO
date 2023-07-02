@@ -1,4 +1,4 @@
-import { Question, Survey, SurveyGroup } from './survey.types';
+import { Question, Survey, SurveyGroup } from './survey/survey.types';
 import { StrapiResponseCollection } from './base.types';
 
 /**

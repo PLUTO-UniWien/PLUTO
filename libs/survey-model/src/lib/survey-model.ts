@@ -4,8 +4,8 @@ import {
   answerChoiceLabelInverse,
   generateSurveyJsModel,
   questionLabelInverse,
-} from './survey.adapter';
-import { Question, ResultItem } from './survey.types';
+} from './survey/survey.adapter';
+import { Question, ResultItem } from './survey/survey.types';
 import { parseSurvey } from './parser';
 
 /**
