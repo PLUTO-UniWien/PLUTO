@@ -22,19 +22,21 @@ const survey: Module<SurveyState, RootState> = {
     setInPreviewMode(state, inPreviewMode: boolean) {
       state.inPreviewMode = inPreviewMode;
     },
+    resetState(state) {
+      Object.assign(state, defaultState);
+    },
   },
   actions: {
     updateCurrentPage({ commit }, page: number) {
       commit('setCurrentPage', page);
     },
-    updateResult({ commit }, result: ResultState['result']) {
-      commit('result/setResult', result, { root: true });
-      // reset to default state
-      commit('setCurrentPage', defaultState.currentPage);
-      commit('setInPreviewMode', defaultState.inPreviewMode);
-    },
     updateInPreviewMode({ commit }, inPreviewMode: boolean) {
       commit('setInPreviewMode', inPreviewMode);
+    },
+    updateResult({ commit }, result: ResultState['result']) {
+      commit('result/setResult', result, { root: true });
+      // reset this store module's state
+      commit('resetState');
     },
   },
 };

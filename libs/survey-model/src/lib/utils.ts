@@ -31,7 +31,10 @@ export function pageLabelInverse(label: string) {
   return { pageNumber };
 }
 
-function answerChoiceLabel(questionNumber: number, choiceNumber: number) {
+export function answerChoiceLabel(
+  questionNumber: number,
+  choiceNumber: number
+) {
   return `A${questionNumber}.${choiceNumber}`;
 }
 export function answerChoiceLabelInverse(label: string) {

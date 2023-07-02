@@ -3,6 +3,11 @@ import {
   questionByName,
   Question,
   getQuestionHasNone,
+  ResultItem,
+  SubmissionMetadata,
+  SurveyResult,
+  choiceLabelForSpecialOption,
+  choiceByLabel,
 } from '@pluto/survey-model';
 import { IQuestionPlainData } from 'survey-core/typings/question';
 
@@ -25,8 +30,44 @@ export function moveNoneOptionToBottom(surveyQuestion: SurveyQuestion) {
   }
 }
 
-export function transformPlainSurveyData(plainData: IQuestionPlainData[]) {
-  return plainData;
+export function transformPlainSurveyData(
+  plainData: IQuestionPlainData[]
+): SurveyResult {
+  const items = plainData.flatMap(plainDataItemToResultItems);
+  const metadata = getSubmissionMetadata();
+  return { items, metadata };
+}
+
+function getSubmissionMetadata(): SubmissionMetadata {
+  return {
+    userAgent: navigator.userAgent,
+  };
+}
+
+function plainDataItemToResultItems(
+  plainDataItem: IQuestionPlainData
+): ResultItem[] {
+  const question = questionByName(plainDataItem.name.toString());
+  if (!plainDataItem.data) {
+    throw new Error(`Question ${question.label} has no data`);
+  }
+  return plainDataItem.data.map(
+    ({ value, displayValue }: { value: string; displayValue: string }) => {
+      const choiceId =
+        value === 'other' || value === 'none'
+          ? choiceLabelForSpecialOption(question, value)
+          : value;
+      const answerChoice = choiceByLabel(question, choiceId);
+      return {
+        questionId: question.id,
+        choiceId,
+        value: displayValue,
+        type: answerChoice.type,
+        score: answerChoice.score,
+        impact: question.metadata.impact,
+      };
+    }
+  );
 }
 
 const SurveyPreviewModeButton = `

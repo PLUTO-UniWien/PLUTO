@@ -1,10 +1,18 @@
 import questionsData from './static/questions.json';
 import { StrapiResponseCollection } from './base.types';
-import { generateSurveyJsModel, questionLabelInverse } from './utils';
+import {
+  answerChoiceLabel,
+  answerChoiceLabelInverse,
+  generateSurveyJsModel,
+  questionLabelInverse,
+} from './utils';
 
 const { data: questionItems } =
   questionsData as StrapiResponseCollection<Question>;
-const questions = questionItems.map((item) => item.attributes);
+const questions = questionItems.map(({ id, attributes }) => ({
+  id,
+  ...attributes,
+}));
 
 export function surveyModel() {
   return generateSurveyJsModel(questions);
@@ -13,6 +21,27 @@ export function surveyModel() {
 export function questionByName(name: string) {
   const { questionNumber } = questionLabelInverse(name);
   return questions[questionNumber - 1];
+}
+
+export function choiceByLabel(question: Question, label: string) {
+  const { choiceNumber } = answerChoiceLabelInverse(label);
+  return question.choices[choiceNumber - 1];
+}
+
+export function choiceLabelForSpecialOption(
+  question: Question,
+  option: 'other' | 'none'
+) {
+  const choice = question.choices.find((choice) =>
+    choice.type.startsWith(option)
+  );
+  if (choice) {
+    const index = question.choices.indexOf(choice);
+    const choiceNumber = index + 1;
+    const { questionNumber } = questionLabelInverse(question.label);
+    return answerChoiceLabel(questionNumber, choiceNumber);
+  }
+  throw new Error(`Question does not have a ${option} choice`);
 }
 
 export type Question = {
@@ -47,4 +76,43 @@ export type AnswerChoice = {
   score: number;
   feedback: string | null;
   type: AnswerChoiceType;
+};
+
+export type SurveyResult = {
+  items: ResultItem[];
+  metadata: SubmissionMetadata;
+};
+
+export type SubmissionMetadata = {
+  userAgent: string;
+};
+
+/**
+ * Represents a single result item
+ */
+export type ResultItem = {
+  /**
+   * The in-CMS ID of the question.
+   */
+  questionId: number;
+  /**
+   * Short label, such as `A5.1`
+   */
+  choiceId: string;
+  /**
+   * The body of the answer choice.
+   */
+  value: string;
+  /**
+   * Type of the answer choice.
+   */
+  type: AnswerChoiceType;
+  /**
+   * The weight assigned to the answer choice.
+   */
+  score: number;
+  /**
+   * The impact of the answer choice.
+   */
+  impact: 'x' | 'y';
 };
