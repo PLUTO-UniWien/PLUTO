@@ -12,11 +12,13 @@ function strapiUrl(path: string) {
  * @param baseUrl - the path to fetch from
  * @param params - optional query params
  * @param init - the fetch init object
+ * @param withAuth - whether to include the Admin authorization header
  */
 export function strapiFetch(
   baseUrl: string,
   params: Record<string, string> = {},
-  init?: RequestInit
+  init?: RequestInit,
+  withAuth = true
 ) {
   const path = constructFetchUrl(baseUrl, params);
   const url = strapiUrl(path);
@@ -24,7 +26,7 @@ export function strapiFetch(
     ...init,
     headers: {
       ...init?.headers,
-      Authorization: `bearer ${env.STRAPI_API_KEY}`,
+      ...(withAuth ? { Authorization: `bearer ${env.STRAPI_API_KEY}` } : {}),
     },
   });
 }

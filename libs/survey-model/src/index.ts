@@ -4,3 +4,5 @@ export * from './lib/survey.types';
 export * from './lib/survey.utils';
 export * from './lib/survey.adapter';
 export * from './lib/survey-model';
+export * from './lib/user.constants';
+export * from './lib/user.types';
