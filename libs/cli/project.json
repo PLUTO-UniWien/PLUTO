@@ -34,6 +34,12 @@
           "codeCoverage": true
         }
       }
+    },
+    "pull-cms-content": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "API_URL={args.apiUrl} STRAPI_API_KEY={args.apiKey} ts-node --transpileOnly --project libs/cli  libs/cli/src/lib/pull-cms-content.ts"
+      }
     }
   },
   "tags": []
