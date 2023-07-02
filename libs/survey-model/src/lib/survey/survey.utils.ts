@@ -167,3 +167,7 @@ function getFeedbackForAnsweredQuestion(
     : individualFeedback;
   return feedback.filter(Boolean) as string[];
 }
+
+export const testables = {
+  normalizeScore,
+};
