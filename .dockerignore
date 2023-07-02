@@ -1,0 +1,12 @@
+.vscode
+.idea
+dist
+out
+node_modules
+.git
+.gitignore
+.dockerignore
+
+**/*.log
+**/pnpm-lock.yaml
+**/yarn.lock

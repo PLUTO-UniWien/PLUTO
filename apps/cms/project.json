@@ -8,7 +8,7 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/cms",
-        "command": "pnpm run develop"
+        "command": "npm run develop"
       }
     },
     "build": {
@@ -16,7 +16,18 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "cwd": "apps/cms",
-        "command": "pnpm run build && mkdir -p ../../dist/apps && mv dist ../../dist/apps/cms",
+        "commands": [
+          "NODE_ENV=production npm run build",
+          "rm -rf ../../dist/apps/cms",
+          "mkdir -p ../../dist/apps",
+          "mv dist ../../dist/apps/cms",
+          "cp -r public ../../dist/apps/cms",
+          "cp favicon.png ../../dist/apps/cms",
+          "cp package.json ../../dist/apps/cms",
+          "cp package-lock.json ../../dist/apps/cms",
+          "cd ../../dist/apps/cms && npm install --omit=dev"
+        ],
+        "parallel": false,
         "outputPath": "dist/apps/cms"
       }
     },

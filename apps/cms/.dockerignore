@@ -1,0 +1,11 @@
+.cache
+.tmp
+dist
+node_modules
+.env
+.strapi-updater.json
+export_*
+*.log
+*.md
+pnpm-lock.yaml
+yarn.lock

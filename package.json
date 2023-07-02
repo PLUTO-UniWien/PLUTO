@@ -7,7 +7,7 @@
   "dependencies": {
     "@nx-plus/vue": "15.0.0-rc.0",
     "@nx/next": "16.3.2",
-    "@strapi/strapi": "^4.10.8",
+    "@strapi/strapi": "^4.11.2",
     "@t3-oss/env-nextjs": "^0.4.1",
     "bootstrap": "4.6.2",
     "bootstrap-vue": "^2.23.1",

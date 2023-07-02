@@ -1,0 +1,52 @@
+version: '3.9'
+
+volumes:
+  pluto-db-data:
+  pluto-db-admin-data:
+
+networks:
+  db-cms:
+  db-admin-db:
+
+services:
+  # Postgres 15
+  db:
+    build: ./services/db
+    env_file: ./services/db/.env
+    container_name: pluto-db
+    restart: always
+    volumes:
+      - pluto-db-data:/var/lib/postgresql/data
+    networks:
+      db-cms:
+      db-admin-db:
+
+  # PgAdmin 4
+  db-admin:
+    build: ./services/db-admin
+    env_file: ./services/db-admin/.env
+    container_name: pluto-db-admin
+    restart: always
+    ports:
+      - '9000:80'
+    depends_on:
+      - db
+    volumes:
+      - pluto-db-admin-data:/var/lib/pgadmin
+    networks:
+      db-cms:
+      db-admin-db:
+
+  # Strapi v4
+  cms:
+    build:
+      context: .
+      dockerfile: ./apps/cms/Dockerfile
+    env_file: ./apps/cms/.env.production
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - '9001:1337'
+    networks:
+      db-cms:
