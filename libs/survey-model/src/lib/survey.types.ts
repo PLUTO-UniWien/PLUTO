@@ -64,11 +64,11 @@ export type ResultItem = {
   /**
    * The in-CMS ID of the question.
    */
-  questionId: number;
+  question: number;
   /**
    * Short label, such as `A5.1`
    */
-  choiceId: string;
+  choice: string;
   /**
    * The body of the answer choice.
    */

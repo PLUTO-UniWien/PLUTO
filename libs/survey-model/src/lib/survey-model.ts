@@ -59,7 +59,7 @@ export function choiceByLabel(question: Question, label: string) {
  * @param {ResultItem} resultItem - The result item to find the answer choice for.
  */
 export function choiceByResultItem(question: Question, resultItem: ResultItem) {
-  return choiceByLabel(question, resultItem.choiceId);
+  return choiceByLabel(question, resultItem.choice);
 }
 
 /**

@@ -880,7 +880,6 @@ export interface ResultItemResultItem extends ComponentSchema {
   };
   attributes: {
     value: StringAttribute & RequiredAttribute;
-    displayValue: StringAttribute & RequiredAttribute;
     type: EnumerationAttribute<
       ['none', 'otherExclusive', 'otherInclusive', 'regular']
     > &
@@ -890,6 +889,7 @@ export interface ResultItemResultItem extends ComponentSchema {
       'oneToOne',
       'api::question.question'
     >;
+    choice: StringAttribute & RequiredAttribute;
   };
 }
 

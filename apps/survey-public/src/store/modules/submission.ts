@@ -1,6 +1,8 @@
 import { Module } from 'vuex';
 import { RootState } from '../index';
 import { ResultState } from './result';
+import { apiFetch } from '../../utils/api.utils';
+import { extractError } from '@pluto/utils';
 
 export interface SubmissionState {
   submitting: boolean;
@@ -34,16 +36,21 @@ const submission: Module<SubmissionState, RootState> = {
       commit('setSubmitSuccess', false);
       commit('setSubmitError', null);
 
-      const response = await fetch('/api/survey/results', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(result),
-      });
+      const response = await apiFetch(
+        '/results',
+        {},
+        {
+          method: 'POST',
+          body: JSON.stringify(result),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       if (!response.ok) {
-        const errorMessage = await response.text();
+        const error = await extractError(response);
+        const errorMessage = JSON.stringify(error);
         commit('setSubmitError', errorMessage);
       } else {
         commit('setSubmitSuccess', true);

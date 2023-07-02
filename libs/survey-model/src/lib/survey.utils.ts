@@ -122,8 +122,8 @@ function resultItemWithChoice(
  * @param {ResultItem[]} resultItems - The result items to associate with their questions.
  */
 function getAnswersPerQuestion(resultItems: ResultItem[]) {
-  const answersPerQuestionGroup = groupBy(resultItems, ({ choiceId }) => {
-    const { questionNumber } = answerChoiceLabelInverse(choiceId);
+  const answersPerQuestionGroup = groupBy(resultItems, ({ choice }) => {
+    const { questionNumber } = answerChoiceLabelInverse(choice);
     return questionLabel(questionNumber);
   });
   return Object.entries(answersPerQuestionGroup).map(

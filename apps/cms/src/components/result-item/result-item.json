@@ -10,10 +10,6 @@
       "type": "string",
       "required": true
     },
-    "displayValue": {
-      "type": "string",
-      "required": true
-    },
     "type": {
       "type": "enumeration",
       "enum": ["none", "otherExclusive", "otherInclusive", "regular"],
@@ -23,6 +19,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::question.question"
+    },
+    "choice": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -61,8 +61,8 @@ function plainDataItemToResultItems(
           : value;
       const answerChoice = choiceByLabel(question, choiceId);
       return {
-        questionId: question.id,
-        choiceId,
+        question: question.id,
+        choice: choiceId,
         value: displayValue,
         type: answerChoice.type,
         score: answerChoice.score,
