@@ -8,6 +8,7 @@ import {
   SurveyResult,
   choiceLabelForSpecialOption,
   choiceByLabel,
+  SURVEY_VERSION,
 } from '@pluto/survey-model';
 import { IQuestionPlainData } from 'survey-core/typings/question';
 
@@ -33,9 +34,10 @@ export function moveNoneOptionToBottom(surveyQuestion: SurveyQuestion) {
 export function transformPlainSurveyData(
   plainData: IQuestionPlainData[]
 ): SurveyResult {
+  const survey = SURVEY_VERSION;
   const items = plainData.flatMap(plainDataItemToResultItems);
   const metadata = getSubmissionMetadata();
-  return { items, metadata };
+  return { survey, items, metadata };
 }
 
 function getSubmissionMetadata(): SubmissionMetadata {

@@ -36,7 +36,9 @@ export default Vue.extend({
     survey.onComplete.add((surveyModel: SurveyModel) => {
       this.$router.push('/result');
       const payload = transformPlainSurveyData(surveyModel.getPlainData());
-      this.$store.dispatch('survey/updateResult', payload);
+      this.$store.dispatch('survey/resetState');
+      this.$store.dispatch('result/updateResult', payload);
+      this.$store.dispatch('submission/submitResult', payload);
     });
     survey.onAfterRenderQuestion.add(
       (surveyModel: SurveyModel, event: AfterRenderQuestionEvent) => {

@@ -33,9 +33,7 @@ const survey: Module<SurveyState, RootState> = {
     updateInPreviewMode({ commit }, inPreviewMode: boolean) {
       commit('setInPreviewMode', inPreviewMode);
     },
-    updateResult({ commit }, result: ResultState['result']) {
-      commit('result/setResult', result, { root: true });
-      // reset this store module's state
+    resetState({ commit }) {
       commit('resetState');
     },
   },
