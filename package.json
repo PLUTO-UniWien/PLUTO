@@ -2,9 +2,7 @@
   "name": "@pluto/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-    "postinstall": "node node_modules/@nx-plus/vue/patch-nx-dep-graph.js"
-  },
+  "scripts": {},
   "private": true,
   "dependencies": {
     "@nx-plus/vue": "15.0.0-rc.0",

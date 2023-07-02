@@ -1,0 +1,25 @@
+{
+  "name": "cms",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/cms/src",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/cms",
+        "command": "pnpm run develop"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "cwd": "apps/cms",
+        "command": "pnpm run build && mkdir -p ../../dist/apps && mv dist ../../dist/apps/cms",
+        "outputPath": "dist/apps/cms"
+      }
+    }
+  },
+  "tags": []
+}

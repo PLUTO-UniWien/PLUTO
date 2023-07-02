@@ -1,0 +1,30 @@
+{
+  "name": "cms",
+  "private": true,
+  "version": "0.0.1",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/strapi": "4.10.5",
+    "@strapi/plugin-users-permissions": "4.10.5",
+    "@strapi/plugin-i18n": "4.10.5",
+    "better-sqlite3": "8.0.1"
+  },
+  "author": {
+    "name": "Péter Ferenc Gyarmati <dev.petergy@gmail.com>"
+  },
+  "strapi": {
+    "uuid": "083f15b5-bbcb-46f9-816f-5503708408a5"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
