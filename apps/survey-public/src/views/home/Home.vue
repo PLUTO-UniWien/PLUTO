@@ -26,10 +26,10 @@ import Vue from 'vue';
 import HeaderComponent from '../../components/Header.vue';
 import MarkdownRenderer from '../../components/MarkdownRenderer.vue';
 import viewData from './home.json';
-import { HomeData, HomeProps } from './home.types';
+import { HomeViewData, HomeViewProps } from './home.types';
 
-function getHomeProps(): HomeProps {
-  const homeData = viewData as HomeData;
+function getHomeViewProps(): HomeViewProps {
+  const homeData = viewData as HomeViewData;
   const {
     data: {
       attributes: { content, launchButtonText, contributorsInfo },
@@ -59,7 +59,7 @@ export default Vue.extend({
     },
   },
   data() {
-    const { content, launchButtonText, contributorsInfo } = getHomeProps();
+    const { content, launchButtonText, contributorsInfo } = getHomeViewProps();
     return {
       content,
       launchButtonText,

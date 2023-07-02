@@ -1,6 +1,6 @@
 import { Module } from 'vuex';
 import { RootState } from '../index';
-import { SurveyResult } from '@pluto/survey-model';
+import { getFeedbackForResult, SurveyResult } from '@pluto/survey-model';
 import DUMMY_STATE from './result.state.json';
 
 export interface ResultState {
@@ -20,6 +20,11 @@ const result: Module<ResultState, RootState> = {
   actions: {
     updateResult({ commit }, result: ResultState['result']) {
       commit('setResult', result);
+    },
+  },
+  getters: {
+    resultFeedback(state) {
+      return state.result !== null ? getFeedbackForResult(state.result) : null;
     },
   },
 };

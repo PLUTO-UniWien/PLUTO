@@ -5,7 +5,7 @@ import {
   generateSurveyJsModel,
   questionLabelInverse,
 } from './survey.adapter';
-import { Question } from './survey.types';
+import { Question, ResultItem } from './survey.types';
 import { parseSurvey } from './parser';
 
 const survey = parseSurvey(surveyData);
@@ -23,6 +23,10 @@ export function questionByName(name: string) {
 export function choiceByLabel(question: Question, label: string) {
   const { choiceNumber } = answerChoiceLabelInverse(label);
   return question.choices[choiceNumber - 1];
+}
+
+export function choiceByResultItem(question: Question, resultItem: ResultItem) {
+  return choiceByLabel(question, resultItem.choiceId);
 }
 
 export function choiceLabelForSpecialOption(

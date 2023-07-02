@@ -4,7 +4,8 @@
   "info": {
     "singularName": "result-page",
     "pluralName": "result-pages",
-    "displayName": "Result Page"
+    "displayName": "Result Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,6 +18,10 @@
     },
     "feedback": {
       "type": "richtext",
+      "required": true
+    },
+    "resultsReadyLabel": {
+      "type": "string",
       "required": true
     }
   }

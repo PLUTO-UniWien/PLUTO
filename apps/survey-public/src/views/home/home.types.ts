@@ -1,9 +1,9 @@
 import { StrapiResponseSingle } from '@pluto/survey-model';
 
-export type HomeProps = {
+export type HomeViewProps = {
   content: string;
   contributorsInfo: string;
   launchButtonText: string;
 };
 
-export type HomeData = StrapiResponseSingle<HomeProps>;
+export type HomeViewData = StrapiResponseSingle<HomeViewProps>;

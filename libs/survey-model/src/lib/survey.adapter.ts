@@ -61,7 +61,7 @@ function mapAnswerChoice(
   };
 }
 
-function questionLabel(questionNumber: number) {
+export function questionLabel(questionNumber: number) {
   return `Q${questionNumber}`;
 }
 export function questionLabelInverse(label: string) {
