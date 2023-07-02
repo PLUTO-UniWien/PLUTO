@@ -26,7 +26,7 @@ export function requireAuth(routeHandler: RouteHandler) {
     }
     // Check for token validity
     const res = await strapiFetch(
-      '/users/me',
+      '/users/session',
       {},
       {
         headers: {
