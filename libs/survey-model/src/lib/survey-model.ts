@@ -12,6 +12,8 @@ import { parseSurvey } from './parser';
  * Static survey model loaded from JSON file.
  */
 const survey = parseSurvey(surveyData);
+export const SURVEY_VERSION = survey.version;
+
 /**
  * Computed attribute of {@link survey}, a flat array of all the included questions regardless of groups.
  */

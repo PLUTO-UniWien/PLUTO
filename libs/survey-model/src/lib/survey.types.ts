@@ -45,6 +45,10 @@ export type AnswerChoice = {
 };
 
 export type SurveyResult = {
+  /**
+   * The in-CMS ID of the survey.
+   */
+  survey: string;
   items: ResultItem[];
   metadata: SubmissionMetadata;
 };

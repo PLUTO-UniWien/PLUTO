@@ -1,5 +1,5 @@
 import { env } from '../../env.mjs';
-import { constructFetchUrl } from '../utils/fetch.utils';
+import { constructFetchUrl, extractError } from '../utils/fetch.utils';
 import { NextResponse } from 'next/server';
 
 function strapiUrl(path: string) {
@@ -20,7 +20,6 @@ export function strapiFetch(
 ) {
   const path = constructFetchUrl(baseUrl, params);
   const url = strapiUrl(path);
-  console.log('url', url);
   return fetch(url, {
     ...init,
     headers: {
@@ -33,6 +32,13 @@ export function strapiFetch(
 export function singleTypeGetter(slug: string) {
   async function GET() {
     const response = await strapiFetch(slug);
+
+    if (!response.ok) {
+      return NextResponse.json(await extractError(response), {
+        status: response.status,
+      });
+    }
+
     const data = await response.json();
     return NextResponse.json(data);
   }
