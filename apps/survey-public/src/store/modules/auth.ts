@@ -3,6 +3,7 @@ import { RootState } from '../index';
 import Cookies from 'js-cookie';
 import { USER_JWT_COOKIE_NAME, UserLogin } from '@pluto/survey-model';
 import { apiFetch } from '../../utils/api.utils';
+import config from '../../config';
 
 const LOADING_TIMEOUT = 250;
 
@@ -15,7 +16,7 @@ export interface AuthState {
 const auth: Module<AuthState, RootState> = {
   namespaced: true,
   state: {
-    isLoading: true,
+    isLoading: config.useAuth,
     token: window.localStorage.getItem(USER_JWT_COOKIE_NAME),
     error: null,
   },
@@ -88,7 +89,7 @@ const auth: Module<AuthState, RootState> = {
   },
   getters: {
     isLoggedIn(state) {
-      return state.token !== null;
+      return !!process.env.VUE_APP_USE_AUTH || state.token !== null;
     },
   },
 };

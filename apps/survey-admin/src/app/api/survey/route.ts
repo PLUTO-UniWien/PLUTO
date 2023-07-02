@@ -11,6 +11,9 @@ const _GET = async (request: Request) => {
     'filters[version][$eq]': version,
     'populate[0]': 'groups',
     'populate[1]': 'groups.questions',
+    'populate[2]': 'groups.questions.choices',
+    'populate[3]': 'groups.questions.metadata',
+    'populate[4]': 'groups.questions.metadata.selection',
   });
   if (!response.ok) {
     return NextResponse.json(await extractError(response), {

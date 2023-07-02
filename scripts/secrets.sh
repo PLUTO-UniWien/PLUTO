@@ -5,7 +5,8 @@ SECRET_PATHS=(
   "services/db-admin/.env"
   "apps/cms/.env"
   "apps/cms/.env.production"
-  "apps/survey-admin/.env.local"
+  "apps/survey-admin/.env.local",
+  "apps/survey-public/.env.local",
   "apps/survey-analysis/.streamlit/secrets.toml"
 )
 

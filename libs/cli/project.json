@@ -38,7 +38,13 @@
     "pull-cms-content": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "API_URL={args.apiUrl} STRAPI_API_KEY={args.apiKey} ts-node --transpileOnly --project libs/cli  libs/cli/src/lib/pull-cms-content.ts"
+        "command": "SHOULD_RUN_STANDALONE=true API_URL={args.apiUrl} STRAPI_API_KEY={args.apiKey} ts-node --transpileOnly --project libs/cli  libs/cli/src/lib/pull-cms-content/index.ts"
+      }
+    },
+    "start-rebuild-survey-public-cron": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "API_URL={args.apiUrl} STRAPI_API_KEY={args.apiKey} CMS_REFRESH_INTERVAL_MIN={args.interval} ts-node --transpileOnly --project libs/cli  libs/cli/src/lib/rebuild-survey-public-cron/index.ts"
       }
     }
   },

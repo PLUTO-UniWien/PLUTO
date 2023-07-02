@@ -9,6 +9,7 @@
 import Vue from 'vue';
 import LoadingView from './views/loading/Loading.vue';
 import { mapActions, mapGetters, mapState } from 'vuex';
+import config from './config';
 
 export default Vue.extend({
   name: 'App',
@@ -21,7 +22,9 @@ export default Vue.extend({
     ...mapState('auth', ['isLoading']),
   },
   created() {
-    this.verifyToken();
+    if (config.useAuth) {
+      this.verifyToken();
+    }
   },
   watch: {
     isLoading(isLoading) {

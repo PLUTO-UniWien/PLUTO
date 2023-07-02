@@ -1,4 +1,3 @@
-export * from './lib/generated';
 export * from './lib/base.types';
 export * from './lib/survey/survey.types';
 export * from './lib/survey/survey.utils';
