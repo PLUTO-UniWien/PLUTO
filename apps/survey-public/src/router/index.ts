@@ -11,13 +11,19 @@ const routes: Array<RouteConfig> = [
     component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/survey',
+    name: 'Survey',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (survey.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+      import(/* webpackChunkName: "survey" */ '../views/Survey.vue'),
+  },
+  {
+    path: '/result',
+    name: 'Result',
+    component: () =>
+      import(/* webpackChunkName: "result" */ '../views/Result.vue'),
   },
 ];
 

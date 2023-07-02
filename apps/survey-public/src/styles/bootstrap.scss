@@ -1,5 +1,19 @@
-// Define variable defaults
+@import '~bootstrap/scss/bootstrap.scss';
 
-// Then import Bootstrap and BootstrapVue SCSS files (order is important)
+// Overrides
+$body-bg: #f3f3f3;
+
+// Custom vars
+$app-blue: #3e85c7;
+$app-green: #d8ead2;
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    'app-blue': $app-blue,
+    'app-green': $app-green,
+  )
+);
+
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';
