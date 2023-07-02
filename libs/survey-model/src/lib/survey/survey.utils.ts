@@ -8,6 +8,7 @@ import { groupBy } from '../utils';
 import { answerChoiceLabelInverse, questionLabel } from './survey.adapter';
 import { choiceByResultItem, questionByName } from '../survey-model';
 import { getMinMaxForQuestions } from './survey.calc';
+import * as d3 from 'd3';
 
 /**
  * Returns the counteraction feedback for the supplied {@link SurveyResult} grouped
@@ -19,20 +20,16 @@ export function analyzeResults(result: SurveyResult) {
   const itemsByType = groupBy(result.items, ({ type }) =>
     type === 'none' ? 'excluded' : 'included'
   );
-  const excludedItems = itemsByType['excluded'];
-  const includedItems = itemsByType['included'];
+  const excludedItems = itemsByType['excluded'] || [];
+  const includedItems = itemsByType['included'] || [];
 
-  const answersPerQuestion = getAnswersPerQuestion(includedItems);
-  const entriesPerImpact = groupBy(
-    answersPerQuestion,
-    ({
-      question: {
-        metadata: { impact },
-      },
-    }) => impact
-  );
-  const entriesX = entriesPerImpact['x'] || [];
-  const entriesY = entriesPerImpact['y'] || [];
+  const answersPerQuestionExcluded = questionEntriesByImpact(excludedItems);
+  const entriesXExcluded = answersPerQuestionExcluded['x'] || [];
+  const entriesYExcluded = answersPerQuestionExcluded['y'] || [];
+
+  const entriesPerImpactIncluded = questionEntriesByImpact(includedItems);
+  const entriesX = entriesPerImpactIncluded['x'] || [];
+  const entriesY = entriesPerImpactIncluded['y'] || [];
 
   const feedbackX = feedbackForEntries(entriesX);
   const feedbackY = feedbackForEntries(entriesY);
@@ -65,21 +62,42 @@ export function analyzeResults(result: SurveyResult) {
       y: scoreY,
     },
     scoreNormalized: {
-      x: formatScore(scoreNormalizedX),
-      y: formatScore(scoreNormalizedY),
+      x: scoreNormalizedX,
+      y: scoreNormalizedY,
     },
     counts: {
-      included: includedItems.length,
-      excluded: excludedItems.length,
-      total: result.items.length,
+      included: {
+        x: entriesX.length,
+        y: entriesY.length,
+      },
+      excluded: {
+        x: entriesXExcluded.length,
+        y: entriesYExcluded.length,
+      },
+      total: {
+        x: entriesX.length + entriesXExcluded.length,
+        y: entriesY.length + entriesYExcluded.length,
+      },
     },
   };
 }
 
+function questionEntriesByImpact(resultItems: ResultItem[]) {
+  const answersPerQuestion = getAnswersPerQuestion(resultItems);
+  return groupBy(
+    answersPerQuestion,
+    ({
+      question: {
+        metadata: { impact },
+      },
+    }) => impact
+  );
+}
+
 export type SurveyResultAnalysis = ReturnType<typeof analyzeResults>;
 
-function formatScore(score: number) {
-  return Math.round(score * 100) / 100;
+export function formatScore(score: number) {
+  return d3.format('.2f')(score);
 }
 
 /**

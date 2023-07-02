@@ -3,11 +3,19 @@
     <div class="result">
       <header-component />
       <h1>{{ resultsReadyLabel }}</h1>
+      <p class="font-italic">
+        You have answered {{ countAnswered }} out of {{ countTotal }} questions.
+      </p>
+      <p class="font-italic">
+        {{ countAnsweredRisks || 'None' }} of your answers impact the riskiness
+        rating and {{ countAnsweredBenefits || 'none' }} of your answers
+        influence the benefit rating in your result.
+      </p>
       <div class="plot-container">
         <b-tooltip target="resultPoint" triggers="hover">
           <div class="d-flex flex-column text-left">
-            <span>Risk: {{ scoreRisks }}</span>
-            <span>Benefit: {{ scoreBenefits }}</span>
+            <span>Risk: {{ scoreTooltipLabel(scoreRisks) }}</span>
+            <span>Benefit: {{ scoreTooltipLabel(scoreBenefits) }}</span>
           </div>
         </b-tooltip>
         <result-plot
@@ -15,7 +23,10 @@
           :x-upper-bound="1"
           :y-lower-bound="-1"
           :y-upper-bound="1"
-          :point-coordinate="[scoreRisks, scoreBenefits]"
+          :point-coordinate="[
+            isNaN(scoreRisks) ? 0 : scoreRisks,
+            isNaN(scoreBenefits) ? 0 : scoreBenefits,
+          ]"
           :quadrant-labels="[
             'High benefit',
             'High risk',
@@ -27,10 +38,12 @@
       </div>
       <div class="feedback-container">
         <feedback-list
+          v-if="!!feedbackItemsBenefits.length"
           :title="feedbackTitleBenefits"
           :items="feedbackItemsBenefits"
         />
         <feedback-list
+          v-if="!!feedbackItemsRisks.length"
           :title="feedbackTitleRisks"
           :items="feedbackItemsRisks"
         />
@@ -68,6 +81,7 @@ import FeedbackList from '../../components/FeedbackList.vue';
 import { SurveyResultAnalysis } from '@pluto/survey-model';
 import { mapGetters } from 'vuex';
 import SubmissionProgressIndicator from '../../components/SubmissionProgressIndicator.vue';
+import { scoreTooltipLabel } from './result.utils';
 function getResultViewProps(): ResultViewProps {
   const resultData = viewData as ResultViewData;
   const {
@@ -84,6 +98,7 @@ function getResultViewProps(): ResultViewProps {
 
 export default Vue.extend({
   name: 'ResultView',
+  methods: { scoreTooltipLabel },
   components: {
     SubmissionProgressIndicator,
     MarkdownRenderer,
@@ -101,6 +116,10 @@ export default Vue.extend({
     const {
       feedback: { x: feedbackItemsRisks, y: feedbackItemsBenefits },
       scoreNormalized: { x: scoreRisks, y: scoreBenefits },
+      counts: {
+        included: { x: countAnsweredBenefits, y: countAnsweredRisks },
+        total: { x: countTotalBenefits, y: countTotalRisks },
+      },
     } = this.$store.getters['result/resultAnalysis'] as SurveyResultAnalysis;
 
     const feedbackTitleBenefits =
@@ -118,6 +137,12 @@ export default Vue.extend({
       feedbackItemsRisks,
       scoreBenefits,
       scoreRisks,
+      countAnsweredBenefits,
+      countAnsweredRisks,
+      countAnswered: countAnsweredBenefits + countAnsweredRisks,
+      countTotalBenefits,
+      countTotalRisks,
+      countTotal: countTotalBenefits + countTotalRisks,
     };
   },
 });
