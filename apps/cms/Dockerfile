@@ -19,4 +19,8 @@ COPY --from=builder /app/dist/apps/cms .
 # Install only production dependencies
 RUN rm -rf node_modules && npm install --omit=dev
 
-CMD ["npm", "start"]
+# Install PM2 globally
+RUN npm install -g pm2@latest
+COPY --from=builder /app/apps/cms/ecosystem.config.js .
+
+CMD ["pm2", "start", "ecosystem.config.js", "--no-daemon"]
