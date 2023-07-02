@@ -24,9 +24,10 @@ export function requireAuth(routeHandler: RouteHandler) {
     if (!token) {
       return NextResponse.json({ error: 'Missing token' }, { status: 401 });
     }
+    const isJwt = token.split('.').length === 3;
     // Check for token validity
     const res = await strapiFetch(
-      '/users/session',
+      isJwt ? '/users/me' : '/users/session',
       {},
       {
         headers: {
