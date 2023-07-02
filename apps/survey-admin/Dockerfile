@@ -33,4 +33,7 @@ COPY --from=alpine-builder /app .
 RUN npm install -g pm2@latest
 WORKDIR /app/dist/apps/survey-admin
 
+# Remove each .env file to make sure that the system env vars are loaded
+RUN find . -name ".env*" -exec rm -f {} \;
+
 CMD ["pm2", "start", "ecosystem.config.js", "--no-daemon"]

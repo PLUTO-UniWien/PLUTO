@@ -89,7 +89,9 @@ const auth: Module<AuthState, RootState> = {
   },
   getters: {
     isLoggedIn(state) {
-      return !!process.env.VUE_APP_USE_AUTH || state.token !== null;
+      const thereIsAValidToken = state.token !== null;
+      const authShouldBeUsed = config.useAuth;
+      return !authShouldBeUsed || thereIsAValidToken;
     },
   },
 };

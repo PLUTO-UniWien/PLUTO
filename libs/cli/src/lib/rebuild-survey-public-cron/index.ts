@@ -3,7 +3,7 @@ import {
   main as pullCmsContent,
   config as pullCmsConfig,
 } from '../pull-cms-content';
-import { sh, updateEnvFile } from '../utils';
+import { sh } from '../utils';
 import env from './env';
 
 function rebuildSurveyPublic() {
@@ -24,14 +24,15 @@ function commitUpdatedContent() {
 }
 
 function moveRebuildFolderToServedDist() {
-  sh('mv dist-rebuild dist');
+  sh('rm -rf dist && mv dist-rebuild dist');
 }
 
-function updateLastContentUpdateEnvVar() {
+function updateLastContentUpdateVar() {
   const lastRebuildDateString = new Date().toISOString();
-  const values = { VUE_APP_LAST_CONTENT_UPDATE: lastRebuildDateString };
-  const envVarFile = 'apps/survey-public/.env.production';
-  updateEnvFile(envVarFile, values);
+  const versionFile = 'apps/survey-public/src/content-version.ts';
+  sh(
+    `echo "export default '${lastRebuildDateString}';" > "$(git rev-parse --show-toplevel)/${versionFile}"`
+  );
 }
 
 async function cronMain() {
@@ -39,10 +40,10 @@ async function cronMain() {
   await pullCmsContent();
 
   if (contentDidChange()) {
-    console.log('Content changed, rebuilding survey-public...');
+    console.log('Content changed...');
 
-    updateLastContentUpdateEnvVar();
-    console.log('Successfully updated `VUE_APP_LAST_CONTENT_UPDATE` env var.');
+    updateLastContentUpdateVar();
+    console.log('Successfully updated content version variable.');
 
     rebuildSurveyPublic();
     console.log('Successfully rebuilt survey-public.');

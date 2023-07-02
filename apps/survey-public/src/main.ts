@@ -5,7 +5,7 @@ import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import './styles/bootstrap.scss';
 import { initLayoutListener } from './store/modules/layout';
-import config from './config';
+import contentVersion from './content-version';
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -21,4 +21,4 @@ new Vue({
 // Initialize listeners
 initLayoutListener(store);
 
-console.log(`Last content update: ${config.lastContentUpdate}`);
+console.log(`Last content update: ${contentVersion}`);

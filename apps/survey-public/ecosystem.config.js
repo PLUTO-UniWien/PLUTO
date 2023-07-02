@@ -3,9 +3,8 @@ module.exports = {
     {
       name: 'survey-public',
       script: 'npx',
-      args: 'serve --debug --single -p 8080 dist/apps/survey-public',
+      args: 'serve --debug --no-clipboard --cors --no-compression -p 8080 dist/apps/survey-public',
       interpreter: 'none',
-      watch: true,
       env: {
         NODE_ENV: 'production',
       },
