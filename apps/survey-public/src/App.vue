@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <router-view />
+    <loading-view v-if="isLoading" />
+    <router-view v-else />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import LoadingView from './views/loading/Loading.vue';
+import { mapActions, mapGetters, mapState } from 'vuex';
+
 export default Vue.extend({
   name: 'App',
+  components: { LoadingView },
   methods: {
     ...mapActions('auth', ['verifyToken']),
   },
@@ -20,9 +25,6 @@ export default Vue.extend({
   },
   watch: {
     isLoading(isLoading) {
-      if (isLoading) {
-        this.$router.push({ name: 'Loading' }).catch(console.error);
-      }
       if (!isLoading) {
         if (this.isLoggedIn) {
           this.$router.push({ name: 'Home' }).catch(console.error);
@@ -33,8 +35,6 @@ export default Vue.extend({
     },
   },
 });
-
-import { mapActions, mapGetters, mapState } from 'vuex';
 </script>
 
 <style>

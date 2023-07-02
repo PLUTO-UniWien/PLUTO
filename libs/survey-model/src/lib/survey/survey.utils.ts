@@ -139,6 +139,10 @@ function getAnswersPerQuestion(resultItems: ResultItem[]) {
 
 /**
  * Returns the feedback for a question based on the supplied {@link ResultItem}s.
+ * Individual feedback items get added if a specific {@link AnswerChoice} has
+ * feedback defined and has been selected.
+ *
+ * The ``coreFeedback`` is added if an answer item with a non-positive score has been selected.
  *
  * @param {Question} question - The question to get the feedback for.
  * @param {ResultItemWithChoice[]} items - The result items to get the feedback for.
@@ -150,6 +154,16 @@ function getFeedbackForAnsweredQuestion(
   const {
     metadata: { feedback: coreFeedback },
   } = question;
-  const individualFeedback = items.map(({ choice: { feedback } }) => feedback);
-  return [coreFeedback, ...individualFeedback].filter(Boolean) as string[];
+  const individualFeedback = items
+    .map(({ choice: { feedback } }) => feedback)
+    .filter(Boolean) as string[];
+  const itemsWithNonPositiveScore = items.find(
+    ({ choice: { score }, resultItem: { type } }) =>
+      type !== 'none' && score <= 0
+  );
+  const shouldIncludeCoreFeedback = itemsWithNonPositiveScore !== undefined;
+  const feedback = shouldIncludeCoreFeedback
+    ? [coreFeedback, ...individualFeedback]
+    : individualFeedback;
+  return feedback.filter(Boolean) as string[];
 }
