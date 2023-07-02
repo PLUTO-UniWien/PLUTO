@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "survey_analysis"
+version = "0.0.1"
+description = ""
+authors = ["Péter Ferenc Gyarmati <dev.petergy@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "survey_analysis" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+altair = "^4.2.2"
+numpy = "^1.24.3"
+pandas = "^2.0.1"
+streamlit = "^1.22.0"
+loguru = "^0.7.0"
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+notebook = "^6.5.4"
+vl-convert-python = "^0.10.0"
+watchdog = "^3.0.0"
+black = { extras = ["jupyter"], version = "^23.3.0" }
+ruff = "^0.0.269"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+select = [
+    "E",
+    "F",
+    "W",
+    # isort
+    "I001"
+]
+src = ["survey_analysis"]
+fix = true
