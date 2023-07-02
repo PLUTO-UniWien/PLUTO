@@ -1,6 +1,6 @@
-import { AnswerChoice, Question } from './survey-model';
+import { AnswerChoice, Question, Survey } from './survey.types';
 
-export function generateSurveyJsModel(questions: Question[]) {
+export function generateSurveyJsModel(survey: Survey) {
   const coreProperties = {
     title: 'PLUTO - Public Value Assessment Tool',
     showPageTitles: false,
@@ -13,12 +13,18 @@ export function generateSurveyJsModel(questions: Question[]) {
     logoWidth: 120,
     logoHeight: 120,
     logoFit: 'contain',
-    completedHtml: ' ',
+    completedHtml: '',
   };
-  const pages = questions.map((question, questionNumber) => {
+  const questionsWithPageTitle = survey.groups.flatMap(({ title, questions }) =>
+    questions.map((question) => ({ ...question, pageTitle: title }))
+  );
+  const pages = questionsWithPageTitle.map((question, questionNumber) => {
     const name = pageLabel(questionNumber + 1);
+    const description = '';
     const elements = [mapQuestion(question, questionNumber + 1)];
-    return { name, elements };
+    const { name: questionLabel } = elements[0];
+    const title = `${question.pageTitle} - ${questionLabel}`;
+    return { name, description, title, elements };
   });
   return { ...coreProperties, pages };
 }

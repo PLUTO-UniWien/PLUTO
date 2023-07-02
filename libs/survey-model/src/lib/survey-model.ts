@@ -1,21 +1,18 @@
-import questionsData from './static/questions.json';
-import { StrapiResponseCollection } from './base.types';
+import surveyData from './static/survey.json';
 import {
   answerChoiceLabel,
   answerChoiceLabelInverse,
   generateSurveyJsModel,
   questionLabelInverse,
-} from './utils';
+} from './survey.adapter';
+import { Question } from './survey.types';
+import { parseSurvey } from './parser';
 
-const { data: questionItems } =
-  questionsData as StrapiResponseCollection<Question>;
-const questions = questionItems.map(({ id, attributes }) => ({
-  id,
-  ...attributes,
-}));
+const survey = parseSurvey(surveyData);
+const questions = survey.groups.flatMap((group) => group.questions);
 
 export function surveyModel() {
-  return generateSurveyJsModel(questions);
+  return generateSurveyJsModel(survey);
 }
 
 export function questionByName(name: string) {
@@ -43,76 +40,3 @@ export function choiceLabelForSpecialOption(
   }
   throw new Error(`Question does not have a ${option} choice`);
 }
-
-export type Question = {
-  label: `Q${number}`;
-  body: string;
-  choices: AnswerChoice[];
-  metadata: QuestionMetadata;
-};
-
-type QuestionMetadata = {
-  impact: 'x' | 'y';
-  selection: { start: number; end: number };
-  feedback: string | null;
-};
-
-/**
- * The type of answer choice.
- *
- * - `none` - When selecting this option, no other options can be selected.
- * - `otherExclusive` - When selecting this option, the user can enter a custom answer, no other options can be selected.
- * - `otherInclusive` - When selecting this option, the user can enter a custom answer, other options can be selected.
- * - `regular` - When selecting this option, other options can be selected.
- */
-type AnswerChoiceType =
-  | 'none'
-  | 'otherExclusive'
-  | 'otherInclusive'
-  | 'regular';
-
-export type AnswerChoice = {
-  body: string;
-  score: number;
-  feedback: string | null;
-  type: AnswerChoiceType;
-};
-
-export type SurveyResult = {
-  items: ResultItem[];
-  metadata: SubmissionMetadata;
-};
-
-export type SubmissionMetadata = {
-  userAgent: string;
-};
-
-/**
- * Represents a single result item
- */
-export type ResultItem = {
-  /**
-   * The in-CMS ID of the question.
-   */
-  questionId: number;
-  /**
-   * Short label, such as `A5.1`
-   */
-  choiceId: string;
-  /**
-   * The body of the answer choice.
-   */
-  value: string;
-  /**
-   * Type of the answer choice.
-   */
-  type: AnswerChoiceType;
-  /**
-   * The weight assigned to the answer choice.
-   */
-  score: number;
-  /**
-   * The impact of the answer choice.
-   */
-  impact: 'x' | 'y';
-};
