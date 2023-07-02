@@ -1,0 +1,16 @@
+version: '3.9'
+
+volumes:
+  pluto-db-data-dev:
+
+services:
+  # Postgres 15
+  db:
+    build: ./services/db
+    env_file: ./services/db/.env
+    container_name: pluto-db
+    restart: always
+    volumes:
+      - pluto-db-data-dev:/var/lib/postgresql/data
+    ports:
+      - '15432:5432'

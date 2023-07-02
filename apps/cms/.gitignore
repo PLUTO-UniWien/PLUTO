@@ -116,3 +116,4 @@ build
 .strapi-updater.json
 
 export*.tar.gz
+export*.tar.gz.enc
