@@ -31,8 +31,7 @@
     },
     "label": {
       "type": "string",
-      "required": true,
-      "regex": "Q\\d+"
+      "required": true
     }
   }
 }
