@@ -20,6 +20,7 @@ import {
   SingleTypeSchema,
   RichTextAttribute,
   ComponentAttribute,
+  UIDAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -687,7 +688,7 @@ export interface ApiHomeHome extends SingleTypeSchema {
   info: {
     singularName: 'home';
     pluralName: 'homes';
-    displayName: 'Home';
+    displayName: 'Home Page';
     description: '';
   };
   options: {
@@ -741,6 +742,104 @@ export interface ApiQuestionQuestion extends CollectionTypeSchema {
   };
 }
 
+export interface ApiResultResult extends CollectionTypeSchema {
+  info: {
+    singularName: 'result';
+    pluralName: 'results';
+    displayName: 'Result';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    items: ComponentAttribute<'result-item.result-item', true>;
+    metadata: ComponentAttribute<'submission-metadata.submission-metadata'>;
+    survey: RelationAttribute<
+      'api::result.result',
+      'oneToOne',
+      'api::survey.survey'
+    >;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::result.result',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::result.result',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiResultPageResultPage extends SingleTypeSchema {
+  info: {
+    singularName: 'result-page';
+    pluralName: 'result-pages';
+    displayName: 'Result Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    explanation: RichTextAttribute & RequiredAttribute;
+    feedback: RichTextAttribute & RequiredAttribute;
+    resultsReadyLabel: StringAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::result-page.result-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::result-page.result-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiSurveySurvey extends CollectionTypeSchema {
+  info: {
+    singularName: 'survey';
+    pluralName: 'surveys';
+    displayName: 'Survey';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    version: UIDAttribute & RequiredAttribute & DefaultTo<'v1.0.0'>;
+    groups: ComponentAttribute<'survey-group.survey-group', true>;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::survey.survey',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::survey.survey',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface AnswerChoiceChoices extends ComponentSchema {
   info: {
     displayName: 'choices';
@@ -772,6 +871,26 @@ export interface QuestionMetadataMetadata extends ComponentSchema {
   };
 }
 
+export interface ResultItemResultItem extends ComponentSchema {
+  info: {
+    displayName: 'Result Item';
+    description: '';
+  };
+  attributes: {
+    value: StringAttribute & RequiredAttribute;
+    displayValue: StringAttribute & RequiredAttribute;
+    type: EnumerationAttribute<
+      ['none', 'otherExclusive', 'otherInclusive', 'regular']
+    > &
+      RequiredAttribute;
+    question: RelationAttribute<
+      'result-item.result-item',
+      'oneToOne',
+      'api::question.question'
+    >;
+  };
+}
+
 export interface SelectionRangeSelectionRange extends ComponentSchema {
   info: {
     displayName: 'Selection Range';
@@ -789,6 +908,29 @@ export interface SelectionRangeSelectionRange extends ComponentSchema {
         min: 1;
       }> &
       DefaultTo<1>;
+  };
+}
+
+export interface SubmissionMetadataSubmissionMetadata extends ComponentSchema {
+  info: {
+    displayName: 'Submission Metadata';
+  };
+  attributes: {
+    userAgent: StringAttribute & RequiredAttribute;
+  };
+}
+
+export interface SurveyGroupSurveyGroup extends ComponentSchema {
+  info: {
+    displayName: 'Survey Group';
+  };
+  attributes: {
+    title: StringAttribute;
+    questions: RelationAttribute<
+      'survey-group.survey-group',
+      'oneToMany',
+      'api::question.question'
+    >;
   };
 }
 
@@ -810,9 +952,15 @@ declare global {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::home.home': ApiHomeHome;
       'api::question.question': ApiQuestionQuestion;
+      'api::result.result': ApiResultResult;
+      'api::result-page.result-page': ApiResultPageResultPage;
+      'api::survey.survey': ApiSurveySurvey;
       'answer-choice.choices': AnswerChoiceChoices;
       'question-metadata.metadata': QuestionMetadataMetadata;
+      'result-item.result-item': ResultItemResultItem;
       'selection-range.selection-range': SelectionRangeSelectionRange;
+      'submission-metadata.submission-metadata': SubmissionMetadataSubmissionMetadata;
+      'survey-group.survey-group': SurveyGroupSurveyGroup;
     }
   }
 }
