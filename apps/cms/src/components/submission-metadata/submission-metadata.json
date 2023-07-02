@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_submission_metadata_submission_metadata",
+  "info": {
+    "displayName": "Submission Metadata"
+  },
+  "options": {},
+  "attributes": {
+    "userAgent": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "result_pages",
+  "info": {
+    "singularName": "result-page",
+    "pluralName": "result-pages",
+    "displayName": "Result Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "explanation": {
+      "type": "richtext",
+      "required": true
+    },
+    "feedback": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

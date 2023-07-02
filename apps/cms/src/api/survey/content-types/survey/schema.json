@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "surveys",
+  "info": {
+    "singularName": "survey",
+    "pluralName": "surveys",
+    "displayName": "Survey"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "version": {
+      "type": "uid",
+      "default": "v1.0.0",
+      "required": true
+    },
+    "groups": {
+      "displayName": "Survey Group",
+      "type": "component",
+      "repeatable": true,
+      "component": "survey-group.survey-group"
+    }
+  }
+}

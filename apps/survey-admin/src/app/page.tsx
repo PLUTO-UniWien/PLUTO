@@ -1,3 +1,3 @@
 export default async function Index() {
-  return <div>Hello</div>;
+  return <div>PLUTO</div>;
 }
