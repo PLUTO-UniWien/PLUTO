@@ -35,7 +35,10 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/cms",
-        "command": "node_modules/.bin/strapi ts:generate-types -o ../../libs/survey-model/src/lib/generated -f strapi-schema.ts"
+        "commands": [
+          "node_modules/.bin/strapi ts:generate-types --out-dir ../../libs/survey-model/src/lib/generated/strapi-schema"
+        ],
+        "parallel": false
       }
     }
   },
