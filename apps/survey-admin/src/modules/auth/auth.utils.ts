@@ -39,6 +39,9 @@ export function requireAuth(routeHandler: RouteHandler) {
     if (res.ok) {
       return routeHandler(request, token);
     }
+    console.error(
+      `Invalid token: ${token}. Response: ${res.status} ${await res.text()}}`
+    );
     return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
   };
 }

@@ -2,7 +2,9 @@
   "name": "@pluto/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:docker": "docker build -t pluto:nx-base . && docker-compose build"
+  },
   "private": true,
   "dependencies": {
     "@nx-plus/vue": "15.0.0-rc.0",

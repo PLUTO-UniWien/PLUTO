@@ -3,15 +3,11 @@ import {
   main as pullCmsContent,
   config as pullCmsConfig,
 } from '../pull-cms-content';
-import { sh } from '../utils';
+import { sh, updateEnvFile } from '../utils';
 import env from './env';
 
 function rebuildSurveyPublic() {
-  sh('nx run survey-public:build --mode=production');
-}
-
-function formatCodebase() {
-  sh('nx format:write');
+  sh('nx run survey-public:rebuild --mode=production');
 }
 
 function contentDidChange() {
@@ -22,15 +18,41 @@ function contentDidChange() {
   });
 }
 
+function commitUpdatedContent() {
+  sh('git add .');
+  sh('git commit -m "Update content"');
+}
+
+function moveRebuildFolderToServedDist() {
+  sh('mv dist-rebuild dist');
+}
+
+function updateLastContentUpdateEnvVar() {
+  const lastRebuildDateString = new Date().toISOString();
+  const values = { VUE_APP_LAST_CONTENT_UPDATE: lastRebuildDateString };
+  const envVarFile = 'apps/survey-public/.env.production';
+  updateEnvFile(envVarFile, values);
+}
+
 async function cronMain() {
   console.log('Running cron job to rebuild survey-public if needed...');
   await pullCmsContent();
-  console.log('Formatting codebase...');
-  formatCodebase();
+
   if (contentDidChange()) {
     console.log('Content changed, rebuilding survey-public...');
+
+    updateLastContentUpdateEnvVar();
+    console.log('Successfully updated `VUE_APP_LAST_CONTENT_UPDATE` env var.');
+
     rebuildSurveyPublic();
     console.log('Successfully rebuilt survey-public.');
+
+    commitUpdatedContent();
+    console.log('Successfully committed updated content.');
+
+    moveRebuildFolderToServedDist();
+    console.log('Successfully moved rebuild folder to served dist.');
+
     return;
   }
   console.log('Content did not change, skipping rebuild.');

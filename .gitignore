@@ -44,3 +44,5 @@ Thumbs.db
 
 # Master password for .env files
 config_key
+
+dist-rebuild

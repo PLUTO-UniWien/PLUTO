@@ -19,7 +19,27 @@
           "productionSourceMap": true,
           "css": {
             "extract": true,
-            "sourceMap": false
+            "sourceMap": true
+          }
+        }
+      }
+    },
+    "rebuild": {
+      "executor": "@nx-plus/vue:browser",
+      "options": {
+        "dest": "dist-rebuild/apps/survey-public",
+        "index": "apps/survey-public/public/index.html",
+        "main": "apps/survey-public/src/main.ts",
+        "tsConfig": "apps/survey-public/tsconfig.app.json"
+      },
+      "configurations": {
+        "production": {
+          "mode": "production",
+          "filenameHashing": true,
+          "productionSourceMap": true,
+          "css": {
+            "extract": true,
+            "sourceMap": true
           }
         }
       }

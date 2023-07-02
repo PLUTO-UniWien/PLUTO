@@ -22,6 +22,14 @@ function fetchOne(apiPath: string) {
       Authorization: `bearer ${env.STRAPI_API_KEY}`,
     },
   })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(
+          `Error fetching ${apiPath}: ${res.status} ${res.statusText}`
+        );
+      }
+      return res;
+    })
     .then((res) => res.json())
     .then((res) => res.data);
 }
@@ -49,7 +57,7 @@ export async function main() {
     const didWrite = await fetchAndWrite(apiPath, dest);
     acc.push({ apiPath, dest, didWrite });
     return acc;
-  }, Promise.resolve([] as ((typeof config)[0] & { didWrite: boolean })[]));
+  }, Promise.resolve([] as (typeof config[0] & { didWrite: boolean })[]));
 }
 
 if (env.SHOULD_RUN_STANDALONE) {

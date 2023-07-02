@@ -61,7 +61,7 @@ services:
       dockerfile: ./apps/survey-admin/Dockerfile
     env_file:
       - ./apps/survey-admin/.env.production
-      - ./apps/survey-admin/.env.local
+      - ./apps/survey-admin/.env.local.docker
     restart: always
     depends_on:
       - cms
