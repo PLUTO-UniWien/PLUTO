@@ -10,7 +10,10 @@ export interface ResultState {
 const result: Module<ResultState, RootState> = {
   namespaced: true,
   state: {
-    result: DUMMY_STATE as SurveyResult | null,
+    result:
+      process.env.NODE_ENV === 'development'
+        ? (DUMMY_STATE as ResultState['result'])
+        : null,
   },
   mutations: {
     setResult(state, result: ResultState['result']) {
