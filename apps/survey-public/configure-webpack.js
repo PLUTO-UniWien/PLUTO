@@ -1,5 +1,4 @@
 const Dotenv = require('dotenv-webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /*
  * Modify the webpack config by exporting an Object or Function.
@@ -25,9 +24,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = (config) => {
   const nodeEnv = process.env.NODE_ENV || 'development';
 
-  /*** @type {HtmlWebpackPlugin} */
+  /*** @type {import('html-webpack-plugin')} */
   const htmlWebpackPlugin = config.plugins.find(
-    (plugin) => plugin instanceof HtmlWebpackPlugin
+    (plugin) => plugin.constructor.name === 'HtmlWebpackPlugin'
   );
   htmlWebpackPlugin.userOptions.title = 'PLUTO Survey';
 
