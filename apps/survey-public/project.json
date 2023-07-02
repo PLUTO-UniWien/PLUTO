@@ -1,0 +1,61 @@
+{
+  "name": "survey-public",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/survey-public/src",
+  "targets": {
+    "build": {
+      "executor": "@nx-plus/vue:browser",
+      "options": {
+        "dest": "dist/apps/survey-public",
+        "index": "apps/survey-public/public/index.html",
+        "main": "apps/survey-public/src/main.ts",
+        "tsConfig": "apps/survey-public/tsconfig.app.json"
+      },
+      "configurations": {
+        "production": {
+          "mode": "production",
+          "filenameHashing": true,
+          "productionSourceMap": true,
+          "css": {
+            "extract": true,
+            "sourceMap": false
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx-plus/vue:dev-server",
+      "options": {
+        "browserTarget": "survey-public:build"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "survey-public:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/survey-public/**/*.{ts,tsx,vue}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/survey-public/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
