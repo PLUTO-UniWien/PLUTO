@@ -1,6 +1,7 @@
 # Using bookworm, a Debian-based Node image, since Python needs to be available to install the project dependencies.
 FROM node:18-bookworm AS base
-RUN apt-get update && apt-get install -y build-essential
+RUN apt-get update &&  \
+    apt-get install -y build-essential jq
 
 FROM base AS nx-base
 WORKDIR /app

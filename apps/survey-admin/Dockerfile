@@ -2,21 +2,35 @@ FROM pluto:nx-base AS builder
 # The whole monorepo source is already copied under /app
 WORKDIR /app
 
-# produce a production build and output it to /app/dist/apps/survey-admin
+# produce a production build and output it to /app/dist
 RUN nx run survey-admin:build
 
-# Run the built app in a clean slim image
-FROM node:18-alpine AS production
+# Build node_modules with native deps on alpine
+FROM node:18-alpine AS alpine-builder
+ENV NODE_ENV=production
+
+# Install build dependencies
+RUN apk update && \
+    apk add --no-cache python3 build-base
+
 # Upgrade npm
 RUN npm install -g npm@latest
 
+WORKDIR /app
+# Copy the built app from the builder image
+COPY --from=builder /app/dist ./dist
+# Install production dependencies in each module
+RUN find dist -name "package.json" -maxdepth 3 -exec sh -c '(cd "$(dirname "{}")" && npm install)' \;
+
+# Run the built app in a clean slim image
+FROM node:18-alpine AS production
 ENV NODE_ENV=production
 
 WORKDIR /app
-
 # Copy the built app from the builder image
-COPY --from=builder /app/dist/apps/cms .
-# Install only production dependencies
-RUN rm -rf node_modules && npm install --omit=dev
+COPY --from=alpine-builder /app .
+# Install PM2 globally
+RUN npm install -g pm2@latest
+WORKDIR /app/dist/apps/survey-admin
 
-CMD ["npm", "start"]
+CMD ["pm2", "start", "ecosystem.config.js", "--no-daemon"]
