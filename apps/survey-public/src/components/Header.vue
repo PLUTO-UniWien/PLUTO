@@ -3,7 +3,7 @@
     class="bg-app-green d-flex justify-content-center align-items-center py-2 py-md-4"
   >
     <b-img
-      :src="require('../assets/logo.png')"
+      src="/logo.png"
       alt="PLUTO logo"
       fluid
       class="logo"

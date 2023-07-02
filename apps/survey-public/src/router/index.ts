@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '../views/home/Home.vue';
 
 Vue.use(VueRouter);
 
@@ -17,13 +17,13 @@ const routes: Array<RouteConfig> = [
     // this generates a separate chunk (survey.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "survey" */ '../views/Survey.vue'),
+      import(/* webpackChunkName: "survey" */ '../views/survey/Survey.vue'),
   },
   {
     path: '/result',
     name: 'Result',
     component: () =>
-      import(/* webpackChunkName: "result" */ '../views/Result.vue'),
+      import(/* webpackChunkName: "result" */ '../views/result/Result.vue'),
   },
 ];
 
