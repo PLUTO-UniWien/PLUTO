@@ -16,13 +16,15 @@
       "displayName": "Result Item",
       "type": "component",
       "repeatable": true,
-      "component": "result-item.result-item"
+      "component": "result-item.result-item",
+      "required": true
     },
     "metadata": {
       "displayName": "Submission Metadata",
       "type": "component",
       "repeatable": false,
-      "component": "submission-metadata.submission-metadata"
+      "component": "submission-metadata.submission-metadata",
+      "required": true
     },
     "survey": {
       "type": "relation",

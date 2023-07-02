@@ -753,8 +753,10 @@ export interface ApiResultResult extends CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    items: ComponentAttribute<'result-item.result-item', true>;
-    metadata: ComponentAttribute<'submission-metadata.submission-metadata'>;
+    items: ComponentAttribute<'result-item.result-item', true> &
+      RequiredAttribute;
+    metadata: ComponentAttribute<'submission-metadata.submission-metadata'> &
+      RequiredAttribute;
     survey: RelationAttribute<
       'api::result.result',
       'oneToOne',
