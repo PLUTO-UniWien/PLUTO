@@ -1,6 +1,7 @@
 import { env } from '../../env.mjs';
 import { constructFetchUrl, extractError } from '@pluto/utils';
 import { NextResponse } from 'next/server';
+import { requireAuth } from '../auth/auth.utils';
 
 function strapiUrl(path: string) {
   return `${env.NEXT_PUBLIC_STRAPI_URL}${path}`;
@@ -44,5 +45,5 @@ export function singleTypeGetter(slug: string) {
     const data = await response.json();
     return NextResponse.json(data);
   }
-  return GET;
+  return requireAuth(GET);
 }

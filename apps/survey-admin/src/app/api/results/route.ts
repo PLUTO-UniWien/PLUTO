@@ -6,8 +6,9 @@ import {
   SurveyResult,
 } from '@pluto/survey-model';
 import { extractError } from '@pluto/utils';
+import { requireAuth } from '../../../modules/auth/auth.utils';
 
-export async function GET(request: Request) {
+const _GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
   const version = searchParams.get('version') || 'v1.0.0';
   const response = await strapiFetch('/results', {
@@ -21,9 +22,11 @@ export async function GET(request: Request) {
 
   const data = await response.json();
   return NextResponse.json(data);
-}
+};
 
-export async function POST(request: Request) {
+export const GET = requireAuth(_GET);
+
+const _POST = async (request: Request) => {
   // the results we want to persist
   const payload: SurveyResult = await request.json();
 
@@ -66,7 +69,9 @@ export async function POST(request: Request) {
     });
   }
   return NextResponse.json(await resultResponse.json());
-}
+};
+
+export const POST = requireAuth(_POST);
 
 export async function OPTIONS(request: Request) {
   return new Response(null, {
