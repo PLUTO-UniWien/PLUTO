@@ -27,7 +27,7 @@ export function requireAuth(routeHandler: RouteHandler) {
     const isJwt = token.split('.').length === 3;
     // Check for token validity
     const res = await strapiFetch(
-      isJwt ? '/users/me' : '/users/session',
+      isJwt ? '/users/me' : '/users',
       {},
       {
         headers: {
