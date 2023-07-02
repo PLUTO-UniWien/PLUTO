@@ -19,6 +19,13 @@
         "command": "pnpm run build && mkdir -p ../../dist/apps && mv dist ../../dist/apps/cms",
         "outputPath": "dist/apps/cms"
       }
+    },
+    "generate-types": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/cms",
+        "command": "node_modules/.bin/strapi ts:generate-types -o ../../libs/survey-model/src/lib/generated -f strapi-schema.ts"
+      }
     }
   },
   "tags": []

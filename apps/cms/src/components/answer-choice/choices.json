@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_answer_choice_choices",
+  "info": {
+    "displayName": "choices",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "score": {
+      "type": "integer",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["none", "otherExclusive", "otherInclusive", "regular"],
+      "default": "regular",
+      "required": true
+    },
+    "body": {
+      "type": "string",
+      "required": true
+    },
+    "feedback": {
+      "type": "string"
+    }
+  }
+}

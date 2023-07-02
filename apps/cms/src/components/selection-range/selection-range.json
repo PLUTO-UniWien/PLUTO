@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_selection_range_selection_ranges",
+  "info": {
+    "displayName": "Selection Range"
+  },
+  "options": {},
+  "attributes": {
+    "start": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "default": 1
+    },
+    "end": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "default": 1
+    }
+  }
+}
