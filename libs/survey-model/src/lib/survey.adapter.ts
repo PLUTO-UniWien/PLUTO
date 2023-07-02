@@ -18,7 +18,7 @@ export function generateSurveyJsModel(survey: Survey) {
     logoWidth: 120,
     logoHeight: 120,
     logoFit: 'contain',
-    completedHtml: '',
+    completedHtml: ' ',
   };
   const questionsWithPageTitle = survey.groups.flatMap(({ title, questions }) =>
     questions.map((question) => ({ ...question, pageTitle: title }))

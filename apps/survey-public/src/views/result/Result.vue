@@ -1,45 +1,55 @@
 <template>
-  <div class="result">
-    <HeaderComponent />
-    <h1>{{ resultsReadyLabel }}</h1>
-    <div class="plot-container">
-      <b-tooltip target="resultPoint" triggers="hover">
-        <div class="d-flex flex-column text-left">
-          <span>Risk: {{ scoreRisks }}</span>
-          <span>Benefit: {{ scoreBenefits }}</span>
-        </div>
-      </b-tooltip>
-      <ResultPlot
-        :x-lower-bound="-1"
-        :x-upper-bound="1"
-        :y-lower-bound="-1"
-        :y-upper-bound="1"
-        :point-coordinate="[scoreRisks, scoreBenefits]"
-        :quadrant-labels="[
-          'High benefit',
-          'High risk',
-          'Low risk',
-          'Low benefit',
-        ]"
-        :tooltip-element-id="tooltipElementId"
-      />
+  <div>
+    <div class="result">
+      <HeaderComponent />
+      <h1>{{ resultsReadyLabel }}</h1>
+      <div class="plot-container">
+        <b-tooltip target="resultPoint" triggers="hover">
+          <div class="d-flex flex-column text-left">
+            <span>Risk: {{ scoreRisks }}</span>
+            <span>Benefit: {{ scoreBenefits }}</span>
+          </div>
+        </b-tooltip>
+        <ResultPlot
+          :x-lower-bound="-1"
+          :x-upper-bound="1"
+          :y-lower-bound="-1"
+          :y-upper-bound="1"
+          :point-coordinate="[scoreRisks, scoreBenefits]"
+          :quadrant-labels="[
+            'High benefit',
+            'High risk',
+            'Low risk',
+            'Low benefit',
+          ]"
+          :tooltip-element-id="tooltipElementId"
+        />
+      </div>
+      <div class="feedback-container">
+        <FeedbackList
+          :title="feedbackTitleBenefits"
+          :items="feedbackItemsBenefits"
+        />
+        <FeedbackList :title="feedbackTitleRisks" :items="feedbackItemsRisks" />
+      </div>
+      <div class="content-container">
+        <main>
+          <article>
+            <markdown-renderer :content="explanation" />
+          </article>
+          <article>
+            <markdown-renderer :content="feedback" />
+          </article>
+        </main>
+      </div>
     </div>
-    <div class="feedback-container">
-      <FeedbackList
-        :title="feedbackTitleBenefits"
-        :items="feedbackItemsBenefits"
+    <div class="bottom">
+      <SubmissionProgressIndicator
+        class="bottom"
+        :submit-error="submitError"
+        :submit-success="submitSuccess"
+        :submitting="submitting"
       />
-      <FeedbackList :title="feedbackTitleRisks" :items="feedbackItemsRisks" />
-    </div>
-    <div class="content-container">
-      <main>
-        <article>
-          <markdown-renderer :content="explanation" />
-        </article>
-        <article>
-          <markdown-renderer :content="feedback" />
-        </article>
-      </main>
     </div>
   </div>
 </template>
@@ -53,6 +63,8 @@ import MarkdownRenderer from '../../components/MarkdownRenderer.vue';
 import ResultPlot from '../../components/ResultPlot.vue';
 import FeedbackList from '../../components/FeedbackList.vue';
 import { SurveyResultAnalysis } from '@pluto/survey-model';
+import { mapGetters } from 'vuex';
+import SubmissionProgressIndicator from '../../components/SubmissionProgressIndicator.vue';
 function getResultViewProps(): ResultViewProps {
   const resultData = viewData as ResultViewData;
   const {
@@ -69,7 +81,16 @@ function getResultViewProps(): ResultViewProps {
 
 export default Vue.extend({
   name: 'ResultView',
-  components: { MarkdownRenderer, HeaderComponent, ResultPlot, FeedbackList },
+  components: {
+    SubmissionProgressIndicator,
+    MarkdownRenderer,
+    HeaderComponent,
+    ResultPlot,
+    FeedbackList,
+  },
+  computed: {
+    ...mapGetters('submission', ['submitting', 'submitSuccess', 'submitError']),
+  },
   data() {
     const tooltipElementId = 'resultPointTooltip';
     const { resultsReadyLabel, explanation, feedback } = getResultViewProps();
@@ -179,5 +200,11 @@ export default Vue.extend({
       }
     }
   }
+}
+
+.bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
 }
 </style>

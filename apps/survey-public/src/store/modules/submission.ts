@@ -59,6 +59,17 @@ const submission: Module<SubmissionState, RootState> = {
       commit('setSubmitting', false);
     },
   },
+  getters: {
+    submitting(state: SubmissionState) {
+      return state.submitting;
+    },
+    submitSuccess(state: SubmissionState) {
+      return state.submitSuccess;
+    },
+    submitError(state: SubmissionState) {
+      return state.submitError;
+    },
+  },
 };
 
 export default submission;
