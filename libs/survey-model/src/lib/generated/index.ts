@@ -1,1 +1,1 @@
-export * from './strapi-schema';
+export default '';
