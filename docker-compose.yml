@@ -82,6 +82,9 @@ services:
     build:
       context: .
       dockerfile: ./apps/survey-public/Dockerfile
+      args:
+        # edit this to anything else to use `localhost` for the backend connection
+        - DOCKER_MODE=deployment
     env_file:
       - ./apps/survey-public/.env.local
     restart: always
