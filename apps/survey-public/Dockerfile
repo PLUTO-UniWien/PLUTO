@@ -10,6 +10,12 @@ RUN git config --global user.email "pluto-bot@localhost" && \
     git add . &&  \
     git commit -m "Initial commit"
 
+# If mode is deployment we use the `.env.production.docker` to load env vars to use the production backend domain
+ARG DOCKER_MODE=deployment
+ENV DOCKER_MODE=$DOCKER_MODE
+RUN if [ "$DOCKER_MODE" = "deployment" ]; then cd apps/survey-public/ && mv .env.production.docker .env.production && cd -; fi
+
+
 # produce a production build and output it to /app/dist/apps/survey-public
 RUN nx run survey-public:build --mode production
 

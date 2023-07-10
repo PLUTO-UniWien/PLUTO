@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { env } from './env.mjs';
 import { corsRes } from '@pluto/utils';
 
-const allowedOrigins = [env.NEXT_PUBLIC_FRONTEND_URL];
+const allowedOrigins = env.NEXT_PUBLIC_ALLOWED_ORIGINS.split(',');
 export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   const response = NextResponse.next({

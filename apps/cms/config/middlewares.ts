@@ -2,12 +2,16 @@ export default ({ env }) => {
   const devPorts = env('ORIGIN_DEV_PORTS', '1337')
     .split(',')
     .map((port) => parseInt(port, 10));
-  const devOrigins = devPorts.map((port) => `http://localhost:${port}`);
+  const devOrigins: string[] = devPorts.map(
+    (port) => `http://localhost:${port}`
+  );
   const prodDomains = env('ORIGIN_PROD_DOMAINS', '').split(',');
-  const prodOrigins = prodDomains.flatMap((domain) => [
+  const prodOrigins: string[] = prodDomains.flatMap((domain) => [
     `http://${domain}`,
     `https://${domain}`,
   ]);
+  const allowedOrigins = [...devOrigins, ...prodOrigins];
+  console.log('Accepting CORS from:', allowedOrigins);
   return [
     'strapi::errors',
     'strapi::security',
@@ -15,7 +19,7 @@ export default ({ env }) => {
       name: 'strapi::cors',
       config: {
         headers: '*',
-        origin: [...devOrigins, ...prodOrigins],
+        origin: allowedOrigins,
       },
     },
     'strapi::poweredBy',

@@ -3,6 +3,7 @@
 dist
 out
 node_modules
+tmp
 .git
 .gitignore
 .dockerignore

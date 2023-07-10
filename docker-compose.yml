@@ -83,7 +83,6 @@ services:
       context: .
       dockerfile: ./apps/survey-public/Dockerfile
     env_file:
-      - ./apps/survey-public/.env.production
       - ./apps/survey-public/.env.local
     restart: always
     depends_on:

@@ -7,11 +7,11 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_STRAPI_URL: z.string().url(),
-    NEXT_PUBLIC_FRONTEND_URL: z.string().url(),
+    NEXT_PUBLIC_ALLOWED_ORIGINS: z.string().min(1),
   },
   runtimeEnv: {
     STRAPI_API_KEY: process.env.STRAPI_API_KEY,
     NEXT_PUBLIC_STRAPI_URL: process.env.NEXT_PUBLIC_STRAPI_URL,
-    NEXT_PUBLIC_FRONTEND_URL: process.env.NEXT_PUBLIC_FRONTEND_URL,
+    NEXT_PUBLIC_ALLOWED_ORIGINS: process.env.NEXT_PUBLIC_ALLOWED_ORIGINS,
   },
 });

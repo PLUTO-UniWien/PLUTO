@@ -6,6 +6,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import './styles/bootstrap.scss';
 import { initLayoutListener } from './store/modules/layout';
 import contentVersion from './content-version';
+import config from './config';
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -22,3 +23,6 @@ new Vue({
 initLayoutListener(store);
 
 console.log(`Last content update: ${contentVersion}`);
+
+// Attach `PLUTO_ENV` to `window` for debugging purposes
+Object.defineProperty(window, 'PLUTO_ENV', config);
