@@ -25,4 +25,4 @@ initLayoutListener(store);
 console.log(`Last content update: ${contentVersion}`);
 
 // Attach `PLUTO_ENV` to `window` for debugging purposes
-Object.defineProperty(window, 'PLUTO_ENV', config);
+(window as typeof window & { PLUTO_ENV: typeof config }).PLUTO_ENV = config;
