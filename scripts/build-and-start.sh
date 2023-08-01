@@ -7,5 +7,6 @@ echo "🐳Building Docker images"
 docker build -t pluto:nx-base .
 docker-compose build
 
-echo "🚀Starting Docker containers"
+echo "🚀(Re)Starting Docker containers"
+docker-compose down
 docker-compose up -d --force-recreate --remove-orphans
