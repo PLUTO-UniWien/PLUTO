@@ -7,3 +7,5 @@ enableWebsocketCompression = false
 
 [browser]
 gatherUsageStats = false
+serverPort = 80
+serverAddress = https://analysis.pluto.univie.ac.at
