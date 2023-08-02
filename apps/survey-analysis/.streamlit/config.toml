@@ -4,8 +4,3 @@ address = "0.0.0.0"
 headless = true
 enableCORS = false
 enableWebsocketCompression = false
-
-[browser]
-gatherUsageStats = false
-serverPort = 443
-serverAddress = "https://analysis.pluto.univie.ac.at"
