@@ -23,7 +23,6 @@ new Vue({
 initLayoutListener(store);
 
 console.log(`Last content update: ${contentVersion}`);
-console.log(42);
 
 // Attach `PLUTO_ENV` to `window` for debugging purposes
 (window as typeof window & { PLUTO_ENV: typeof config }).PLUTO_ENV = config;
