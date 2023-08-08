@@ -62,7 +62,7 @@ jobs:
             echo "Tagged $img_with_tag as $new_tag"
           done
 
-      - name: Push Tagged Images
+      - name: Push Tagged App Images
         run: |
           REPO="$CONTAINER_REGISTRY_USERNAME/$REPOSITORY_NAME"
           docker images --format '{{.Repository}}:{{.Tag}}'
@@ -72,6 +72,17 @@ jobs:
             docker push "$img_with_tag"
             echo "Pushed $img_with_tag"
           done
+
+      - name: Tag and Push Base Image
+        run: |
+          LOCAL_IMAGE="$REPOSITORY_NAME:$REPOSITORY_TAG"
+          REMOTE_IMAGE="$CONTAINER_REGISTRY_USERNAME/$REPOSITORY_NAME:$REPOSITORY_TAG"
+
+          docker tag $LOCAL_IMAGE $REMOTE_IMAGE
+          echo "Tagged $LOCAL_IMAGE as $REMOTE_IMAGE"
+
+          docker push "$REMOTE_IMAGE"
+          echo "Pushed $REMOTE_IMAGE"
 
       - name: Log out from Docker Hub
         run: docker logout
