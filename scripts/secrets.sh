@@ -26,7 +26,7 @@ GPG_PASSPHRASE="$(cat $CONFIG_KEY_FILE)"
 function decrypt_secrets() {
   for path in "${SECRET_PATHS[@]}"; do
     echo "🔓Decrypting $path"
-    gpg --quiet --batch --yes --passphrase "$GPG_PASSPHRASE" --decrypt --output "$path" "$path.gpg"
+    gpg --quiet --batch --yes --passphrase "$GPG_PASSPHRASE" --decrypt --output "$path" "$path.gpg" || exit 1
   done
 }
 

@@ -17,7 +17,9 @@ jobs:
         run: echo "${{ secrets.SECRET_CONFIG_KEY }}" > config_key
 
       - name: Decrypt all repository secret files
-        run: bash ./scripts/secrets.sh --decrypt
+        run: |
+          gpg --version
+          bash ./scripts/secrets.sh --decrypt
 
       - name: Create `commit-hash.txt`
         run: echo $GITHUB_SHA > commit-hash.txt

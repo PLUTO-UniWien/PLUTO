@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build:docker": "docker build -t pluto:nx-base . && docker-compose build"
+    "build:docker": "docker build -t pluto:nx-base . && docker-compose build",
+    "build:tools": "docker build -f bin/Dockerfile -t pluto-tools .",
+    "secrets:encrypt": "npm run build:tools && docker run -it --rm -v $(pwd):/app pluto-tools bash -c \"bash ./scripts/secrets.sh --encrypt\"",
+    "secrets:decrypt": "npm run build:tools && docker run -it --rm -v $(pwd):/app pluto-tools bash -c \"bash ./scripts/secrets.sh --decrypt\""
   },
   "private": true,
   "dependencies": {
