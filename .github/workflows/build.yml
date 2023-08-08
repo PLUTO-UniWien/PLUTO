@@ -8,6 +8,11 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
+    env:
+      REPOSITORY_NAME: pluto
+      REPOSITORY_TAG: nx-base
+      CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
+      CONTAINER_REGISTRY_PAT: ${{ secrets.CONTAINER_REGISTRY_PAT }}
 
     steps:
       - name: Check out the repo
@@ -25,14 +30,48 @@ jobs:
         run: echo $GITHUB_SHA > commit-hash.txt
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_PAT }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        run: echo "$CONTAINER_REGISTRY_PAT" | docker login -u "$CONTAINER_REGISTRY_USERNAME" --password-stdin
 
-      - name: Build and push Docker image
+      - name: Build Base Docker Image
         run: |
-          REPOSITORY_NAME=pluto
-          REPOSITORY_TAG=nx-base
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/$REPOSITORY_NAME:$REPOSITORY_TAG .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/$REPOSITORY_NAME:$REPOSITORY_TAG
+          docker build -t $REPOSITORY_NAME:$REPOSITORY_TAG .
+
+      - name: Build App Docker Images
+        run: |
+          pwd && ls -la
+          cd ../ && mv $GITHUB_WORKSPACE $REPOSITORY_NAME && cd $REPOSITORY_NAME
+          pwd && ls -la
+
+          docker-compose build
+          docker images
+
+          pwd && ls -la
+          cd ../ && mv $REPOSITORY_NAME $GITHUB_WORKSPACE && cd $GITHUB_WORKSPACE
+          pwd && ls -la
+
+      - name: Tag App Images
+        run: |
+          PREFIX="$REPOSITORY_NAME"_
+          docker images --format '{{.Repository}}:{{.Tag}}'
+          docker images --format '{{.Repository}}:{{.Tag}}' | grep "^$PREFIX"
+
+          docker images --format '{{.Repository}}:{{.Tag}}' | grep "^$PREFIX" | while read -r img_with_tag; do
+            repo_name=$(echo $img_with_tag | cut -d':' -f1)
+            new_tag="$CONTAINER_REGISTRY_USERNAME/${repo_name/$PREFIX/pluto:}"
+            docker tag "$img_with_tag" "$new_tag"
+            echo "Tagged $img_with_tag as $new_tag"
+          done
+
+      - name: Push Tagged Images
+        run: |
+          REPO="$CONTAINER_REGISTRY_USERNAME/$REPOSITORY_NAME"
+          docker images --format '{{.Repository}}:{{.Tag}}'
+          docker images --format '{{.Repository}}:{{.Tag}}' | grep "^$REPO"
+
+          docker images --format '{{.Repository}}:{{.Tag}}' | grep "^$REPO" | while read -r img_with_tag; do
+            docker push "$img_with_tag"
+            echo "Pushed $img_with_tag"
+          done
 
       - name: Log out from Docker Hub
         run: docker logout
