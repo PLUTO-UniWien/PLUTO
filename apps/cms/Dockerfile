@@ -23,4 +23,8 @@ RUN rm -rf node_modules && npm install --omit=dev
 RUN npm install -g pm2@latest
 COPY --from=builder /app/apps/cms/ecosystem.config.js .
 
+COPY ./apps/cms/healthcheck.js /app
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=5 \
+    CMD node /app/healthcheck.js
+
 CMD ["pm2", "start", "ecosystem.config.js", "--no-daemon"]

@@ -36,4 +36,8 @@ WORKDIR /app/dist/apps/survey-admin
 # Remove each .env file to make sure that the system env vars are loaded
 RUN find . -name ".env*" -exec rm -f {} \;
 
+COPY ./apps/survey-admin/healthcheck.js /app
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=5 \
+    CMD node /app/healthcheck.js
+
 CMD ["pm2", "start", "ecosystem.config.js", "--no-daemon"]

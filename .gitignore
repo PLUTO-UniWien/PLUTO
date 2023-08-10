@@ -46,3 +46,4 @@ Thumbs.db
 config_key
 
 dist-rebuild
+docker-compose.portainer.yml

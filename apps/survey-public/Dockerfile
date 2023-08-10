@@ -24,6 +24,10 @@ RUN npm install -g npm@latest
 # Install additional deps to serve the app
 RUN npm install -g pm2 serve
 
+COPY ./apps/survey-public/healthcheck.js /app
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=5 \
+    CMD node /app/healthcheck.js
+
 # Using pm2-runtime instead of pm2 with the --no-daemon flag,
 # since we start 2 processes and want the container to keep running
 CMD ["pm2-runtime", "start", "apps/survey-public/ecosystem.config.js"]
