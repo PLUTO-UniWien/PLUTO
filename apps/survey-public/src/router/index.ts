@@ -31,6 +31,18 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "result" */ '../views/result/Result.vue'),
   },
+  {
+    path: '/appendix',
+    name: 'Appendix',
+    component: () =>
+      import(/* webpackChunkName: "appendix" */ '../views/appendix/Appendix.vue'),
+  },
+  {
+    path: '/glossary',
+    name: 'Glossary',
+    component: () =>
+      import(/* webpackChunkName: "glossary" */ '../views/glossary/Glossary.vue'),
+  },
 ];
 
 const router = new VueRouter({
