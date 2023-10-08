@@ -8,20 +8,20 @@
 <script lang="ts">
 import Vue from 'vue';
 import MainLayout from '../../components/MainLayout.vue';
-import viewData from './appendix-weighting.json';
-import {
-  AppendixWeightingViewData,
-  AppendixWeightingViewProps,
-} from './appendix-weighting.types';
+import viewData from './weighting-history.json';
 import MarkdownRenderer from '../../components/MarkdownRenderer.vue';
+import {
+  WeightingHistoryViewData,
+  WeightingHistoryViewProps,
+} from './weighting-history.types';
 
-function getAppendixWeightingViewProps(): AppendixWeightingViewProps {
-  const appendixWeightingData = viewData as AppendixWeightingViewData;
+function getViewProps(): WeightingHistoryViewProps {
+  const data = viewData as WeightingHistoryViewData;
   const {
     data: {
       attributes: { title, introduction },
     },
-  } = appendixWeightingData;
+  } = data;
   return {
     title,
     introduction,
@@ -29,10 +29,10 @@ function getAppendixWeightingViewProps(): AppendixWeightingViewProps {
 }
 
 export default Vue.extend({
-  name: 'AppendixWeightingView',
+  name: 'WeightingHistoryView',
   components: { MainLayout, MarkdownRenderer },
   data() {
-    const { title, introduction } = getAppendixWeightingViewProps();
+    const { title, introduction } = getViewProps();
     return {
       title,
       introduction,

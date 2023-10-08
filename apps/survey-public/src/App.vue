@@ -10,6 +10,7 @@ import Vue from 'vue';
 import LoadingView from './views/loading/Loading.vue';
 import { mapActions, mapGetters, mapState } from 'vuex';
 import config from './config';
+import { pathExists } from './router/index';
 
 export default Vue.extend({
   name: 'App',
@@ -31,7 +32,11 @@ export default Vue.extend({
       if (!isLoading) {
         if (this.isLoggedIn) {
           const visitedSlug = window.location.href.split('/').pop();
-          this.$router.push({ path: `/${visitedSlug}` }).catch(console.error);
+          if (pathExists(visitedSlug || '')) {
+            this.$router.push({ path: `/${visitedSlug}` }).catch(console.error);
+          } else {
+            this.$router.push({ name: 'Home' }).catch(console.error);
+          }
         } else {
           this.$router.push({ name: 'Login' }).catch(console.error);
         }

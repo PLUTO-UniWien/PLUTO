@@ -32,18 +32,34 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "result" */ '../views/result/Result.vue'),
   },
   {
-    path: '/appendix',
-    name: 'Appendix',
+    path: '/appendix-weighting',
+    name: 'Appendix - Weighting',
     component: () =>
-      import(/* webpackChunkName: "appendix" */ '../views/appendix/Appendix.vue'),
+      import(
+        /* webpackChunkName: "appendix-weighting" */ '../views/appendix-weighting/AppendixWeighting.vue'
+      ),
+  },
+  {
+    path: '/weighting-history',
+    name: 'Weighting History',
+    component: () =>
+      import(
+        /* webpackChunkName: "weighting-history" */ '../views/weighting-history/WeightingHistory.vue'
+      ),
   },
   {
     path: '/glossary',
     name: 'Glossary',
     component: () =>
-      import(/* webpackChunkName: "glossary" */ '../views/glossary/Glossary.vue'),
+      import(
+        /* webpackChunkName: "glossary" */ '../views/glossary/Glossary.vue'
+      ),
   },
 ];
+
+export function pathExists(path: string) {
+  return routes.some((route) => route.path === `/${path}`);
+}
 
 const router = new VueRouter({
   mode: 'history',

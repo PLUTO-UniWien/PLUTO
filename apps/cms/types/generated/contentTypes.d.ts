@@ -677,6 +677,38 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAppendixWeightingPageAppendixWeightingPage
+  extends Schema.SingleType {
+  collectionName: 'appendix_weighting_pages';
+  info: {
+    singularName: 'appendix-weighting-page';
+    pluralName: 'appendix-weighting-pages';
+    displayName: 'Appendix - Weighting Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    introduction: Attribute.RichText & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::appendix-weighting-page.appendix-weighting-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::appendix-weighting-page.appendix-weighting-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGlossaryPageGlossaryPage extends Schema.SingleType {
   collectionName: 'glossary_pages';
   info: {
@@ -873,6 +905,38 @@ export interface ApiSurveySurvey extends Schema.CollectionType {
   };
 }
 
+export interface ApiWeightingHistoryPageWeightingHistoryPage
+  extends Schema.SingleType {
+  collectionName: 'weighting_history_pages';
+  info: {
+    singularName: 'weighting-history-page';
+    pluralName: 'weighting-history-pages';
+    displayName: 'Weighting History Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    introduction: Attribute.RichText & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::weighting-history-page.weighting-history-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::weighting-history-page.weighting-history-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -889,12 +953,14 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::appendix-weighting-page.appendix-weighting-page': ApiAppendixWeightingPageAppendixWeightingPage;
       'api::glossary-page.glossary-page': ApiGlossaryPageGlossaryPage;
       'api::home.home': ApiHomeHome;
       'api::question.question': ApiQuestionQuestion;
       'api::result.result': ApiResultResult;
       'api::result-page.result-page': ApiResultPageResultPage;
       'api::survey.survey': ApiSurveySurvey;
+      'api::weighting-history-page.weighting-history-page': ApiWeightingHistoryPageWeightingHistoryPage;
     }
   }
 }

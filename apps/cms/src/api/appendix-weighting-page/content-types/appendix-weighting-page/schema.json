@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "appendix_weighting_pages",
+  "info": {
+    "singularName": "appendix-weighting-page",
+    "pluralName": "appendix-weighting-pages",
+    "displayName": "Appendix - Weighting Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "introduction": {
+      "type": "richtext",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

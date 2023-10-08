@@ -19,6 +19,10 @@ export const config = [
     dest: 'apps/survey-public/src/views/appendix-weighting/appendix-weighting.json',
   },
   {
+    apiPath: '/content/weighting-history',
+    dest: 'apps/survey-public/src/views/weighting-history/weighting-history.json',
+  },
+  {
     apiPath: '/survey',
     dest: 'libs/survey-model/src/lib/static/survey.json',
   },

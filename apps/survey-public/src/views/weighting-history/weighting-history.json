@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": 1,
+    "attributes": {
+      "title": "Weighting History",
+      "introduction": "Below you can observe a record of historical weightings.",
+      "createdAt": "2023-10-08T16:09:37.696Z",
+      "updatedAt": "2023-10-08T16:09:45.623Z",
+      "publishedAt": "2023-10-08T16:09:45.620Z"
+    }
+  }
+}
