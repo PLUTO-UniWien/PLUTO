@@ -25,8 +25,8 @@ export function parseSurvey(surveyData: object): Survey {
 
   const parsedGroups = groups.map(({ title, questions }) => {
     const parsedQuestions = questions.data.map(({ id, attributes }) => {
-      const { label, body, choices, metadata } = attributes;
-      return { id, label, body, choices, metadata };
+      const { label, body, explanation, choices, metadata } = attributes;
+      return { id, label, body, explanation, choices, metadata };
     });
     return { title, questions: parsedQuestions };
   });

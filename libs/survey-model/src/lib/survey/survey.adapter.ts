@@ -25,11 +25,10 @@ export function generateSurveyJsModel(survey: Survey) {
   );
   const pages = questionsWithPageTitle.map((question, questionNumber) => {
     const name = pageLabel(questionNumber + 1);
-    const description = '';
     const elements = [mapQuestion(question, questionNumber + 1)];
     const { name: questionLabel } = elements[0];
     const title = `${question.pageTitle} - ${questionLabel}`;
-    return { name, description, title, elements };
+    return { name, title, elements };
   });
   return { ...coreProperties, pages };
 }
@@ -146,9 +145,11 @@ function mapQuestion(question: Question, questionNumber: number) {
   const noneText = hasNone && getQuestionNoneText(question);
   const maxSelectedChoices =
     type === 'checkbox' && getQuestionMaxSelectedChoices(question);
+  const description = questionDescription(question);
   return {
     type,
     name,
+    description,
     title,
     isRequired,
     choices,
@@ -158,6 +159,10 @@ function mapQuestion(question: Question, questionNumber: number) {
     ...((hasNone && { hasNone, noneText }) || undefined),
     ...((maxSelectedChoices && { maxSelectedChoices }) || undefined),
   };
+}
+
+function questionDescription(question: Question): string {
+  return question.explanation || '';
 }
 
 /**

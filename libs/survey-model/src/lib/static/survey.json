@@ -5,7 +5,7 @@
       "attributes": {
         "version": "v1.0.0",
         "createdAt": "2023-05-29T10:18:19.220Z",
-        "updatedAt": "2023-05-29T10:18:35.946Z",
+        "updatedAt": "2023-10-08T10:22:28.205Z",
         "publishedAt": "2023-05-29T10:18:35.945Z",
         "groups": [
           {
@@ -14,120 +14,64 @@
             "questions": {
               "data": [
                 {
-                  "id": 1,
-                  "attributes": {
-                    "body": "Which of the answers below best describe the data user?",
-                    "createdAt": "2023-05-27T13:08:03.360Z",
-                    "updatedAt": "2023-05-29T07:47:11.322Z",
-                    "publishedAt": "2023-05-29T07:46:23.499Z",
-                    "label": "Q1",
-                    "choices": [
-                      {
-                        "id": 1,
-                        "body": "Individual citizen/researcher",
-                        "score": 1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 2,
-                        "body": "Public organisation",
-                        "score": 1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 3,
-                        "body": "Private company",
-                        "score": -1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 4,
-                        "body": "Charity",
-                        "score": 1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 5,
-                        "body": "Other (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
-                      }
-                    ],
-                    "metadata": {
-                      "id": 1,
-                      "impact": "y",
-                      "feedback": null,
-                      "selection": {
-                        "id": 1,
-                        "start": 1,
-                        "end": 1
-                      }
-                    }
-                  }
-                },
-                {
-                  "id": 2,
+                  "id": 17,
                   "attributes": {
                     "body": "Which of the answers below best describe the primary activity of the data user?",
-                    "createdAt": "2023-05-27T13:33:32.380Z",
-                    "updatedAt": "2023-05-29T07:47:26.136Z",
-                    "publishedAt": "2023-05-27T13:33:59.596Z",
                     "label": "Q2",
+                    "createdAt": "2023-05-27T13:33:32.380Z",
+                    "updatedAt": "2023-09-25T12:18:52.439Z",
+                    "publishedAt": "2023-05-27T13:33:59.596Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 6,
-                        "body": "Sell a product/service",
+                        "id": 82,
                         "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Sell a product/service",
+                        "feedback": null
                       },
                       {
-                        "id": 7,
+                        "id": 83,
+                        "score": 0,
+                        "type": "regular",
                         "body": "Fulfil a government task",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 8,
+                        "id": 84,
+                        "score": 0,
+                        "type": "regular",
                         "body": "Conduct applied research",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 9,
-                        "body": "Conduct basic research",
+                        "id": 85,
                         "score": 1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Conduct basic research",
+                        "feedback": null
                       },
                       {
-                        "id": 10,
+                        "id": 86,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 11,
-                        "body": "I don’t know",
+                        "id": 87,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 2,
+                      "id": 17,
                       "impact": "y",
                       "feedback": null,
                       "selection": {
-                        "id": 2,
+                        "id": 17,
                         "start": 1,
                         "end": 2
                       }
@@ -135,70 +79,71 @@
                   }
                 },
                 {
-                  "id": 3,
+                  "id": 20,
                   "attributes": {
                     "body": "Which of the answers below best describe the financial structure of the data user?",
-                    "createdAt": "2023-05-27T13:39:32.049Z",
-                    "updatedAt": "2023-05-29T07:47:48.828Z",
-                    "publishedAt": "2023-05-27T13:39:34.162Z",
                     "label": "Q3",
+                    "createdAt": "2023-05-27T13:39:32.049Z",
+                    "updatedAt": "2023-09-26T13:24:13.241Z",
+                    "publishedAt": "2023-05-27T13:39:34.162Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 12,
-                        "body": "Largely financed through income from own activities or parent/partner company",
+                        "id": 98,
                         "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Predominantly financed through income from own activities or parent/partner company",
+                        "feedback": null
                       },
                       {
-                        "id": 13,
-                        "body": "Largely financed by governmental organisations (national or international)",
+                        "id": 99,
                         "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Predominantly financed by governmental organisations (national or international)",
+                        "feedback": null
                       },
                       {
-                        "id": 14,
-                        "body": "Largely financed by philanthropic foundations",
+                        "id": 100,
                         "score": 1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Predominantly financed by philanthropic foundations",
+                        "feedback": null
                       },
                       {
-                        "id": 15,
-                        "body": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
+                        "id": 101,
                         "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Predominantly financed by way of large donations (above 5000€ or equivalent per donation)",
+                        "feedback": null
                       },
                       {
-                        "id": 16,
-                        "body": "Largely financed by way of small donations (up to 5000€ or equivalent per donation)",
+                        "id": 102,
                         "score": 1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Predominantly financed by way of small donations (up to 5000€ or equivalent per donation)",
+                        "feedback": null
                       },
                       {
-                        "id": 17,
+                        "id": 103,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 18,
-                        "body": "I don’t know",
+                        "id": 104,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 3,
+                      "id": 20,
                       "impact": "y",
                       "feedback": null,
                       "selection": {
-                        "id": 3,
+                        "id": 20,
                         "start": 1,
                         "end": 2
                       }
@@ -206,63 +151,64 @@
                   }
                 },
                 {
-                  "id": 4,
+                  "id": 11,
                   "attributes": {
-                    "body": "Which of the answers below best describe the applicant’s public reporting requirements?",
-                    "createdAt": "2023-05-27T13:45:55.193Z",
-                    "updatedAt": "2023-05-29T07:47:56.947Z",
-                    "publishedAt": "2023-05-27T13:45:56.923Z",
+                    "body": "Which of the answers below best describe the data user's public reporting requirements?",
                     "label": "Q4",
+                    "createdAt": "2023-05-27T13:45:55.193Z",
+                    "updatedAt": "2023-09-25T12:09:48.270Z",
+                    "publishedAt": "2023-05-27T13:45:56.923Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 19,
-                        "body": "No reporting requirements",
+                        "id": 49,
                         "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "No reporting requirements",
+                        "feedback": null
                       },
                       {
-                        "id": 20,
+                        "id": 50,
+                        "score": 0,
+                        "type": "regular",
                         "body": "Annual report on key financials to financial institution",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 21,
-                        "body": "Annual public report on activities to government",
+                        "id": 51,
                         "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Annual public report on activities to government",
+                        "feedback": null
                       },
                       {
-                        "id": 22,
+                        "id": 52,
+                        "score": 0,
+                        "type": "regular",
                         "body": "Annual non-public report on activities to the funder (or other entities)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 23,
+                        "id": 53,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 24,
-                        "body": "I don’t know",
+                        "id": 54,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 4,
+                      "id": 11,
                       "impact": "y",
                       "feedback": "if the data user had public reporting requirements in place related to data use",
                       "selection": {
-                        "id": 4,
+                        "id": 11,
                         "start": 1,
                         "end": 1
                       }
@@ -270,49 +216,50 @@
                   }
                 },
                 {
-                  "id": 5,
+                  "id": 12,
                   "attributes": {
-                    "body": "Which of the answers below best describe the applicant’s legal obligations to provide information to the public?",
-                    "createdAt": "2023-05-27T13:47:42.716Z",
-                    "updatedAt": "2023-05-29T07:48:03.652Z",
-                    "publishedAt": "2023-05-27T13:48:14.241Z",
+                    "body": "Which of the answers below best describe the data user's legal obligations to provide information to the public?",
                     "label": "Q5",
+                    "createdAt": "2023-05-27T13:47:42.716Z",
+                    "updatedAt": "2023-09-25T12:09:55.625Z",
+                    "publishedAt": "2023-08-11T08:35:27.914Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 25,
+                        "id": 55,
+                        "score": -3,
+                        "type": "regular",
                         "body": "No legal options to compel disclosure of information about data use activities to the public beyond civil or criminal proceedings (e.g., as a result of GDPR obligations)",
-                        "score": -2,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 26,
-                        "body": "Can be legally compelled to disclose information about its data use activities (e.g., via freedom of information laws)",
+                        "id": 56,
                         "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Can be legally compelled to disclose information about its data use activities (e.g., via freedom of information laws)",
+                        "feedback": null
                       },
                       {
-                        "id": 27,
+                        "id": 57,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 28,
-                        "body": "I don’t know",
+                        "id": 58,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 5,
+                      "id": 12,
                       "impact": "x",
                       "feedback": "if the data user could be legally compelled to disclose information about data use activities to the public (beyond civil and criminal proceedings)",
                       "selection": {
-                        "id": 5,
+                        "id": 12,
                         "start": 1,
                         "end": 1
                       }
@@ -320,63 +267,64 @@
                   }
                 },
                 {
-                  "id": 6,
+                  "id": 13,
                   "attributes": {
-                    "body": "Which of the answers below best describe the applicant’s track record in providing information about all its activities to the public? (e.g. as a result of freedom of information requests, other legal obligations, or voluntarily)",
-                    "createdAt": "2023-05-27T13:51:29.172Z",
-                    "updatedAt": "2023-05-29T07:48:10.413Z",
-                    "publishedAt": "2023-05-27T13:51:30.322Z",
+                    "body": "Which of the answers below best describe the data user's track record in providing information about all its activities to the public? (e.g. as a result of freedom of information requests, other legal obligations, or voluntarily)",
                     "label": "Q6",
+                    "createdAt": "2023-05-27T13:51:29.172Z",
+                    "updatedAt": "2023-09-25T12:10:04.648Z",
+                    "publishedAt": "2023-05-27T13:51:30.322Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 29,
-                        "body": "Track record of rejecting information requests",
+                        "id": 59,
                         "score": -2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Track record of rejecting information requests",
+                        "feedback": null
                       },
                       {
-                        "id": 30,
+                        "id": 60,
+                        "score": 0,
+                        "type": "regular",
                         "body": "Track record of selectively responding to information requests",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 31,
-                        "body": "Track record of promptly responding to all information requests",
+                        "id": 61,
                         "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Track record of promptly responding to all information requests",
+                        "feedback": null
                       },
                       {
-                        "id": 32,
+                        "id": 62,
+                        "score": -2,
+                        "type": "regular",
                         "body": "No track record",
-                        "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 33,
+                        "id": 63,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 34,
-                        "body": "I don’t know",
+                        "id": 64,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 6,
+                      "id": 13,
                       "impact": "x",
                       "feedback": "if the data user complied (better) with information requests regarding data use",
                       "selection": {
-                        "id": 6,
+                        "id": 13,
                         "start": 1,
                         "end": 1
                       }
@@ -392,77 +340,78 @@
             "questions": {
               "data": [
                 {
-                  "id": 7,
+                  "id": 14,
                   "attributes": {
-                    "body": "Which of the answers below best describe the applicant’s motivation for the data use?",
-                    "createdAt": "2023-05-27T13:59:39.812Z",
-                    "updatedAt": "2023-05-29T07:48:15.946Z",
-                    "publishedAt": "2023-05-27T13:59:40.865Z",
+                    "body": "Which of the answers below best describe the data user's motivation for the data use?",
                     "label": "Q7",
+                    "createdAt": "2023-05-27T13:59:39.812Z",
+                    "updatedAt": "2023-09-25T12:10:14.027Z",
+                    "publishedAt": "2023-05-27T13:59:40.865Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 35,
+                        "id": 65,
+                        "score": 2,
+                        "type": "regular",
                         "body": "Scientific research",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 36,
+                        "id": 66,
+                        "score": 2,
+                        "type": "regular",
                         "body": "Medical purposes",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 37,
+                        "id": 67,
+                        "score": 2,
+                        "type": "regular",
                         "body": "Combat climate change",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 38,
+                        "id": 68,
+                        "score": 2,
+                        "type": "regular",
                         "body": "Combat inequality (social, health, economic)",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 39,
+                        "id": 69,
+                        "score": -1,
+                        "type": "regular",
                         "body": "Sell a product/service",
-                        "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 40,
+                        "id": 70,
+                        "score": -1,
+                        "type": "regular",
                         "body": "Improve economic productivity/revenue",
-                        "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 41,
+                        "id": 71,
+                        "score": 0,
+                        "type": "otherInclusive",
                         "body": "Other (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherInclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 42,
-                        "body": "I don’t know",
+                        "id": 72,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 7,
+                      "id": 14,
                       "impact": "y",
                       "feedback": "if the motivation for the data use went beyond generating commercial profits, and prioritised the collective good",
                       "selection": {
-                        "id": 7,
+                        "id": 14,
                         "start": 1,
                         "end": 8
                       }
@@ -470,56 +419,57 @@
                   }
                 },
                 {
-                  "id": 8,
+                  "id": 18,
                   "attributes": {
                     "body": "Which of the answers below best describe the data user’s track record in increasing the benefits of their data use in low and middle-income countries (LMICs)?",
-                    "createdAt": "2023-05-27T14:03:40.278Z",
-                    "updatedAt": "2023-05-29T07:48:21.609Z",
-                    "publishedAt": "2023-05-27T14:03:42.338Z",
                     "label": "Q8",
+                    "createdAt": "2023-05-27T14:03:40.278Z",
+                    "updatedAt": "2023-09-25T12:19:03.861Z",
+                    "publishedAt": "2023-05-27T14:03:42.338Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 43,
-                        "body": "No track record of adjusting the data use to increase benefits in LMICs",
+                        "id": 88,
                         "score": -2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "No track record of adjusting the data use to increase benefits in LMICs",
+                        "feedback": null
                       },
                       {
-                        "id": 44,
-                        "body": "Some track record of adjusting the data use to increase benefits in LMICs",
+                        "id": 89,
                         "score": 1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Some track record of adjusting the data use to increase benefits in LMICs",
+                        "feedback": null
                       },
                       {
-                        "id": 45,
-                        "body": "Strong track record of adjusting the data use to increase benefits in LMICs",
+                        "id": 90,
                         "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Strong track record of adjusting the data use to increase benefits in LMICs",
+                        "feedback": null
                       },
                       {
-                        "id": 46,
+                        "id": 91,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "Not applicable (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 47,
-                        "body": "I don’t know",
+                        "id": 92,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 8,
+                      "id": 18,
                       "impact": "y",
                       "feedback": "if the data user had previously ensured that their data use benefits people in low and middle-income countries (LMICs)",
                       "selection": {
-                        "id": 8,
+                        "id": 18,
                         "start": 1,
                         "end": 1
                       }
@@ -530,38 +480,39 @@
                   "id": 9,
                   "attributes": {
                     "body": "Which of the answers below best describe the track record of the data user in strengthening the benefits for groups protected by anti-discrimination laws (beyond formal legal requirements)?",
-                    "createdAt": "2023-05-27T14:05:41.986Z",
-                    "updatedAt": "2023-05-29T07:48:27.409Z",
-                    "publishedAt": "2023-05-27T14:05:47.653Z",
                     "label": "Q9",
+                    "createdAt": "2023-05-27T14:05:41.986Z",
+                    "updatedAt": "2023-09-25T12:19:53.085Z",
+                    "publishedAt": "2023-05-27T14:05:47.653Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 48,
-                        "body": "No track record of  strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
+                        "id": 41,
                         "score": -2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "No track record of  strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
+                        "feedback": null
                       },
                       {
-                        "id": 49,
-                        "body": "Some track record of strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
+                        "id": 42,
                         "score": 1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Some track record of strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
+                        "feedback": null
                       },
                       {
-                        "id": 50,
-                        "body": "Strong track record of strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
+                        "id": 43,
                         "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Strong track record of strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
+                        "feedback": null
                       },
                       {
-                        "id": 51,
-                        "body": "I don’t know",
+                        "id": 44,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
@@ -580,38 +531,39 @@
                   "id": 10,
                   "attributes": {
                     "body": "Which of the answers below best describe the data use’s benefits for future generations?",
-                    "createdAt": "2023-05-27T14:06:56.400Z",
-                    "updatedAt": "2023-05-29T07:48:32.422Z",
-                    "publishedAt": "2023-05-27T14:07:00.328Z",
                     "label": "Q10",
+                    "createdAt": "2023-05-27T14:06:56.400Z",
+                    "updatedAt": "2023-09-25T12:20:03.379Z",
+                    "publishedAt": "2023-05-27T14:07:00.328Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 52,
+                        "id": 45,
+                        "score": 0,
+                        "type": "regular",
                         "body": "Benefits primarily cover issues of current relevance",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 53,
-                        "body": "Benefits primarily cover issues of relevance for future generations",
+                        "id": 46,
                         "score": 1,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Benefits primarily cover issues of relevance for future generations",
+                        "feedback": null
                       },
                       {
-                        "id": 54,
-                        "body": "Benefits are likely to increase in the future",
+                        "id": 47,
                         "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Benefits are likely to increase in the future",
+                        "feedback": null
                       },
                       {
-                        "id": 55,
-                        "body": "I don’t know",
+                        "id": 48,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
@@ -635,77 +587,78 @@
             "questions": {
               "data": [
                 {
-                  "id": 11,
+                  "id": 1,
                   "attributes": {
                     "body": "Which of the answers below best describe the foreseeable risk to (any) individuals or groups coming from the data use?",
+                    "label": "Q11",
                     "createdAt": "2023-05-27T14:21:02.261Z",
                     "updatedAt": "2023-05-29T07:48:38.467Z",
                     "publishedAt": "2023-05-27T14:21:04.094Z",
-                    "label": "Q11",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 56,
+                        "id": 1,
+                        "score": -3,
+                        "type": "regular",
                         "body": "Physical risk",
-                        "score": -3,
-                        "feedback": "if the data use posed lower physical risk to people",
-                        "type": "regular"
+                        "feedback": "if the data use posed lower physical risk to people"
                       },
                       {
-                        "id": 57,
+                        "id": 2,
+                        "score": -3,
+                        "type": "regular",
                         "body": "Financial risk",
-                        "score": -3,
-                        "feedback": "if the data use posed lower financial risk to people",
-                        "type": "regular"
+                        "feedback": "if the data use posed lower financial risk to people"
                       },
                       {
-                        "id": 58,
+                        "id": 3,
+                        "score": -3,
+                        "type": "regular",
                         "body": "Informational risk",
-                        "score": -3,
-                        "feedback": "if the data use posed lower informational risk to people",
-                        "type": "regular"
+                        "feedback": "if the data use posed lower informational risk to people"
                       },
                       {
-                        "id": 59,
+                        "id": 4,
+                        "score": -3,
+                        "type": "regular",
                         "body": "Legal risk",
-                        "score": -3,
-                        "feedback": "if the data use posed lower legal risk to people",
-                        "type": "regular"
+                        "feedback": "if the data use posed lower legal risk to people"
                       },
                       {
-                        "id": 60,
+                        "id": 5,
+                        "score": -3,
+                        "type": "regular",
                         "body": "Social risk",
-                        "score": -3,
-                        "feedback": "if the data use posed lower social risk to people",
-                        "type": "regular"
+                        "feedback": "if the data use posed lower social risk to people"
                       },
                       {
-                        "id": 61,
+                        "id": 6,
+                        "score": -3,
+                        "type": "regular",
                         "body": "Political risk",
-                        "score": -3,
-                        "feedback": "if the data use posed lower political risk to people",
-                        "type": "regular"
+                        "feedback": "if the data use posed lower political risk to people"
                       },
                       {
-                        "id": 62,
+                        "id": 7,
+                        "score": -3,
+                        "type": "otherInclusive",
                         "body": "Other (please specify)",
-                        "score": -3,
-                        "feedback": "if the data use posed fewer other risks (beyond those listed) to any individuals or groups",
-                        "type": "otherInclusive"
+                        "feedback": "if the data use posed fewer other risks (beyond those listed) to any individuals or groups"
                       },
                       {
-                        "id": 63,
-                        "body": "I don’t know",
+                        "id": 8,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 11,
+                      "id": 1,
                       "impact": "x",
                       "feedback": null,
                       "selection": {
-                        "id": 11,
+                        "id": 1,
                         "start": 1,
                         "end": 8
                       }
@@ -713,49 +666,50 @@
                   }
                 },
                 {
-                  "id": 12,
+                  "id": 8,
                   "attributes": {
                     "body": "Which of the answers below best describe foreseeable effects of the data use on the natural environment (e.g., carbon footprint, energy usage)?",
-                    "createdAt": "2023-05-27T14:24:43.957Z",
-                    "updatedAt": "2023-05-29T07:48:44.133Z",
-                    "publishedAt": "2023-05-27T14:24:44.977Z",
                     "label": "Q12",
+                    "createdAt": "2023-05-27T14:24:43.957Z",
+                    "updatedAt": "2023-08-11T08:31:28.955Z",
+                    "publishedAt": "2023-05-27T14:24:44.977Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 64,
+                        "id": 37,
+                        "score": -5,
+                        "type": "regular",
                         "body": "Natural environment is negatively impacted",
-                        "score": -4,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 65,
+                        "id": 38,
+                        "score": 5,
+                        "type": "regular",
                         "body": "Natural environment is positively impacted",
-                        "score": 4,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 66,
+                        "id": 39,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 67,
-                        "body": "I don’t know",
+                        "id": 40,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 12,
+                      "id": 8,
                       "impact": "x",
                       "feedback": "if the negative environmental impacts of the data use were lower",
                       "selection": {
-                        "id": 12,
+                        "id": 8,
                         "start": 1,
                         "end": 1
                       }
@@ -763,49 +717,50 @@
                   }
                 },
                 {
-                  "id": 13,
+                  "id": 2,
                   "attributes": {
                     "body": "Which of the answers below best describe the possible risks for groups given special protection by law (e.g., children, persons with disabilities, minorities)? An example for financial risk would be a refused loan application due to being a member of an ethnic minority group.",
+                    "label": "Q13",
                     "createdAt": "2023-05-27T14:26:54.399Z",
                     "updatedAt": "2023-05-29T07:48:50.019Z",
                     "publishedAt": "2023-05-27T14:26:56.739Z",
-                    "label": "Q13",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 68,
-                        "body": "Data use entails risk for protected groups",
+                        "id": 9,
                         "score": -5,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Data use entails risk for protected groups",
+                        "feedback": null
                       },
                       {
-                        "id": 69,
+                        "id": 10,
+                        "score": 0,
+                        "type": "regular",
                         "body": "Data use entails no foreseeable risk for protected groups",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "feedback": null
                       },
                       {
-                        "id": 70,
+                        "id": 11,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "Other (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 71,
-                        "body": "I don’t know",
+                        "id": 12,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 13,
+                      "id": 2,
                       "impact": "x",
                       "feedback": "if the data use did not entail possible risks for groups afforded special protection under the law",
                       "selection": {
-                        "id": 13,
+                        "id": 2,
                         "start": 1,
                         "end": 1
                       }
@@ -813,56 +768,57 @@
                   }
                 },
                 {
-                  "id": 14,
+                  "id": 3,
                   "attributes": {
                     "body": "Which of the answers below best describe the data user’s communication about risks of their data use to the public?",
+                    "label": "Q14",
                     "createdAt": "2023-05-27T14:30:32.864Z",
                     "updatedAt": "2023-05-29T07:48:56.512Z",
                     "publishedAt": "2023-05-27T14:30:34.570Z",
-                    "label": "Q14",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 72,
-                        "body": "No information is provided",
+                        "id": 13,
                         "score": -2,
-                        "feedback": "if the orgnisation provided more information about risks of its data use to the public",
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "No information is provided",
+                        "feedback": "if the orgnisation provided more information about risks of its data use to the public"
                       },
                       {
-                        "id": 73,
-                        "body": "Information about risks provided to the public at some point during the data use",
+                        "id": 14,
                         "score": -1,
-                        "feedback": "if the data user informed the public of any risks prior to the commencement of data use",
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Information about risks provided to the public at some point during the data use",
+                        "feedback": "if the data user informed the public of any risks prior to the commencement of data use"
                       },
                       {
-                        "id": 74,
-                        "body": "Information about risks provided to the public prior to commencement of data use",
+                        "id": 15,
                         "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Information about risks provided to the public prior to commencement of data use",
+                        "feedback": null
                       },
                       {
-                        "id": 75,
+                        "id": 16,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 76,
-                        "body": "I don’t know",
+                        "id": 17,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 14,
+                      "id": 3,
                       "impact": "x",
                       "feedback": null,
                       "selection": {
-                        "id": 14,
+                        "id": 3,
                         "start": 1,
                         "end": 1
                       }
@@ -870,49 +826,50 @@
                   }
                 },
                 {
-                  "id": 15,
+                  "id": 4,
                   "attributes": {
                     "body": "Which of the answers below best describe the risk of the data being used for purposes other than originally intended (dual use)?",
+                    "label": "Q15",
                     "createdAt": "2023-05-27T14:32:01.547Z",
                     "updatedAt": "2023-05-29T07:49:02.120Z",
                     "publishedAt": "2023-05-27T14:32:04.096Z",
-                    "label": "Q15",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 77,
-                        "body": "Dual use is likely and conceivable in concrete terms",
+                        "id": 18,
                         "score": -4,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Dual use is likely and conceivable in concrete terms",
+                        "feedback": null
                       },
                       {
-                        "id": 78,
-                        "body": "Dual use is unlikely but conceivable in principle",
+                        "id": 19,
                         "score": -2,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "Dual use is unlikely but conceivable in principle",
+                        "feedback": null
                       },
                       {
-                        "id": 79,
+                        "id": 20,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 80,
-                        "body": "I don’t know",
+                        "id": 21,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 15,
+                      "id": 4,
                       "impact": "x",
                       "feedback": "if there was a lower risk of the data being used for purposes other than originally intended (dual use)",
                       "selection": {
-                        "id": 15,
+                        "id": 4,
                         "start": 1,
                         "end": 1
                       }
@@ -928,211 +885,55 @@
             "questions": {
               "data": [
                 {
-                  "id": 16,
-                  "attributes": {
-                    "body": "Which of the answers below best describe the applicant’s way of assessing risk?",
-                    "createdAt": "2023-05-27T14:34:12.609Z",
-                    "updatedAt": "2023-05-29T07:49:07.866Z",
-                    "publishedAt": "2023-05-27T14:34:15.520Z",
-                    "label": "Q16",
-                    "choices": [
-                      {
-                        "id": 81,
-                        "body": "No risk assessment in place",
-                        "score": -1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 82,
-                        "body": "Ad-hoc risk assessment",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 83,
-                        "body": "Mandatory risk assessment",
-                        "score": 1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 84,
-                        "body": "I don’t know",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "none"
-                      }
-                    ],
-                    "metadata": {
-                      "id": 16,
-                      "impact": "x",
-                      "feedback": "if the data user had a (better) risk assessment in place",
-                      "selection": {
-                        "id": 16,
-                        "start": 1,
-                        "end": 1
-                      }
-                    }
-                  }
-                },
-                {
-                  "id": 17,
-                  "attributes": {
-                    "body": "Which of the answers below best describe the status of findings from the risk assessment?",
-                    "createdAt": "2023-05-27T14:36:29.825Z",
-                    "updatedAt": "2023-05-29T07:49:13.638Z",
-                    "publishedAt": "2023-05-27T14:36:30.971Z",
-                    "label": "Q17",
-                    "choices": [
-                      {
-                        "id": 85,
-                        "body": "Findings which result in information",
-                        "score": 1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 86,
-                        "body": "Findings which result in strategic actions",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 87,
-                        "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
-                      },
-                      {
-                        "id": 88,
-                        "body": "I don’t know",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "none"
-                      }
-                    ],
-                    "metadata": {
-                      "id": 17,
-                      "impact": "x",
-                      "feedback": "if findings from your risk assessment resulted in strategic actions",
-                      "selection": {
-                        "id": 17,
-                        "start": 1,
-                        "end": 1
-                      }
-                    }
-                  }
-                },
-                {
-                  "id": 18,
-                  "attributes": {
-                    "body": "Which of the answers below best describe the involvement of persons trained in ethics in the process of assessing risks?",
-                    "createdAt": "2023-05-27T14:37:37.892Z",
-                    "updatedAt": "2023-05-29T07:49:21.372Z",
-                    "publishedAt": "2023-05-27T14:37:40.033Z",
-                    "label": "Q18",
-                    "choices": [
-                      {
-                        "id": 89,
-                        "body": "No risk assessment in place",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 90,
-                        "body": "Trained ethicists are not included in the risk assessment",
-                        "score": -1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 91,
-                        "body": "Trained ethicists are included in the risk assessment",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 92,
-                        "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
-                      },
-                      {
-                        "id": 93,
-                        "body": "I don’t know",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "none"
-                      }
-                    ],
-                    "metadata": {
-                      "id": 18,
-                      "impact": "x",
-                      "feedback": "if the risk assessment included individuals with specific ethics training and expertise",
-                      "selection": {
-                        "id": 18,
-                        "start": 1,
-                        "end": 1
-                      }
-                    }
-                  }
-                },
-                {
                   "id": 19,
                   "attributes": {
-                    "body": "Which of the answers below best describe the process of harm monitoring?",
-                    "createdAt": "2023-05-27T14:38:39.936Z",
-                    "updatedAt": "2023-05-29T07:49:30.023Z",
-                    "publishedAt": "2023-05-27T14:38:40.940Z",
-                    "label": "Q19",
+                    "body": "If there is a risk assessment procedure in place, how are its results used?",
+                    "label": "Q17",
+                    "createdAt": "2023-05-27T14:36:29.825Z",
+                    "updatedAt": "2023-09-26T12:28:37.505Z",
+                    "publishedAt": "2023-05-27T14:36:30.971Z",
+                    "explanation": null,
                     "choices": [
                       {
+                        "id": 93,
+                        "score": 0,
+                        "type": "regular",
+                        "body": "No risk assessment in place",
+                        "feedback": null
+                      },
+                      {
                         "id": 94,
-                        "body": "No monitoring of harms",
-                        "score": -1,
-                        "feedback": null,
-                        "type": "regular"
+                        "score": 1,
+                        "type": "regular",
+                        "body": "Findings which result in information",
+                        "feedback": null
                       },
                       {
                         "id": 95,
-                        "body": "Harms monitored in an incomplete manner",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "score": 2,
+                        "type": "regular",
+                        "body": "Findings which result in strategic actions",
+                        "feedback": null
                       },
                       {
                         "id": 96,
-                        "body": "Harms are monitored continuously",
-                        "score": 1,
-                        "feedback": null,
-                        "type": "regular"
+                        "score": 0,
+                        "type": "otherExclusive",
+                        "body": "None of the above (please specify)",
+                        "feedback": null
                       },
                       {
                         "id": 97,
-                        "body": "None of the above (please specify)",
                         "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
-                      },
-                      {
-                        "id": 98,
+                        "type": "none",
                         "body": "I don’t know",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "feedback": null
                       }
                     ],
                     "metadata": {
                       "id": 19,
                       "impact": "x",
-                      "feedback": "if the data user monitored harm that is (directly or indirectly) caused by their data use",
+                      "feedback": "if findings from your risk assessment resulted in strategic actions",
                       "selection": {
                         "id": 19,
                         "start": 1,
@@ -1142,49 +943,115 @@
                   }
                 },
                 {
-                  "id": 20,
+                  "id": 5,
                   "attributes": {
-                    "body": "Which of the answers below best describe the ability of the data user to end their activity, once unexpected harms occur?",
-                    "createdAt": "2023-05-27T14:39:43.202Z",
-                    "updatedAt": "2023-05-29T07:49:36.540Z",
-                    "publishedAt": "2023-05-27T14:39:56.978Z",
-                    "label": "Q20",
+                    "body": "Which of the answers below best describe the involvement of persons trained in ethics in the process of assessing risks?",
+                    "label": "Q18",
+                    "createdAt": "2023-05-27T14:37:37.892Z",
+                    "updatedAt": "2023-05-29T07:49:21.372Z",
+                    "publishedAt": "2023-05-27T14:37:40.033Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 99,
-                        "body": "Harm-causing activity cannot be ended immediately",
-                        "score": -3,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 100,
-                        "body": "Harm-causing activity can be ended immediately",
+                        "id": 22,
                         "score": 0,
-                        "feedback": null,
-                        "type": "regular"
+                        "type": "regular",
+                        "body": "No risk assessment in place",
+                        "feedback": null
                       },
                       {
-                        "id": 101,
+                        "id": 23,
+                        "score": -1,
+                        "type": "regular",
+                        "body": "Trained ethicists are not included in the risk assessment",
+                        "feedback": null
+                      },
+                      {
+                        "id": 24,
+                        "score": 2,
+                        "type": "regular",
+                        "body": "Trained ethicists are included in the risk assessment",
+                        "feedback": null
+                      },
+                      {
+                        "id": 25,
+                        "score": 0,
+                        "type": "otherExclusive",
                         "body": "None of the above (please specify)",
-                        "score": 0,
-                        "feedback": null,
-                        "type": "otherExclusive"
+                        "feedback": null
                       },
                       {
-                        "id": 102,
-                        "body": "I don’t know",
+                        "id": 26,
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
-                      "id": 20,
+                      "id": 5,
                       "impact": "x",
-                      "feedback": "if it were possible to end the harm-causing activity immediately",
+                      "feedback": "if the risk assessment included individuals with specific ethics training and expertise",
                       "selection": {
-                        "id": 20,
+                        "id": 5,
+                        "start": 1,
+                        "end": 1
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": 6,
+                  "attributes": {
+                    "body": "Which of the answers below best describe the process of harm monitoring?",
+                    "label": "Q19",
+                    "createdAt": "2023-05-27T14:38:39.936Z",
+                    "updatedAt": "2023-05-29T07:49:30.023Z",
+                    "publishedAt": "2023-05-27T14:38:40.940Z",
+                    "explanation": null,
+                    "choices": [
+                      {
+                        "id": 27,
+                        "score": -1,
+                        "type": "regular",
+                        "body": "No monitoring of harms",
+                        "feedback": null
+                      },
+                      {
+                        "id": 28,
+                        "score": 0,
+                        "type": "regular",
+                        "body": "Harms monitored in an incomplete manner",
+                        "feedback": null
+                      },
+                      {
+                        "id": 29,
+                        "score": 1,
+                        "type": "regular",
+                        "body": "Harms are monitored continuously",
+                        "feedback": null
+                      },
+                      {
+                        "id": 30,
+                        "score": 0,
+                        "type": "otherExclusive",
+                        "body": "None of the above (please specify)",
+                        "feedback": null
+                      },
+                      {
+                        "id": 31,
+                        "score": 0,
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
+                      }
+                    ],
+                    "metadata": {
+                      "id": 6,
+                      "impact": "x",
+                      "feedback": "if the data user monitored harm that is (directly or indirectly) caused by their data use",
+                      "selection": {
+                        "id": 6,
                         "start": 1,
                         "end": 1
                       }
@@ -1194,54 +1061,106 @@
                 {
                   "id": 21,
                   "attributes": {
-                    "body": "Which of the answers below best describe the complaint procedures available to individuals?",
-                    "createdAt": "2023-05-27T14:41:39.598Z",
-                    "updatedAt": "2023-05-29T07:49:42.531Z",
-                    "publishedAt": "2023-05-27T14:41:41.560Z",
-                    "label": "Q21",
+                    "body": "Which of the answers below best describe the ability of the data user to end their activity, once unexpected harms occur?",
+                    "label": "Q20",
+                    "createdAt": "2023-05-27T14:39:43.202Z",
+                    "updatedAt": "2023-09-27T15:19:52.930Z",
+                    "publishedAt": "2023-05-27T14:39:56.978Z",
+                    "explanation": null,
                     "choices": [
                       {
-                        "id": 103,
-                        "body": "No complaint procedure in place",
-                        "score": -3,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
-                        "id": 104,
-                        "body": "Complaint procedure can be initiated online",
-                        "score": 1,
-                        "feedback": null,
-                        "type": "regular"
-                      },
-                      {
                         "id": 105,
-                        "body": "Complaint procedure designed in an accessible manner",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "score": -3,
+                        "type": "regular",
+                        "body": "Harm-causing activity cannot be ended immediately",
+                        "feedback": null
                       },
                       {
                         "id": 106,
-                        "body": "Guaranteed response times (under 4 weeks)",
-                        "score": 2,
-                        "feedback": null,
-                        "type": "regular"
+                        "score": 1,
+                        "type": "regular",
+                        "body": "Harm-causing activity can be ended immediately",
+                        "feedback": null
                       },
                       {
                         "id": 107,
-                        "body": "I don’t know",
                         "score": 0,
-                        "feedback": null,
-                        "type": "none"
+                        "type": "otherExclusive",
+                        "body": "None of the above (please specify)",
+                        "feedback": null
+                      },
+                      {
+                        "id": 108,
+                        "score": 0,
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
                       }
                     ],
                     "metadata": {
                       "id": 21,
                       "impact": "x",
-                      "feedback": "if the data user had a complaint procedure regarding their data use in place",
+                      "feedback": "if it were possible to end the harm-causing activity immediately",
                       "selection": {
                         "id": 21,
+                        "start": 1,
+                        "end": 1
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": 7,
+                  "attributes": {
+                    "body": "Which of the answers below best describe the complaint procedures available to individuals?",
+                    "label": "Q21",
+                    "createdAt": "2023-05-27T14:41:39.598Z",
+                    "updatedAt": "2023-05-29T07:49:42.531Z",
+                    "publishedAt": "2023-05-27T14:41:41.560Z",
+                    "explanation": null,
+                    "choices": [
+                      {
+                        "id": 32,
+                        "score": -3,
+                        "type": "regular",
+                        "body": "No complaint procedure in place",
+                        "feedback": null
+                      },
+                      {
+                        "id": 33,
+                        "score": 1,
+                        "type": "regular",
+                        "body": "Complaint procedure can be initiated online",
+                        "feedback": null
+                      },
+                      {
+                        "id": 34,
+                        "score": 2,
+                        "type": "regular",
+                        "body": "Complaint procedure designed in an accessible manner",
+                        "feedback": null
+                      },
+                      {
+                        "id": 35,
+                        "score": 2,
+                        "type": "regular",
+                        "body": "Guaranteed response times (under 4 weeks)",
+                        "feedback": null
+                      },
+                      {
+                        "id": 36,
+                        "score": 0,
+                        "type": "none",
+                        "body": "I don’t know",
+                        "feedback": null
+                      }
+                    ],
+                    "metadata": {
+                      "id": 7,
+                      "impact": "x",
+                      "feedback": "if the data user had a complaint procedure regarding their data use in place",
+                      "selection": {
+                        "id": 7,
                         "start": 1,
                         "end": 5
                       }
@@ -1254,5 +1173,13 @@
         ]
       }
     }
-  ]
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 1
+    }
+  }
 }

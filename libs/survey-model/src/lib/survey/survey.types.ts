@@ -13,9 +13,9 @@ export type Question = {
   id: number;
   label: `Q${number}`;
   body: string;
+  explanation: string | null;
   choices: AnswerChoice[];
   metadata: QuestionMetadata;
-  explanation: string | null;
 };
 
 type QuestionMetadata = {
