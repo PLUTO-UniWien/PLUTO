@@ -36,6 +36,9 @@
     "explanation": {
       "type": "text",
       "required": false
+    },
+    "weightingAppendixDescription": {
+      "type": "richtext"
     }
   }
 }

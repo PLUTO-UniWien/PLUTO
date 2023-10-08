@@ -751,6 +751,7 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
     body: Attribute.Text & Attribute.Required;
     label: Attribute.String & Attribute.Required;
     explanation: Attribute.Text;
+    weightingAppendixDescription: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

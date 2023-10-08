@@ -16,6 +16,7 @@ export type Question = {
   explanation: string | null;
   choices: AnswerChoice[];
   metadata: QuestionMetadata;
+  weightingAppendixDescription: string | null;
 };
 
 type QuestionMetadata = {
