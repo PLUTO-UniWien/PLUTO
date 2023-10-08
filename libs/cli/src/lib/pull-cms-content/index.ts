@@ -15,6 +15,10 @@ export const config = [
     dest: 'apps/survey-public/src/views/glossary/glossary.json',
   },
   {
+    apiPath: '/content/appendix-weighting',
+    dest: 'apps/survey-public/src/views/appendix-weighting/appendix-weighting.json',
+  },
+  {
     apiPath: '/survey',
     dest: 'libs/survey-model/src/lib/static/survey.json',
   },
@@ -51,7 +55,12 @@ async function fetchAndWrite(apiPath: string, dest: string) {
 }
 
 function loadJsonFromFile(path: string) {
-  return JSON.parse(fs.readFileSync(path, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(path, 'utf8'));
+  } catch (e) {
+    console.error(`Error reading ${path}: ${e}`);
+    return {};
+  }
 }
 
 export async function main() {
