@@ -32,9 +32,12 @@ export function strapiFetch(
   });
 }
 
-export function singleTypeGetter(slug: string) {
+export function singleTypeGetter(
+  slug: string,
+  params: Record<string, string> = {}
+) {
   async function GET() {
-    const response = await strapiFetch(slug);
+    const response = await strapiFetch(slug, params);
 
     if (!response.ok) {
       return NextResponse.json(await extractError(response), {

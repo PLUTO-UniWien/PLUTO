@@ -18,6 +18,18 @@ export interface AnswerChoiceChoices extends Schema.Component {
   };
 }
 
+export interface GlossaryItemGlossaryItem extends Schema.Component {
+  collectionName: 'components_glossary_item_glossary_items';
+  info: {
+    displayName: 'Glossary Item';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    description: Attribute.RichText & Attribute.Required;
+  };
+}
+
 export interface QuestionMetadataMetadata extends Schema.Component {
   collectionName: 'components_question_metadata_metadata';
   info: {
@@ -104,6 +116,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'answer-choice.choices': AnswerChoiceChoices;
+      'glossary-item.glossary-item': GlossaryItemGlossaryItem;
       'question-metadata.metadata': QuestionMetadataMetadata;
       'result-item.result-item': ResultItemResultItem;
       'selection-range.selection-range': SelectionRangeSelectionRange;

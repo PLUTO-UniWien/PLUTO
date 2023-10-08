@@ -677,6 +677,37 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiGlossaryPageGlossaryPage extends Schema.SingleType {
+  collectionName: 'glossary_pages';
+  info: {
+    singularName: 'glossary-page';
+    pluralName: 'glossary-pages';
+    displayName: 'Glossary Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    introduction: Attribute.RichText & Attribute.Required;
+    glossaryItems: Attribute.Component<'glossary-item.glossary-item', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::glossary-page.glossary-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::glossary-page.glossary-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHomeHome extends Schema.SingleType {
   collectionName: 'homes';
   info: {
@@ -857,6 +888,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::glossary-page.glossary-page': ApiGlossaryPageGlossaryPage;
       'api::home.home': ApiHomeHome;
       'api::question.question': ApiQuestionQuestion;
       'api::result.result': ApiResultResult;
