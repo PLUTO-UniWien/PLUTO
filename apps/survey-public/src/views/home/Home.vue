@@ -1,32 +1,27 @@
 <template>
-  <div class="home">
-    <header-component />
-    <div class="d-flex flex-column flex-grow-1">
-      <main id="intro">
-        <markdown-renderer :content="content" />
-        <div class="start-btn-container">
-          <b-button
-            variant="primary"
-            @click="startSurvey"
-            :size="$mq === 'xs' || $mq === 'sm' ? 'md' : 'lg'"
-            >{{ launchButtonText }}</b-button
-          >
-        </div>
-        <div class="flex-grow-1"></div>
-        <footer id="contributors">
-          <markdown-renderer :content="contributorsInfo" />
-        </footer>
-      </main>
+  <main-layout>
+    <markdown-renderer :content="content" />
+    <div class="start-btn-container">
+      <b-button
+        variant="primary"
+        @click="startSurvey"
+        :size="$mq === 'xs' || $mq === 'sm' ? 'md' : 'lg'"
+        >{{ launchButtonText }}</b-button
+      >
     </div>
-  </div>
+    <div class="flex-grow-1"></div>
+    <footer id="contributors">
+      <markdown-renderer :content="contributorsInfo" />
+    </footer>
+  </main-layout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HeaderComponent from '../../components/Header.vue';
 import MarkdownRenderer from '../../components/MarkdownRenderer.vue';
 import viewData from './home.json';
 import { HomeViewData, HomeViewProps } from './home.types';
+import MainLayout from '../../components/MainLayout.vue';
 
 function getHomeViewProps(): HomeViewProps {
   const homeData = viewData as HomeViewData;
@@ -45,8 +40,8 @@ function getHomeViewProps(): HomeViewProps {
 export default Vue.extend({
   name: 'HomeView',
   components: {
+    MainLayout,
     MarkdownRenderer,
-    HeaderComponent,
   },
   computed: {
     $mq() {
@@ -72,34 +67,8 @@ export default Vue.extend({
 <style lang="scss">
 @import '../../styles/bootstrap';
 
-.home {
-  min-height: calc(100vh - 2rem);
-  @extend .d-flex;
-  @extend .flex-column;
-}
-
-#intro {
-  @extend .flex-grow-1;
-  @extend .d-flex;
-  @extend .flex-column;
-  @extend .align-items-center;
-  @extend .shadow-lg;
-  @extend .bg-white;
-  @extend .text-justify;
-  @extend .mx-auto;
-
-  padding: 1rem 2.5rem;
-
-  max-width: 800px;
-  h1 {
-    @extend .py-2;
-    text-align: center;
-    color: $primary;
-  }
-
-  .start-btn-container {
-    margin: 1rem 0;
-  }
+.start-btn-container {
+  margin: 1rem 0;
 }
 
 #contributors {
