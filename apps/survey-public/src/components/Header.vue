@@ -2,13 +2,15 @@
   <b-row
     class="bg-app-green d-flex justify-content-center align-items-center py-2 py-md-4"
   >
-    <b-img
-      src="/logo.png"
-      alt="PLUTO logo"
-      fluid
-      class="logo"
-      :width="logoWidth"
-    />
+    <router-link to="/">
+      <b-img
+        src="/logo.png"
+        alt="PLUTO logo"
+        fluid
+        class="logo"
+        :width="logoWidth"
+      />
+    </router-link>
   </b-row>
 </template>
 
