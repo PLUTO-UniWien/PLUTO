@@ -11,6 +11,10 @@ export const config = [
     dest: 'apps/survey-public/src/views/result/result.json',
   },
   {
+    apiPath: '/content/glossary',
+    dest: 'apps/survey-public/src/views/glossary/glossary.json',
+  },
+  {
     apiPath: '/survey',
     dest: 'libs/survey-model/src/lib/static/survey.json',
   },
@@ -57,7 +61,7 @@ export async function main() {
     const didWrite = await fetchAndWrite(apiPath, dest);
     acc.push({ apiPath, dest, didWrite });
     return acc;
-  }, Promise.resolve([] as (typeof config[0] & { didWrite: boolean })[]));
+  }, Promise.resolve([] as ((typeof config)[0] & { didWrite: boolean })[]));
 }
 
 if (env.SHOULD_RUN_STANDALONE) {
