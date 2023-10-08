@@ -32,6 +32,10 @@
     "label": {
       "type": "string",
       "required": true
+    },
+    "explanation": {
+      "type": "text",
+      "required": false
     }
   }
 }

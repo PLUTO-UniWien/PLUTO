@@ -15,6 +15,7 @@ export type Question = {
   body: string;
   choices: AnswerChoice[];
   metadata: QuestionMetadata;
+  explanation: string | null;
 };
 
 type QuestionMetadata = {
