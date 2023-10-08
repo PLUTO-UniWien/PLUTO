@@ -2,6 +2,7 @@
   <main-layout>
     <h1>{{ title }}</h1>
     <markdown-renderer class="mt-2" :content="introduction" />
+    <p>No changes have been made to the weightings yet.</p>
   </main-layout>
 </template>
 
