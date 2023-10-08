@@ -4,8 +4,22 @@
   >
     <router-link to="/">
       <b-img
-        src="/logo.png"
-        alt="PLUTO logo"
+        src="/logo-pluto.png"
+        alt="Logo of PLUTO"
+        fluid
+        class="logo"
+        :width="logoWidth"
+      />
+      <b-img
+        src="/logo-digitize.png"
+        alt="Logo of Digizize! Computational Social Sciences"
+        fluid
+        class="logo"
+        :width="logoWidth"
+      />
+      <b-img
+        src="/logo-uniwien.png"
+        alt="Logo of the University of Vienna, Insitute of Political Sciences"
         fluid
         class="logo"
         :width="logoWidth"
@@ -32,3 +46,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.logo {
+  margin: 0 0.5rem;
+}
+</style>
