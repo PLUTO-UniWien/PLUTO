@@ -19,7 +19,7 @@ export type Question = {
   weightingAppendixDescription: string | null;
 };
 
-type QuestionMetadata = {
+export type QuestionMetadata = {
   impact: 'x' | 'y';
   selection: { start: number; end: number };
   feedback: string | null;
