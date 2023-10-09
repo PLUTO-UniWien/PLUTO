@@ -32,7 +32,7 @@ export default Vue.extend({
       if (!isLoading) {
         if (this.isLoggedIn) {
           const visitedSlug = window.location.href.split('/').pop();
-          if (pathExists(visitedSlug || '')) {
+          if (pathExists(visitedSlug || '') && visitedSlug !== 'login') {
             this.$router.push({ path: `/${visitedSlug}` }).catch(console.error);
           } else {
             this.$router.push({ name: 'Home' }).catch(console.error);
