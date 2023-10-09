@@ -4,7 +4,8 @@
   "info": {
     "singularName": "weighting-history-page",
     "pluralName": "weighting-history-pages",
-    "displayName": "Weighting History Page"
+    "displayName": "Weighting History Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,9 @@
     "introduction": {
       "type": "richtext",
       "required": true
+    },
+    "historyContent": {
+      "type": "richtext"
     }
   }
 }

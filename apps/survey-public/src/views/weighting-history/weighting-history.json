@@ -5,8 +5,9 @@
       "title": "Weighting History",
       "introduction": "Below you can observe a record of historical weightings.",
       "createdAt": "2023-10-08T16:09:37.696Z",
-      "updatedAt": "2023-10-08T16:09:45.623Z",
-      "publishedAt": "2023-10-08T16:09:45.620Z"
+      "updatedAt": "2023-10-09T08:53:07.815Z",
+      "publishedAt": "2023-10-08T16:09:45.620Z",
+      "historyContent": "### PLUTO v2 (16/10/2023)\n\n| Question | Answer | Weight |\n|-----------------------|--------|-------|\n| 1 Which of the answers below best describe the data user? | | |\n| 1a | Individual citizen/researcher | 1y |\n| 1b | Public organisation | 1y |\n| 1c | Private company | -1y |\n| 1d | Charity | 1y |\n| 1e | Other | 0 |\n| 2 Which of the answers below best describe the primary activity of the data user? | | |\n| 2a | Sell a product/service | -1y |\n| 2b | Fulfil a government task | 0 |\n| 2c | Conduct applied research | 0 |\n| 2d | Conduct basic research | 1y |\n| 2e | None of the above | 0 |\n| 2f | I don’t know | 0 |\n| 3 Which of the answers below best describe the financial structure of the data user? | | |\n| 3a | Predominantly financed through income from own activities or parent/partner company | -1y |\n| 3b | Predominantly financed by governmental organisations (national or international) | 0 |\n| 3c | Predominantly financed by philanthropic foundations | 1y |\n| 3d | Predominantly financed by way of large donations (above 5000€ or equivalent per donation) | -1y |\n| 3e | Predominantly financed by way of small donations (up to 5000€ or equivalent per donation) | 1y |\n| 3f | None of the above | 0 |\n| 3g | I don’t know | 0 |\n"
     }
   }
 }

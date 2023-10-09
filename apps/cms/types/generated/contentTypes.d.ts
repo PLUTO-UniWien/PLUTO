@@ -915,6 +915,7 @@ export interface ApiWeightingHistoryPageWeightingHistoryPage
     singularName: 'weighting-history-page';
     pluralName: 'weighting-history-pages';
     displayName: 'Weighting History Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -922,6 +923,7 @@ export interface ApiWeightingHistoryPageWeightingHistoryPage
   attributes: {
     title: Attribute.String & Attribute.Required;
     introduction: Attribute.RichText & Attribute.Required;
+    historyContent: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
