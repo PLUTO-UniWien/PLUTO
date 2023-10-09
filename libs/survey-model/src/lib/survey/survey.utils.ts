@@ -159,7 +159,7 @@ function getAnswersPerQuestion(resultItems: ResultItem[]) {
     const { questionNumber } = answerChoiceLabelInverse(choice);
     return questionLabel(questionNumber);
   });
-  console.log(answersPerQuestionGroup);
+
   return Object.entries(answersPerQuestionGroup).map(
     ([questionName, answers]) => {
       const question = questionByName(questionName);
