@@ -21,7 +21,7 @@
           :choices="question.choices"
           :explanation="question.explanation || ''"
           :body="question.body"
-          :label="question.label"
+          :label="getQuestionLabel(question)"
         />
       </div>
     </div>
@@ -37,7 +37,7 @@ import {
   AppendixWeightingViewProps,
 } from './appendix-weighting.types';
 import MarkdownRenderer from '../../components/MarkdownRenderer.vue';
-import { CURRENT_SURVEY } from '@pluto/survey-model';
+import { CURRENT_SURVEY, Question, questionLabel } from '@pluto/survey-model';
 import QuestionExplainedItem from '../../components/QuestionExplainedItem.vue';
 
 function getAppendixWeightingViewProps(): AppendixWeightingViewProps {
@@ -55,13 +55,21 @@ function getAppendixWeightingViewProps(): AppendixWeightingViewProps {
 
 export default Vue.extend({
   name: 'AppendixWeightingView',
+  methods: {
+    getQuestionLabel(question: Question) {
+      const questionIdx = this.questions.indexOf(question);
+      return questionLabel(questionIdx + 1);
+    },
+  },
   components: { QuestionExplainedItem, MainLayout, MarkdownRenderer },
   data() {
     const { title, introduction } = getAppendixWeightingViewProps();
+    const questions = CURRENT_SURVEY.groups.flatMap((group) => group.questions);
     return {
       title,
       introduction,
       survey: CURRENT_SURVEY,
+      questions,
     };
   },
 });
