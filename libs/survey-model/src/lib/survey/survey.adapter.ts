@@ -13,7 +13,7 @@ export function generateSurveyJsModel(survey: Survey) {
     questionsOnPageMode: 'questionPerPage',
     showPreviewBeforeComplete: 'showAllQuestions',
     widthMode: 'responsive',
-    logo: 'logo.png',
+    logo: 'logo/logo-pluto.png',
     logoPosition: 'top',
     logoWidth: 120,
     logoHeight: 120,
