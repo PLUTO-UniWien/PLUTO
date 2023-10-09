@@ -32,6 +32,14 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "result" */ '../views/result/Result.vue'),
   },
   {
+    path: '/result-export',
+    name: 'Result Export',
+    component: () =>
+      import(
+        /* webpackChunkName: "result-export" */ '../views/result/ResultExport.vue'
+      ),
+  },
+  {
     path: '/appendix-weighting',
     name: 'Appendix - Weighting',
     component: () =>

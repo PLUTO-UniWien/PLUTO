@@ -4,21 +4,21 @@
   >
     <router-link to="/">
       <b-img
-        src="/logo-pluto.png"
+        src="/logo/logo-pluto.png"
         alt="Logo of PLUTO"
         fluid
         class="logo"
         :width="logoWidth"
       />
       <b-img
-        src="/logo-digitize.png"
+        src="/logo/logo-digitize.png"
         alt="Logo of Digizize! Computational Social Sciences"
         fluid
         class="logo"
         :width="logoWidth"
       />
       <b-img
-        src="/logo-uniwien.png"
+        src="/logo/logo-uniwien.png"
         alt="Logo of the University of Vienna, Insitute of Political Sciences"
         fluid
         class="logo"

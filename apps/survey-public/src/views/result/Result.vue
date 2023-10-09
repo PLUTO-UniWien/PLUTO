@@ -3,6 +3,14 @@
     <div class="result">
       <header-component />
       <h1>{{ resultsReadyLabel }}</h1>
+      <div class="cursor-pointer">
+        <b-button variant="primary" class="mb-4 w-4" @click="generatePDF">
+          <span v-if="isExporting"
+            >Export in progress <b-spinner type="grow" small label="Spinning"
+          /></span>
+          <span v-else>Export results</span>
+        </b-button>
+      </div>
       <p class="font-italic">
         You have answered {{ countAnswered }} out of {{ countTotal }} questions.
       </p>
@@ -67,6 +75,9 @@
         :submitting="submitting"
       />
     </div>
+    <div class="result-export-container" ref="resultExportContainer">
+      <result-export />
+    </div>
   </div>
 </template>
 
@@ -82,6 +93,9 @@ import { SurveyResultAnalysis } from '@pluto/survey-model';
 import { mapGetters } from 'vuex';
 import SubmissionProgressIndicator from '../../components/SubmissionProgressIndicator.vue';
 import { scoreTooltipLabel } from './result.utils';
+import ResultExport from './ResultExport.vue';
+import { generatePDFExport } from './result-export.utils';
+
 function getResultViewProps(): ResultViewProps {
   const resultData = viewData as ResultViewData;
   const {
@@ -98,8 +112,20 @@ function getResultViewProps(): ResultViewProps {
 
 export default Vue.extend({
   name: 'ResultView',
-  methods: { scoreTooltipLabel },
+  methods: {
+    scoreTooltipLabel,
+    generatePDF() {
+      this.isExporting = true;
+      setTimeout(() => {
+        const content = this.$refs.resultExportContainer as HTMLElement;
+        generatePDFExport(content).finally(() => {
+          this.isExporting = false;
+        });
+      }, 0);
+    },
+  },
   components: {
+    ResultExport,
     SubmissionProgressIndicator,
     MarkdownRenderer,
     HeaderComponent,
@@ -143,6 +169,7 @@ export default Vue.extend({
       countTotalBenefits,
       countTotalRisks,
       countTotal: countTotalBenefits + countTotalRisks,
+      isExporting: false,
     };
   },
 });
@@ -234,5 +261,11 @@ export default Vue.extend({
   position: sticky;
   bottom: 0;
   z-index: 1000;
+}
+
+.result-export-container {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
 }
 </style>

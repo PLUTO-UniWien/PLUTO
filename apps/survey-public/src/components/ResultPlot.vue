@@ -1,5 +1,5 @@
 <template>
-  <div id="resultPlot"></div>
+  <div :id="rootId"></div>
 </template>
 
 <script lang="ts">
@@ -21,7 +21,6 @@ export default Vue.extend({
       type: Array as unknown as () => [string, string, string, string],
       required: true,
     },
-    tooltipElementId: { type: String, default: 'resultPointTooltip' },
     viewBoxSize: { type: Number, default: 500 },
     margins: {
       type: Object,
@@ -32,6 +31,10 @@ export default Vue.extend({
       type: Array as unknown as () => [number, number, number, number],
       default: () => ['#d9edd6', '#faf1d3', '#faf1d3', '#f2cfcc'],
     },
+    rootId: {
+      type: String,
+      default: 'resultPlot',
+    },
   },
   mounted() {
     this.createResultPlot();
@@ -39,7 +42,7 @@ export default Vue.extend({
   methods: {
     createResultPlot() {
       const svg = d3
-        .select('#resultPlot')
+        .select(`#${this.rootId}`)
         .append('svg')
         .attr('width', '100%')
         .attr('height', '100%')
@@ -166,29 +169,28 @@ export default Vue.extend({
 
 <style lang="scss">
 @import '../styles/bootstrap.scss';
-#resultPlot {
-  svg {
-    border-radius: 10px;
-    box-shadow: 3px 3px 6px #cccccc;
 
-    .domain {
+svg {
+  border-radius: 10px;
+  box-shadow: 3px 3px 6px #cccccc;
+
+  .domain {
+    stroke: #797979;
+    stroke-width: 2px;
+  }
+  .tick {
+    line {
       stroke: #797979;
       stroke-width: 2px;
     }
-    .tick {
-      line {
-        stroke: #797979;
-        stroke-width: 2px;
-      }
-    }
+  }
 
-    text {
-      font-size: 1rem;
-      font-weight: lighter;
-    }
+  text {
+    font-size: 1rem;
+    font-weight: lighter;
   }
-  #resultPoint {
-    fill: $primary;
-  }
+}
+#resultPoint {
+  fill: $primary;
 }
 </style>
