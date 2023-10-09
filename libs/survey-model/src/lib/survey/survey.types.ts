@@ -12,6 +12,7 @@ export type SurveyGroup = {
 export type Question = {
   id: number;
   label: `Q${number}`;
+  status: 'current' | 'archived';
   body: string;
   explanation: string | null;
   choices: AnswerChoice[];

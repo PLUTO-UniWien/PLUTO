@@ -27,6 +27,7 @@ export function parseSurvey(surveyData: object): Survey {
     const parsedQuestions = questions.data.map(({ id, attributes }) => {
       const {
         label,
+        status,
         body,
         explanation,
         choices,
@@ -36,6 +37,7 @@ export function parseSurvey(surveyData: object): Survey {
       return {
         id,
         label,
+        status,
         body,
         explanation,
         choices,

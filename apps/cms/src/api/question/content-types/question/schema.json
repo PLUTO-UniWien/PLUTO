@@ -39,6 +39,12 @@
     },
     "weightingAppendixDescription": {
       "type": "richtext"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["current", "archived"],
+      "required": true,
+      "default": "current"
     }
   }
 }

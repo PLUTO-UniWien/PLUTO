@@ -19,10 +19,11 @@
                     "body": "Which of the answers below best describe the primary activity of the data user?",
                     "label": "Q2",
                     "createdAt": "2023-05-27T13:33:32.380Z",
-                    "updatedAt": "2023-10-08T14:47:33.733Z",
+                    "updatedAt": "2023-10-09T03:26:18.108Z",
                     "publishedAt": "2023-05-27T13:33:59.596Z",
                     "explanation": null,
                     "weightingAppendixDescription": "As our assessment of public value includes underlying motivations, a privately owned company will be less likely, all things being equal, to produce value for the public (-1) than entities committed to the public good  (+1). Users of our tool  can specify a different or multiple categories via the “Other” option, however as this is an unknown, it is scored at 0.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 82,
@@ -85,10 +86,11 @@
                     "body": "Which of the answers below best describe the financial structure of the data user?",
                     "label": "Q3",
                     "createdAt": "2023-05-27T13:39:32.049Z",
-                    "updatedAt": "2023-10-08T14:47:48.300Z",
+                    "updatedAt": "2023-10-09T03:26:35.130Z",
                     "publishedAt": "2023-05-27T13:39:34.162Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Larger organisations have a higher standard to attain in terms of public value when compared to smaller and medium sized organisations, as they have comparatively more resources (financial, staffing etc.).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 98,
@@ -158,10 +160,11 @@
                     "body": "Which of the answers below best describe the data user's public reporting requirements?",
                     "label": "Q4",
                     "createdAt": "2023-05-27T13:45:55.193Z",
-                    "updatedAt": "2023-10-08T14:48:08.656Z",
+                    "updatedAt": "2023-10-09T03:25:46.994Z",
                     "publishedAt": "2023-05-27T13:45:56.923Z",
                     "explanation": null,
                     "weightingAppendixDescription": "In order to ensure trust and enable informed decisions by the public, data use with a high public value tends to be undertaken in a way that is transparent to the public. ",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 49,
@@ -224,10 +227,11 @@
                     "body": "Which of the answers below best describe the data user's legal obligations to provide information to the public?",
                     "label": "Q5",
                     "createdAt": "2023-05-27T13:47:42.716Z",
-                    "updatedAt": "2023-10-08T14:48:26.804Z",
+                    "updatedAt": "2023-10-09T03:25:52.136Z",
                     "publishedAt": "2023-08-11T08:35:27.914Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Data use with a high public value tends to be undertaken in a way that is transparent to the public. In many jurisdictions public actors need to disclose information when someone files a Freedom of Information (FOI) request. Data users that do not fall within the scope of FOIs (e.g. privately owned businesses) are less accountable for their activities to the public (-3).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 55,
@@ -276,10 +280,11 @@
                     "body": "Which of the answers below best describe the data user's track record in providing information about all its activities to the public? (e.g. as a result of freedom of information requests, other legal obligations, or voluntarily)",
                     "label": "Q6",
                     "createdAt": "2023-05-27T13:51:29.172Z",
-                    "updatedAt": "2023-10-08T14:48:38.909Z",
+                    "updatedAt": "2023-10-09T03:25:57.021Z",
                     "publishedAt": "2023-05-27T13:51:30.322Z",
                     "explanation": null,
                     "weightingAppendixDescription": "The data user’s actual track record matters when assessing public value. A track record of rejecting or ignoring information requests is less likely to lead to data use with a high public value, due to a lack of public accountability (-2). A good track record is given a higher score, as the public is more informed about the data user’s activities (+2). None of the above may for example refer to a new data user who has not yet received any information requests (0).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 59,
@@ -350,10 +355,11 @@
                     "body": "Which of the answers below best describe the data user's motivation for the data use?",
                     "label": "Q7",
                     "createdAt": "2023-05-27T13:59:39.812Z",
-                    "updatedAt": "2023-10-08T14:48:50.119Z",
+                    "updatedAt": "2023-10-09T03:26:02.392Z",
                     "publishedAt": "2023-05-27T13:59:40.865Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Advancing scientific research, improving medical treatments, combating climate change and combating inequality are all widely-agreed upon goals for society. Therefore, data use which aims to progress towards these goals will likely be of a higher public value (+2). While data use which is motivated by commercial profit or increasing revenue does not inherently reduce or increase public value, it is less likely to lead to high public value data uses (-1).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 65,
@@ -430,10 +436,11 @@
                     "body": "Which of the answers below best describe the data user’s track record in increasing the benefits of their data use in low and middle-income countries (LMICs)?",
                     "label": "Q8",
                     "createdAt": "2023-05-27T14:03:40.278Z",
-                    "updatedAt": "2023-10-08T14:49:00.160Z",
+                    "updatedAt": "2023-10-09T03:26:23.854Z",
                     "publishedAt": "2023-05-27T14:03:42.338Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Data use which helps reduce global inequality by ensuring benefits are shared equitably will be of higher public value. A strong track record (i.e., consistent and sustained efforts) receives a higher score (+2) than “some track record” (i.e., some instances) (+1). No track record scores lower (-2), as the data use is less likely to contribute to reducing global inequality.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 88,
@@ -489,10 +496,11 @@
                     "body": "Which of the answers below best describe the track record of the data user in strengthening the benefits for groups protected by anti-discrimination laws (beyond formal legal requirements)?",
                     "label": "Q9",
                     "createdAt": "2023-05-27T14:05:41.986Z",
-                    "updatedAt": "2023-10-08T14:49:13.403Z",
+                    "updatedAt": "2023-10-09T03:25:35.578Z",
                     "publishedAt": "2023-05-27T14:05:47.653Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Data use which helps reduce inequality and which benefits groups protected by anti-discrimination laws will be of a higher public value. A strong track record (i.e., consistent and sustained efforts) receives a higher score (+2) than “some track record” (i.e., some instances) (+1). No track record scores lower (-2), as the data use is less likely to contribute to reducing inequality.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 41,
@@ -541,10 +549,11 @@
                     "body": "Which of the answers below best describe the data use’s benefits for future generations?",
                     "label": "Q10",
                     "createdAt": "2023-05-27T14:06:56.400Z",
-                    "updatedAt": "2023-10-08T14:49:25.805Z",
+                    "updatedAt": "2023-10-09T03:25:41.325Z",
                     "publishedAt": "2023-05-27T14:07:00.328Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Public value in data solidarity is greater if benefits will foreseeably increase in the future, and for future generations. Data use that serves a growing societal need, or is likely to benefit future generations in other ways, receives a higher score in this category(1, 2) than data use that does not  (0).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 45,
@@ -601,10 +610,11 @@
                     "body": "Which of the answers below best describe the foreseeable risk to (any) individuals or groups coming from the data use?",
                     "label": "Q11",
                     "createdAt": "2023-05-27T14:21:02.261Z",
-                    "updatedAt": "2023-10-08T14:49:40.934Z",
+                    "updatedAt": "2023-10-09T03:24:00.520Z",
                     "publishedAt": "2023-05-27T14:21:04.094Z",
                     "explanation": null,
                     "weightingAppendixDescription": "A key component of assessing the public value of data use is the (foreseeable) risk to individuals or groups, both directly and indirectly. Note that although risks will impact the public value score negatively and are measured cumulatively here, this may be offset if sufficient harm mitigation measures are in place (Q16-21).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 1,
@@ -681,10 +691,11 @@
                     "body": "Which of the answers below best describe foreseeable effects of the data use on the natural environment (e.g., carbon footprint, energy usage)?",
                     "label": "Q12",
                     "createdAt": "2023-05-27T14:24:43.957Z",
-                    "updatedAt": "2023-10-08T14:49:53.993Z",
+                    "updatedAt": "2023-10-09T03:25:30.804Z",
                     "publishedAt": "2023-05-27T14:24:44.977Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Data use which has a positive impact on the environment is of higher public value, as it contributes to the widely-shared goal of protecting the environment and mitigating climate change. The weights are +/- 5, as data use which impacts the environment is more likely to have a significant impact on individuals and communities.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 37,
@@ -733,10 +744,11 @@
                     "body": "Which of the answers below best describe the possible risks for groups given special protection by law (e.g., children, persons with disabilities, minorities)? An example for financial risk would be a refused loan application due to being a member of an ethnic minority group.",
                     "label": "Q13",
                     "createdAt": "2023-05-27T14:26:54.399Z",
-                    "updatedAt": "2023-10-08T14:50:14.920Z",
+                    "updatedAt": "2023-10-09T03:24:57.347Z",
                     "publishedAt": "2023-05-27T14:26:56.739Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Data use which carries risks (direct or indirect) for groups  given special protection by law is much less likely to generate public value without significant harm mitigation measures in place (-5). Data use which entails no foreseeable risk scores “neutral”  (0).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 9,
@@ -785,10 +797,11 @@
                     "body": "Which of the answers below best describe the data user’s communication about risks of their data use to the public?",
                     "label": "Q14",
                     "createdAt": "2023-05-27T14:30:32.864Z",
-                    "updatedAt": "2023-10-08T14:50:40.081Z",
+                    "updatedAt": "2023-10-09T03:25:04.518Z",
                     "publishedAt": "2023-05-27T14:30:34.570Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Data use in which potential risks are openly and transparently communicated prior to commencement will be of higher public value (2), as it allows individuals and communities to make informed decisions. Communication only after the commencement of data use contributes to a lower public value score (-1), as the public is unable to make the same informed decisions. Data use in which no information is provided to the public scores even lower (-2), as there is no chance for informed decision making.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 13,
@@ -844,10 +857,11 @@
                     "body": "Which of the answers below best describe the risk of the data being used for purposes other than originally intended (dual use)?",
                     "label": "Q15",
                     "createdAt": "2023-05-27T14:32:01.547Z",
-                    "updatedAt": "2023-10-08T14:50:50.725Z",
+                    "updatedAt": "2023-10-09T03:25:09.434Z",
                     "publishedAt": "2023-05-27T14:32:04.096Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Dual use is a significant risk, as it refers to the potential for data to be misused by a third party for unintended or malicious ends. Therefore data use in which dual use is likely scores lower (-4) as it poses foreseeable risks to the public. When dual is conceivable to some degree, the score is -2.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 18,
@@ -904,10 +918,11 @@
                     "body": "If there is a risk assessment procedure in place, how are its results used?",
                     "label": "Q17",
                     "createdAt": "2023-05-27T14:36:29.825Z",
-                    "updatedAt": "2023-10-08T14:51:31.127Z",
+                    "updatedAt": "2023-10-09T03:26:29.775Z",
                     "publishedAt": "2023-05-27T14:36:30.971Z",
                     "explanation": null,
                     "weightingAppendixDescription": "A risk assessment process which results in strategic actions (i.e., harm mitigation) is likely to reduce risk to individuals and communities and therefore scores relatively high (2). Risk assessments that only result in information (e.g., non-binding recommendations) scores slightly lower (1).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 93,
@@ -963,10 +978,11 @@
                     "body": "Which of the answers below best describe the involvement of persons trained in ethics in the process of assessing risks?",
                     "label": "Q18",
                     "createdAt": "2023-05-27T14:37:37.892Z",
-                    "updatedAt": "2023-10-08T14:51:55.978Z",
+                    "updatedAt": "2023-10-09T03:25:14.605Z",
                     "publishedAt": "2023-05-27T14:37:40.033Z",
                     "explanation": null,
                     "weightingAppendixDescription": "A person who is familiar with ethics may be particularly well placed to highlight and suggest responses emerging from a specific instance of data use, thereby reducing overall risk and increasing its public value (2). Consulting those with a knowledge of data ethics increases the likelihood of as many risks as possible being included in the course of the risk assessment.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 22,
@@ -1022,10 +1038,11 @@
                     "body": "Which of the answers below best describe the process of harm monitoring?",
                     "label": "Q19",
                     "createdAt": "2023-05-27T14:38:39.936Z",
-                    "updatedAt": "2023-10-08T14:52:10.007Z",
+                    "updatedAt": "2023-10-09T03:25:19.953Z",
                     "publishedAt": "2023-05-27T14:38:40.940Z",
                     "explanation": null,
                     "weightingAppendixDescription": "A continuous (i.e. regular) monitoring of harms is more likely to reduce risks (1) than an incomplete procedure, which may capture some harms before or during the data use but miss others (0). If harm is not monitored, the risk to the public is increased, and therefore the public value score is lower (-1).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 27,
@@ -1081,10 +1098,11 @@
                     "body": "Which of the answers below best describe the ability of the data user to end their activity, once unexpected harms occur?",
                     "label": "Q20",
                     "createdAt": "2023-05-27T14:39:43.202Z",
-                    "updatedAt": "2023-10-08T14:52:19.692Z",
+                    "updatedAt": "2023-10-09T03:26:40.541Z",
                     "publishedAt": "2023-05-27T14:39:56.978Z",
                     "explanation": null,
                     "weightingAppendixDescription": "A key aspect of harm mitigation is the ability to stop a process if and when harm occurs. If an instance of data use  (e.g., a medical study) cannot be ended immediately when harm occurs, the risk to the public is significantly higher, and therefore the public value score is lower (-3).",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 105,
@@ -1133,10 +1151,11 @@
                     "body": "Which of the answers below best describe the complaint procedures available to individuals?",
                     "label": "Q21",
                     "createdAt": "2023-05-27T14:41:39.598Z",
-                    "updatedAt": "2023-10-08T14:52:37.508Z",
+                    "updatedAt": "2023-10-09T03:25:24.972Z",
                     "publishedAt": "2023-05-27T14:41:41.560Z",
                     "explanation": null,
                     "weightingAppendixDescription": "Public value is lower when individuals and communities have little or no way to voice their complaint if and when harm occurs(-3). Complaint procedures which are easy to access (1, 2) and from which a prompt response time can be expected (2) receive a higher score, as this implies greater accountability of the data user.",
+                    "status": "current",
                     "choices": [
                       {
                         "id": 32,

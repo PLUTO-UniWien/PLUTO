@@ -784,6 +784,9 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
     label: Attribute.String & Attribute.Required;
     explanation: Attribute.Text;
     weightingAppendixDescription: Attribute.RichText;
+    status: Attribute.Enumeration<['current', 'archived']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'current'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
