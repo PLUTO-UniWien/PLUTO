@@ -35,8 +35,11 @@ export function surveyModel() {
  * @param {string} name - The name of the question to find. E.g. "Q1" for the first question.
  */
 export function questionByName(name: string) {
-  const { questionNumber } = questionLabelInverse(name);
-  return questions[questionNumber - 1];
+  const question = questions.find((question) => question.label === name);
+  if (!question) {
+    throw new Error(`Question ${name} not found`);
+  }
+  return question;
 }
 
 /**
@@ -49,7 +52,11 @@ export function questionByName(name: string) {
  */
 export function choiceByLabel(question: Question, label: string) {
   const { choiceNumber } = answerChoiceLabelInverse(label);
-  return question.choices[choiceNumber - 1];
+  const choice = question.choices[choiceNumber - 1];
+  if (!choice) {
+    throw new Error(`Choice ${label} not found for question ${question.label}`);
+  }
+  return choice;
 }
 
 /**

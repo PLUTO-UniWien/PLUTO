@@ -1,15 +1,8 @@
 {
+  "survey": "v1.0.0",
   "items": [
     {
-      "question": 1,
-      "choice": "A1.1",
-      "value": "Individual citizen/researcher",
-      "type": "regular",
-      "score": 1,
-      "impact": "y"
-    },
-    {
-      "question": 2,
+      "question": 17,
       "choice": "A2.1",
       "value": "Sell a product/service",
       "type": "regular",
@@ -17,7 +10,7 @@
       "impact": "y"
     },
     {
-      "question": 2,
+      "question": 17,
       "choice": "A2.2",
       "value": "Fulfil a government task",
       "type": "regular",
@@ -25,47 +18,55 @@
       "impact": "y"
     },
     {
-      "question": 3,
-      "choice": "A3.4",
-      "value": "Largely financed by way of large donations (above 5000€ or equivalent per donation)",
+      "question": 20,
+      "choice": "A3.1",
+      "value": "Predominantly financed through income from own activities or parent/partner company",
       "type": "regular",
       "score": -1,
       "impact": "y"
     },
     {
-      "question": 3,
-      "choice": "A3.3",
-      "value": "Largely financed by philanthropic foundations",
-      "type": "regular",
-      "score": 1,
-      "impact": "y"
-    },
-    {
-      "question": 4,
-      "choice": "A4.2",
-      "value": "Annual report on key financials to financial institution",
+      "question": 20,
+      "choice": "A3.2",
+      "value": "Predominantly financed by governmental organisations (national or international)",
       "type": "regular",
       "score": 0,
       "impact": "y"
     },
     {
-      "question": 5,
-      "choice": "A5.3",
-      "value": "wert",
-      "type": "otherExclusive",
-      "score": 0,
-      "impact": "x"
-    },
-    {
-      "question": 6,
-      "choice": "A6.2",
-      "value": "Track record of selectively responding to information requests",
+      "question": 11,
+      "choice": "A4.1",
+      "value": "No reporting requirements",
       "type": "regular",
-      "score": 0,
+      "score": -1,
+      "impact": "y"
+    },
+    {
+      "question": 12,
+      "choice": "A5.1",
+      "value": "No legal options to compel disclosure of information about data use activities to the public beyond civil or criminal proceedings (e.g., as a result of GDPR obligations)",
+      "type": "regular",
+      "score": -3,
       "impact": "x"
     },
     {
-      "question": 7,
+      "question": 13,
+      "choice": "A6.1",
+      "value": "Track record of rejecting information requests",
+      "type": "regular",
+      "score": -2,
+      "impact": "x"
+    },
+    {
+      "question": 14,
+      "choice": "A7.1",
+      "value": "Scientific research",
+      "type": "regular",
+      "score": 2,
+      "impact": "y"
+    },
+    {
+      "question": 14,
       "choice": "A7.2",
       "value": "Medical purposes",
       "type": "regular",
@@ -73,43 +74,19 @@
       "impact": "y"
     },
     {
-      "question": 7,
-      "choice": "A7.3",
-      "value": "Combat climate change",
+      "question": 18,
+      "choice": "A8.1",
+      "value": "No track record of adjusting the data use to increase benefits in LMICs",
       "type": "regular",
-      "score": 2,
-      "impact": "y"
-    },
-    {
-      "question": 7,
-      "choice": "A7.4",
-      "value": "Combat inequality (social, health, economic)",
-      "type": "regular",
-      "score": 2,
-      "impact": "y"
-    },
-    {
-      "question": 8,
-      "choice": "A8.3",
-      "value": "Strong track record of adjusting the data use to increase benefits in LMICs",
-      "type": "regular",
-      "score": 2,
+      "score": -2,
       "impact": "y"
     },
     {
       "question": 9,
-      "choice": "A9.2",
-      "value": "Some track record of strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
+      "choice": "A9.1",
+      "value": "No track record of  strengthening benefits for groups that are granted protection by way of anti-discrimination laws",
       "type": "regular",
-      "score": 1,
-      "impact": "y"
-    },
-    {
-      "question": 10,
-      "choice": "A10.2",
-      "value": "Benefits primarily cover issues of relevance for future generations",
-      "type": "regular",
-      "score": 1,
+      "score": -2,
       "impact": "y"
     },
     {
@@ -121,47 +98,15 @@
       "impact": "y"
     },
     {
-      "question": 11,
-      "choice": "A11.3",
-      "value": "Informational risk",
+      "question": 10,
+      "choice": "A10.2",
+      "value": "Benefits primarily cover issues of relevance for future generations",
       "type": "regular",
-      "score": -3,
-      "impact": "x"
+      "score": 1,
+      "impact": "y"
     },
     {
-      "question": 11,
-      "choice": "A11.4",
-      "value": "Legal risk",
-      "type": "regular",
-      "score": -3,
-      "impact": "x"
-    },
-    {
-      "question": 11,
-      "choice": "A11.6",
-      "value": "Political risk",
-      "type": "regular",
-      "score": -3,
-      "impact": "x"
-    },
-    {
-      "question": 11,
-      "choice": "A11.5",
-      "value": "Social risk",
-      "type": "regular",
-      "score": -3,
-      "impact": "x"
-    },
-    {
-      "question": 11,
-      "choice": "A11.2",
-      "value": "Financial risk",
-      "type": "regular",
-      "score": -3,
-      "impact": "x"
-    },
-    {
-      "question": 11,
+      "question": 1,
       "choice": "A11.1",
       "value": "Physical risk",
       "type": "regular",
@@ -169,31 +114,39 @@
       "impact": "x"
     },
     {
-      "question": 12,
-      "choice": "A12.2",
-      "value": "Natural environment is positively impacted",
+      "question": 1,
+      "choice": "A11.2",
+      "value": "Financial risk",
       "type": "regular",
-      "score": 4,
+      "score": -3,
       "impact": "x"
     },
     {
-      "question": 13,
-      "choice": "A13.2",
-      "value": "Data use entails no foreseeable risk for protected groups",
+      "question": 8,
+      "choice": "A12.1",
+      "value": "Natural environment is negatively impacted",
       "type": "regular",
-      "score": 0,
+      "score": -5,
       "impact": "x"
     },
     {
-      "question": 14,
-      "choice": "A14.2",
-      "value": "Information about risks provided to the public at some point during the data use",
+      "question": 2,
+      "choice": "A13.1",
+      "value": "Data use entails risk for protected groups",
       "type": "regular",
-      "score": -1,
+      "score": -5,
       "impact": "x"
     },
     {
-      "question": 15,
+      "question": 3,
+      "choice": "A14.1",
+      "value": "No information is provided",
+      "type": "regular",
+      "score": -2,
+      "impact": "x"
+    },
+    {
+      "question": 4,
       "choice": "A15.1",
       "value": "Dual use is likely and conceivable in concrete terms",
       "type": "regular",
@@ -201,31 +154,23 @@
       "impact": "x"
     },
     {
-      "question": 16,
-      "choice": "A16.2",
-      "value": "Ad-hoc risk assessment",
+      "question": 19,
+      "choice": "A17.1",
+      "value": "No risk assessment in place",
       "type": "regular",
       "score": 0,
       "impact": "x"
     },
     {
-      "question": 17,
-      "choice": "A17.2",
-      "value": "Findings which result in strategic actions",
+      "question": 5,
+      "choice": "A18.1",
+      "value": "No risk assessment in place",
       "type": "regular",
-      "score": 2,
+      "score": 0,
       "impact": "x"
     },
     {
-      "question": 18,
-      "choice": "A18.3",
-      "value": "Trained ethicists are included in the risk assessment",
-      "type": "regular",
-      "score": 2,
-      "impact": "x"
-    },
-    {
-      "question": 19,
+      "question": 6,
       "choice": "A19.1",
       "value": "No monitoring of harms",
       "type": "regular",
@@ -233,15 +178,15 @@
       "impact": "x"
     },
     {
-      "question": 20,
-      "choice": "A20.2",
-      "value": "Harm-causing activity can be ended immediately",
+      "question": 21,
+      "choice": "A20.1",
+      "value": "Harm-causing activity cannot be ended immediately",
       "type": "regular",
-      "score": 0,
+      "score": -3,
       "impact": "x"
     },
     {
-      "question": 21,
+      "question": 7,
       "choice": "A21.1",
       "value": "No complaint procedure in place",
       "type": "regular",
@@ -249,23 +194,15 @@
       "impact": "x"
     },
     {
-      "question": 21,
+      "question": 7,
       "choice": "A21.2",
       "value": "Complaint procedure can be initiated online",
       "type": "regular",
       "score": 1,
       "impact": "x"
-    },
-    {
-      "question": 21,
-      "choice": "A21.3",
-      "value": "Complaint procedure designed in an accessible manner",
-      "type": "regular",
-      "score": 2,
-      "impact": "x"
     }
   ],
   "metadata": {
-    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
   }
 }

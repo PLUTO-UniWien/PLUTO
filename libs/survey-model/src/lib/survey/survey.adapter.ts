@@ -23,9 +23,10 @@ export function generateSurveyJsModel(survey: Survey) {
   const questionsWithPageTitle = survey.groups.flatMap(({ title, questions }) =>
     questions.map((question) => ({ ...question, pageTitle: title }))
   );
-  const pages = questionsWithPageTitle.map((question, questionNumber) => {
-    const name = pageLabel(questionNumber + 1);
-    const elements = [mapQuestion(question, questionNumber + 1)];
+  const pages = questionsWithPageTitle.map((question) => {
+    const { questionNumber } = questionLabelInverse(question.label);
+    const name = pageLabel(questionNumber);
+    const elements = [mapQuestion(question, questionNumber)];
     const { name: questionLabel } = elements[0];
     const title = `${question.pageTitle} - ${questionLabel}`;
     return { name, title, elements };
