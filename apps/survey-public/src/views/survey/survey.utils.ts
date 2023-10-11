@@ -11,6 +11,8 @@ import {
   SURVEY_VERSION,
 } from '@pluto/survey-model';
 import { IQuestionPlainData } from 'survey-core/typings/question';
+import Vue from 'vue';
+import QuestionInfoBox from '../../components/QuestionInfoBox.vue';
 
 function surveyQuestionToQuestion(surveyQuestion: SurveyQuestion): Question {
   const questionName = surveyQuestion.getPlainData().name.toString();
@@ -29,6 +31,23 @@ export function moveNoneOptionToBottom(surveyQuestion: SurveyQuestion) {
     surveyQuestion.visibleChoices.splice(noneIndex, 1);
     surveyQuestion.visibleChoices.push(noneOption);
   }
+}
+
+export function addExplanationInfoBox(surveyQuestion: SurveyQuestion) {
+  const question = surveyQuestionToQuestion(surveyQuestion);
+  const questionHasExplanation = !!question.explanation;
+  if (!questionHasExplanation) {
+    return;
+  }
+  const questionHeaderDiv = document.querySelector('.sd-question__header');
+  const el = document.createElement('div');
+  questionHeaderDiv?.appendChild(el);
+  questionHeaderDiv?.classList.add('d-flex');
+  new Vue({
+    render: (h) =>
+      h(QuestionInfoBox, { props: { explanation: question.explanation } }),
+    el,
+  });
 }
 
 export function transformPlainSurveyData(

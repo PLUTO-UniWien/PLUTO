@@ -13,6 +13,7 @@ import { SurveyProps } from './survey.types';
 import { surveyModel } from '@pluto/survey-model';
 import { AfterRenderQuestionEvent } from 'survey-core/typings/survey-events-api';
 import {
+  addExplanationInfoBox,
   addPreviewModeButtonToQuestion,
   moveNoneOptionToBottom,
   transformPlainSurveyData,
@@ -44,6 +45,7 @@ export default Vue.extend({
       (surveyModel: SurveyModel, event: AfterRenderQuestionEvent) => {
         const question = event.question;
         moveNoneOptionToBottom(question);
+        addExplanationInfoBox(question);
       }
     );
     survey.onAfterRenderQuestion.add((surveyModel: SurveyModel) => {

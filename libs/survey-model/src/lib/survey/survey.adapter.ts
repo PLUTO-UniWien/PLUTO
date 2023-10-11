@@ -146,7 +146,7 @@ function mapQuestion(question: Question, questionNumber: number) {
   const noneText = hasNone && getQuestionNoneText(question);
   const maxSelectedChoices =
     type === 'checkbox' && getQuestionMaxSelectedChoices(question);
-  const description = questionDescription(question);
+  const description = '';
   return {
     type,
     name,
@@ -160,10 +160,6 @@ function mapQuestion(question: Question, questionNumber: number) {
     ...((hasNone && { hasNone, noneText }) || undefined),
     ...((maxSelectedChoices && { maxSelectedChoices }) || undefined),
   };
-}
-
-function questionDescription(question: Question): string {
-  return question.explanation || '';
 }
 
 /**
