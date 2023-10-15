@@ -20,9 +20,13 @@ type RouteHandler = (request: Request, token?: string) => Promise<Response>;
 
 export function requireAuth(routeHandler: RouteHandler) {
   return async (request: Request) => {
+    // For some reason Next wants to pre-render API routes wrapped in this fn. We return a 400 to prevent that.
+    if (process.env.NEXT_IS_EXPORT_WORKER === 'true') {
+      return NextResponse.json({ error: 'No Prerender' }, { status: 400 });
+    }
+
     // If auth is disabled, just call the route handler
     if (!env.NEXT_PUBLIC_USE_AUTH) {
-      console.log('🔓 Auth disabled, calling route handler...');
       return routeHandler(request);
     }
 
