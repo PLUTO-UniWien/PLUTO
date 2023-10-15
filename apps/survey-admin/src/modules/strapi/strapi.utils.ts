@@ -29,6 +29,7 @@ export function strapiFetch(
       ...init?.headers,
       ...(withAuth ? { Authorization: `bearer ${env.STRAPI_API_KEY}` } : {}),
     },
+    cache: 'no-store'
   });
 }
 
