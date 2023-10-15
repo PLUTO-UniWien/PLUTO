@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { USER_JWT_COOKIE_NAME } from '@pluto/survey-model';
 import { NextResponse } from 'next/server';
 import { strapiFetch } from '../strapi/strapi.utils';
+import { env } from '../../env.mjs';
 
 export function tryExtractAuthToken(request: Request) {
   const tokenFromHeader = request.headers.get('Authorization')?.split(' ')[1];
@@ -15,10 +16,16 @@ export function tryExtractAuthToken(request: Request) {
   return null;
 }
 
-type RouteHandler = (request: Request, token: string) => Promise<Response>;
+type RouteHandler = (request: Request, token?: string) => Promise<Response>;
 
 export function requireAuth(routeHandler: RouteHandler) {
   return async (request: Request) => {
+    // If auth is disabled, just call the route handler
+    if (!env.NEXT_PUBLIC_USE_AUTH) {
+      console.log('🔓 Auth disabled, calling route handler...');
+      return routeHandler(request);
+    }
+
     const token = tryExtractAuthToken(request);
     // Check for token existence
     if (!token) {
