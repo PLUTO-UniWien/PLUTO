@@ -43,9 +43,11 @@ export default Vue.extend({
     });
     survey.onAfterRenderQuestion.add(
       (surveyModel: SurveyModel, event: AfterRenderQuestionEvent) => {
-        const question = event.question;
-        moveNoneOptionToBottom(question);
-        addExplanationInfoBox(question);
+        if (!this.$store.state.survey.inPreviewMode) {
+          const question = event.question;
+          moveNoneOptionToBottom(question);
+          addExplanationInfoBox(question);
+        }
       }
     );
     survey.onAfterRenderQuestion.add((surveyModel: SurveyModel) => {
