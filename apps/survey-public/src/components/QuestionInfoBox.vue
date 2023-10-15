@@ -57,6 +57,17 @@ export default defineComponent({
   cursor: pointer;
 }
 .popover {
-  max-width: 85vw !important;
+  @media (min-width: map-get($grid-breakpoints, sm)) {
+    max-width: 90vw !important;
+  }
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    max-width: 85vw !important;
+  }
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    max-width: 80vw !important;
+  }
+  @media (min-width: map-get($grid-breakpoints, xl)) {
+    max-width: 60vw !important;
+  }
 }
 </style>
