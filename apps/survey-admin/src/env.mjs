@@ -13,7 +13,8 @@ export const env = createEnv({
       // only allow "true" or "false"
       .refine((s) => s === 'true' || s === 'false')
       // transform to boolean
-      .transform((s) => s === 'true'),
+      .transform((s) => s === 'true')
+      .default('false'),
   },
   runtimeEnv: {
     STRAPI_API_KEY: process.env.STRAPI_API_KEY,
