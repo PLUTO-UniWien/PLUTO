@@ -102,14 +102,14 @@ export function formatScore(score: number) {
 
 /**
  * Returns the normalized score for the supplied `score`, `minScore` and `maxScore`.
- * The result is a number between 0 and 1.
+ * The result is a number between -1 and 1.
  *
  * @param {number} score - The score to normalize.
  * @param {number} minScore - The minimum score.
  * @param {number} maxScore - The maximum score.
  */
 function normalizeScore(score: number, minScore: number, maxScore: number) {
-  return (score - minScore) / (maxScore - minScore);
+  return ((score - minScore) / (maxScore - minScore)) * 2 - 1;
 }
 
 type ResultItemsWithQuestion = {
