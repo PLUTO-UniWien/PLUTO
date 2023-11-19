@@ -16,7 +16,8 @@
       "displayName": "Selection Range",
       "type": "component",
       "repeatable": false,
-      "component": "selection-range.selection-range"
+      "component": "selection-range.selection-range",
+      "required": true
     },
     "feedback": {
       "type": "string"

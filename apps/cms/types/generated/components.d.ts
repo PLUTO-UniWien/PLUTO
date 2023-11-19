@@ -40,7 +40,8 @@ export interface QuestionMetadataMetadata extends Schema.Component {
     impact: Attribute.Enumeration<['x', 'y']> &
       Attribute.Required &
       Attribute.DefaultTo<'x'>;
-    selection: Attribute.Component<'selection-range.selection-range'>;
+    selection: Attribute.Component<'selection-range.selection-range'> &
+      Attribute.Required;
     feedback: Attribute.String;
   };
 }
