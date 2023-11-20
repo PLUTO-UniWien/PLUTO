@@ -41,11 +41,10 @@ export function analyzeResults(result: SurveyResult) {
   const xScoreRange = getMinMaxForQuestions(questionsX);
   const yScoreRange = getMinMaxForQuestions(questionsY);
 
-  const scoreNormalizedX = normalizeScore(
-    scoreX,
-    xScoreRange.min,
-    xScoreRange.max
-  );
+  // We need to invert the x-axis score to account for the fact that "High Risk" is on the right side of the x-axis
+  // but the scores under the hood need to be negative to mean that they contribute to riskiness.
+  const scoreNormalizedX =
+    normalizeScore(scoreX, xScoreRange.min, xScoreRange.max) * -1;
   const scoreNormalizedY = normalizeScore(
     scoreY,
     yScoreRange.min,
