@@ -25,7 +25,7 @@ GPG_PASSPHRASE="$(cat $CONFIG_KEY_FILE)"
 # method to decrypt secrets
 function decrypt_secrets() {
   for path in "${SECRET_PATHS[@]}"; do
-    echo "🔓Decrypting $path"
+    echo "🔓 Decrypting $path"
     gpg --quiet --batch --yes --passphrase "$GPG_PASSPHRASE" --decrypt --output "$path" "$path.gpg" || exit 1
   done
 }
@@ -33,7 +33,7 @@ function decrypt_secrets() {
 # method to encrypt secrets
 function encrypt_secrets() {
   for path in "${SECRET_PATHS[@]}"; do
-    echo "🔐Encrypting $path"
+    echo "🔐 Encrypting $path"
     gpg --quiet --batch --yes --passphrase "$GPG_PASSPHRASE" --symmetric --cipher-algo AES256 "$path"
   done
 }

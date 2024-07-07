@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "🔓Decrypting secrets"
+echo "🔓 Decrypting secrets"
 bash ./scripts/secrets.sh --decrypt
 
 echo "🐳Building Docker images"
