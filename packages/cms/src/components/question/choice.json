@@ -21,12 +21,7 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": [
-        "regular",
-        "other",
-        "none of the above",
-        "no answer"
-      ],
+      "enum": ["regular", "other", "none of the above", "no answer"],
       "required": true,
       "default": "regular"
     }

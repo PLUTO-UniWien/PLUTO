@@ -1,3 +1,3 @@
-export default function Page() {
+export default function Home() {
   return <h1 className="text-center text-red-600">Hello</h1>;
 }

@@ -7,10 +7,7 @@
   "attributes": {
     "impact": {
       "type": "enumeration",
-      "enum": [
-        "risk",
-        "benefit"
-      ]
+      "enum": ["risk", "benefit"]
     },
     "selection": {
       "displayName": "Selection",

@@ -3,35 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "npm run copy-cms-types && next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "copy-cms-types": "node --no-warnings --experimental-strip-types scripts/copy-cms-types.ts"
   },
   "dependencies": {
-    "@strapi/types": "5.11.0",
+    "@strapi/client": "^1.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.475.0",
+    "lucide-react": "^0.483.0",
     "next": "15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "survey-react-ui": "^1.12.23",
-    "tailwind-merge": "^3.0.1",
-    "tailwindcss-animate": "^1.0.7"
+    "survey-react-ui": "^2.0.1",
+    "tailwind-merge": "^3.0.2",
+    "tw-animate-css": "^1.2.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@next/eslint-plugin-next": "^15.2.3",
-    "@tailwindcss/postcss": "^4.0.15",
+    "@strapi/types": "^5.11.3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "postcss": "^8.5.2",
-    "tailwindcss": "^4.0.15",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }

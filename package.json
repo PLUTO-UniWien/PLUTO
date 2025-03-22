@@ -9,5 +9,8 @@
     "@biomejs/biome": "latest"
   },
   "workspaces": ["packages/*"],
-  "packageManager": "npm@11.0.0"
+  "pnpm": {
+    "onlyBuiltDependencies": ["@swc/core", "better-sqlite3", "core-js-pure", "esbuild", "sharp"]
+  },
+  "packageManager": "pnpm@10.4.1"
 }

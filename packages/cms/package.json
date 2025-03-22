@@ -12,8 +12,9 @@
   },
   "dependencies": {
     "@strapi/plugin-documentation": "^5.11.3",
-    "@strapi/plugin-users-permissions": "5.11.0",
-    "@strapi/strapi": "5.11.0",
+    "@strapi/plugin-seo": "^2.0.8",
+    "@strapi/plugin-users-permissions": "5.11.3",
+    "@strapi/strapi": "5.11.3",
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
     "better-sqlite3": "11.3.0",
