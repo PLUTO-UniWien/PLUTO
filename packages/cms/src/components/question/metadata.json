@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_question_metadata",
+  "info": {
+    "displayName": "Metadata"
+  },
+  "options": {},
+  "attributes": {
+    "impact": {
+      "type": "enumeration",
+      "enum": [
+        "risk",
+        "benefit"
+      ]
+    },
+    "selection": {
+      "displayName": "Selection",
+      "type": "component",
+      "repeatable": false,
+      "component": "question.selection",
+      "required": true
+    },
+    "feedback": {
+      "type": "blocks"
+    }
+  }
+}
