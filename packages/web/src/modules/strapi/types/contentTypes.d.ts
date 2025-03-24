@@ -393,6 +393,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
 export interface ApiSurveySurvey extends Struct.SingleTypeSchema {
   collectionName: "surveys";
   info: {
+    description: "";
     displayName: "Survey";
     pluralName: "surveys";
     singularName: "survey";
@@ -403,7 +404,7 @@ export interface ApiSurveySurvey extends Struct.SingleTypeSchema {
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
-    groups: Schema.Attribute.Component<"survey.group", true>;
+    groups: Schema.Attribute.Component<"survey.group", true> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<"oneToMany", "api::survey.survey"> &
       Schema.Attribute.Private;

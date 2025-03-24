@@ -4,7 +4,8 @@
   "info": {
     "singularName": "survey",
     "pluralName": "surveys",
-    "displayName": "Survey"
+    "displayName": "Survey",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,7 +15,8 @@
       "displayName": "Group",
       "type": "component",
       "repeatable": true,
-      "component": "survey.group"
+      "component": "survey.group",
+      "required": true
     }
   }
 }

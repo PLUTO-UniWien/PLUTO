@@ -13,7 +13,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-03-24T20:45:50.724Z"
+    "x-generation-date": "2025-03-24T21:58:36.952Z"
   },
   "openapi": "3.0.0",
   "x-strapi-config": {
@@ -3510,6 +3510,7 @@
         "required": ["data"],
         "properties": {
           "data": {
+            "required": ["groups"],
             "type": "object",
             "properties": {
               "groups": {
@@ -3576,6 +3577,7 @@
       },
       "Survey": {
         "type": "object",
+        "required": ["groups"],
         "properties": {
           "id": {
             "type": "number"

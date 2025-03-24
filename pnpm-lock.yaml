@@ -91,6 +91,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      survey-core:
+        specifier: ^2.0.1
+        version: 2.0.1
       survey-react-ui:
         specifier: ^2.0.1
         version: 2.0.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(survey-core@2.0.1)

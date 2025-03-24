@@ -8,7 +8,8 @@
   "attributes": {
     "impact": {
       "type": "enumeration",
-      "enum": ["risk", "benefit"]
+      "enum": ["risk", "benefit"],
+      "required": true
     },
     "feedback": {
       "type": "blocks"

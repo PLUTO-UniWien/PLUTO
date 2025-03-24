@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 // Locate source and destination paths
 const repoRoot = join(__dirname, "../../../");
 const cmsTypesPath = join(repoRoot, "packages/cms/types/generated");
-const webTypesPath = join(repoRoot, "packages/web/src/types");
+const webTypesPath = join(repoRoot, "packages/web/src/modules/strapi/types");
 
 // Read the source files
 const components = readFileSync(join(cmsTypesPath, "components.d.ts"), "utf-8");

@@ -110,6 +110,14 @@ export interface APIResponseCollection<TContentTypeUID extends UID.ContentType> 
   meta: APIResponseCollectionMetadata;
 }
 
+type StrapiContentType<T extends UID.ContentType> = GetValues<T>;
+type StrapiComponentType<T extends UID.Component> = GetValues<T>;
+export type StrapiType<T extends UID.Schema> = T extends UID.ContentType
+  ? StrapiContentType<T>
+  : T extends UID.Component
+    ? StrapiComponentType<T>
+    : never;
+
 // These files are copied automatically from packages/cms/types/generated/ via script packages/web/scripts/copy-cms-types.ts
 export * as components from "./components";
 export * as contentTypes from "./contentTypes";

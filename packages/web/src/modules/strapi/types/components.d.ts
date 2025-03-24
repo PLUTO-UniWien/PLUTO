@@ -26,7 +26,7 @@ export interface QuestionMetadata extends Struct.ComponentSchema {
   };
   attributes: {
     feedback: Schema.Attribute.Blocks;
-    impact: Schema.Attribute.Enumeration<["risk", "benefit"]>;
+    impact: Schema.Attribute.Enumeration<["risk", "benefit"]> & Schema.Attribute.Required;
     selectionMax: Schema.Attribute.Integer;
     selectionMin: Schema.Attribute.Integer &
       Schema.Attribute.Required &
