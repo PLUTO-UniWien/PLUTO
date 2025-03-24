@@ -4,24 +4,17 @@ import type { Schema, Struct } from "@strapi/types";
 export interface QuestionChoice extends Struct.ComponentSchema {
   collectionName: "components_question_choices";
   info: {
+    description: "";
     displayName: "Choice";
     icon: "bulletList";
   };
   attributes: {
-    body: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    body: Schema.Attribute.String & Schema.Attribute.Required;
     feedback: Schema.Attribute.Blocks;
     type: Schema.Attribute.Enumeration<["regular", "other", "none of the above", "no answer"]> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"regular">;
-    weight: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<0>;
+    weight: Schema.Attribute.Integer & Schema.Attribute.Required & Schema.Attribute.DefaultTo<0>;
   };
 }
 
@@ -92,6 +85,18 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SurveyGroup extends Struct.ComponentSchema {
+  collectionName: "components_survey_groups";
+  info: {
+    displayName: "Group";
+    icon: "apps";
+  };
+  attributes: {
+    questions: Schema.Attribute.Relation<"oneToMany", "api::question.question">;
+    title: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+  };
+}
+
 declare module "@strapi/types" {
   export module Public {
     export interface ComponentSchemas {
@@ -99,6 +104,7 @@ declare module "@strapi/types" {
       "question.metadata": QuestionMetadata;
       "shared.open-graph": SharedOpenGraph;
       "shared.seo": SharedSeo;
+      "survey.group": SurveyGroup;
     }
   }
 }

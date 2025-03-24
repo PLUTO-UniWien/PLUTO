@@ -365,6 +365,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
 export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   collectionName: "questions";
   info: {
+    description: "";
     displayName: "Question";
     pluralName: "questions";
     singularName: "question";
@@ -373,7 +374,8 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    body: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    body: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
+    choices: Schema.Attribute.Component<"question.choice", true> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
     explanation: Schema.Attribute.Blocks & Schema.Attribute.Required;
@@ -385,6 +387,29 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
     weightingRationale: Schema.Attribute.Blocks & Schema.Attribute.Required;
+  };
+}
+
+export interface ApiSurveySurvey extends Struct.SingleTypeSchema {
+  collectionName: "surveys";
+  info: {
+    displayName: "Survey";
+    pluralName: "surveys";
+    singularName: "survey";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    groups: Schema.Attribute.Component<"survey.group", true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::survey.survey"> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
 }
 
@@ -817,6 +842,7 @@ declare module "@strapi/types" {
       "admin::user": AdminUser;
       "api::home-page.home-page": ApiHomePageHomePage;
       "api::question.question": ApiQuestionQuestion;
+      "api::survey.survey": ApiSurveySurvey;
       "plugin::content-releases.release": PluginContentReleasesRelease;
       "plugin::content-releases.release-action": PluginContentReleasesReleaseAction;
       "plugin::i18n.locale": PluginI18NLocale;
