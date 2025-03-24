@@ -28,37 +28,15 @@ export interface QuestionChoice extends Struct.ComponentSchema {
 export interface QuestionMetadata extends Struct.ComponentSchema {
   collectionName: "components_question_metadata";
   info: {
+    description: "";
     displayName: "Metadata";
   };
   attributes: {
     feedback: Schema.Attribute.Blocks;
     impact: Schema.Attribute.Enumeration<["risk", "benefit"]>;
-    selection: Schema.Attribute.Component<"question.selection", false> & Schema.Attribute.Required;
-  };
-}
-
-export interface QuestionSelection extends Struct.ComponentSchema {
-  collectionName: "components_question_selections";
-  info: {
-    displayName: "Selection";
-    icon: "check";
-  };
-  attributes: {
-    max: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    min: Schema.Attribute.Integer &
+    selectionMax: Schema.Attribute.Integer;
+    selectionMin: Schema.Attribute.Integer &
       Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      > &
       Schema.Attribute.DefaultTo<1>;
   };
 }
@@ -119,7 +97,6 @@ declare module "@strapi/types" {
     export interface ComponentSchemas {
       "question.choice": QuestionChoice;
       "question.metadata": QuestionMetadata;
-      "question.selection": QuestionSelection;
       "shared.open-graph": SharedOpenGraph;
       "shared.seo": SharedSeo;
     }

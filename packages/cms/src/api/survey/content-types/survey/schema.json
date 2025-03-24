@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "surveys",
+  "info": {
+    "singularName": "survey",
+    "pluralName": "surveys",
+    "displayName": "Survey"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "groups": {
+      "displayName": "Group",
+      "type": "component",
+      "repeatable": true,
+      "component": "survey.group"
+    }
+  }
+}

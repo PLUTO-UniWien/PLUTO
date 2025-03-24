@@ -1,7 +1,8 @@
 {
   "collectionName": "components_question_metadata",
   "info": {
-    "displayName": "Metadata"
+    "displayName": "Metadata",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -9,15 +10,16 @@
       "type": "enumeration",
       "enum": ["risk", "benefit"]
     },
-    "selection": {
-      "displayName": "Selection",
-      "type": "component",
-      "repeatable": false,
-      "component": "question.selection",
-      "required": true
-    },
     "feedback": {
       "type": "blocks"
+    },
+    "selectionMin": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "selectionMax": {
+      "type": "integer"
     }
   }
 }

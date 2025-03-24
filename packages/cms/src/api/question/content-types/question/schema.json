@@ -4,7 +4,8 @@
   "info": {
     "singularName": "question",
     "pluralName": "questions",
-    "displayName": "Question"
+    "displayName": "Question",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,16 +17,23 @@
       "component": "question.metadata",
       "required": true
     },
-    "body": {
-      "type": "blocks",
-      "required": true
-    },
     "explanation": {
       "type": "blocks",
       "required": true
     },
     "weightingRationale": {
       "type": "blocks",
+      "required": true
+    },
+    "body": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "choices": {
+      "type": "component",
+      "repeatable": true,
+      "component": "question.choice",
       "required": true
     }
   }
