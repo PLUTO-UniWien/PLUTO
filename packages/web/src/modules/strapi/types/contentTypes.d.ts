@@ -408,7 +408,9 @@ export interface ApiSurveySurvey extends Struct.SingleTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<"oneToMany", "api::survey.survey"> &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<"images"> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };

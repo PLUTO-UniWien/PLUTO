@@ -2,29 +2,18 @@
 import "survey-core/survey-core.css";
 import { Model, Survey } from "survey-react-ui";
 import type { StrapiType } from "@/modules/strapi/types";
-
-const surveyJson = {
-  elements: [
-    {
-      name: "FirstName",
-      title: "Enter your first name:",
-      type: "text",
-    },
-    {
-      name: "LastName",
-      title: "Enter your last name:",
-      type: "text",
-    },
-  ],
-};
+import { generateSurveyJsModelJSON } from "./adapter";
+import withClientSideRendering from "@/modules/common/with-client-side-rendering";
 
 type SurveyComponentProps = {
   survey: StrapiType<"api::survey.survey">;
 };
 
-export default function SurveyComponent({ survey }: SurveyComponentProps) {
-  console.log(survey);
+function SurveyComponent({ survey }: SurveyComponentProps) {
+  const surveyJson = generateSurveyJsModelJSON(survey);
   const model = new Model(surveyJson);
 
   return <Survey model={model} />;
 }
+
+export default withClientSideRendering(SurveyComponent);
