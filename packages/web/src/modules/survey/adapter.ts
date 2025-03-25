@@ -80,7 +80,7 @@ function createPage(question: Question & { number: number; pageTitle: string }) 
 
 function getLogoUrl(survey: Survey) {
   const logo = survey.logo as unknown as APIResponseData<"plugin::upload.file">["data"];
-  // @ts-expect-error
+  // @ts-expect-error the auto-generated strapi types are too loose, it is safe to assume that the logo has various formats
   return strapiPublicUrl(logo.formats?.small?.url || logo.url);
 }
 
