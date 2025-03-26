@@ -390,6 +390,29 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSubmissionSubmission extends Struct.CollectionTypeSchema {
+  collectionName: "submissions";
+  info: {
+    displayName: "Submission";
+    pluralName: "submissions";
+    singularName: "submission";
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    items: Schema.Attribute.Component<"submission.item", true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::submission.submission"> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSurveySurvey extends Struct.SingleTypeSchema {
   collectionName: "surveys";
   info: {
@@ -845,6 +868,7 @@ declare module "@strapi/types" {
       "admin::user": AdminUser;
       "api::home-page.home-page": ApiHomePageHomePage;
       "api::question.question": ApiQuestionQuestion;
+      "api::submission.submission": ApiSubmissionSubmission;
       "api::survey.survey": ApiSurveySurvey;
       "plugin::content-releases.release": PluginContentReleasesRelease;
       "plugin::content-releases.release-action": PluginContentReleasesReleaseAction;

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_submission_items",
+  "info": {
+    "displayName": "Item",
+    "icon": "paperPlane"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "question": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::question.question"
+    }
+  }
+}

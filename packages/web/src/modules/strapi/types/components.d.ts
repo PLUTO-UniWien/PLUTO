@@ -85,6 +85,18 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SubmissionItem extends Struct.ComponentSchema {
+  collectionName: "components_submission_items";
+  info: {
+    displayName: "Item";
+    icon: "paperPlane";
+  };
+  attributes: {
+    question: Schema.Attribute.Relation<"oneToOne", "api::question.question">;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SurveyGroup extends Struct.ComponentSchema {
   collectionName: "components_survey_groups";
   info: {
@@ -104,6 +116,7 @@ declare module "@strapi/types" {
       "question.metadata": QuestionMetadata;
       "shared.open-graph": SharedOpenGraph;
       "shared.seo": SharedSeo;
+      "submission.item": SubmissionItem;
       "survey.group": SurveyGroup;
     }
   }
