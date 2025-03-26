@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,6 +10,12 @@ const __dirname = dirname(__filename);
 const repoRoot = join(__dirname, "../../../");
 const cmsTypesPath = join(repoRoot, "packages/cms/types/generated");
 const webTypesPath = join(repoRoot, "packages/web/src/modules/strapi/types");
+
+// Exit if cmsTypesPath does not exist in case of not having started the CMS for the first time yet
+if (!existsSync(cmsTypesPath)) {
+  console.log(`CMS types path does not exist: ${cmsTypesPath}. Skipping copy.`);
+  process.exit(0);
+}
 
 // Read the source files
 const components = readFileSync(join(cmsTypesPath, "components.d.ts"), "utf-8");

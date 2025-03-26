@@ -131,4 +131,4 @@ build
 .strapi-cloud.json
 
 # Ignore generated types in this package as we version them in the `web` package
-types/generated/
+types/generated/**
