@@ -19,6 +19,14 @@ export const env = createEnv({
       .describe(
         "Base URL of the Strapi API, used for client-side requests such as requesting media.",
       ),
+    NEXT_PUBLIC_UMAMI_SCRIPT_URL: z
+      .string()
+      .url()
+      .describe("The URL of the Umami instance to track."),
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: z
+      .string()
+      .min(1)
+      .describe("The ID of the Umami website to track."),
   },
   runtimeEnv: {
     // Server
@@ -26,5 +34,7 @@ export const env = createEnv({
     STRAPI_API_TOKEN: process.env.STRAPI_API_TOKEN,
     // Client
     NEXT_PUBLIC_STRAPI_BASE_URL: process.env.NEXT_PUBLIC_STRAPI_BASE_URL,
+    NEXT_PUBLIC_UMAMI_SCRIPT_URL: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL,
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
   },
 });

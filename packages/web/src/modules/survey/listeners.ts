@@ -10,6 +10,6 @@ export function attachListenersToSurveyModel(model: Model, strapiSurvey: StrapiS
   model.onComplete.add(async (survey) => {
     const submission = adaptSurveyJsSubmissioToStrapiSubmission(survey.data, indexedSurvey);
     const result = await createSubmission(submission);
-    console.log("Stored submission", result);
+    const submissionId = result.id;
   });
 }

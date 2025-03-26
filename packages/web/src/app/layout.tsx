@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import UmamiAnalytics from "@/modules/umami/component";
+import { env } from "@/env";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+        <UmamiAnalytics
+          scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
+          websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        />
+      </body>
     </html>
   );
 }
