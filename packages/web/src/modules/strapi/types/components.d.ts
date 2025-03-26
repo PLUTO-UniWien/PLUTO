@@ -88,10 +88,13 @@ export interface SharedSeo extends Struct.ComponentSchema {
 export interface SubmissionItem extends Struct.ComponentSchema {
   collectionName: "components_submission_items";
   info: {
+    description: "";
     displayName: "Item";
     icon: "paperPlane";
   };
   attributes: {
+    choiceId: Schema.Attribute.Integer & Schema.Attribute.Required;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
     question: Schema.Attribute.Relation<"oneToOne", "api::question.question">;
     value: Schema.Attribute.String & Schema.Attribute.Required;
   };

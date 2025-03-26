@@ -101,12 +101,14 @@ export interface APIResponseCollectionMetadata {
   };
 }
 
+export type WithId<T> = T & IDProperty;
+
 export interface APIResponseData<TContentTypeUID extends UID.ContentType> {
-  data: GetValues<TContentTypeUID>;
+  data: WithId<GetValues<TContentTypeUID>>;
 }
 
 export interface APIResponseCollection<TContentTypeUID extends UID.ContentType> {
-  data: GetValues<TContentTypeUID>[];
+  data: WithId<GetValues<TContentTypeUID>>[];
   meta: APIResponseCollectionMetadata;
 }
 
