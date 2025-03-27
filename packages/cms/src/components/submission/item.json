@@ -19,6 +19,11 @@
     "choiceId": {
       "type": "integer",
       "required": true
+    },
+    "timeSpentOnQuestion": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
     }
   }
 }

@@ -10,11 +10,14 @@
     "copy-cms-types": "node --no-warnings --experimental-strip-types scripts/copy-cms-types.ts"
   },
   "dependencies": {
+    "@radix-ui/react-hover-card": "^1.1.6",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@strapi/blocks-react-renderer": "^1.0.2",
     "@strapi/client": "^1.0.1",
     "@t3-oss/env-nextjs": "^0.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.483.0",
+    "lucide-react": "^0.484.0",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -26,7 +29,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@strapi/types": "^5.11.3",
+    "@strapi/types": "^5.12.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -95,6 +95,14 @@ export interface SubmissionItem extends Struct.ComponentSchema {
   attributes: {
     choiceId: Schema.Attribute.Integer & Schema.Attribute.Required;
     question: Schema.Attribute.Relation<"oneToOne", "api::question.question">;
+    timeSpentOnQuestion: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
     value: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

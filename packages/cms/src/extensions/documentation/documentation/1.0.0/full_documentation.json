@@ -13,7 +13,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-03-27T12:09:06.891Z"
+    "x-generation-date": "2025-03-27T20:45:44.325Z"
   },
   "openapi": "3.0.0",
   "x-strapi-config": {
@@ -4228,6 +4228,10 @@
           },
           "choiceId": {
             "type": "integer"
+          },
+          "timeSpentOnQuestion": {
+            "type": "number",
+            "format": "float"
           }
         }
       },

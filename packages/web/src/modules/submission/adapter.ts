@@ -9,6 +9,7 @@ import type { StrapiSubmission, SurveyJSSubmission } from "./types";
 export function adaptSurveyJsSubmissioToStrapiSubmission(
   submission: SurveyJSSubmission,
   indexedSurvey: IndexedStrapiSurvey,
+  questionTimeSpent: Map<QuestionLabel, number>,
 ) {
   const items = Object.entries(submission)
     .filter(([questionLabel]) => !isCommentField(questionLabel))
@@ -18,6 +19,7 @@ export function adaptSurveyJsSubmissioToStrapiSubmission(
         selectedAnswerChoices,
         submission,
         indexedSurvey,
+        questionTimeSpent,
       ),
     );
 
@@ -64,7 +66,9 @@ function processQuestionAnswers(
   selectedAnswerChoices: string | string[],
   submission: SurveyJSSubmission,
   indexedSurvey: IndexedStrapiSurvey,
+  questionTimeSpent: Map<QuestionLabel, number>,
 ) {
+  const timeSpentOnQuestion = questionTimeSpent.get(questionLabel);
   const { question, indexedChoices } = indexedSurvey[questionLabel];
   const selection = normalizeSelection(selectedAnswerChoices);
 
@@ -79,6 +83,7 @@ function processQuestionAnswers(
       question: { id: question.id },
       choiceId: choice.id,
       value,
+      timeSpentOnQuestion,
     };
   });
 }

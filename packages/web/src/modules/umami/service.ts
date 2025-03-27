@@ -12,12 +12,27 @@ export function getUmamiInstance(): UmamiInstance {
 
 export async function trackSubmission(submissionId: number) {
   const umami = getUmamiInstance();
-  await umami.track("submission", { submissionId });
+  await umami.track("survey-submission", { submissionId });
   const currentTimestamp = new Date().toISOString();
-  await umami.identify({ [`submission-${currentTimestamp}`]: submissionId });
+  await umami.identify({ [`survey-submission-${currentTimestamp}`]: submissionId });
 }
 
-export async function trackStarted() {
+export async function trackSurveyStarted() {
   const umami = getUmamiInstance();
-  await umami.track("started", {});
+  await umami.track("survey-start", {});
+}
+
+export async function trackQuestionExplanationViewed(questionId: number, questionLabel: string) {
+  const umami = getUmamiInstance();
+  await umami.track("question-explanation-view", { questionId, questionLabel });
+}
+
+export async function trackSurveyPreviewOpened() {
+  const umami = getUmamiInstance();
+  await umami.track("survey-preview-open", {});
+}
+
+export async function trackQuestionVisited(questionId: number, questionLabel: string) {
+  const umami = getUmamiInstance();
+  await umami.track("question-visit", { questionId, questionLabel });
 }
