@@ -14,16 +14,19 @@ import {
 } from "@/modules/umami/service";
 import { QuestionExplanationComponent } from "@/modules/question-explanation/component";
 import { mountReactComponent } from "@/modules/common/dom-utils";
+import { useSubmissionStore } from "@/modules/submission/store";
+import type { useRouter } from "next/navigation";
 
 type SurveyModelListenerContext = {
   strapiSurvey: StrapiSurvey;
+  router: ReturnType<typeof useRouter>;
 };
 
 export function attachListenersToSurveyModel(model: Model, context: SurveyModelListenerContext) {
-  const { strapiSurvey } = context;
+  const { strapiSurvey, router } = context;
   const indexedSurvey = getIndexedSurvey(strapiSurvey);
   const questionTimeSpent = new Map<QuestionLabel, number>();
-  const listenerContext: ListenerContext = { indexedSurvey, questionTimeSpent };
+  const listenerContext: ListenerContext = { indexedSurvey, questionTimeSpent, router };
   const listeners = [
     trackQuestionTimeSpent,
     trackSurveyStartEvent,
@@ -42,6 +45,7 @@ export function attachListenersToSurveyModel(model: Model, context: SurveyModelL
 type ListenerContext = {
   indexedSurvey: IndexedStrapiSurvey;
   questionTimeSpent: Map<QuestionLabel, number>;
+  router: ReturnType<typeof useRouter>;
 };
 
 function trackSurveyStartEvent(model: Model, _: ListenerContext) {
@@ -57,16 +61,18 @@ function trackSurveyStartEvent(model: Model, _: ListenerContext) {
 
 function performAndTrackSurveySubmission(model: Model, context: ListenerContext) {
   // Persist submission results and track it in analytics
-  const { indexedSurvey, questionTimeSpent } = context;
+  const { indexedSurvey, questionTimeSpent, router } = context;
   model.onComplete.add(async (survey) => {
     const submission = adaptSurveyJsSubmissioToStrapiSubmission(
       survey.data,
       indexedSurvey,
       questionTimeSpent,
     );
+    useSubmissionStore.getState().setSubmission(submission);
     const result = await createSubmission(submission);
     const submissionId = result.id;
     await trackSubmission(submissionId);
+    router.push("/result");
   });
 }
 
