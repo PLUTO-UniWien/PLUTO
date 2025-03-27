@@ -19,10 +19,6 @@
     "choiceId": {
       "type": "integer",
       "required": true
-    },
-    "label": {
-      "type": "string",
-      "required": true
     }
   }
 }

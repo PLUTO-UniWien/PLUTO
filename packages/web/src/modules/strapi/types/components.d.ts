@@ -94,7 +94,6 @@ export interface SubmissionItem extends Struct.ComponentSchema {
   };
   attributes: {
     choiceId: Schema.Attribute.Integer & Schema.Attribute.Required;
-    label: Schema.Attribute.String & Schema.Attribute.Required;
     question: Schema.Attribute.Relation<"oneToOne", "api::question.question">;
     value: Schema.Attribute.String & Schema.Attribute.Required;
   };

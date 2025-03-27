@@ -32,15 +32,15 @@ function normalizeSelection(selectedAnswerChoices: string | string[]) {
   return Array.isArray(selectedAnswerChoices) ? selectedAnswerChoices : [selectedAnswerChoices];
 }
 
-function findChoiceLabel(
+function findChoiceByLabel(
   answerChoiceLabel: string,
   indexedChoices: Record<AnswerChoiceLabel, AnswerChoice>,
 ) {
   if (answerChoiceLabel in indexedChoices) {
-    return answerChoiceLabel;
+    return indexedChoices[answerChoiceLabel as AnswerChoiceLabel];
   }
 
-  const result = Object.values(indexedChoices).find((choice) => {
+  const choice = Object.values(indexedChoices).find((choice) => {
     if (answerChoiceLabel === "other") {
       return choice.type === "other" || choice.type === "none of the above";
     }
@@ -52,11 +52,11 @@ function findChoiceLabel(
     return false;
   });
 
-  if (!result) {
-    throw new Error(`Choice label not found: ${answerChoiceLabel}`);
+  if (!choice) {
+    throw new Error(`Choice not found with label: ${answerChoiceLabel}`);
   }
 
-  return result;
+  return choice;
 }
 
 function processQuestionAnswers(
@@ -69,15 +69,13 @@ function processQuestionAnswers(
   const selection = normalizeSelection(selectedAnswerChoices);
 
   return selection.map((answerChoiceLabel) => {
-    const choiceLabel = findChoiceLabel(answerChoiceLabel, indexedChoices);
-    const choice = indexedChoices[choiceLabel as AnswerChoiceLabel];
+    const choice = findChoiceByLabel(answerChoiceLabel, indexedChoices);
 
     const value = isOtherOrNoneOfAbove(choice.type)
       ? submission[`${questionLabel}-Comment`]
       : choice.body;
 
     return {
-      label: choiceLabel,
       question: { id: question.id },
       choiceId: choice.id,
       value,
