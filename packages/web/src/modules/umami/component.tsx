@@ -7,5 +7,5 @@ type UmamiAnalyticsProps = {
 };
 
 export default function UmamiAnalytics({ scriptUrl, websiteId }: UmamiAnalyticsProps) {
-  return <Script async src={scriptUrl} data-website-id={websiteId} />;
+  return <Script strategy="beforeInteractive" src={scriptUrl} data-website-id={websiteId} />;
 }

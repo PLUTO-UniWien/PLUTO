@@ -16,3 +16,8 @@ export async function trackSubmission(submissionId: number) {
   const currentTimestamp = new Date().toISOString();
   await umami.identify({ [`submission-${currentTimestamp}`]: submissionId });
 }
+
+export async function trackStarted() {
+  const umami = getUmamiInstance();
+  await umami.track("started", {});
+}

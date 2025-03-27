@@ -10,10 +10,10 @@ type SurveyComponentProps = {
   survey: StrapiSurvey;
 };
 
-function SurveyComponent({ survey }: SurveyComponentProps) {
-  const surveyJson = adaptStrapiSurveyToSurveyJsModelJSON(survey);
+function SurveyComponent({ survey: strapiSurvey }: SurveyComponentProps) {
+  const surveyJson = adaptStrapiSurveyToSurveyJsModelJSON(strapiSurvey);
   const model = new Model(surveyJson);
-  attachListenersToSurveyModel(model, survey);
+  attachListenersToSurveyModel(model, { strapiSurvey });
 
   return <Survey model={model} />;
 }
