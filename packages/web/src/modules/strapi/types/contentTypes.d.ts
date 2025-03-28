@@ -393,6 +393,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
 export interface ApiSubmissionSubmission extends Struct.CollectionTypeSchema {
   collectionName: "submissions";
   info: {
+    description: "";
     displayName: "Submission";
     pluralName: "submissions";
     singularName: "submission";
@@ -403,7 +404,7 @@ export interface ApiSubmissionSubmission extends Struct.CollectionTypeSchema {
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
-    items: Schema.Attribute.Component<"submission.item", true>;
+    items: Schema.Attribute.Component<"submission.item", true> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<"oneToMany", "api::submission.submission"> &
       Schema.Attribute.Private;

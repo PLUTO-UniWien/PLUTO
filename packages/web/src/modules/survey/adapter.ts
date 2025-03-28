@@ -17,7 +17,7 @@ import type {
 export function adaptStrapiSurveyToSurveyJsModelJSON(survey: StrapiSurvey) {
   const coreProperties = createCoreProperties(survey);
   const questionsWithPageTitle = prepareQuestionsWithPageTitles(survey);
-  const pages = questionsWithPageTitle.map(createPage).slice(0, 3);
+  const pages = questionsWithPageTitle.map(createPage);
 
   return { ...coreProperties, pages };
 }

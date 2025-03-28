@@ -8,3 +8,4 @@ export type SurveyJSSubmission = {
   [key: `${QuestionLabel}-Comment`]: string;
 };
 export type StrapiSubmission = StrapiType<"api::submission.submission">;
+export type StrapiSubmissionItem = StrapiType<"submission.item">;

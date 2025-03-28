@@ -4,7 +4,8 @@
   "info": {
     "singularName": "submission",
     "pluralName": "submissions",
-    "displayName": "Submission"
+    "displayName": "Submission",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -14,7 +15,8 @@
       "displayName": "Item",
       "type": "component",
       "repeatable": true,
-      "component": "submission.item"
+      "component": "submission.item",
+      "required": true
     }
   }
 }

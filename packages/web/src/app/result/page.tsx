@@ -1,31 +1,30 @@
 "use client";
 
+import { analyzeSubmission } from "@/modules/result/analysis";
 import { useSubmissionStore } from "@/modules/submission/store";
 import { useSurveyStore } from "@/modules/survey/store";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Page() {
   const submission = useSubmissionStore((state) => state.submission);
   const survey = useSurveyStore((state) => state.survey);
-  const router = useRouter();
 
-  useEffect(() => {
-    if (submission === null) {
-      router.push("/survey");
-    }
-  }, [submission, router]);
-
-  if (submission === null) {
+  if (submission === null || survey === null) {
     return <div>Loading...</div>;
   }
 
+  const analysis = analyzeSubmission(submission, survey);
+  const { feedback, score, scoreNormalized, counts } = analysis;
+
   return (
     <div>
-      <h1>Submission</h1>
-      <div>{JSON.stringify(submission, null, 2)}</div>
-      <h1>Survey</h1>
-      <div>{JSON.stringify(survey, null, 2)}</div>
+      <h1>Feedback</h1>
+      <div>{JSON.stringify(feedback, null, 2)}</div>
+      <h1>Score</h1>
+      <div>{JSON.stringify(score, null, 2)}</div>
+      <h1>Score Normalized</h1>
+      <div>{JSON.stringify(scoreNormalized, null, 2)}</div>
+      <h1>Counts</h1>
+      <div>{JSON.stringify(counts, null, 2)}</div>
     </div>
   );
 }
