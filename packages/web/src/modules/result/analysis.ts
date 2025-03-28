@@ -69,7 +69,10 @@ export function analyzeSubmission(submission: StrapiSubmission, survey: StrapiSu
     scoreRangeBenefit.max,
   );
 
+  const resultType = determineResultType(scoreRiskNormalized, scoreBenefitNormalized);
+
   return {
+    resultType,
     feedback: {
       risk: feedbackRisk,
       benefit: feedbackBenefit,
@@ -103,6 +106,8 @@ export function analyzeSubmission(submission: StrapiSubmission, survey: StrapiSu
   };
 }
 
+export type AnalysisResult = ReturnType<typeof analyzeSubmission>;
+
 /**
  * Creates a lookup map of answer choices indexed by their IDs.
  * Facilitates the mapping of submitted answer choice items to their full Strapi model objects.
@@ -128,7 +133,7 @@ function indexAnswerChoices(survey: StrapiSurvey) {
  */
 function getFeedbackForAnsweredQuestions(answeredQuestions: AnsweredQuestion[]) {
   return answeredQuestions
-    .map(({ question, pickedChoices }) =>
+    .flatMap(({ question, pickedChoices }) =>
       getFeedbackForAnsweredQuestionSingle(question, pickedChoices),
     )
     .filter((it) => it.length > 0);
@@ -205,4 +210,26 @@ function getScoreForAnsweredQuestions(answeredQuestions: AnsweredQuestion[]) {
  */
 function normalizeScore(score: number, minScore: number, maxScore: number) {
   return ((score - minScore) / (maxScore - minScore)) * 2 - 1;
+}
+
+/**
+ * Determines the result type based on the normalized scores, as defined by the data solidarity framework.
+ */
+function determineResultType(scoreRiskNormalized: number, scoreBenefitNormalized: number) {
+  const x = scoreRiskNormalized;
+  const y = scoreBenefitNormalized;
+  if (x > 0 && y > 0) {
+    return { id: "C", label: "High risk • High benefit" };
+  }
+  if (x < 0 && y > 0) {
+    return { id: "A", label: "Low risk • High benefit" };
+  }
+  if (x < 0 && y < 0) {
+    return { id: "B", label: "Low risk • Low benefit" };
+  }
+  if (x > 0 && y < 0) {
+    return { id: "D", label: "High risk • Low benefit" };
+  }
+
+  return { id: "Neutral", label: "Neutral" };
 }

@@ -193,36 +193,6 @@ const QuadrantPlotHoverCard = ({
   pointRadius,
   scoreLabels,
 }: QuadrantPlotHoverCardProps) => {
-  // Determine which quadrant the point is in or if it's neutral (at origin)
-  const getResultType = () => {
-    const [x, y] = pointCoordinate;
-    const [yUp, xUp, xDown, yDown] = quadrantLabels;
-    // Check if point is at origin (0,0)
-    if (x === 0 && y === 0) {
-      return "Neutral";
-    }
-
-    const xMidpoint = (xUpperBound + xLowerBound) / 2;
-    const yMidpoint = (yUpperBound + yLowerBound) / 2;
-
-    // Quadrant 1 if x > 0 and y > 0
-    if (x > xMidpoint && y > yMidpoint) {
-      return `C: ${[xUp, yUp].join(", ")}`;
-    }
-    // Quadrant 2 if x < 0 and y > 0
-    if (x < xMidpoint && y > yMidpoint) {
-      return `A: ${[xDown, yUp].join(", ")}`;
-    }
-    // Quadrant 3 if x < 0 and y < 0
-    if (x < xMidpoint && y < yMidpoint) {
-      return `B: ${[xDown, yDown].join(", ")}`;
-    }
-    // Quadrant 4 if x > 0 and y < 0
-    return `D: ${[xUp, yDown].join(", ")}`;
-  };
-
-  const resultType = getResultType();
-
   return (
     <HoverCard openDelay={150}>
       <HoverCardTrigger asChild>
@@ -231,17 +201,18 @@ const QuadrantPlotHoverCard = ({
           style={{
             left: `calc(50% + ${((pointCoordinate[0] - (xUpperBound + xLowerBound) / 2) / (xUpperBound - xLowerBound)) * 100}%)`,
             top: `calc(50% - ${((pointCoordinate[1] - (yUpperBound + yLowerBound) / 2) / (yUpperBound - yLowerBound)) * 100}%)`,
-            width: `${pointRadius * 2}px`,
-            height: `${pointRadius * 2}px`,
+            width: `${pointRadius * 2.5}px`,
+            height: `${pointRadius * 2.5}px`,
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
             cursor: "pointer",
+            zIndex: 10,
+            background: "transparent",
           }}
         />
       </HoverCardTrigger>
       <HoverCardContent className="w-auto" side="top">
         <div className="space-y-2">
-          <h4 className="text-sm font-semibold">Result</h4>
           <div className="flex justify-between gap-4">
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground">{scoreLabels.x}</p>
@@ -251,10 +222,6 @@ const QuadrantPlotHoverCard = ({
               <p className="text-xs text-muted-foreground">{scoreLabels.y}</p>
               <p className="font-medium">{pointCoordinate[1].toFixed(2)}</p>
             </div>
-          </div>
-          <div className="pt-2 border-t">
-            <p className="text-xs text-muted-foreground">Type</p>
-            <p className="font-medium">{resultType}</p>
           </div>
         </div>
       </HoverCardContent>
