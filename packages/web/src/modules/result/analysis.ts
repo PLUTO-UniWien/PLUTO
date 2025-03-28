@@ -1,14 +1,24 @@
-import type { StrapiSubmission, StrapiSubmissionItem } from "@/modules/submission/types";
+import type { StrapiSubmission } from "@/modules/submission/types";
 import type { AnswerChoice, Question, StrapiSurvey } from "@/modules/survey/types";
 import { groupBy } from "@/modules/common/collection-utils";
 import { getScoreRangeForQuestions } from "./range";
 
+type AnswerChoiceWithQuestion = {
+  question: Question;
+  choice: AnswerChoice;
+};
+
+type AnsweredQuestion = {
+  question: Question;
+  pickedChoices: AnswerChoice[];
+};
+
 /**
- * Returns the counteraction feedback for the supplied {@link StrapiSubmission} grouped
- * by the impact of the question as well as the scores for the x and y-axis.
+ * Analyzes a survey submission to calculate risk/benefit scores and feedback.
+ * Returns normalized scores, feedback, and question count statistics.
  *
- * @param {StrapiSubmission} submission - The survey result to get the feedback for.
- * @param {StrapiSurvey} survey - The survey model that the submission belongs to.
+ * @param {StrapiSubmission} submission - The survey result to analyze
+ * @param {StrapiSurvey} survey - The survey model containing questions and choices
  */
 export function analyzeSubmission(submission: StrapiSubmission, survey: StrapiSurvey) {
   const indexedAnswerChoices = indexAnswerChoices(survey);
@@ -93,11 +103,10 @@ export function analyzeSubmission(submission: StrapiSubmission, survey: StrapiSu
   };
 }
 
-type AnswerChoiceWithQuestion = {
-  question: Question;
-  choice: AnswerChoice;
-};
-
+/**
+ * Creates a lookup map of answer choices indexed by their IDs.
+ * Facilitates the mapping of submitted answer choice items to their full Strapi model objects.
+ */
 function indexAnswerChoices(survey: StrapiSurvey) {
   const res: Record<number, AnswerChoiceWithQuestion> = {};
   for (const group of survey.groups) {
@@ -115,44 +124,19 @@ function indexAnswerChoices(survey: StrapiSurvey) {
 }
 
 /**
- * Returns the normalized score for the supplied `score`, `minScore` and `maxScore`.
- * The result is a number between -1 and 1.
- *
- * @param {number} score - The score to normalize.
- * @param {number} minScore - The minimum score.
- * @param {number} maxScore - The maximum score.
+ * Processes answered questions to generate feedback arrays for each question
  */
-function normalizeScore(score: number, minScore: number, maxScore: number) {
-  return ((score - minScore) / (maxScore - minScore)) * 2 - 1;
-}
-
-function getEntriesByInclusion(entries: AnswerChoiceWithQuestion[]) {
-  return groupBy(entries, ({ choice }) => (choice.type === "no answer" ? "excluded" : "included"));
-}
-
-function getEntriesByImpact(entries: AnswerChoiceWithQuestion[]) {
-  return groupBy(entries, ({ question }) => question.metadata.impact);
-}
-
-type AnsweredQuestion = {
-  question: Question;
-  pickedChoices: AnswerChoice[];
-};
-
-function getAnsweredQuestions(entries: AnswerChoiceWithQuestion[]): AnsweredQuestion[] {
-  const entriesByQuestion = groupBy(entries, ({ question }) => question.id);
-  return Object.values(entriesByQuestion).map((entries) => ({
-    question: entries[0].question,
-    pickedChoices: entries.map(({ choice }) => choice),
-  }));
-}
-
 function getFeedbackForAnsweredQuestions(answeredQuestions: AnsweredQuestion[]) {
-  return answeredQuestions.map(({ question, pickedChoices }) =>
-    getFeedbackForAnsweredQuestionSingle(question, pickedChoices),
-  );
+  return answeredQuestions
+    .map(({ question, pickedChoices }) =>
+      getFeedbackForAnsweredQuestionSingle(question, pickedChoices),
+    )
+    .filter((it) => it.length > 0);
 }
 
+/**
+ * Generates feedback for a single answered question, combining core and choice-specific feedback
+ */
 function getFeedbackForAnsweredQuestionSingle(question: Question, pickedChoices: AnswerChoice[]) {
   // Core feedback attached to the entire question rather than a specific choice
   const {
@@ -170,9 +154,41 @@ function getFeedbackForAnsweredQuestionSingle(question: Question, pickedChoices:
     ? [coreFeedback, ...individualFeedback]
     : individualFeedback;
 
-  return feedback.filter((it) => it !== null && it !== undefined && it.length > 0);
+  return feedback.filter(
+    (it): it is NonNullable<typeof coreFeedback> =>
+      it !== null && it !== undefined && it.length > 0,
+  );
 }
 
+/**
+ * Groups entries into included/excluded based on answer type
+ */
+function getEntriesByInclusion(entries: AnswerChoiceWithQuestion[]) {
+  return groupBy(entries, ({ choice }) => (choice.type === "no answer" ? "excluded" : "included"));
+}
+
+/**
+ * Groups entries by their impact type (risk/benefit)
+ */
+function getEntriesByImpact(entries: AnswerChoiceWithQuestion[]) {
+  return groupBy(entries, ({ question }) => question.metadata.impact);
+}
+
+/**
+ * Converts raw entries into AnsweredQuestion objects, grouping by question
+ */
+function getAnsweredQuestions(entries: AnswerChoiceWithQuestion[]): AnsweredQuestion[] {
+  const entriesByQuestion = groupBy(entries, ({ question }) => question.id);
+  return Object.values(entriesByQuestion).map((entries) => ({
+    question: entries[0].question,
+    pickedChoices: entries.map(({ choice }) => choice),
+  }));
+}
+
+/**
+ * Calculates the total score for a set of answered questions.
+ * The score is the sum of the weights of the picked choices.
+ */
 function getScoreForAnsweredQuestions(answeredQuestions: AnsweredQuestion[]) {
   let score = 0;
   for (const { pickedChoices } of answeredQuestions) {
@@ -181,4 +197,12 @@ function getScoreForAnsweredQuestions(answeredQuestions: AnsweredQuestion[]) {
     }
   }
   return score;
+}
+
+/**
+ * Returns the normalized score between -1 and 1.
+ * This normalization enables the comparison of scores across different submissions.
+ */
+function normalizeScore(score: number, minScore: number, maxScore: number) {
+  return ((score - minScore) / (maxScore - minScore)) * 2 - 1;
 }
