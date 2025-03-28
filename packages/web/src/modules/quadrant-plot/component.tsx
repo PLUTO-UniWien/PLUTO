@@ -141,16 +141,7 @@ export default function QuadrantPlot({
       .attr("id", resultPointId)
       .attr("cx", xScale(pointCoordinate[0]))
       .attr("cy", yScale(pointCoordinate[1]))
-      .attr("r", pointRadius)
-      .on("mouseover", () => {
-        d3.select(`#${resultPointId}`)
-          .transition()
-          .duration(100)
-          .attr("r", 1.25 * pointRadius);
-      })
-      .on("mouseout", () => {
-        d3.select(`#${resultPointId}`).transition().duration(100).attr("r", pointRadius);
-      });
+      .attr("r", pointRadius);
   }, [
     xLowerBound,
     xUpperBound,
@@ -233,7 +224,7 @@ const QuadrantPlotHoverCard = ({
   const resultType = getResultType();
 
   return (
-    <HoverCard>
+    <HoverCard openDelay={150}>
       <HoverCardTrigger asChild>
         <div
           className="absolute pointer-events-auto"
