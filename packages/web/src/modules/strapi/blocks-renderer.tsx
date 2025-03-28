@@ -1,3 +1,5 @@
+"use client";
+
 import {
   BlocksRenderer as StrapiBlocksRenderer,
   type BlocksContent,

@@ -1,3 +1,9 @@
-export default function Home() {
-  return <h1 className="text-center text-red-600">Hello</h1>;
+import HomeComponent from "@/modules/home/component";
+import { fetchHomePage } from "@/modules/home/service";
+import strapiClient from "@/modules/strapi/client";
+
+export default async function Page() {
+  const homePage = await fetchHomePage(strapiClient);
+
+  return <HomeComponent homePage={homePage} />;
 }
