@@ -90,11 +90,6 @@ function getAnswerChoiceCombinations(arr: AnswerChoice[], lower: number, upper: 
   return getCombinations(arr, lower, upper).filter(combinationIsValid);
 }
 
-function getSums(combinations: number[][]) {
-  const sums = combinations.map((combination) => sum(combination));
-  return Array.from(new Set(sums));
-}
-
 function getAnswerChoiceSums(combinations: AnswerChoice[][]) {
   const weights = combinations.map((combination) => sum(combination.map(({ weight }) => weight)));
   return Array.from(new Set(weights));
