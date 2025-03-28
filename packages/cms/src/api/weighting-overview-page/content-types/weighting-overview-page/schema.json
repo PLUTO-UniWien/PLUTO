@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "weighting_overview_pages",
+  "info": {
+    "singularName": "weighting-overview-page",
+    "pluralName": "weighting-overview-pages",
+    "displayName": "Weighting Overview Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

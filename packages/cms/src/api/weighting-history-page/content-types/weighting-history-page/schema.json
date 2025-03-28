@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "weighting_history_pages",
+  "info": {
+    "singularName": "weighting-history-page",
+    "pluralName": "weighting-history-pages",
+    "displayName": "Weighting History Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

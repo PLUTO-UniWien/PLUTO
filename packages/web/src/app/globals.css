@@ -45,71 +45,99 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* PLUTO theme colors based on logo */
+  --pluto-blue-primary: #3586cf;
+  --pluto-blue-dark: #0a3d6c;
+  --pluto-blue-light: #6bade3;
+  --pluto-blue-pale: #e5f1fd;
+  --pluto-green: #c2deb1;
+  --pluto-green-light: #e9f7e2;
+  --pluto-green-dark: #94be7a;
+  --pluto-green-pale: #f2f9ee;
+  --pluto-navy: #0a3056;
+  --pluto-gray: #f5f7fa;
+  --pluto-gray-dark: #718096;
+
+  /* Apply PLUTO colors to UI theme */
+  --background: var(--pluto-gray);
+  --foreground: var(--pluto-navy);
+  --card: #ffffff;
+  --card-foreground: var(--pluto-navy);
+  --popover: #ffffff;
+  --popover-foreground: var(--pluto-navy);
+  --primary: var(--pluto-blue-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--pluto-green);
+  --secondary-foreground: var(--pluto-navy);
+  --muted: var(--pluto-gray);
+  --muted-foreground: var(--pluto-gray-dark);
+  --accent: var(--pluto-green-light);
+  --accent-foreground: var(--pluto-navy);
+  --destructive: #ef4444;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: var(--pluto-blue-light);
+
+  /* Chart colors */
+  --chart-1: var(--pluto-blue-primary);
+  --chart-2: var(--pluto-green-dark);
+  --chart-3: var(--pluto-blue-dark);
+  --chart-4: var(--pluto-green);
+  --chart-5: var(--pluto-blue-light);
+
+  /* Sidebar colors */
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--pluto-navy);
+  --sidebar-primary: var(--pluto-blue-primary);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--pluto-green-light);
+  --sidebar-accent-foreground: var(--pluto-navy);
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: var(--pluto-blue-light);
+
+  /* Custom colors for specific components */
+  --quadrant-green: var(--pluto-green-light);
+  --quadrant-red: #ffd7d7;
+  --quadrant-yellow: #fff5c2;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: var(--pluto-navy);
+  --foreground: #ffffff;
+  --card: #1a2e46;
+  --card-foreground: #ffffff;
+  --popover: #1a2e46;
+  --popover-foreground: #ffffff;
+  --primary: var(--pluto-blue-light);
+  --primary-foreground: var(--pluto-navy);
+  --secondary: var(--pluto-green-dark);
+  --secondary-foreground: #ffffff;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: #334155;
+  --input: #334155;
+  --ring: var(--pluto-blue-primary);
+
+  /* Chart colors (adjusted for dark theme) */
+  --chart-1: var(--pluto-blue-light);
+  --chart-2: var(--pluto-green);
+  --chart-3: #8ab4e0;
+  --chart-4: var(--pluto-green-light);
+  --chart-5: var(--pluto-blue-pale);
+
+  /* Sidebar colors (dark theme) */
+  --sidebar: #1a2e46;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: var(--pluto-blue-light);
+  --sidebar-primary-foreground: var(--pluto-navy);
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #334155;
+  --sidebar-ring: var(--pluto-blue-primary);
 }
 
 @layer base {
@@ -118,5 +146,71 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium tracking-tight;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl mb-6;
+  }
+
+  h2 {
+    @apply text-2xl sm:text-3xl mb-4;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl mb-3;
+  }
+
+  p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  .prose {
+    @apply max-w-none;
+  }
+
+  .prose a {
+    @apply text-primary hover:text-primary/80 no-underline hover:underline;
+  }
+
+  .prose strong {
+    @apply font-semibold;
+  }
+
+  .prose ul {
+    @apply mb-4 list-disc pl-5;
+  }
+
+  .prose ol {
+    @apply mb-4 list-decimal pl-5;
+  }
+
+  .prose li {
+    @apply mb-1;
+  }
+
+  .container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Button styling using PLUTO colors */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
   }
 }

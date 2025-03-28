@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "imprint_pages",
+  "info": {
+    "singularName": "imprint-page",
+    "pluralName": "imprint-pages",
+    "displayName": "Imprint Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

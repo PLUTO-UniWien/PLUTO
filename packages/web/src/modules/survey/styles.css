@@ -1,0 +1,26 @@
+/* Hide the title of the survey as it would duplicate the site logo we have in the header */
+.sd-title.sd-container-modern__title {
+  display: none;
+}
+
+.sv-components-row,
+.sd-element {
+  background-color: var(--card);
+}
+
+.sd-btn {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.sd-btn:hover {
+  background-color: var(--pluto-blue-light);
+}
+
+.sd-navigation__complete-btn {
+  background-color: var(--pluto-green-dark);
+}
+
+.sd-navigation__complete-btn:hover {
+  background-color: var(--pluto-green);
+}

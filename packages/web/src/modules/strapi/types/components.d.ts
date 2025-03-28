@@ -1,6 +1,18 @@
 /* eslint-disable */
 import type { Schema, Struct } from "@strapi/types";
 
+export interface GlossaryItem extends Struct.ComponentSchema {
+  collectionName: "components_glossary_items";
+  info: {
+    displayName: "Item";
+    icon: "book";
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface QuestionChoice extends Struct.ComponentSchema {
   collectionName: "components_question_choices";
   info: {
@@ -122,6 +134,7 @@ export interface SurveyGroup extends Struct.ComponentSchema {
 declare module "@strapi/types" {
   export module Public {
     export interface ComponentSchemas {
+      "glossary.item": GlossaryItem;
       "question.choice": QuestionChoice;
       "question.metadata": QuestionMetadata;
       "shared.open-graph": SharedOpenGraph;

@@ -1,5 +1,6 @@
 "use client";
 import "survey-core/survey-core.css";
+import "./styles.css";
 import { Model, Survey } from "survey-react-ui";
 import { adaptStrapiSurveyToSurveyJsModelJSON } from "./adapter";
 import withClientSideRendering from "@/modules/common/with-client-side-rendering";

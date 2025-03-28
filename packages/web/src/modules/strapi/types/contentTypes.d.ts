@@ -337,6 +337,30 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGlossaryPageGlossaryPage extends Struct.SingleTypeSchema {
+  collectionName: "glossary_pages";
+  info: {
+    displayName: "Glossary Page";
+    pluralName: "glossary-pages";
+    singularName: "glossary-page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    introduction: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<"glossary.item", true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::glossary-page.glossary-page"> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   collectionName: "home_pages";
   info: {
@@ -355,6 +379,52 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<"oneToMany", "api::home-page.home-page"> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiImprintPageImprintPage extends Struct.SingleTypeSchema {
+  collectionName: "imprint_pages";
+  info: {
+    displayName: "Imprint Page";
+    pluralName: "imprint-pages";
+    singularName: "imprint-page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::imprint-page.imprint-page"> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPrivacyPagePrivacyPage extends Struct.SingleTypeSchema {
+  collectionName: "privacy_pages";
+  info: {
+    displayName: "Privacy Page";
+    pluralName: "privacy-pages";
+    singularName: "privacy-page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::privacy-page.privacy-page"> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -460,6 +530,58 @@ export interface ApiSurveySurvey extends Struct.SingleTypeSchema {
     logo: Schema.Attribute.Media<"images"> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWeightingHistoryPageWeightingHistoryPage extends Struct.SingleTypeSchema {
+  collectionName: "weighting_history_pages";
+  info: {
+    displayName: "Weighting History Page";
+    pluralName: "weighting-history-pages";
+    singularName: "weighting-history-page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::weighting-history-page.weighting-history-page"
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWeightingOverviewPageWeightingOverviewPage extends Struct.SingleTypeSchema {
+  collectionName: "weighting_overview_pages";
+  info: {
+    displayName: "Weighting Overview Page";
+    pluralName: "weighting-overview-pages";
+    singularName: "weighting-overview-page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::weighting-overview-page.weighting-overview-page"
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -892,11 +1014,16 @@ declare module "@strapi/types" {
       "admin::transfer-token": AdminTransferToken;
       "admin::transfer-token-permission": AdminTransferTokenPermission;
       "admin::user": AdminUser;
+      "api::glossary-page.glossary-page": ApiGlossaryPageGlossaryPage;
       "api::home-page.home-page": ApiHomePageHomePage;
+      "api::imprint-page.imprint-page": ApiImprintPageImprintPage;
+      "api::privacy-page.privacy-page": ApiPrivacyPagePrivacyPage;
       "api::question.question": ApiQuestionQuestion;
       "api::result-page.result-page": ApiResultPageResultPage;
       "api::submission.submission": ApiSubmissionSubmission;
       "api::survey.survey": ApiSurveySurvey;
+      "api::weighting-history-page.weighting-history-page": ApiWeightingHistoryPageWeightingHistoryPage;
+      "api::weighting-overview-page.weighting-overview-page": ApiWeightingOverviewPageWeightingOverviewPage;
       "plugin::content-releases.release": PluginContentReleasesRelease;
       "plugin::content-releases.release-action": PluginContentReleasesReleaseAction;
       "plugin::i18n.locale": PluginI18NLocale;
