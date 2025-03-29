@@ -70,9 +70,11 @@ export function analyzeSubmission(submission: StrapiSubmission, survey: StrapiSu
   );
 
   const resultType = determineResultType(scoreRiskNormalized, scoreBenefitNormalized);
+  const analyzedAt = new Date().toISOString();
 
   return {
     resultType,
+    analyzedAt,
     feedback: {
       risk: feedbackRisk,
       benefit: feedbackBenefit,
