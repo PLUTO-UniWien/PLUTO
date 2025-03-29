@@ -5,7 +5,7 @@ type PrivacyComponentProps = {
   privacy: StrapiPrivacyPage;
 };
 
-export default function ({ privacy }: PrivacyComponentProps) {
+export default function PrivacyComponent({ privacy }: PrivacyComponentProps) {
   const { content } = privacy;
   return (
     <div className="container mx-auto py-4 space-y-8">

@@ -164,7 +164,6 @@ export default function QuadrantPlot({
         xUpperBound={xUpperBound}
         yLowerBound={yLowerBound}
         yUpperBound={yUpperBound}
-        quadrantLabels={quadrantLabels}
         pointRadius={pointRadius}
         scoreLabels={scoreLabels}
       />
@@ -178,7 +177,6 @@ type QuadrantPlotHoverCardProps = {
   xUpperBound: number;
   yLowerBound: number;
   yUpperBound: number;
-  quadrantLabels: [string, string, string, string];
   pointRadius: number;
   scoreLabels: { x: string; y: string };
 };
@@ -189,7 +187,6 @@ const QuadrantPlotHoverCard = ({
   xUpperBound,
   yLowerBound,
   yUpperBound,
-  quadrantLabels,
   pointRadius,
   scoreLabels,
 }: QuadrantPlotHoverCardProps) => {

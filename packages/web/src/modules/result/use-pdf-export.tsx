@@ -76,10 +76,6 @@ export function usePdfExport(options: PdfExportOptions = {}) {
             const imgHeight = img.height;
             const ratio = imgWidth / imgHeight;
 
-            // Use standard A4 dimensions for better compatibility
-            const pdfWidth = 595; // A4 width in points (72 dpi)
-            const pdfHeight = 842; // A4 height in points
-
             // Create PDF with default compression
             const pdf = new jsPDF({
               orientation: ratio < 0.7 ? "portrait" : "landscape",

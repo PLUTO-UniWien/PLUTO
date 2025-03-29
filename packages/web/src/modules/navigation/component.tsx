@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,12 +18,11 @@ import {
 import { cn } from "@/lib/utils";
 
 export function Navigation() {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="bg-primary-foreground border-b border-border sticky top-0 z-10 shadow-sm">
-      <div className="container py-4">
+      <div className="container py-2">
         <div className="flex items-center justify-between md:justify-start">
           <Link
             href="/"
@@ -35,7 +33,7 @@ export function Navigation() {
               alt="Pluto Logo"
               width={200}
               height={70}
-              className="h-16 w-auto"
+              className="h-12 w-auto"
               priority
             />
           </Link>
