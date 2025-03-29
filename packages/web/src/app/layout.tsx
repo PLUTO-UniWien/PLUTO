@@ -41,7 +41,7 @@ export default function RootLayout({
           scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
           websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
         />
-        <Toaster />
+        <Toaster position="top-right" expand={true} />
       </body>
     </html>
   );

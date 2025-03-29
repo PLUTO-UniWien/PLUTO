@@ -81,7 +81,7 @@ export function usePdfExport(options: PdfExportOptions = {}) {
             const pageHeight = pdf.internal.pageSize.getHeight();
 
             // Leave some margins
-            const margin = 40;
+            const margin = 10;
             const maxWidth = pageWidth - margin * 2;
             const maxHeight = pageHeight - margin * 2;
 

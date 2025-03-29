@@ -42,7 +42,13 @@ export default function ResultComponent({
     <div className="container mx-auto max-w-4xl space-y-4 sm:space-y-6">
       {/* Header with export button only */}
       <div className="flex flex-row justify-end items-center mb-3 sm:mb-4">
-        <Button variant="default" size="sm" onClick={handleExportPdf} disabled={isExporting}>
+        <Button
+          variant="default"
+          size="sm"
+          onClick={handleExportPdf}
+          disabled={isExporting}
+          className="cursor-pointer"
+        >
           <FileDown className="mr-2 h-4 w-4" />
           {isExporting ? "Exporting..." : "Export PDF"}
         </Button>
@@ -51,7 +57,7 @@ export default function ResultComponent({
       {/* Content to be captured when exporting to PDF */}
       <div
         ref={contentRef}
-        className="flex flex-col gap-4 sm:gap-6 md:gap-8 bg-white p-6 sm:p-8 rounded-xl"
+        className="flex flex-col gap-4 sm:gap-6 md:gap-8 bg-primary-foreground py-6 sm:py-8"
       >
         {/* Page Header with title */}
         <div className="flex flex-col mb-2 sm:mb-3">
