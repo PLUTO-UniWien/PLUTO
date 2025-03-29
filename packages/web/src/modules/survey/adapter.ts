@@ -69,6 +69,7 @@ export function getIndexedSurvey(survey: StrapiSurvey) {
  * @param {StrapiSurvey} survey - The survey to generate core properties for.
  */
 function createCoreProperties(survey: StrapiSurvey) {
+  void survey;
   return {
     showPageTitles: false,
     showProgressBar: "top",

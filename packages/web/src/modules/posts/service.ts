@@ -7,7 +7,6 @@ export async function fetchPostPreviews(client: StrapiClient) {
   const slugs = (await posts.find({
     fields: ["createdAt", "title", "slug"],
   })) as unknown as APIResponseCollection<"api::post.post">;
-  console.log(slugs);
 
   return slugs.data.map(
     ({ createdAt, title, slug }) => ({ createdAt, title, slug }) as StrapiPostPreview,
