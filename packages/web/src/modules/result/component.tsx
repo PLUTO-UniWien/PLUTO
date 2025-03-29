@@ -26,18 +26,18 @@ export default function ResultComponent({
   }
 
   const analysisResult = analyzeSubmission(submission, survey);
-  const { resultType, feedback, scoreNormalized, counts } = analysisResult;
+  const { analyzedAt, resultType, feedback, scoreNormalized, counts } = analysisResult;
 
   const allQuestionCount = counts.total.risk + counts.total.benefit;
   const answeredQuestionCount = counts.included.risk + counts.included.benefit;
 
   return (
-    <div className="container mx-auto max-w-4xl px-3 sm:px-4 py-6 sm:py-8 space-y-6 sm:space-y-8">
-      <PageHeader title={resultsReadyTitle} />
+    <div className="container mx-auto max-w-4xl px-3 sm:px-4 py-4 sm:py-6 space-y-4 sm:space-y-6">
+      <PageHeader title={resultsReadyTitle} analyzedAt={analyzedAt} />
 
       {/* Main Results Card */}
-      <div className="bg-card rounded-xl p-5 sm:p-6 md:p-8 shadow-sm border">
-        <div className="flex flex-col gap-8 sm:gap-10 md:gap-14">
+      <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border">
+        <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
           <QuadrantPlotSection risk={scoreNormalized.risk} benefit={scoreNormalized.benefit} />
           <PrimaryMetricsSection
             risk={scoreNormalized.risk}
@@ -83,12 +83,24 @@ export default function ResultComponent({
 
 type PageHeaderProps = {
   title: string;
+  analyzedAt: string;
 };
 
-function PageHeader({ title }: PageHeaderProps) {
+function PageHeader({ title, analyzedAt }: PageHeaderProps) {
+  const formattedDate = new Date(analyzedAt).toLocaleString(undefined, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
-      <h1 className="text-2xl sm:text-3xl font-bold">{title}</h1>
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 sm:mb-4 gap-2 sm:gap-3">
+      <div className="flex flex-col">
+        <h1 className="text-xl sm:text-2xl font-bold">{title}</h1>
+        <p className="text-sm text-muted-foreground">Analyzed on {formattedDate}</p>
+      </div>
       <Button className="self-start w-auto">
         <Download className="mr-2" /> Export
       </Button>
@@ -104,7 +116,7 @@ type QuadrantPlotSectionProps = {
 function QuadrantPlotSection({ risk, benefit }: QuadrantPlotSectionProps) {
   return (
     <div className="flex justify-center items-center w-full">
-      <div className="w-full max-w-[280px] sm:max-w-[400px] md:max-w-[500px] aspect-square">
+      <div className="w-full max-w-[240px] sm:max-w-[320px] md:max-w-[400px] aspect-square">
         <QuadrantPlot
           xLowerBound={-1}
           xUpperBound={1}
@@ -127,32 +139,36 @@ type PrimaryMetricsSectionProps = {
 
 function PrimaryMetricsSection({ risk, benefit, resultType }: PrimaryMetricsSectionProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto w-full">
       {/* Score Card */}
       <div className="flex flex-col">
-        <h3 className="text-lg sm:text-xl font-medium mb-3 sm:mb-5 text-center">Score</h3>
-        <div className="flex justify-center gap-12 sm:gap-16 md:gap-20">
+        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">Score</h3>
+        <div className="flex justify-center gap-8 sm:gap-12 md:gap-16">
           <div className="text-center">
-            <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
-              {risk.toFixed(2)}
-            </p>
-            <p className="text-xs sm:text-sm text-muted-foreground">risk</p>
+            <div className="flex items-center justify-center gap-1">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{risk.toFixed(2)}</p>
+              <span className="text-red-500 text-sm">↓</span>
+            </div>
+            <p className="text-xs text-muted-foreground">risk (lower is better)</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
-              {benefit.toFixed(2)}
-            </p>
-            <p className="text-xs sm:text-sm text-muted-foreground">benefit</p>
+            <div className="flex items-center justify-center gap-1">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">
+                {benefit.toFixed(2)}
+              </p>
+              <span className="text-green-500 text-sm">↑</span>
+            </div>
+            <p className="text-xs text-muted-foreground">benefit (higher is better)</p>
           </div>
         </div>
       </div>
 
       {/* Result Type Card */}
-      <div className="flex flex-col mt-5 sm:mt-0">
-        <h3 className="text-lg sm:text-xl font-medium mb-3 sm:mb-5 text-center">Result Type</h3>
+      <div className="flex flex-col mt-3 sm:mt-0">
+        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">Result Type</h3>
         <div className="text-center">
-          <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">{resultType.id}</p>
-          <p className="text-xs sm:text-sm text-muted-foreground">{resultType.label}</p>
+          <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{resultType.id}</p>
+          <p className="text-xs text-muted-foreground">{resultType.label}</p>
         </div>
       </div>
     </div>
@@ -173,36 +189,34 @@ function SecondaryMetricsSection({
   benefitCount,
 }: SecondaryMetricsSectionProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto w-full pt-0 sm:pt-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto w-full pt-0">
       {/* Questions answered */}
       <div className="flex flex-col">
-        <h3 className="text-lg sm:text-xl font-medium mb-3 sm:mb-5 text-center">
+        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">
           You have answered
         </h3>
         <div className="text-center">
-          <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
+          <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">
             {answeredQuestionCount}{" "}
-            <span className="text-xl sm:text-2xl font-normal">of {allQuestionCount}</span>
+            <span className="text-lg sm:text-xl font-normal">of {allQuestionCount}</span>
           </p>
-          <p className="text-xs sm:text-sm text-muted-foreground">questions</p>
+          <p className="text-xs text-muted-foreground">questions</p>
         </div>
       </div>
 
       {/* Answers affect */}
-      <div className="flex flex-col mt-5 sm:mt-0">
-        <h3 className="text-lg sm:text-xl font-medium mb-3 sm:mb-5 text-center">
-          Your answers affect
+      <div className="flex flex-col mt-3 sm:mt-0">
+        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">
+          Questions by Impact
         </h3>
-        <div className="flex justify-center gap-12 sm:gap-16 md:gap-20">
+        <div className="flex justify-center gap-8 sm:gap-12 md:gap-16">
           <div className="text-center">
-            <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">{riskCount}</p>
-            <p className="text-xs sm:text-sm text-muted-foreground">risk rating</p>
+            <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{riskCount}</p>
+            <p className="text-xs text-muted-foreground">risk-related questions</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
-              {benefitCount}
-            </p>
-            <p className="text-xs sm:text-sm text-muted-foreground">benefit rating</p>
+            <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{benefitCount}</p>
+            <p className="text-xs text-muted-foreground">benefit-related questions</p>
           </div>
         </div>
       </div>
