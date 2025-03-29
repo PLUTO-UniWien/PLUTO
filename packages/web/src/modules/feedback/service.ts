@@ -1,10 +1,15 @@
 import type { StrapiClient } from "@/modules/strapi/client";
 import type { APIResponseData } from "@/modules/strapi/types";
+import { fetchSingleTypeSeo } from "@/modules/seo/service";
 
 export async function fetchFeedbackPage(client: StrapiClient) {
-  const feedbackPage = client.single("feedback-page");
-  const feedbackPageContent =
-    (await feedbackPage.find()) as unknown as APIResponseData<"api::feedback-page.feedback-page">;
+  const singleType = client.single("feedback-page");
+  const response =
+    (await singleType.find()) as unknown as APIResponseData<"api::feedback-page.feedback-page">;
 
-  return feedbackPageContent.data;
+  return response.data;
+}
+
+export async function fetchFeedbackPageSeo(client: StrapiClient) {
+  return fetchSingleTypeSeo(client, "feedback-page");
 }

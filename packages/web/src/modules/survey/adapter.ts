@@ -1,5 +1,3 @@
-import type { APIResponseData } from "@/modules/strapi/types";
-import { strapiPublicUrl } from "@/modules/strapi/utils";
 import type {
   AnswerChoice,
   AnswerChoiceLabel,
@@ -72,17 +70,11 @@ export function getIndexedSurvey(survey: StrapiSurvey) {
  */
 function createCoreProperties(survey: StrapiSurvey) {
   return {
-    title: survey.title,
     showPageTitles: false,
     showProgressBar: "top",
     questionsOnPageMode: "questionPerPage",
     showPreviewBeforeComplete: "showAllQuestions",
     widthMode: "responsive",
-    logo: getLogoUrl(survey),
-    logoPosition: "top",
-    logoWidth: 120,
-    logoHeight: 120,
-    logoFit: "contain",
     completedHtml: " ",
   };
 }
@@ -123,12 +115,6 @@ function createPage(question: Question & { number: number; pageTitle: string }) 
   const title = `${question.pageTitle} - ${questionLabel}`;
 
   return { name, title, elements };
-}
-
-function getLogoUrl(survey: StrapiSurvey) {
-  const logo = survey.logo as unknown as APIResponseData<"plugin::upload.file">["data"];
-  // @ts-expect-error the auto-generated strapi types are too loose, it is safe to assume that the logo has various formats
-  return strapiPublicUrl(logo.formats?.small?.url || logo.url);
 }
 
 /**

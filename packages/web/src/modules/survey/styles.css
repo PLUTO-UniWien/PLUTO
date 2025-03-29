@@ -1,8 +1,3 @@
-/* Hide the title of the survey as it would duplicate the site logo we have in the header */
-.sd-title.sd-container-modern__title {
-  display: none;
-}
-
 .sv-components-row,
 .sd-element {
   background-color: var(--card);

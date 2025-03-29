@@ -1,10 +1,15 @@
 import type { StrapiClient } from "@/modules/strapi/client";
 import type { APIResponseData } from "@/modules/strapi/types";
+import { fetchSingleTypeSeo } from "@/modules/seo/service";
 
 export async function fetchWeightingOverviewPage(client: StrapiClient) {
-  const weightingOverviewPage = client.single("weighting-overview-page");
-  const weightingOverviewPageContent =
-    (await weightingOverviewPage.find()) as unknown as APIResponseData<"api::weighting-overview-page.weighting-overview-page">;
+  const singleType = client.single("weighting-overview-page");
+  const response =
+    (await singleType.find()) as unknown as APIResponseData<"api::weighting-overview-page.weighting-overview-page">;
 
-  return weightingOverviewPageContent.data;
+  return response.data;
+}
+
+export async function fetchWeightingOverviewPageSeo(client: StrapiClient) {
+  return fetchSingleTypeSeo(client, "weighting-overview-page");
 }
