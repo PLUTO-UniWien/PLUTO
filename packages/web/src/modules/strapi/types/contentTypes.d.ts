@@ -340,6 +340,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiFeedbackPageFeedbackPage extends Struct.SingleTypeSchema {
   collectionName: "feedback_pages";
   info: {
+    description: "";
     displayName: "Feedback Page";
     pluralName: "feedback-pages";
     singularName: "feedback-page";
@@ -355,6 +356,7 @@ export interface ApiFeedbackPageFeedbackPage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<"oneToMany", "api::feedback-page.feedback-page"> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -380,6 +382,7 @@ export interface ApiGlossaryPageGlossaryPage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<"oneToMany", "api::glossary-page.glossary-page"> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -405,6 +408,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<"oneToMany", "api::home-page.home-page"> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -413,6 +417,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
 export interface ApiImprintPageImprintPage extends Struct.SingleTypeSchema {
   collectionName: "imprint_pages";
   info: {
+    description: "";
     displayName: "Imprint Page";
     pluralName: "imprint-pages";
     singularName: "imprint-page";
@@ -428,6 +433,34 @@ export interface ApiImprintPageImprintPage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<"oneToMany", "api::imprint-page.imprint-page"> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPostPost extends Struct.CollectionTypeSchema {
+  collectionName: "posts";
+  info: {
+    description: "";
+    displayName: "Post";
+    pluralName: "posts";
+    singularName: "post";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    body: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::post.post"> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
+    slug: Schema.Attribute.UID<"title"> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -436,6 +469,7 @@ export interface ApiImprintPageImprintPage extends Struct.SingleTypeSchema {
 export interface ApiPrivacyPagePrivacyPage extends Struct.SingleTypeSchema {
   collectionName: "privacy_pages";
   info: {
+    description: "";
     displayName: "Privacy Page";
     pluralName: "privacy-pages";
     singularName: "privacy-page";
@@ -451,6 +485,7 @@ export interface ApiPrivacyPagePrivacyPage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<"oneToMany", "api::privacy-page.privacy-page"> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -504,6 +539,7 @@ export interface ApiResultPageResultPage extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     resultsReadyTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -562,6 +598,7 @@ export interface ApiSurveySurvey extends Struct.SingleTypeSchema {
 export interface ApiWeightingHistoryPageWeightingHistoryPage extends Struct.SingleTypeSchema {
   collectionName: "weighting_history_pages";
   info: {
+    description: "";
     displayName: "Weighting History Page";
     pluralName: "weighting-history-pages";
     singularName: "weighting-history-page";
@@ -580,6 +617,7 @@ export interface ApiWeightingHistoryPageWeightingHistoryPage extends Struct.Sing
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -588,6 +626,7 @@ export interface ApiWeightingHistoryPageWeightingHistoryPage extends Struct.Sing
 export interface ApiWeightingOverviewPageWeightingOverviewPage extends Struct.SingleTypeSchema {
   collectionName: "weighting_overview_pages";
   info: {
+    description: "";
     displayName: "Weighting Overview Page";
     pluralName: "weighting-overview-pages";
     singularName: "weighting-overview-page";
@@ -606,6 +645,7 @@ export interface ApiWeightingOverviewPageWeightingOverviewPage extends Struct.Si
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<"shared.seo", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -1042,6 +1082,7 @@ declare module "@strapi/types" {
       "api::glossary-page.glossary-page": ApiGlossaryPageGlossaryPage;
       "api::home-page.home-page": ApiHomePageHomePage;
       "api::imprint-page.imprint-page": ApiImprintPageImprintPage;
+      "api::post.post": ApiPostPost;
       "api::privacy-page.privacy-page": ApiPrivacyPagePrivacyPage;
       "api::question.question": ApiQuestionQuestion;
       "api::result-page.result-page": ApiResultPageResultPage;

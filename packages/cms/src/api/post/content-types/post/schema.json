@@ -1,21 +1,27 @@
 {
-  "kind": "singleType",
-  "collectionName": "result_pages",
+  "kind": "collectionType",
+  "collectionName": "posts",
   "info": {
-    "singularName": "result-page",
-    "pluralName": "result-pages",
-    "displayName": "Result Page",
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post",
     "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "resultsReadyTitle": {
+    "title": {
       "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
       "required": true
     },
-    "explanation": {
+    "body": {
       "type": "blocks",
       "required": true
     },
