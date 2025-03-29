@@ -119,6 +119,7 @@ export type StrapiType<T extends UID.Schema> = T extends UID.ContentType
   : T extends UID.Component
     ? StrapiComponentType<T>
     : never;
+export type StrapiContentTypeID = `${UID.ContentType}`;
 
 // These files are copied automatically from packages/cms/types/generated/ via script packages/web/scripts/copy-cms-types.ts
 export * as components from "./components";

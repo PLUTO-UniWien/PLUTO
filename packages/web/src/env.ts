@@ -11,6 +11,10 @@ export const env = createEnv({
       .string()
       .min(1)
       .describe("Token for the Strapi API, used to authenticate server-side requests."),
+    STRAPI_WEBHOOK_SECRET: z
+      .string()
+      .min(1)
+      .describe("Secret for the Strapi webhook, used to authenticate webhook requests."),
   },
   client: {
     NEXT_PUBLIC_STRAPI_BASE_URL: z
@@ -32,6 +36,7 @@ export const env = createEnv({
     // Server
     STRAPI_API_BASE_URL: process.env.STRAPI_API_BASE_URL,
     STRAPI_API_TOKEN: process.env.STRAPI_API_TOKEN,
+    STRAPI_WEBHOOK_SECRET: process.env.STRAPI_WEBHOOK_SECRET,
     // Client
     NEXT_PUBLIC_STRAPI_BASE_URL: process.env.NEXT_PUBLIC_STRAPI_BASE_URL,
     NEXT_PUBLIC_UMAMI_SCRIPT_URL: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL,
