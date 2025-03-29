@@ -2,12 +2,17 @@ import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { jsPDF } from "jspdf";
 import useScreenshot from "@/modules/common/use-screenshot";
+import { trackPdfExport } from "@/modules/umami/service";
 
 type PdfExportOptions = {
   /**
    * Custom filename (optional)
    */
   filename?: string;
+  /**
+   * Minimum export duration in milliseconds to prevent UI flashing
+   */
+  minDuration?: number;
 };
 
 /**
@@ -17,11 +22,13 @@ export function usePdfExport(options: PdfExportOptions = {}) {
   const contentRef = useRef<HTMLDivElement>(null);
   const { capture, isCapturing } = useScreenshot();
   const [isExporting, setIsExporting] = useState(false);
+  const minDuration = options.minDuration ?? 500; // Default to 500ms minimum duration
 
   /**
    * Export the captured content to PDF
    */
-  const exportToPdf = async () => {
+  const exportToPdf = async (submissionId: number) => {
+    const startTime = Date.now();
     setIsExporting(true);
 
     try {
@@ -33,8 +40,8 @@ export function usePdfExport(options: PdfExportOptions = {}) {
         return;
       }
 
-      // Display loading toast
-      toast.loading("Generating PDF document...");
+      // Display loading toast and store its ID
+      const loadingToastId = toast.loading("Generating PDF document...");
 
       // Capture the content with balanced settings for quality and filesize
       const result = await capture(contentRef.current, {
@@ -56,6 +63,10 @@ export function usePdfExport(options: PdfExportOptions = {}) {
       // Get image from data URL
       const img = new Image();
       img.src = result.dataUrl;
+
+      // Generate default filename with date in case it's needed later
+      const date = new Date().toISOString().split("T")[0];
+      let filename = options.filename || `assessment-results-${date}.pdf`;
 
       await new Promise<void>((resolve, reject) => {
         img.onload = () => {
@@ -106,15 +117,12 @@ export function usePdfExport(options: PdfExportOptions = {}) {
             // Add image with proper scaling and positioning
             pdf.addImage(result.dataUrl as string, "JPEG", xPos, yPos, finalWidth, finalHeight);
 
-            // Generate filename with date
-            const date = new Date().toISOString().split("T")[0];
-            const filename = options.filename || `assessment-results-${date}.pdf`;
+            // Update filename if needed
+            filename = options.filename || `assessment-results-${date}.pdf`;
 
             // Save PDF
             pdf.save(filename);
 
-            // Show success message
-            toast.success(`PDF saved as ${filename}`);
             resolve();
           } catch (error) {
             reject(error);
@@ -122,6 +130,23 @@ export function usePdfExport(options: PdfExportOptions = {}) {
         };
         img.onerror = () => reject(new Error("Failed to load image"));
       });
+
+      // Track successful PDF export event to analytics
+      await trackPdfExport(submissionId, "success");
+
+      // Ensure minimum duration for better UX
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minDuration - elapsedTime);
+
+      if (remainingTime > 0) {
+        await new Promise((resolve) => setTimeout(resolve, remainingTime));
+      }
+
+      // Dismiss loading toast
+      toast.dismiss(loadingToastId);
+
+      // Show success message after minimum duration
+      toast.success(`PDF saved as ${filename}`);
     } catch (error) {
       // Handle errors
       if (error instanceof Error) {
@@ -129,9 +154,11 @@ export function usePdfExport(options: PdfExportOptions = {}) {
       } else {
         toast.error("Failed to export PDF");
       }
+
+      // Track failed PDF export event to analytics
+      await trackPdfExport(submissionId, "failure");
     } finally {
       setIsExporting(false);
-      toast.dismiss(); // Dismiss any lingering loading toasts
     }
   };
 

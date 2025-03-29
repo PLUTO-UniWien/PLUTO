@@ -11,7 +11,10 @@ import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import LoadingComponent from "../loading/component";
 import usePdfExport from "./use-pdf-export";
-import { trackPdfExport } from "@/modules/umami/service";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import type { StrapiSubmission } from "@/modules/submission/types";
+import type { StrapiSurvey } from "@/modules/survey/types";
 
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
@@ -20,22 +23,35 @@ type ResultComponentProps = {
 export default function ResultComponent({
   resultPage: { resultsReadyTitle, explanation },
 }: ResultComponentProps) {
+  // Access the submission and survey from the store which were set after a valid survey submission was made
   const submission = useSubmissionStore((state) => state.submission);
   const survey = useSurveyStore((state) => state.survey);
-  const { contentRef, isExporting, exportToPdf } = usePdfExport();
 
-  if (submission === null || survey === null) {
+  // State validation to ensure there has been at least one prior survey submission before trying to render results
+  const { isLoading, isStateValid } = useStateValidation(submission, survey, "/survey");
+  const { contentRef, isExporting, exportToPdf } = usePdfExport({ minDuration: 1000 });
+
+  // During initial loading, show loading component
+  if (isLoading) {
     return <LoadingComponent />;
   }
 
+  // If still null after loading period, also show loading while redirecting
+  if (!isStateValid || submission === null || survey === null) {
+    return <LoadingComponent />;
+  }
+
+  // At this point, we know submission and survey are not null so we can proceed with the analysis and rendering
   const analysisResult = analyzeSubmission(submission, survey);
   const { analyzedAt, resultType, feedback, scoreNormalized, counts } = analysisResult;
 
+  // Compute counts for metrics section
   const allQuestionCount = counts.total.risk + counts.total.benefit;
   const answeredQuestionCount = counts.included.risk + counts.included.benefit;
-  const handleExportPdf = async () => {
-    await trackPdfExport(submission.id);
-    await exportToPdf();
+
+  // Log PDF export event to analytics and perform the export
+  const handleExportPdf = () => {
+    exportToPdf(submission.id);
   };
 
   return (
@@ -271,4 +287,35 @@ function FeedbackList({ title, blocksValue }: FeedbackListProps) {
       </ul>
     </>
   );
+}
+
+/**
+ * Hook to handle initial loading state and navigation
+ * when required store data is missing
+ */
+function useStateValidation(
+  submission: StrapiSubmission | null,
+  survey: StrapiSurvey | null,
+  redirectPath: string,
+) {
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Allow a brief delay for the store to initialize
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      // Only redirect after the loading time if still null
+      if (submission === null || survey === null) {
+        router.replace(redirectPath);
+      }
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [submission, survey, router, redirectPath]);
+
+  return {
+    isLoading,
+    isStateValid: submission !== null && survey !== null,
+  };
 }

@@ -37,7 +37,7 @@ export async function trackQuestionVisited(questionId: number, questionLabel: st
   await umami.track("question-visit", { questionId, questionLabel });
 }
 
-export async function trackPdfExport(submissionId: number) {
+export async function trackPdfExport(submissionId: number, status: "success" | "failure") {
   const umami = getUmamiInstance();
-  await umami.track("pdf-export", { submissionId });
+  await umami.track("pdf-export", { submissionId, status });
 }
