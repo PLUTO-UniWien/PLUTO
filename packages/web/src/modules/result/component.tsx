@@ -8,8 +8,9 @@ import { useSubmissionStore } from "@/modules/submission/store";
 import { useSurveyStore } from "@/modules/survey/store";
 import type { StrapiResultPage } from "./types";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { FileDown } from "lucide-react";
 import LoadingComponent from "../loading/component";
+import usePdfExport from "./use-pdf-export";
 
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
@@ -20,6 +21,7 @@ export default function ResultComponent({
 }: ResultComponentProps) {
   const submission = useSubmissionStore((state) => state.submission);
   const survey = useSurveyStore((state) => state.survey);
+  const { contentRef, isExporting, exportToPdf } = usePdfExport();
 
   if (submission === null || survey === null) {
     return <LoadingComponent />;
@@ -32,44 +34,62 @@ export default function ResultComponent({
   const answeredQuestionCount = counts.included.risk + counts.included.benefit;
 
   return (
-    <div className="container mx-auto max-w-4xl px-3 sm:px-4 py-4 sm:py-6 space-y-4 sm:space-y-6">
-      <PageHeader title={resultsReadyTitle} analyzedAt={analyzedAt} />
-
-      {/* Main Results Card */}
-      <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border">
-        <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
-          <QuadrantPlotSection risk={scoreNormalized.risk} benefit={scoreNormalized.benefit} />
-          <PrimaryMetricsSection
-            risk={scoreNormalized.risk}
-            benefit={scoreNormalized.benefit}
-            resultType={resultType}
-          />
-          <SecondaryMetricsSection
-            answeredQuestionCount={answeredQuestionCount}
-            allQuestionCount={allQuestionCount}
-            riskCount={counts.included.risk}
-            benefitCount={counts.included.benefit}
-          />
-        </div>
+    <div className="container mx-auto max-w-4xl space-y-4 sm:space-y-6">
+      {/* Header with export button only */}
+      <div className="flex flex-row justify-end items-center mb-3 sm:mb-4">
+        <Button variant="default" size="sm" onClick={exportToPdf} disabled={isExporting}>
+          <FileDown className="mr-2 h-4 w-4" />
+          {isExporting ? "Exporting..." : "Export PDF"}
+        </Button>
       </div>
 
-      {/* Feedback Section */}
-      {feedback.benefit.length > 0 && (
-        <FeedbackCard
-          title="The benefits of the data use would be higher..."
-          blocksValue={feedback.benefit}
-        />
-      )}
+      {/* Content to be captured when exporting to PDF */}
+      <div
+        ref={contentRef}
+        className="flex flex-col gap-4 sm:gap-6 md:gap-8 bg-white p-6 sm:p-8 rounded-xl"
+      >
+        {/* Page Header with title */}
+        <div className="flex flex-col mb-2 sm:mb-3">
+          <h1 className="text-xl sm:text-2xl font-bold mb-1">{resultsReadyTitle}</h1>
+          <p className="text-sm text-muted-foreground">Analyzed on {formatDate(analyzedAt)}</p>
+        </div>
 
-      {feedback.risk.length > 0 && (
-        <FeedbackCard
-          title="The risks of the data use would be lower..."
-          blocksValue={feedback.risk}
-        />
-      )}
+        {/* Main Results Card */}
+        <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border">
+          <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
+            <QuadrantPlotSection risk={scoreNormalized.risk} benefit={scoreNormalized.benefit} />
+            <PrimaryMetricsSection
+              risk={scoreNormalized.risk}
+              benefit={scoreNormalized.benefit}
+              resultType={resultType}
+            />
+            <SecondaryMetricsSection
+              answeredQuestionCount={answeredQuestionCount}
+              allQuestionCount={allQuestionCount}
+              riskCount={counts.included.risk}
+              benefitCount={counts.included.benefit}
+            />
+          </div>
+        </div>
 
-      {/* Explanation Section */}
-      <div className="mt-8 sm:mt-10 md:mt-12 border-t pt-6 sm:pt-8 px-2">
+        {/* Feedback Sections */}
+        {feedback.benefit.length > 0 && (
+          <FeedbackCard
+            title="The benefits of the data use would be higher..."
+            blocksValue={feedback.benefit}
+          />
+        )}
+
+        {feedback.risk.length > 0 && (
+          <FeedbackCard
+            title="The risks of the data use would be lower..."
+            blocksValue={feedback.risk}
+          />
+        )}
+      </div>
+
+      {/* Explanation Section - Not included in the screenshot */}
+      <div className="mt-6 sm:mt-8 border-t pt-6 sm:pt-8 px-2">
         <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center">
           How to Interpret Your Results
         </h2>
@@ -81,31 +101,15 @@ export default function ResultComponent({
   );
 }
 
-type PageHeaderProps = {
-  title: string;
-  analyzedAt: string;
-};
-
-function PageHeader({ title, analyzedAt }: PageHeaderProps) {
-  const formattedDate = new Date(analyzedAt).toLocaleString(undefined, {
+// Helper function to format date consistently
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleString(undefined, {
     year: "numeric",
     month: "long",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
   });
-
-  return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 sm:mb-4 gap-2 sm:gap-3">
-      <div className="flex flex-col">
-        <h1 className="text-xl sm:text-2xl font-bold">{title}</h1>
-        <p className="text-sm text-muted-foreground">Analyzed on {formattedDate}</p>
-      </div>
-      <Button className="self-start w-auto">
-        <Download className="mr-2" /> Export
-      </Button>
-    </div>
-  );
 }
 
 type QuadrantPlotSectionProps = {
@@ -147,7 +151,6 @@ function PrimaryMetricsSection({ risk, benefit, resultType }: PrimaryMetricsSect
           <div className="text-center">
             <div className="flex items-center justify-center gap-1">
               <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{risk.toFixed(2)}</p>
-              <span className="text-red-500 text-sm">↓</span>
             </div>
             <p className="text-xs text-muted-foreground">risk (lower is better)</p>
           </div>
@@ -156,7 +159,6 @@ function PrimaryMetricsSection({ risk, benefit, resultType }: PrimaryMetricsSect
               <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">
                 {benefit.toFixed(2)}
               </p>
-              <span className="text-green-500 text-sm">↑</span>
             </div>
             <p className="text-xs text-muted-foreground">benefit (higher is better)</p>
           </div>

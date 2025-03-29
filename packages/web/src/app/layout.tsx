@@ -5,6 +5,7 @@ import UmamiAnalytics from "@/modules/umami/component";
 import { env } from "@/env";
 import { Navigation } from "@/modules/navigation";
 import Footer from "@/modules/footer/component";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
           scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
           websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
         />
+        <Toaster />
       </body>
     </html>
   );
