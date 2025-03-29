@@ -42,6 +42,7 @@ export function usePdfExport(options: PdfExportOptions = {}) {
         quality: 1.0,
         backgroundColor: "#ffffff",
         type: "jpeg",
+        skipFonts: true,
       });
 
       if (result.error) {

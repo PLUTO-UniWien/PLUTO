@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import LoadingComponent from "../loading/component";
 import usePdfExport from "./use-pdf-export";
+import { trackPdfExport } from "@/modules/umami/service";
 
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
@@ -32,12 +33,16 @@ export default function ResultComponent({
 
   const allQuestionCount = counts.total.risk + counts.total.benefit;
   const answeredQuestionCount = counts.included.risk + counts.included.benefit;
+  const handleExportPdf = async () => {
+    await trackPdfExport(submission.id);
+    await exportToPdf();
+  };
 
   return (
     <div className="container mx-auto max-w-4xl space-y-4 sm:space-y-6">
       {/* Header with export button only */}
       <div className="flex flex-row justify-end items-center mb-3 sm:mb-4">
-        <Button variant="default" size="sm" onClick={exportToPdf} disabled={isExporting}>
+        <Button variant="default" size="sm" onClick={handleExportPdf} disabled={isExporting}>
           <FileDown className="mr-2 h-4 w-4" />
           {isExporting ? "Exporting..." : "Export PDF"}
         </Button>

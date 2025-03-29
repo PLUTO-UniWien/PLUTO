@@ -23,6 +23,7 @@ export interface ScreenshotOptions {
   cacheBust?: CacheOption;
   includeQueryParams?: boolean;
   filename?: string;
+  skipFonts?: boolean;
 }
 
 export interface ScreenshotResult {
@@ -160,6 +161,7 @@ export const useScreenshot = (): UseScreenshotReturn => {
           filter: options.filter,
           pixelRatio: options.scale,
           cacheBust: options.cacheBust,
+          skipFonts: options.skipFonts,
         };
 
         let result: ScreenshotResult;

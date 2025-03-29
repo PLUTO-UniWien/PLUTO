@@ -36,3 +36,8 @@ export async function trackQuestionVisited(questionId: number, questionLabel: st
   const umami = getUmamiInstance();
   await umami.track("question-visit", { questionId, questionLabel });
 }
+
+export async function trackPdfExport(submissionId: number) {
+  const umami = getUmamiInstance();
+  await umami.track("pdf-export", { submissionId });
+}
