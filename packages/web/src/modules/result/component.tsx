@@ -85,7 +85,7 @@ export default function ResultComponent({
         </div>
 
         {/* Main Results Card */}
-        <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border">
+        <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 border">
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
             <QuadrantPlotSection risk={scoreNormalized.risk} benefit={scoreNormalized.benefit} />
             <PrimaryMetricsSection
@@ -263,7 +263,7 @@ type FeedbackCardProps = {
 
 function FeedbackCard({ title, blocksValue }: FeedbackCardProps) {
   return (
-    <div className="bg-card rounded-xl p-5 sm:p-6 md:p-8 shadow-sm border">
+    <div className="bg-card rounded-xl p-5 sm:p-6 md:p-8 border">
       <FeedbackList title={title} blocksValue={blocksValue} />
     </div>
   );

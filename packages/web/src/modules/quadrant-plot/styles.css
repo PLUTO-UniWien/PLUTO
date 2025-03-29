@@ -1,6 +1,13 @@
 .quadrant-plot svg {
   border-radius: 10px;
-  box-shadow: 3px 3px 6px #cccccc;
+  box-shadow: 3px 3px 6px #cccccc; /* Default shadow for non-webkit browsers */
+}
+
+/* Remove shadow only for webkit browsers, as it messes up the PDF export */
+_::-webkit-full-page-media,
+_:future,
+:root .quadrant-plot svg {
+  box-shadow: none;
 }
 
 .quadrant-plot svg .domain {

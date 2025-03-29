@@ -156,6 +156,7 @@ export default function QuadrantPlot({
     margins,
     pointRadius,
     quadrantColors,
+    pointColor,
   ]);
 
   return (
