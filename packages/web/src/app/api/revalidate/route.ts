@@ -19,6 +19,29 @@ const revalidationMap: Map<StrapiContentTypeID, string> = new Map([
   ["api::weighting-history-page.weighting-history-page", "/weighting/history"],
 ]);
 
+/**
+ * Handles the POST request from the Strapi webhook.
+ *
+ * The Strapi webhook is expected to trigger on events:
+ * - entry.delete
+ * - entry.publish
+ * - entry.unpublish
+ *
+ * The webhook is expected to send a JSON payload with the following structure:
+ *
+ * ```json
+ * {
+ *   "event": "entry.publish",
+ *   "uid": "api::home-page.home-page"
+ * }
+ * ```
+ *
+ * Further, the webhook is expected to be authenticated with a secret via the "Authorization" header.
+ * The server is checking for the secret to be present and to match the STRAPI_WEBHOOK_SECRET environment variable.
+ *
+ * @param request - The incoming request object.
+ * @returns A JSON response indicating the success or failure of the request.
+ */
 export async function POST(request: NextRequest) {
   try {
     // Authenticate the request
@@ -38,9 +61,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log the received webhook payload
-    console.log("Received Strapi webhook payload:", payload);
-
     // Check if uid is present in the payload
     if (!payload.uid) {
       return NextResponse.json(
@@ -54,6 +74,7 @@ export async function POST(request: NextRequest) {
 
     // If there's a matching path, revalidate it
     if (pathToRevalidate) {
+      console.log(`Revalidating path: ${pathToRevalidate} for content type: ${uid}`);
       revalidatePath(pathToRevalidate);
       return NextResponse.json(
         {
