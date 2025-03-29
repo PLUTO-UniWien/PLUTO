@@ -47,9 +47,11 @@ type PostComponentProps = {
 export function PostComponent({ post }: PostComponentProps) {
   const { createdAt, title, body } = post;
   return (
-    <article className="max-w-3xl mx-auto px-4 py-8">
+    <article className="container mx-auto py-4 space-y-8">
       <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-foreground mt-10 scroll-m-20 pb-2 first:mt-0">
+          {title}
+        </h1>
         <p className="text-gray-500 flex items-center">
           {createdAt && (
             <>
