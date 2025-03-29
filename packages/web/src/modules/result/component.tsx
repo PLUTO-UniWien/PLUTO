@@ -9,6 +9,7 @@ import { useSurveyStore } from "@/modules/survey/store";
 import type { StrapiResultPage } from "./types";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
+import LoadingComponent from "../loading/component";
 
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
@@ -21,7 +22,7 @@ export default function ResultComponent({
   const survey = useSurveyStore((state) => state.survey);
 
   if (submission === null || survey === null) {
-    return <div>Loading...</div>;
+    return <LoadingComponent />;
   }
 
   const analysisResult = analyzeSubmission(submission, survey);

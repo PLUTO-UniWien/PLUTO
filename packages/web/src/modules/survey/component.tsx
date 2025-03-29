@@ -8,6 +8,7 @@ import { attachListenersToSurveyModel } from "./listeners";
 import type { StrapiSurvey } from "./types";
 import { useRouter } from "next/navigation";
 import { useSurveyStore } from "./store";
+import LoadingComponent from "@/modules/loading/component";
 
 type SurveyComponentProps = {
   survey: StrapiSurvey;
@@ -29,4 +30,4 @@ function SurveyComponent({ survey: strapiSurvey }: SurveyComponentProps) {
   return <Survey model={model} />;
 }
 
-export default withClientSideRendering(SurveyComponent);
+export default withClientSideRendering(SurveyComponent, LoadingComponent);
