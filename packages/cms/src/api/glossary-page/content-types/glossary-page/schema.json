@@ -4,7 +4,8 @@
   "info": {
     "singularName": "glossary-page",
     "pluralName": "glossary-pages",
-    "displayName": "Glossary Page"
+    "displayName": "Glossary Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,7 +19,8 @@
       "displayName": "Item",
       "type": "component",
       "repeatable": true,
-      "component": "glossary.item"
+      "component": "glossary.item",
+      "required": true
     }
   }
 }

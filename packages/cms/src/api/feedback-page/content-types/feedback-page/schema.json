@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "feedback_pages",
+  "info": {
+    "singularName": "feedback-page",
+    "pluralName": "feedback-pages",
+    "displayName": "Feedback Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

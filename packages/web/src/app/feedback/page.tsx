@@ -1,3 +1,8 @@
+import strapiClient from "@/modules/strapi/client";
+import FeedbackComponent from "@/modules/feedback/component";
+import { fetchFeedbackPage } from "@/modules/feedback/service";
+
 export default async function Page() {
-  return <h1>Feedback</h1>;
+  const feedbackPage = await fetchFeedbackPage(strapiClient);
+  return <FeedbackComponent feedback={feedbackPage} />;
 }

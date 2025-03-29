@@ -11,8 +11,8 @@ type HomeComponentProps = {
 export default function HomeComponent({ homePage }: HomeComponentProps) {
   const { content, contributorsInfo } = homePage;
   return (
-    <div className="space-y-8">
-      <div className="prose prose-blue max-w-none">
+    <div className="container mx-auto py-4 space-y-8">
+      <div className="prose prose-lg max-w-none">
         <BlocksRenderer content={content} />
       </div>
 

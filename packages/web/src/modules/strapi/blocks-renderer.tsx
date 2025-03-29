@@ -4,6 +4,7 @@ import {
   BlocksRenderer as StrapiBlocksRenderer,
   type BlocksContent,
 } from "@strapi/blocks-react-renderer";
+import Link from "next/link";
 
 type BlocksRendererProps = {
   content: BlocksContent;
@@ -88,14 +89,28 @@ export default function BlocksRenderer({ content }: BlocksRendererProps) {
             className="my-6 rounded-md border border-border"
           />
         ),
-        link: ({ children, url }) => (
-          <a
-            href={url}
-            className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
-          >
-            {children}
-          </a>
-        ),
+        link: ({ children, url }) => {
+          const isRelative = url.startsWith("/");
+
+          return isRelative ? (
+            <Link
+              href={url}
+              className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+              prefetch
+            >
+              {children}
+            </Link>
+          ) : (
+            <a
+              href={url}
+              className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {children}
+            </a>
+          );
+        },
       }}
       modifiers={{
         bold: ({ children }) => <strong className="font-semibold">{children}</strong>,

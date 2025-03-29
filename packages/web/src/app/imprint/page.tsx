@@ -1,3 +1,8 @@
+import strapiClient from "@/modules/strapi/client";
+import ImprintComponent from "@/modules/imprint/component";
+import { fetchImprintPage } from "@/modules/imprint/service";
+
 export default async function Page() {
-  return <h1>Imprint</h1>;
+  const imprintPage = await fetchImprintPage(strapiClient);
+  return <ImprintComponent imprint={imprintPage} />;
 }

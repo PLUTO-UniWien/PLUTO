@@ -54,6 +54,12 @@ export const Footer = () => {
               <Link href="/privacy" className="text-gray-600 hover:text-primary transition-colors">
                 Privacy Policy
               </Link>
+              <Link href="/feedback" className="text-gray-600 hover:text-primary transition-colors">
+                Feedback
+              </Link>
+              <Link href="/news" className="text-gray-600 hover:text-primary transition-colors">
+                News
+              </Link>
             </div>
             <p className="text-center text-sm text-gray-500">
               University of Vienna, Universitätsring 1, 1010 Vienna, Austria

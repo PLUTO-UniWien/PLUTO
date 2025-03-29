@@ -337,9 +337,33 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFeedbackPageFeedbackPage extends Struct.SingleTypeSchema {
+  collectionName: "feedback_pages";
+  info: {
+    displayName: "Feedback Page";
+    pluralName: "feedback-pages";
+    singularName: "feedback-page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::feedback-page.feedback-page"> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlossaryPageGlossaryPage extends Struct.SingleTypeSchema {
   collectionName: "glossary_pages";
   info: {
+    description: "";
     displayName: "Glossary Page";
     pluralName: "glossary-pages";
     singularName: "glossary-page";
@@ -351,7 +375,7 @@ export interface ApiGlossaryPageGlossaryPage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
     introduction: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    items: Schema.Attribute.Component<"glossary.item", true>;
+    items: Schema.Attribute.Component<"glossary.item", true> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<"oneToMany", "api::glossary-page.glossary-page"> &
       Schema.Attribute.Private;
@@ -1014,6 +1038,7 @@ declare module "@strapi/types" {
       "admin::transfer-token": AdminTransferToken;
       "admin::transfer-token-permission": AdminTransferTokenPermission;
       "admin::user": AdminUser;
+      "api::feedback-page.feedback-page": ApiFeedbackPageFeedbackPage;
       "api::glossary-page.glossary-page": ApiGlossaryPageGlossaryPage;
       "api::home-page.home-page": ApiHomePageHomePage;
       "api::imprint-page.imprint-page": ApiImprintPageImprintPage;
