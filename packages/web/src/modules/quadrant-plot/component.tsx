@@ -21,6 +21,7 @@ type QuadrantPlotProps = {
   quadrantColors?: [string, string, string, string];
   rootId?: string;
   scoreLabels?: { x: string; y: string };
+  pointColor?: string;
 };
 
 const getScale = (
@@ -45,6 +46,7 @@ export default function QuadrantPlot({
   quadrantColors = ["#d9edd6", "#faf1d3", "#faf1d3", "#f2cfcc"],
   rootId = "quadrant-plot",
   scoreLabels = { x: "X Score", y: "Y Score" },
+  pointColor = "#3586cf",
 }: QuadrantPlotProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -141,7 +143,8 @@ export default function QuadrantPlot({
       .attr("id", resultPointId)
       .attr("cx", xScale(pointCoordinate[0]))
       .attr("cy", yScale(pointCoordinate[1]))
-      .attr("r", pointRadius);
+      .attr("r", pointRadius)
+      .attr("fill", pointColor);
   }, [
     xLowerBound,
     xUpperBound,

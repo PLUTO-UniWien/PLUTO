@@ -75,10 +75,13 @@ export default function ResultComponent({
         ref={contentRef}
         className="flex flex-col gap-4 sm:gap-6 md:gap-8 bg-primary-foreground py-6 sm:py-8"
       >
-        {/* Page Header with title */}
-        <div className="flex flex-col mb-2 sm:mb-3">
-          <h1 className="text-xl sm:text-2xl font-bold mb-1">{resultsReadyTitle}</h1>
-          <p className="text-sm text-muted-foreground">Analyzed on {formatDate(analyzedAt)}</p>
+        {/* Page Header with title and logo */}
+        <div className="flex flex-row items-center justify-between mb-2 sm:mb-3 gap-4">
+          <div className="flex flex-col">
+            <h1 className="text-xl sm:text-2xl font-bold mb-1">{resultsReadyTitle}</h1>
+            <p className="text-sm text-muted-foreground">Analyzed on {formatDate(analyzedAt)}</p>
+          </div>
+          <img src="/logo-pluto.png" alt="PLUTO Logo" className="w-32 sm:w-44" />
         </div>
 
         {/* Main Results Card */}

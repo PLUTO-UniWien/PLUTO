@@ -147,15 +147,19 @@ function getFeedbackForAnsweredQuestions(answeredQuestions: AnsweredQuestion[]) 
 function getFeedbackForAnsweredQuestionSingle(question: Question, pickedChoices: AnswerChoice[]) {
   // Core feedback attached to the entire question rather than a specific choice
   const {
-    metadata: { feedback: coreFeedback },
+    metadata: { feedback: coreFeedback, impact },
   } = question;
 
   // Individual feedback potentially attached to specific choices
   const individualFeedback = pickedChoices.map(({ feedback }) => feedback);
 
-  // We want to include core feedback if there is at least one picked choice with non-positive weight
+  // We want to include core feedback if there is at least one picked choice with sub-optimal weight
+  // For questions with benefit impact a negative weight is sub-optimal, as higher benefit is desired
+  // For questions with risk impact a positive weight is sub-optimal, as lower risk is desired
   const shouldIncludeCoreFeedback = pickedChoices.some(
-    ({ weight, type }) => weight <= 0 && type !== "no answer",
+    ({ weight, type }) =>
+      type !== "no answer" &&
+      ((impact === "benefit" && weight < 0) || (impact === "risk" && weight > 0)),
   );
   const feedback = shouldIncludeCoreFeedback
     ? [coreFeedback, ...individualFeedback]
