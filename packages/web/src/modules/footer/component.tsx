@@ -8,13 +8,7 @@ export const Footer = () => {
         <div className="flex flex-col items-center justify-center space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center justify-items-center w-full max-w-4xl">
             <Link href="/" className="transition-opacity hover:opacity-80">
-              <Image
-                src="/logo-pluto.png"
-                alt="PLUTO Logo"
-                width={150}
-                height={75}
-                className="h-auto w-auto"
-              />
+              <Image src="/logo-pluto.png" alt="PLUTO Logo" width={150} height={75} />
             </Link>
             <Link
               href="https://politikwissenschaft.univie.ac.at/"
@@ -25,9 +19,8 @@ export const Footer = () => {
               <Image
                 src="/logo-uniwien.png"
                 alt="University of Vienna Logo"
-                width={150}
+                width={175}
                 height={75}
-                className="h-auto w-auto"
               />
             </Link>
             <Link
@@ -36,13 +29,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="transition-opacity hover:opacity-80"
             >
-              <Image
-                src="/logo-digitize.png"
-                alt="Digitize Logo"
-                width={150}
-                height={75}
-                className="h-auto w-auto"
-              />
+              <Image src="/logo-digitize.png" alt="Digitize Logo" width={200} height={75} />
             </Link>
           </div>
 
@@ -61,10 +48,10 @@ export const Footer = () => {
                 News
               </Link>
             </div>
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-gray-600">
               University of Vienna, Universitätsring 1, 1010 Vienna, Austria
             </p>
-            <p className="text-center text-xs text-gray-400 mt-2">
+            <p className="text-center text-xs text-gray-500 mt-2">
               © {new Date().getFullYear()} PLUTO - Public Value Assessment Tool
             </p>
           </div>
