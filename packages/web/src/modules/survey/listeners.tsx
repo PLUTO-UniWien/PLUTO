@@ -71,8 +71,8 @@ function performAndTrackSurveySubmission(model: Model, context: ListenerContext)
     useSubmissionStore.getState().setSubmission(submission);
     const result = await createSubmission(submission);
     const submissionId = result.id;
-    await trackSubmission(submissionId);
     router.push("/result");
+    await trackSubmission(submissionId);
   });
 }
 

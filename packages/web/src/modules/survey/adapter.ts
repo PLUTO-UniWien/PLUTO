@@ -76,7 +76,7 @@ function createCoreProperties(survey: StrapiSurvey) {
     questionsOnPageMode: "questionPerPage",
     showPreviewBeforeComplete: "showAllQuestions",
     widthMode: "responsive",
-    completedHtml: " ",
+    completedHtml: '<div class="h-screen"></div>',
   };
 }
 

@@ -1,5 +1,6 @@
 .sv-components-row,
-.sd-element {
+.sd-element,
+.sd-container-modern {
   background-color: var(--card);
 }
 

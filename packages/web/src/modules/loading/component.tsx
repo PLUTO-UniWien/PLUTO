@@ -25,7 +25,7 @@ export function LoadingSpinner({ size = "md", className = "" }: LoadingSpinnerPr
 
 export default function LoadingComponent() {
   return (
-    <div className="flex h-[25vh] w-full items-center justify-center">
+    <div className="flex h-[80vh] w-full items-center justify-center">
       <LoadingSpinner size="lg" />
     </div>
   );
