@@ -11,6 +11,8 @@ try {
   console.error("❌ Env validation failed during build", error);
 }
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  output: "standalone",
+};
 
 export default nextConfig;
