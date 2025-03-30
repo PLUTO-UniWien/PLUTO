@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import type { StrapiSubmission } from "@/modules/submission/types";
 import type { StrapiSurvey } from "@/modules/survey/types";
 import Image from "next/image";
+import { toast } from "sonner";
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
 };
@@ -300,6 +301,10 @@ function useAnalysisResult(
   const [isLoading, setIsLoading] = useState(true);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const router = useRouter();
+  const redirect = () => {
+    toast.warning("Please take the survey before accessing the results.");
+    router.replace(redirectPath);
+  };
 
   useEffect(() => {
     // Allow a brief delay for the store to initialize
@@ -307,7 +312,8 @@ function useAnalysisResult(
       // If submission or survey is null, redirect
       if (submission === null || survey === null) {
         setIsLoading(false);
-        router.replace(redirectPath);
+        redirect();
+
         return;
       }
 
@@ -323,6 +329,7 @@ function useAnalysisResult(
         useSubmissionStore.getState().setSubmission(null);
         useSurveyStore.getState().setSurvey(null);
         // Redirect to survey page
+        redirect();
         router.replace(redirectPath);
       }
     }, 250);
