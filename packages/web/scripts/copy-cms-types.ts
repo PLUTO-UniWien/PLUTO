@@ -28,7 +28,11 @@ function processFile(file: string) {
   processed = processed.replace(/@strapi\/strapi/g, "@strapi/types");
 
   // Disable eslint for the file
-  processed = ["/* eslint-disable */", processed].join("\n");
+  processed = [
+    "/* eslint-disable */",
+    "/* THIS FILE WAS GENERATED AUTOMATICALLY. DO NOT EDIT IT MANUALLY. */",
+    processed,
+  ].join("\n");
 
   return processed;
 }

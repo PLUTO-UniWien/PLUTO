@@ -26,10 +26,12 @@ export const env = createEnv({
     NEXT_PUBLIC_UMAMI_SCRIPT_URL: z
       .string()
       .url()
+      .optional()
       .describe("The URL of the Umami instance to track."),
     NEXT_PUBLIC_UMAMI_WEBSITE_ID: z
       .string()
       .min(1)
+      .optional()
       .describe("The ID of the Umami website to track."),
   },
   runtimeEnv: {

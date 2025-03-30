@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* THIS FILE WAS GENERATED AUTOMATICALLY. DO NOT EDIT IT MANUALLY. */
 import type { Schema, Struct } from "@strapi/types";
 
 export interface GlossaryItem extends Struct.ComponentSchema {

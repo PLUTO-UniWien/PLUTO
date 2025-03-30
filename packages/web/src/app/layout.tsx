@@ -56,11 +56,13 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
-        <UmamiAnalytics
-          strategy="beforeInteractive"
-          scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
-          websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-        />
+        {env.NEXT_PUBLIC_UMAMI_SCRIPT_URL && env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+          <UmamiAnalytics
+            strategy="beforeInteractive"
+            scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
+            websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          />
+        )}
         <Toaster position="top-right" expand={true} />
       </body>
     </html>
