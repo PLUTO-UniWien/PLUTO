@@ -301,12 +301,13 @@ function useAnalysisResult(
   const [isLoading, setIsLoading] = useState(true);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const router = useRouter();
-  const redirect = () => {
-    toast.warning("Please take the survey before accessing the results.");
-    router.replace(redirectPath);
-  };
 
   useEffect(() => {
+    const redirect = () => {
+      toast.warning("Please take the survey before accessing the results.");
+      router.replace(redirectPath);
+    };
+
     // Allow a brief delay for the store to initialize
     const timer = setTimeout(() => {
       // If submission or survey is null, redirect
