@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import type { StrapiSubmission } from "@/modules/submission/types";
 import type { StrapiSurvey } from "@/modules/survey/types";
-
+import Image from "next/image";
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
 };
@@ -81,7 +81,7 @@ export default function ResultComponent({
             <h1 className="text-xl sm:text-2xl font-bold mb-1">{resultsReadyTitle}</h1>
             <p className="text-sm text-muted-foreground">Analyzed on {formatDate(analyzedAt)}</p>
           </div>
-          <img src="/logo-pluto.png" alt="PLUTO Logo" className="w-32 sm:w-44" />
+          <Image src="/logo-pluto.png" alt="PLUTO Logo" width={128} height={128} />
         </div>
 
         {/* Main Results Card */}

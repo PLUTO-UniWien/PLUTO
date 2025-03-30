@@ -5,6 +5,7 @@ import {
   type BlocksContent,
 } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import Image from "next/image";
 
 type BlocksRendererProps = {
   content: BlocksContent;
@@ -83,9 +84,11 @@ export default function BlocksRenderer({ content }: BlocksRendererProps) {
           </pre>
         ),
         image: ({ image }) => (
-          <img
+          <Image
             src={image.url}
             alt={image.alternativeText || ""}
+            width={image.width}
+            height={image.height}
             className="my-6 rounded-md border border-border"
           />
         ),

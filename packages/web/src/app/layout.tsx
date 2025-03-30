@@ -57,6 +57,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <UmamiAnalytics
+          strategy="beforeInteractive"
           scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
           websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
         />
