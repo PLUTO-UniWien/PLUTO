@@ -22,7 +22,7 @@ export default function WeightingOverviewComponent({
       {} as Record<number, string>,
     );
   return (
-    <div className="container mx-auto py-4 space-y-8">
+    <div className="container max-w-4xl mx-auto px-4 py-6 space-y-10">
       <div className="prose prose-lg max-w-none">
         <BlocksRenderer content={content} />
       </div>

@@ -51,7 +51,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
         <div className="flex flex-col min-h-screen">
           <Navigation />
-          <main className="flex-grow px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto w-full">
+          <main className="flex-grow px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto w-full">
             <div className="bg-primary-foreground rounded-lg shadow-sm p-6 sm:p-8">{children}</div>
           </main>
           <Footer />

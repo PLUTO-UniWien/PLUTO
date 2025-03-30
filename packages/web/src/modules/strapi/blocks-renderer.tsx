@@ -17,49 +17,51 @@ export default function BlocksRenderer({ content }: BlocksRendererProps) {
       content={content}
       blocks={{
         paragraph: ({ children }) => (
-          <p className="text-foreground leading-7 [&:not(:first-child)]:mt-6">{children}</p>
+          <p className="text-foreground text-justify leading-7 [&:not(:first-child)]:mt-6">
+            {children}
+          </p>
         ),
         heading: ({ children, level }) => {
           switch (level) {
             case 1:
               return (
-                <h1 className="text-4xl font-bold tracking-tight text-foreground mt-10 scroll-m-20 pb-2 first:mt-0">
+                <h1 className="text-4xl font-bold tracking-tight text-foreground mt-8 scroll-m-20 pb-2 first:mt-0">
                   {children}
                 </h1>
               );
             case 2:
               return (
-                <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-10 scroll-m-20 pb-2 first:mt-0">
+                <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-8 scroll-m-20 pb-2 first:mt-0">
                   {children}
                 </h2>
               );
             case 3:
               return (
-                <h3 className="text-2xl font-semibold tracking-tight text-foreground mt-8 scroll-m-20">
+                <h3 className="text-2xl font-semibold tracking-tight text-foreground mt-6 scroll-m-20">
                   {children}
                 </h3>
               );
             case 4:
               return (
-                <h4 className="text-xl font-semibold tracking-tight text-foreground mt-8 scroll-m-20">
+                <h4 className="text-xl font-semibold tracking-tight text-foreground mt-6 scroll-m-20">
                   {children}
                 </h4>
               );
             case 5:
               return (
-                <h5 className="text-lg font-semibold tracking-tight text-foreground mt-8 scroll-m-20">
+                <h5 className="text-lg font-semibold tracking-tight text-foreground mt-6 scroll-m-20">
                   {children}
                 </h5>
               );
             case 6:
               return (
-                <h6 className="text-base font-semibold tracking-tight text-foreground mt-8 scroll-m-20">
+                <h6 className="text-base font-semibold tracking-tight text-foreground mt-6 scroll-m-20">
                   {children}
                 </h6>
               );
             default:
               return (
-                <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-10 scroll-m-20 pb-2 first:mt-0">
+                <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-8 scroll-m-20 pb-2 first:mt-0">
                   {children}
                 </h2>
               );
