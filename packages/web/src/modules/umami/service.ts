@@ -4,10 +4,29 @@ export function getUmamiInstance(): UmamiInstance {
   "use client";
 
   if (!window.umami) {
-    throw new Error("Umami analytics is not initialized or not available on the window object");
+    console.warn(
+      "Umami analytics is not initialized or not available on the window object. Will not collect analytics.",
+    );
+
+    const dummyInstance: UmamiInstance = {
+      track: () => Promise.resolve(),
+      identify: () => Promise.resolve(),
+    };
+
+    return dummyInstance;
   }
 
-  return window.umami;
+  const tolerantInstance: UmamiInstance = {
+    track: (...args) => window.umami.track(...args).catch((error) => handleError(error, ...args)),
+    identify: (...args) =>
+      window.umami.identify(...args).catch((error) => handleError(error, ...args)),
+  };
+
+  return tolerantInstance;
+}
+
+function handleError(error: unknown, ...args: unknown[]) {
+  console.error("Error while tracking event with args:", args, "Error:", error);
 }
 
 export async function trackSubmission(submissionId: number) {
