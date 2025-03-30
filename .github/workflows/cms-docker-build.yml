@@ -3,12 +3,13 @@ name: Build and Push CMS Docker Image
 on:
   push:
     paths:
-      - 'packages/cms/**'
-      - 'pnpm-lock.yaml'
-      - 'pnpm-workspace.yaml'
-      - 'package.json'
+      - "packages/cms/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - ".github/workflows/cms-docker-build.yml"
   release:
-    types: [ published ]
+    types: [published]
   workflow_dispatch:
 
 env:
@@ -61,3 +62,36 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Generate Build Summary
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const date = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+            const tags = context.payload.repository ? 
+              '${{ steps.meta.outputs.tags }}'.split(',') : [];
+            const firstTag = tags.length > 0 ? tags[0] : '';
+
+            const summary = [
+              '# 🐳 CMS Docker Image Build Summary',
+              '## 📦 Image Details',
+              `- **Repository:** \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}\``,
+              `- **Built from:** \`${context.ref.replace('refs/heads/', '')}\` (\`${context.sha}\`)`,
+              `- **Build triggered by:** \`${context.eventName}\``,
+              `- **Build date:** \`${date}\``,
+              '',
+              '## 🏷️ Image Tags',
+              '```',
+              tags.join('\n'),
+              '```',
+              '',
+              '## 🔗 Usage',
+              'Pull this image with:',
+              '```bash',
+              `docker pull ${firstTag}`,
+              '```'
+            ].join('\n');
+
+            await core.summary
+              .markdown(summary)
+              .write();
