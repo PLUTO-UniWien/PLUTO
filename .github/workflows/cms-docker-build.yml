@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'packages/cms/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'package.json'
   release:
     types: [ published ]
   workflow_dispatch:
