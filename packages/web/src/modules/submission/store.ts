@@ -4,7 +4,7 @@ import type { StrapiSubmission } from "./types";
 
 interface SubmissionState {
   submission: (StrapiSubmission & { submittedAt: string }) | null;
-  setSubmission: (submission: (StrapiSubmission & { submittedAt: string }) | null) => void;
+  setSubmission: (submission: StrapiSubmission | null) => void;
 }
 
 export const useSubmissionStore = create<SubmissionState>()(
