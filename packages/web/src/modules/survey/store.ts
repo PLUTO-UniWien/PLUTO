@@ -4,7 +4,7 @@ import type { StrapiSurvey } from "./types";
 
 interface SurveyState {
   survey: StrapiSurvey | null;
-  setSurvey: (survey: StrapiSurvey) => void;
+  setSurvey: (survey: StrapiSurvey | null) => void;
 }
 
 export const useSurveyStore = create<SurveyState>()(

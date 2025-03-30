@@ -27,23 +27,17 @@ export default function ResultComponent({
   const submission = useSubmissionStore((state) => state.submission);
   const survey = useSurveyStore((state) => state.survey);
 
-  // State validation to ensure there has been at least one prior survey submission before trying to render results
-  const { isLoading, isStateValid } = useStateValidation(submission, survey, "/survey");
+  // Get loading state and analysis result, with automatic redirection if needed
+  const { isLoading, analysisResult } = useAnalysisResult(submission, survey);
   const { contentRef, isExporting, exportToPdf } = usePdfExport({ minDuration: 1000 });
 
-  // During initial loading, show loading component
-  if (isLoading) {
-    return <LoadingComponent />;
-  }
-
-  // If still null after loading period, also show loading while redirecting
-  if (!isStateValid || submission === null || survey === null) {
+  // If loading or analysis failed, show loading component
+  if (isLoading || analysisResult === null || submission === null || survey === null) {
     return <LoadingComponent />;
   }
 
   // At this point, we know submission and survey are not null so we can proceed with the analysis and rendering
-  const analysisResult = analyzeSubmission(submission, survey);
-  const { analyzedAt, resultType, feedback, scoreNormalized, counts } = analysisResult;
+  const { resultType, feedback, scoreNormalized, counts } = analysisResult;
 
   // Compute counts for metrics section
   const allQuestionCount = counts.total.risk + counts.total.benefit;
@@ -79,7 +73,9 @@ export default function ResultComponent({
         <div className="flex flex-row items-center justify-between mb-2 sm:mb-3 gap-4">
           <div className="flex flex-col">
             <h1 className="text-xl sm:text-2xl font-bold mb-1">{resultsReadyTitle}</h1>
-            <p className="text-sm text-muted-foreground">Analyzed on {formatDate(analyzedAt)}</p>
+            <p className="text-sm text-muted-foreground">
+              Survey submitted on {formatDate(submission.submittedAt)}
+            </p>
           </div>
           <Image src="/logo-pluto.png" alt="PLUTO Logo" width={128} height={128} />
         </div>
@@ -293,23 +289,40 @@ function FeedbackList({ title, blocksValue }: FeedbackListProps) {
 }
 
 /**
- * Hook to handle initial loading state and navigation
- * when required store data is missing
+ * Hook to handle initial loading state, validation, and analysis generation
+ * Redirects to survey page if data is missing or analysis fails
  */
-function useStateValidation(
+function useAnalysisResult(
   submission: StrapiSubmission | null,
   survey: StrapiSurvey | null,
-  redirectPath: string,
+  redirectPath: string = "/survey",
 ) {
   const [isLoading, setIsLoading] = useState(true);
+  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     // Allow a brief delay for the store to initialize
     const timer = setTimeout(() => {
-      setIsLoading(false);
-      // Only redirect after the loading time if still null
+      // If submission or survey is null, redirect
       if (submission === null || survey === null) {
+        setIsLoading(false);
+        router.replace(redirectPath);
+        return;
+      }
+
+      try {
+        // Perform the analysis
+        const result = analyzeSubmission(submission, survey);
+        setAnalysisResult(result);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to analyze submission:", error);
+        setIsLoading(false);
+        // Clear submission and survey data from store as they might be corrupt
+        useSubmissionStore.getState().setSubmission(null);
+        useSurveyStore.getState().setSurvey(null);
+        // Redirect to survey page
         router.replace(redirectPath);
       }
     }, 250);
@@ -319,6 +332,6 @@ function useStateValidation(
 
   return {
     isLoading,
-    isStateValid: submission !== null && survey !== null,
+    analysisResult,
   };
 }
