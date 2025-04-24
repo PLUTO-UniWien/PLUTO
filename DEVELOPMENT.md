@@ -55,7 +55,7 @@ You should see something along the lines of:
 ✔ Cleaning dist dir (10ms)
 ✔ Compiling TS (892ms)
 
- Project information                                                          
+ Project information
 
 ┌────────────────────┬──────────────────────────────────────────────────┐
 │ Time               │ Sun Mar 30 2025 15:59:42 GMT+0200 (Central Euro… │
@@ -68,7 +68,7 @@ You should see something along the lines of:
 │ Database name      │ .tmp/data.db                                     │
 └────────────────────┴──────────────────────────────────────────────────┘
 
- Actions available                                                            
+ Actions available
 
 Welcome back!
 To access the server ⚡️, go to:
@@ -162,8 +162,7 @@ Next.js app to access the CMS via its API.
 
 As a final step, you will need to sync the `STRAPI_WEBHOOK_SECRET` by visiting
 `Strapi Admin > Settings > Webhooks > Revalidate Pages` and set the
-`Authorization` header's value. This will be the value of as
-`STRAPI_WEBHOOK_SECRET` in `packages/web/.env.local`.
+`Authorization` header's value. This will be the value of `STRAPI_WEBHOOK_SECRET` in `packages/web/.env.local`.
 
 ### `web` ([Next.js](https://github.com/vercel/next.js/))
 
