@@ -54,33 +54,36 @@ export function Navigation() {
             <NavigationMenu>
               <NavigationMenuList className="space-x-1">
                 <NavigationMenuItem>
-                  <Link href="/survey" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
-                    >
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    asChild
+                  >
+                    <Link href="/survey" passHref>
                       Survey
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/result" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
-                    >
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    asChild
+                  >
+                    <Link href="/result" passHref>
                       Result
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/glossary" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
-                    >
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    asChild
+                  >
+                    <Link href="/glossary" passHref>
                       Glossary
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
@@ -89,52 +92,57 @@ export function Navigation() {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-secondary">
                     <div className="grid gap-3 p-4 w-[400px] bg-primary-foreground rounded-lg shadow-lg">
-                      <Link href="/weighting" legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={cn(
-                            "flex flex-col w-full select-none rounded-md p-3 leading-none no-underline outline-none transition-colors bg-primary-foreground",
-                          )}
-                        >
+                      <NavigationMenuLink
+                        className={cn(
+                          "flex flex-col w-full select-none rounded-md p-3 leading-none no-underline outline-none transition-colors bg-primary-foreground",
+                        )}
+                        asChild
+                      >
+                        <Link href="/weighting" passHref>
                           <div className="text-sm font-medium">Overview</div>
                           <div className="mt-1 text-xs text-muted-foreground">
                             General information about the weighting process and methodology
                           </div>
-                        </NavigationMenuLink>
-                      </Link>
-                      <Link href="/weighting/history" legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={cn(
-                            "flex flex-col w-full select-none rounded-md p-3 leading-none no-underline outline-none transition-colors bg-primary-foreground",
-                          )}
-                        >
+                        </Link>
+                      </NavigationMenuLink>
+
+                      <NavigationMenuLink
+                        className={cn(
+                          "flex flex-col w-full select-none rounded-md p-3 leading-none no-underline outline-none transition-colors bg-primary-foreground",
+                        )}
+                        asChild
+                      >
+                        <Link href="/weighting/history" passHref>
                           <div className="text-sm font-medium">History</div>
                           <div className="mt-1 text-xs text-muted-foreground">
                             Historical data and changes in weighting factors over time
                           </div>
-                        </NavigationMenuLink>
-                      </Link>
+                        </Link>
+                      </NavigationMenuLink>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/feedback" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
-                    >
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    asChild
+                  >
+                    <Link href="/feedback" passHref>
                       Feedback
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/news" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
-                    >
+                  <NavigationMenuLink
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    asChild
+                  >
+                    <Link href="/news" passHref>
                       News
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
