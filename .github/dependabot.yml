@@ -16,9 +16,16 @@ updates:
     open-pull-requests-limit: 10
     versioning-strategy: auto
 
-  # Check for updates to Docker
+  # Check for updates to Docker in web package
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "/packages/web"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+
+  # Check for updates to Docker in cms package
+  - package-ecosystem: "docker"
+    directory: "/packages/cms"
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 5
