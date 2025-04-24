@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_question_choices",
+  "info": {
+    "displayName": "Choice",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "weight": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "feedback": {
+      "type": "blocks"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["regular", "other", "none of the above", "no answer"],
+      "required": true,
+      "default": "regular"
+    },
+    "body": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

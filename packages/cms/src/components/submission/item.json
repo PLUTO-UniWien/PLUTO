@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_submission_items",
+  "info": {
+    "displayName": "Item",
+    "icon": "paperPlane",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "question": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::question.question"
+    },
+    "choiceId": {
+      "type": "integer",
+      "required": true
+    },
+    "timeSpentOnQuestion": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submissions",
+  "info": {
+    "singularName": "submission",
+    "pluralName": "submissions",
+    "displayName": "Submission",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "items": {
+      "displayName": "Item",
+      "type": "component",
+      "repeatable": true,
+      "component": "submission.item",
+      "required": true
+    }
+  }
+}

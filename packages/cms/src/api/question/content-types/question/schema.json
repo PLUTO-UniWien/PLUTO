@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "metadata": {
+      "type": "component",
+      "repeatable": false,
+      "component": "question.metadata",
+      "required": true
+    },
+    "explanation": {
+      "type": "blocks",
+      "required": true
+    },
+    "weightingRationale": {
+      "type": "blocks",
+      "required": true
+    },
+    "body": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "choices": {
+      "type": "component",
+      "repeatable": true,
+      "component": "question.choice",
+      "required": true
+    }
+  }
+}

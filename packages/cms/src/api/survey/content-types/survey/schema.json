@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "surveys",
+  "info": {
+    "singularName": "survey",
+    "pluralName": "surveys",
+    "displayName": "Survey",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "groups": {
+      "displayName": "Group",
+      "type": "component",
+      "repeatable": true,
+      "component": "survey.group",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    }
+  }
+}

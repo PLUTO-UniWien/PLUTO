@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "result_pages",
+  "info": {
+    "singularName": "result-page",
+    "pluralName": "result-pages",
+    "displayName": "Result Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "resultsReadyTitle": {
+      "type": "string",
+      "required": true
+    },
+    "explanation": {
+      "type": "blocks",
+      "required": true
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

@@ -1,208 +1,201 @@
-# PLUTO - Development
+# PLUTO - Public Value Assessment Tool
 
-## Project Setup
+## Prerequisites
 
-### Set Config Key
+Before you begin, ensure you have the following installed:
 
-Create a local `config_key` file in the repository root with the password contents so that all the other secrets can be decrypted.
+- [Node.js v22](https://nodejs.org/en/)
+- [pnpm v10](https://pnpm.io/)
 
-```shell
-CONFIG_KEY=*********
-echo "$CONFIG_KEY" > config_key
+## Initial Setup
+
+Clone the repository
+
+```bash
+git clone git@github.com:PLUTO-UniWien/PLUTO.git && cd PLUTO
 ```
 
-### Decrypt Secrets
+Install dependencies
 
-Ensure that you have [Docker](https://docs.docker.com/get-docker/) installed on your machine and is running.
-Execute the following command to decrypt the secrets.
-
-```shell
-npm run secrets:decrypt
+```bash
+pnpm install
 ```
 
-The command above builds a Docker image with all the necessary system dependencies and runs a container to decrypt the secrets.
-Given that you have a local `config_key` file with the correct password, you should see an output like the following:
+### `cms` ([Strapi](https://github.com/strapi/strapi))
 
-```text
-🔓 Decrypting services/db/.env
-🔓 Decrypting services/db-admin/.env
-🔓 Decrypting apps/cms/.env
-🔓 Decrypting apps/cms/.env.production
-🔓 Decrypting apps/cms/export.tar.gz
-🔓 Decrypting apps/survey-admin/.env.local
-🔓 Decrypting apps/survey-admin/.env.local.docker
-🔓 Decrypting apps/survey-public/.env.local
-🔓 Decrypting apps/survey-analysis/.streamlit/secrets.toml
+Create local environment variables for Strapi based on the
+[packages/cms/.env.example](packages/cms/.env.example) file.
+
+```bash
+# Make sure to edit the .env file to your needs
+cp packages/cms/.env.example packages/cms/.env
 ```
 
-### Install Local Node Modules
+Start the Strapi dev server
 
-The top-level monorepo dependencies must be installed with the `--force` flag to ensure that all the packages are installed.
-
-```shell
-npm ci --force
+```bash
+pnpm --filter cms run dev
 ```
 
-For the Strapi CMS the `node_modules` also need to be installed in the `apps/cms` directory.
+You should see something along the lines of:
 
-```shell
-cd apps/cms
-npm ci
-cd -
 ```
-
-## Local Development
-
-Start a local PostgreSQL database instance with the following command:
-
-```shell
-docker-compose -f docker-compose.dev.yml up -d
-```
-
-It is required for the Strapi CMS.
-
-### CMS
-
-The `apps/cms` module is a [Strapi](https://strapi.io/) instance allowing the management of survey contents and website data.
-A local dev server can be started with the following command:
-
-```shell
-npx nx run cms:serve
-```
-
-If executed for the first time (against a clean database), you should see a similar output:
-
-```text
-> cms@0.0.1 develop
 > strapi develop
-Accepting CORS from: [
-  'http://localhost:1337',
-  'http://localhost:4200',
-  'http://localhost:9001',
-  'http://cms.pluto.univie.ac.at',
-  'https://cms.pluto.univie.ac.at'
-]
-Accepting CORS from: [
-  'http://localhost:1337',
-  'http://localhost:4200',
-  'http://localhost:9001',
-  'http://cms.pluto.univie.ac.at',
-  'https://cms.pluto.univie.ac.at'
-]
-[2024-07-04 20:41:28.227] info: Created admin (E-Mail: dev.petergy@gmail.com, Password: [INIT_ADMIN_PASSWORD]).
+
+⠦ Loading Strapi[2025-03-30 15:59:40.953] info: Created admin (E-Mail: john.doe@admin.com, Password: [INIT_ADMIN_PASSWORD]).
+⠋ Building build context
+⠧ Loading Strapi[INFO] Including the following ENV variables as part of the JS bundle:
+    - ADMIN_PATH
+    - STRAPI_ADMIN_BACKEND_URL
+    - STRAPI_TELEMETRY_DISABLED
+✔ Building build context (42ms)
+✔ Creating admin (338ms)
+✔ Loading Strapi (2288ms)
+✔ Generating types (155ms)
+✔ Cleaning dist dir (10ms)
+✔ Compiling TS (892ms)
+
  Project information
+
 ┌────────────────────┬──────────────────────────────────────────────────┐
-│ Time               │ Thu Jul 04 2024 20:41:29 GMT+0200 (Central Euro… │
-│ Launched in        │ 2900 ms                                          │
+│ Time               │ Sun Mar 30 2025 15:59:42 GMT+0200 (Central Euro… │
+│ Launched in        │ 3343 ms                                          │
 │ Environment        │ development                                      │
-│ Process PID        │ 20787                                            │
-│ Version            │ 4.14.3 (node v20.11.1)                           │
+│ Process PID        │ 32359                                            │
+│ Version            │ 5.12.1 (node v22.14.0)                           │
 │ Edition            │ Community                                        │
-│ Database           │ postgres                                         │
+│ Database           │ sqlite                                           │
+│ Database name      │ .tmp/data.db                                     │
 └────────────────────┴──────────────────────────────────────────────────┘
+
  Actions available
+
 Welcome back!
-To manage your project 🚀, go to the administration panel at:
-http://localhost:1337/admin
 To access the server ⚡️, go to:
 http://localhost:1337
+
+[2025-03-30 15:59:42.562] info: Strapi started successfully
 ```
 
-You should be able to visit [http://localhost:1337/admin](http://localhost:1337/admin) and log in with the values of `INIT_ADMIN_USERNAME` and `INIT_ADMIN_PASSWORD` specified in `apps/cms/.env`.
+Now, in a separate terminal session initialize CMS from export to include the
+default content and settings.
 
-### Survey Admin
-
-The `apps/survey-admin` module is a [Next.js](https://nextjs.org/) application that acts as a middleware between the CMS and the frontend.
-A local dev server can be started with the following command:
-
-```shell
-npx nx run survey-admin:serve
+```bash
+cd packages/cms
+./node_modules/.bin/strapi import -f exports/export_20250330153618.tar.gz --force
 ```
 
-You should see a similar output:
+You should see something along the lines of:
 
-```text
-> nx run survey-admin:serve:development
-
-Loaded and validated environment variables
-[
-  'STRAPI_API_KEY',
-  'NEXT_PUBLIC_STRAPI_URL',
-  'NEXT_PUBLIC_ALLOWED_ORIGINS',
-  'NEXT_PUBLIC_USE_AUTH'
-]
-Loaded and validated environment variables
-[
-  'STRAPI_API_KEY',
-  'NEXT_PUBLIC_STRAPI_URL',
-  'NEXT_PUBLIC_ALLOWED_ORIGINS',
-  'NEXT_PUBLIC_USE_AUTH'
-]
-warning package.json: No license field
-  ▲ Next.js 13.5.4
-  - Local:        http://localhost:4200
-  - Environments: .env.local, .env.development
- ✓ Ready in 3.1s
- ✓ Compiled /src/middleware in 193ms (60 modules)
- ✓ Compiled /page in 692ms (387 modules)
+```
+? The import will delete your existing data! Are you sure you want to proceed? Yes
+Starting import...
+✔ entities: 93 transfered (size: 177.2 KB) (elapsed: 123 ms) (1.4 MB/s)
+✔ assets: 12 transfered (size: 439.1 KB) (elapsed: 35 ms) (12.3 MB/s)
+✔ links: 303 transfered (size: 53.4 KB) (elapsed: 17 ms) (3.1 MB/s)
+✔ configuration: 49 transfered (size: 148.1 KB) (elapsed: 7 ms) (20.7 MB/s)
+┌─────────────────────────────────────────────────────────┬───────┬───────────────┐
+│ Type                                                    │ Count │ Size          │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ entities                                                │    93 │     177.2 KB  │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::feedback-page.feedback-page                     │     2 │ (     2.9 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::glossary-page.glossary-page                     │     2 │ (    12.4 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::home-page.home-page                             │     2 │ (    10.3 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::imprint-page.imprint-page                       │     2 │ (     2.1 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::post.post                                       │     2 │ (     7.5 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::privacy-page.privacy-page                       │     2 │ (     2.7 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::question.question                               │    50 │ (    98.5 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::result-page.result-page                         │     2 │ (     8.4 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::submission.submission                           │     4 │ (    12.8 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::survey.survey                                   │     2 │ (     942 B ) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::weighting-history-page.weighting-history-page   │     2 │ (     3.4 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- api::weighting-overview-page.weighting-overview-page │     2 │ (     6.7 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- plugin::i18n.locale                                  │     1 │ (     253 B ) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- plugin::upload.file                                  │     4 │ (     4.2 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- plugin::upload.folder                                │     3 │ (     787 B ) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- plugin::users-permissions.permission                 │     9 │ (     2.6 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- plugin::users-permissions.role                       │     2 │ (     656 B ) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ assets                                                  │    12 │     439.1 KB  │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- .csv                                                 │     1 │ (     6.5 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- .png                                                 │    10 │ (   399.6 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ -- .xlsx                                                │     1 │ (      33 KB) │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ links                                                   │   303 │      53.4 KB  │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ configuration                                           │    49 │     148.1 KB  │
+├─────────────────────────────────────────────────────────┼───────┼───────────────┤
+│ Total                                                   │   457 │     817.9 KB  │
+└─────────────────────────────────────────────────────────┴───────┴───────────────┘
+Import process has been completed successfully!
 ```
 
-The UI under [http://localhost:4200](http://localhost:4200) is irrelevant, only the API routes are important in the case of the middleware.
-The API routes are defined under `apps/survey-admin/src/app/api`.
+Open the Strapi admin panel in your browser running on
+[http://localhost:1337/admin](http://localhost:1337/admin) and login with the
+admin credentials you set in the `.env` file.
 
-### Survey Public
+Now issue a new API Token by visiting
+[http://localhost:1337/admin/settings/api-tokens/create](http://localhost:1337/admin/settings/api-tokens/create).
+Set `Token duration` to `Unlimited` and `Token type` to `Full access`. This will
+be the value of `STRAPI_API_TOKEN` in `packages/web/.env.local` allowing the
+Next.js app to access the CMS via its API.
 
-The `apps/survey-public` module is a [Vue 2](https://vuejs.org/) application that serves the frontend of the survey.
-The survey component is handled by [SurveyJS](https://surveyjs.io/) under the hood.
-A local dev server can be started with the following command:
+As a final step, you will need to sync the `STRAPI_WEBHOOK_SECRET` by visiting
+`Strapi Admin > Settings > Webhooks > Revalidate Pages` and set the
+`Authorization` header's value. This will be the value of `STRAPI_WEBHOOK_SECRET` in `packages/web/.env.local`.
 
-```shell
-npx nx run survey-public:serve
+### `web` ([Next.js](https://github.com/vercel/next.js/))
+
+Create local environment variables for the Next.js app based on the
+[packages/web/.env.local.example](packages/web/.env.local.example) file.
+
+Specify `STRAPI_API_TOKEN` and `STRAPI_WEBHOOK_SECRET` as outlined in the
+previous section.
+
+```bash
+# Make sure you are in the root directory of the project and you edit the .env.local file to your needs
+cd ../../
+cp packages/web/.env.local.example packages/web/.env.local
 ```
 
-You should see a similar output:
+Optionally, also connect the web app to a [Umami Analytics](https://umami.is/)
+instance of your choice by specifying the `NEXT_PUBLIC_UMAMI_SCRIPT_URL` and
+`NEXT_PUBLIC_UMAMI_WEBSITE_ID` environment variables.
 
-```text
-> nx run survey-public:serve
+Start the Next.js dev server
 
- INFO  Starting development server...
-Browserslist: caniuse-lite is outdated. Please run:
-  npx update-browserslist-db@latest
-  Why you should do it regularly: https://github.com/browserslist/update-db#readme
-
-
- WARNING  Compiled with 1 warning                                                                                                 8:53:55 PM
-
- warning
-
-DefinePlugin
-Conflicting values for 'process.env'
-
-
-  App running at:
-  - Local:   http://localhost:8080/
-  - Network: http://192.168.0.48:8080/
-
-  Note that the development build is not optimized.
-  To create a production build, run npm run build.
-
-No issues found.
+```bash
+pnpm --filter web run dev
 ```
 
-You can visit [http://localhost:8080](http://localhost:8080) to see the survey frontend.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the
+application running.
 
-Note that each view under `apps/survey-public/src/views` has a corresponding static `viewname.json` file, housing the contents of the particular view.
-These JSON files are periodoically updated by invoking the middleware (`apps/survey-admin`) API routes which in turn fetch the data from the CMS (`apps/cms`). This is a really poor man's way of doing incremental static site generation, something that ideally should have been done with a dedicated framework like [Nuxt.js](https://nuxtjs.org/).
+## Development
 
-There is a CRON job set up for this purpose, governed by `libs/cli/src/lib/rebuild-survey-public-cron`.
-It is invoked automatically in the deployed Docker Stack via:
+After going through the initial setup, you can work on the project by running
+the `dev` target of both packages in parallel via
 
-```shell
-nx run cli:start-rebuild-survey-public-cron --apiUrl=$API_URL --apiKey=$API_KEY --interval=$INTERVAL
 ```
-
-where:
-
-- `$API_URL` is the URL of the middleware API
-- `API_KEY` is the API key for the Strapi CMS
-- `INTERVAL` is an integer representing the interval in minutes at which the CRON job should run
+pnpm run -r dev
+```

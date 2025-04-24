@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "glossary_pages",
+  "info": {
+    "singularName": "glossary-page",
+    "pluralName": "glossary-pages",
+    "displayName": "Glossary Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "introduction": {
+      "type": "blocks",
+      "required": true
+    },
+    "items": {
+      "displayName": "Item",
+      "type": "component",
+      "repeatable": true,
+      "component": "glossary.item",
+      "required": true
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

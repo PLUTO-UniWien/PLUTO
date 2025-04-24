@@ -1,0 +1,22 @@
+.sv-components-row,
+.sd-element,
+.sd-container-modern {
+  background-color: var(--card);
+}
+
+.sd-btn {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.sd-btn:hover {
+  background-color: var(--pluto-blue-light);
+}
+
+.sd-navigation__complete-btn {
+  background-color: var(--pluto-green-dark);
+}
+
+.sd-navigation__complete-btn:hover {
+  background-color: var(--pluto-green);
+}

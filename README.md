@@ -1,6 +1,4 @@
-# PLUTO
-
-> Public Value Assessment Tool
+# PLUTO - Public Value Assessment Tool <img src="./packages/web/public/logo-pluto.png" align="right" alt="Public Value Assessment Tool Logo" width="150"/>
 
 The risks and harms of digital data do not lie in the data itself; they come from how the data is used. PLUTO is a tool for assessing the benefits and risks of specific instances of data use. The weighing of risks and benefits results in a score that indicates the public value of data use.
 
@@ -13,13 +11,4 @@ PLUTO can be used by anyone wanting to know how much public value the use of dat
 
 You do not need to have access to proprietary or any other highly specialised information to use this tool - but it is helpful to know the basic conditions under which data is used, and by whom. In a nutshell, the more a specific instance of data use benefits people and communities without putting individuals or groups at risk, the higher the public value.
 
-This repository is the embodiment of the PLUTO tool.
-To get started with development take a look at the [DEVELOPMENT.md](DEVELOPMENT.md) file.
-
-## Understand this workspace
-
-Run `nx graph` to see a diagram of the dependencies of the projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+This repository is the embodiment of the Public Value Assessment Tool. To get started with development take a look at the [DEVELOPMENT.md](DEVELOPMENT.md) file.

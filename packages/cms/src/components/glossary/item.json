@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_glossary_items",
+  "info": {
+    "displayName": "Item",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}
