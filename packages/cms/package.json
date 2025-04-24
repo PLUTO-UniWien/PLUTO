@@ -18,7 +18,7 @@
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
     "better-sqlite3": "11.9.1",
-    "react": "^18.3.1",
+    "react": "^19.1.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.0",
     "strapi-plugin-init-admin-user": "^0.2.3",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
-    "@types/react": "^18.3.20",
+    "@types/react": "^19.1.2",
     "@types/react-dom": "^18.3.6",
     "typescript": "^5.8.3"
   },
