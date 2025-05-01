@@ -13,7 +13,7 @@
   "dependencies": {
     "@strapi/plugin-documentation": "5.12.6",
     "@strapi/plugin-seo": "^2.0.8",
-    "@strapi/plugin-users-permissions": "5.12.6",
+    "@strapi/plugin-users-permissions": "5.12.7",
     "@strapi/strapi": "5.12.6",
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
