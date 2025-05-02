@@ -133,7 +133,7 @@ export interface SurveyGroup extends Struct.ComponentSchema {
 }
 
 declare module "@strapi/types" {
-  export module Public {
+  export namespace Public {
     export interface ComponentSchemas {
       "glossary.item": GlossaryItem;
       "question.choice": QuestionChoice;
