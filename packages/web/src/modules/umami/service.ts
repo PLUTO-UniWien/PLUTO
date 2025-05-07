@@ -46,6 +46,11 @@ export async function trackQuestionExplanationViewed(questionId: number, questio
   await umami.track("question-explanation-view", { questionId, questionLabel });
 }
 
+export async function trackGlossaryItemInfoViewed(questionId: number, glossaryItemName: string) {
+  const umami = getUmamiInstance();
+  await umami.track("glossary-item-info-view", { questionId, glossaryItemName });
+}
+
 export async function trackSurveyPreviewOpened() {
   const umami = getUmamiInstance();
   await umami.track("survey-preview-open", {});
