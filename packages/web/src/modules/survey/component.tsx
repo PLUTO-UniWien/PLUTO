@@ -9,12 +9,14 @@ import type { StrapiSurvey } from "./types";
 import { useRouter } from "next/navigation";
 import { useSurveyStore } from "./store";
 import LoadingComponent from "@/modules/loading/component";
+import type { StrapiGlossaryItem } from "../glossary/types";
 
 type SurveyComponentProps = {
   survey: StrapiSurvey;
+  glossaryItems: StrapiGlossaryItem[];
 };
 
-function SurveyComponent({ survey: strapiSurvey }: SurveyComponentProps) {
+function SurveyComponent({ survey: strapiSurvey, glossaryItems }: SurveyComponentProps) {
   const router = useRouter();
 
   // Transform the Strapi survey to a SurveyJS model
@@ -25,7 +27,7 @@ function SurveyComponent({ survey: strapiSurvey }: SurveyComponentProps) {
   useSurveyStore.getState().setSurvey(strapiSurvey);
 
   // Attach listeners to the SurveyJS model to customize question rendering, survey submission handling, etc.
-  attachListenersToSurveyModel(model, { strapiSurvey, router });
+  attachListenersToSurveyModel(model, { strapiSurvey, router, glossaryItems });
 
   return <Survey model={model} />;
 }
