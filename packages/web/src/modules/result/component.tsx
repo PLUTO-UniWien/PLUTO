@@ -108,7 +108,7 @@ export default function ResultComponent({
                 <h3 className="text-xs sm:text-sm font-medium mb-1 text-center">
                   Questions by Impact
                 </h3>
-                <div className="flex justify-center gap-3 sm:gap-4">
+                <div className="flex justify-center gap-6 sm:gap-8 md:gap-12">
                   <div className="text-center">
                     <p className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold mb-0">
                       {counts.included.risk}
@@ -200,8 +200,9 @@ type IntegratedResultsSectionProps = {
 
 function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResultsSectionProps) {
   // Calculate position percentage for slider (convert from -1...1 to 0%...100%)
-  const riskPosition = ((risk + 1) / 2) * 100;
-  const benefitPosition = ((benefit + 1) / 2) * 100;
+  const clamp = (v: number) => Math.min(100, Math.max(0, v));
+  const riskPosition = clamp(((risk + 1) / 2) * 100);
+  const benefitPosition = clamp(((benefit + 1) / 2) * 100);
 
   return (
     <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
