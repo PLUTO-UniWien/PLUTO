@@ -50,52 +50,54 @@ export default function ResultComponent({
   };
 
   return (
-    <div className="container mx-auto max-w-4xl space-y-4 sm:space-y-6">
-      {/* Header with export button only */}
-      <div className="flex flex-row justify-end items-center mb-3 sm:mb-4">
-        <Button
-          variant="default"
-          size="sm"
-          onClick={handleExportPdf}
-          disabled={isExporting}
-          className="cursor-pointer"
-        >
-          <FileDown className="mr-2 h-4 w-4" />
-          {isExporting ? "Exporting..." : "Export PDF"}
-        </Button>
-      </div>
-
+    <div className="container mx-auto max-w-5xl px-3 sm:px-4 space-y-3 sm:space-y-4 mb-8 relative">
       {/* Content to be captured when exporting to PDF */}
       <div
         ref={contentRef}
-        className="flex flex-col gap-4 sm:gap-6 md:gap-8 bg-primary-foreground py-6 sm:py-8"
+        className="flex flex-col gap-3 sm:gap-4 bg-primary-foreground py-3 px-3 rounded-lg"
       >
         {/* Page Header with title and logo */}
-        <div className="flex flex-row items-center justify-between mb-2 sm:mb-3 gap-4">
+        <div className="flex flex-row items-center justify-between mb-1 sm:mb-2 gap-3">
           <div className="flex flex-col">
-            <h1 className="text-xl sm:text-2xl font-bold mb-1">{resultsReadyTitle}</h1>
-            <p className="text-sm text-muted-foreground">
+            <h1 className="text-xl font-bold mb-0">{resultsReadyTitle}</h1>
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Survey submitted on {formatDate(submission.submittedAt)}
             </p>
           </div>
-          <Image src="/logo-pluto.png" alt="PLUTO Logo" width={128} height={128} />
+          <div className="flex-shrink-0 w-20 sm:w-24 md:w-32 h-auto">
+            <Image
+              src="/logo-pluto.png"
+              alt="PLUTO Logo"
+              width={128}
+              height={128}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
         </div>
 
-        {/* Main Results Card */}
-        <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 border">
-          <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
-            <QuadrantPlotSection risk={scoreNormalized.risk} benefit={scoreNormalized.benefit} />
-            <PrimaryMetricsSection
-              risk={scoreNormalized.risk}
-              benefit={scoreNormalized.benefit}
-              resultType={resultType}
-            />
-            <SecondaryMetricsSection
-              answeredQuestionCount={answeredQuestionCount}
-              allQuestionCount={allQuestionCount}
-              riskCount={counts.included.risk}
-              benefitCount={counts.included.benefit}
-            />
+        {/* Main Results Card - Grid layout for iPad */}
+        <div className="bg-card rounded-lg p-3 border">
+          <div className="lg:grid lg:grid-cols-5 gap-3 items-center">
+            {/* Quadrant Plot - Take 3 columns on large screens */}
+            <div className="lg:col-span-3 flex justify-center items-center">
+              <QuadrantPlotSection risk={scoreNormalized.risk} benefit={scoreNormalized.benefit} />
+            </div>
+
+            {/* Metrics Section - Take 2 columns on large screens */}
+            <div className="lg:col-span-2 space-y-3 mt-3 lg:mt-0">
+              <PrimaryMetricsSection
+                risk={scoreNormalized.risk}
+                benefit={scoreNormalized.benefit}
+                resultType={resultType}
+              />
+              <SecondaryMetricsSection
+                answeredQuestionCount={answeredQuestionCount}
+                allQuestionCount={allQuestionCount}
+                riskCount={counts.included.risk}
+                benefitCount={counts.included.benefit}
+              />
+            </div>
           </div>
         </div>
 
@@ -116,13 +118,30 @@ export default function ResultComponent({
       </div>
 
       {/* Explanation Section - Not included in the screenshot */}
-      <div className="mt-6 sm:mt-8 border-t pt-6 sm:pt-8 px-2">
-        <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center">
+      <div className="mt-3 border-t pt-3 px-2">
+        <h2 className="text-lg sm:text-xl font-semibold mb-3 text-center">
           How to Interpret Your Results
         </h2>
-        <div className="prose prose-sm sm:prose max-w-none">
+        <div className="prose prose-sm max-w-none">
           <BlocksRenderer content={explanation} />
         </div>
+      </div>
+
+      {/* Floating Export Button */}
+      <div className="fixed bottom-8 right-8 z-10">
+        <Button
+          variant="default"
+          onClick={handleExportPdf}
+          disabled={isExporting}
+          className="shadow-lg hover:shadow-xl rounded-full flex items-center justify-center w-14 h-14 p-0"
+          aria-label="Export PDF"
+        >
+          {isExporting ? (
+            <div className="h-7 w-7 animate-spin rounded-full border-2 border-t-transparent border-solid" />
+          ) : (
+            <FileDown strokeWidth={2.5} className="h-12 w-12" />
+          )}
+        </Button>
       </div>
     </div>
   );
@@ -147,7 +166,7 @@ type QuadrantPlotSectionProps = {
 function QuadrantPlotSection({ risk, benefit }: QuadrantPlotSectionProps) {
   return (
     <div className="flex justify-center items-center w-full">
-      <div className="w-full max-w-[240px] sm:max-w-[320px] md:max-w-[400px] aspect-square">
+      <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[300px] aspect-square">
         <QuadrantPlot
           xLowerBound={-1}
           xUpperBound={1}
@@ -170,33 +189,31 @@ type PrimaryMetricsSectionProps = {
 
 function PrimaryMetricsSection({ risk, benefit, resultType }: PrimaryMetricsSectionProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto w-full">
+    <div className="grid grid-cols-2 gap-3">
       {/* Score Card */}
       <div className="flex flex-col">
-        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">Score</h3>
-        <div className="flex justify-center gap-8 sm:gap-12 md:gap-16">
+        <h3 className="text-sm sm:text-base font-medium mb-1 text-center">Score</h3>
+        <div className="flex justify-center gap-4">
           <div className="text-center">
-            <div className="flex items-center justify-center gap-1">
-              <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{risk.toFixed(2)}</p>
+            <div className="flex items-center justify-center">
+              <p className="text-lg sm:text-xl md:text-2xl font-bold">{risk.toFixed(2)}</p>
             </div>
-            <p className="text-xs text-muted-foreground">risk (lower is better)</p>
+            <p className="text-xs text-muted-foreground">risk</p>
           </div>
           <div className="text-center">
-            <div className="flex items-center justify-center gap-1">
-              <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">
-                {benefit.toFixed(2)}
-              </p>
+            <div className="flex items-center justify-center">
+              <p className="text-lg sm:text-xl md:text-2xl font-bold">{benefit.toFixed(2)}</p>
             </div>
-            <p className="text-xs text-muted-foreground">benefit (higher is better)</p>
+            <p className="text-xs text-muted-foreground">benefit</p>
           </div>
         </div>
       </div>
 
       {/* Result Type Card */}
-      <div className="flex flex-col mt-3 sm:mt-0">
-        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">Result Type</h3>
+      <div className="flex flex-col">
+        <h3 className="text-sm sm:text-base font-medium mb-1 text-center">Result Type</h3>
         <div className="text-center">
-          <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{resultType.id}</p>
+          <p className="text-lg sm:text-xl md:text-2xl font-bold">{resultType.id}</p>
           <p className="text-xs text-muted-foreground">{resultType.label}</p>
         </div>
       </div>
@@ -218,34 +235,30 @@ function SecondaryMetricsSection({
   benefitCount,
 }: SecondaryMetricsSectionProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto w-full pt-0">
+    <div className="grid grid-cols-2 gap-3">
       {/* Questions answered */}
       <div className="flex flex-col">
-        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">
-          You have answered
-        </h3>
+        <h3 className="text-sm sm:text-base font-medium mb-1 text-center">You have answered</h3>
         <div className="text-center">
-          <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">
+          <p className="text-lg sm:text-xl md:text-2xl font-bold">
             {answeredQuestionCount}{" "}
-            <span className="text-lg sm:text-xl font-normal">of {allQuestionCount}</span>
+            <span className="text-sm font-normal">of {allQuestionCount}</span>
           </p>
           <p className="text-xs text-muted-foreground">questions</p>
         </div>
       </div>
 
       {/* Answers affect */}
-      <div className="flex flex-col mt-3 sm:mt-0">
-        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-center">
-          Questions by Impact
-        </h3>
-        <div className="flex justify-center gap-8 sm:gap-12 md:gap-16">
+      <div className="flex flex-col">
+        <h3 className="text-sm sm:text-base font-medium mb-1 text-center">Questions by Impact</h3>
+        <div className="flex justify-center gap-4">
           <div className="text-center">
-            <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{riskCount}</p>
-            <p className="text-xs text-muted-foreground">risk-related questions</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-bold">{riskCount}</p>
+            <p className="text-xs text-muted-foreground">risk</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">{benefitCount}</p>
-            <p className="text-xs text-muted-foreground">benefit-related questions</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-bold">{benefitCount}</p>
+            <p className="text-xs text-muted-foreground">benefit</p>
           </div>
         </div>
       </div>
@@ -260,7 +273,7 @@ type FeedbackCardProps = {
 
 function FeedbackCard({ title, blocksValue }: FeedbackCardProps) {
   return (
-    <div className="bg-card rounded-xl p-5 sm:p-6 md:p-8 border">
+    <div className="bg-card rounded-lg p-3 sm:p-4 border">
       <FeedbackList title={title} blocksValue={blocksValue} />
     </div>
   );
@@ -274,8 +287,8 @@ type FeedbackListProps = {
 function FeedbackList({ title, blocksValue }: FeedbackListProps) {
   return (
     <>
-      <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4 md:mb-5">{title}</h3>
-      <ul className="space-y-2 sm:space-y-3 md:space-y-4 list-disc pl-5 sm:pl-6 md:pl-8">
+      <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">{title}</h3>
+      <ul className="space-y-2 list-disc pl-5">
         {blocksValue.map((blocks, index) => (
           <li
             key={`feedback-${title.toLowerCase().replace(/ /g, "-")}-${index}`}
@@ -296,7 +309,7 @@ function FeedbackList({ title, blocksValue }: FeedbackListProps) {
 function useAnalysisResult(
   submission: StrapiSubmission | null,
   survey: StrapiSurvey | null,
-  redirectPath: string = "/survey",
+  redirectPath = "/survey",
 ) {
   const [isLoading, setIsLoading] = useState(true);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
