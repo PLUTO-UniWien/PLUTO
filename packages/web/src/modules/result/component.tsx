@@ -163,14 +163,17 @@ export default function ResultComponent({
           variant="default"
           onClick={handleExportPdf}
           disabled={isExporting}
-          className="shadow-lg hover:shadow-xl rounded-full flex items-center justify-center w-14 h-14 p-0"
+          className="shadow-lg hover:shadow-xl rounded-full flex items-center justify-center gap-2 w-auto h-12 px-4 py-3 ring-2 ring-primary/20 ring-offset-2 hover:ring-primary/50"
           aria-label="Export PDF"
         >
-          {isExporting ? (
-            <div className="h-7 w-7 animate-spin rounded-full border-2 border-t-transparent border-solid" />
-          ) : (
-            <FileDown strokeWidth={2.5} className="h-12 w-12" />
-          )}
+          <span className="w-6 h-6 flex items-center justify-center">
+            {isExporting ? (
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-t-transparent border-solid" />
+            ) : (
+              <FileDown strokeWidth={2} className="h-6 w-6" />
+            )}
+          </span>
+          <span className="font-medium">Export PDF</span>
         </Button>
       </div>
     </div>
