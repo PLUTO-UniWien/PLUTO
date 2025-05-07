@@ -110,48 +110,85 @@ function addGlossaryItemTooltipsToQuestionTitles(model: Model, context: Listener
   const { indexedSurvey, glossaryItems } = context;
   const cleanupFunctions = new Map<string, () => void>();
 
+  // Use a queue for deferred operations to avoid React rendering conflicts
+  const pendingOperations: Array<() => void> = [];
+
+  // Create a safe executor that schedules operations outside render cycle
+  const executeSafely = (operation: () => void) => {
+    // Queue the operation and schedule execution
+    pendingOperations.push(operation);
+
+    // Schedule execution of all pending operations
+    if (pendingOperations.length === 1) {
+      setTimeout(() => {
+        // Execute all pending operations
+        const ops = [...pendingOperations];
+        pendingOperations.length = 0;
+
+        for (const op of ops) {
+          try {
+            op();
+          } catch (e) {
+            console.error("Error in deferred operation:", e);
+          }
+        }
+      }, 0);
+    }
+  };
+
   // Process and attach tooltips to each question as it's rendered
   model.onAfterRenderQuestion.add((_, { question, htmlElement }) => {
     const questionLabel = question.name as QuestionLabel;
     const strapiQuestion = indexedSurvey[questionLabel].question;
+
     const questionTitleElement = htmlElement.querySelector(
       ".sd-question__title span.sv-string-viewer",
     );
-
     if (!questionTitleElement || !questionTitleElement.textContent?.trim()) return;
 
-    // Clean up previous React components for this question
-    const keysToClean = Object.keys(cleanupFunctions).filter((key) =>
-      key.startsWith(`${questionLabel}-`),
-    );
-    for (const key of keysToClean) {
-      cleanupFunctions.get(key)?.();
-      cleanupFunctions.delete(key);
-    }
-
-    // Get the original text content
-    const originalText = questionTitleElement.textContent || "";
+    // Get the current text content
+    const currentText = questionTitleElement.textContent || "";
 
     // Find glossary matches in the text
-    const matches = findGlossaryMatches(originalText, glossaryItems);
+    const matches = findGlossaryMatches(currentText, glossaryItems);
     if (!matches.length) return;
 
-    // Replace text with React components
-    replaceTextWithComponents(
-      questionTitleElement,
-      originalText,
-      matches,
-      questionLabel,
-      strapiQuestion.id,
-    );
+    // Generate a unique ID for this render operation
+    const renderId = `${questionLabel}-${Date.now()}`;
+
+    // Schedule content replacement safely outside the current render cycle
+    executeSafely(() => {
+      // Clean up previous React components for this question first
+      for (const key of Array.from(cleanupFunctions.keys())) {
+        if (key.startsWith(`${questionLabel}-`) && !key.includes(renderId)) {
+          const cleanup = cleanupFunctions.get(key);
+          if (cleanup) {
+            cleanup();
+            cleanupFunctions.delete(key);
+          }
+        }
+      }
+
+      // Then replace text with React components
+      replaceTextWithComponents(
+        questionTitleElement,
+        currentText,
+        matches,
+        questionLabel,
+        strapiQuestion.id,
+        renderId,
+      );
+    });
   });
 
   // Clean up when survey is disposed
   model.onDisposed?.add(() => {
-    for (const cleanup of cleanupFunctions.values()) {
-      cleanup();
-    }
-    cleanupFunctions.clear();
+    executeSafely(() => {
+      for (const cleanup of cleanupFunctions.values()) {
+        cleanup();
+      }
+      cleanupFunctions.clear();
+    });
   });
 
   /**
@@ -220,6 +257,7 @@ function addGlossaryItemTooltipsToQuestionTitles(model: Model, context: Listener
     matches: ReturnType<typeof findGlossaryMatches>,
     questionLabel: string,
     strapiQuestionId: number,
+    renderId: string,
   ) {
     // Create a document fragment to build new content
     const fragment = document.createDocumentFragment();
@@ -235,7 +273,8 @@ function addGlossaryItemTooltipsToQuestionTitles(model: Model, context: Listener
       // Create mount point for React component
       const mountPoint = document.createElement("span");
       mountPoint.className = "inline-block glossary-item-tooltip";
-      const id = `${questionLabel}-${match.id}-${match.index}`;
+      // Include renderId in the ID to ensure uniqueness and track specific render operations
+      const id = `${questionLabel}-${renderId}-${match.id}-${match.index}`;
       mountPoint.dataset.glossaryItemId = id;
       fragment.appendChild(mountPoint);
 
