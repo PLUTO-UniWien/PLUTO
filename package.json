@@ -13,10 +13,13 @@
     "onlyBuiltDependencies": [
       "@biomejs/biome",
       "@swc/core",
+      "@tailwindcss/oxide",
       "better-sqlite3",
+      "core-js",
       "core-js-pure",
       "esbuild",
-      "sharp"
+      "sharp",
+      "unrs-resolver"
     ]
   },
   "packageManager": "pnpm@10.11.0"
