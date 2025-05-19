@@ -450,7 +450,7 @@ function trackQuestionVisit(model: Model, context: ListenerContext) {
   const { indexedSurvey } = context;
   model.onAfterRenderPage.add(async (_, { page }) => {
     if (page.isPreviewStyle) return;
-    const questionLabel = page.name.replace("P", "Q") as QuestionLabel;
+    const questionLabel = (`Q${page.name.slice(1)}`) as QuestionLabel;
     const strapiQuestion = indexedSurvey[questionLabel].question;
     await trackQuestionVisited(strapiQuestion.id, questionLabel);
   });
