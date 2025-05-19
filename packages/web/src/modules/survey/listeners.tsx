@@ -38,8 +38,8 @@ export function attachListenersToSurveyModel(model: Model, context: SurveyModelL
     glossaryItems,
   };
   const listeners = [
-    fixProgressBarAndNavButtonSync,
     restoreSurveyProgress,
+    fixProgressBarAndNavButtonSync,
     persistSurveyProgress,
     trackQuestionTimeSpent,
     trackSurveyStartEvent,
@@ -450,7 +450,7 @@ function trackQuestionVisit(model: Model, context: ListenerContext) {
   const { indexedSurvey } = context;
   model.onAfterRenderPage.add(async (_, { page }) => {
     if (page.isPreviewStyle) return;
-    const questionLabel = (`Q${page.name.slice(1)}`) as QuestionLabel;
+    const questionLabel = `Q${page.name.slice(1)}` as QuestionLabel;
     const strapiQuestion = indexedSurvey[questionLabel].question;
     await trackQuestionVisited(strapiQuestion.id, questionLabel);
   });
@@ -497,12 +497,8 @@ function restoreSurveyProgress(model: Model, _: ListenerContext) {
     const lastAnsweredQuestionLabel = answeredQuestionLabels[answeredQuestionLabels.length - 1];
     const lastAnsweredQuestionIndex = +lastAnsweredQuestionLabel.slice(1);
 
-    for (let i = 0; i < lastAnsweredQuestionIndex; i++) {
-      model.nextPage();
-    }
-    for (let i = lastAnsweredQuestionIndex; i !== pageNumber + 1; i--) {
-      model.prevPage();
-    }
+    for (let i = 0; i < lastAnsweredQuestionIndex; i++) model.nextPage();
+    while (model.currentPageNo > pageNumber) model.prevPage();
   });
 }
 
