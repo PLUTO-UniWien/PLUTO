@@ -11,7 +11,7 @@ export default function Footer() {
               <Image src="/logo-pluto.png" alt="PLUTO Logo" width={150} height={75} />
             </Link>
             <Link
-              href="https://politikwissenschaft.univie.ac.at/"
+              href="https://politikwissenschaft.univie.ac.at/en/"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-opacity hover:opacity-80"
