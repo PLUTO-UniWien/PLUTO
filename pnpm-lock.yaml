@@ -125,11 +125,11 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       survey-core:
-        specifier: ^2.0.7
-        version: 2.0.7
+        specifier: ^2.0.9
+        version: 2.0.9
       survey-react-ui:
-        specifier: ^2.0.7
-        version: 2.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(survey-core@2.0.7)
+        specifier: ^2.0.9
+        version: 2.0.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(survey-core@2.0.9)
       tailwind-merge:
         specifier: ^3.2.0
         version: 3.2.0
@@ -151,7 +151,7 @@ importers:
         version: 3.3.1
       '@strapi/types':
         specifier: ^5.12.7
-        version: 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.8.3)
+        version: 5.12.7(@types/node@22.15.3)(typescript@5.8.3)
       '@tailwindcss/postcss':
         specifier: ^4.1.5
         version: 4.1.5
@@ -7387,15 +7387,15 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  survey-core@2.0.7:
-    resolution: {integrity: sha512-c7PFVX9SEmk8Q5owMrZ2gFI23j1EUwq87XL7/SEzate9E/sIrD3i7gCK4WtICkZXmYKkLl55GxiD1TQ+wUUahg==}
+  survey-core@2.0.9:
+    resolution: {integrity: sha512-EOyGoFoqkPm7/NE6Oafv/DBPtjHh1yEySHs47yyMEwkD/66QRrQgtGja6j20oHLaBhcKXrbrmLH8DRC7fMSECg==}
 
-  survey-react-ui@2.0.7:
-    resolution: {integrity: sha512-rYje623wd/2IoYt/uJ/475kl0MmtCRZ7CY0XDVR7sJVvffPqDJJxDRisuVhTS4t6wiSLut4uWfzqhVKmWb0acA==}
+  survey-react-ui@2.0.9:
+    resolution: {integrity: sha512-KIvlSRcu3ClQxrQ6jsvP7hIMT8YBXx/hKLWlBkkUCiTkn/V0Wo6abm9zpam8RNsfJtsrPyRvCwnQwDXqfEMsMg==}
     peerDependencies:
       react: ^16.5.0 || ^17.0.1 || ^18.1.0 || ^19.0.0
       react-dom: ^16.5.0 || ^17.0.1 || ^18.1.0 || ^19.0.0
-      survey-core: 2.0.7
+      survey-core: 2.0.9
 
   svg-pathdata@6.0.3:
     resolution: {integrity: sha512-qsjeeq5YjBZ5eMdFuUa4ZosMLxgr5RZ+F+Y1OrDhuOCEInRMA3x74XdBtggJcj9kOeInz0WE+LgCPDkZFlBYJw==}
@@ -9959,7 +9959,7 @@ snapshots:
       '@strapi/design-system': 2.0.0-rc.23(@babel/runtime@7.27.0)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.0)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.36.6)(@strapi/icons@2.0.0-rc.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(codemirror@5.65.19)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@strapi/icons': 2.0.0-rc.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@strapi/permissions': 5.12.7
-      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.4.4)
+      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.8.3)
       '@strapi/typescript-utils': 5.12.7
       '@strapi/utils': 5.12.7
       '@testing-library/dom': 10.1.0
@@ -10164,7 +10164,7 @@ snapshots:
       '@strapi/database': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)
       '@strapi/design-system': 2.0.0-rc.23(@babel/runtime@7.27.0)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.0)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.36.6)(@strapi/icons@2.0.0-rc.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(codemirror@5.65.19)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@strapi/icons': 2.0.0-rc.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.4.4)
+      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.8.3)
       '@strapi/utils': 5.12.7
       date-fns: 2.30.0
       date-fns-tz: 2.0.1(date-fns@2.30.0)
@@ -10252,7 +10252,7 @@ snapshots:
       '@strapi/generators': 5.12.7
       '@strapi/logger': 5.12.7
       '@strapi/permissions': 5.12.7
-      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.4.4)
+      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.8.3)
       '@strapi/typescript-utils': 5.12.7
       '@strapi/utils': 5.12.7
       bcryptjs: 2.4.3
@@ -10722,7 +10722,7 @@ snapshots:
       '@strapi/logger': 5.12.7
       '@strapi/permissions': 5.12.7
       '@strapi/review-workflows': 5.12.7(47cb7214f90aaeb6bfe51b425794432b)
-      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.4.4)
+      '@strapi/types': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.8.3)
       '@strapi/typescript-utils': 5.12.7
       '@strapi/upload': 5.12.7(bc28d136b65649ddb917ff2969209664)
       '@strapi/utils': 5.12.7
@@ -10824,34 +10824,6 @@ snapshots:
       - webpack-dev-server
       - webpack-plugin-serve
 
-  '@strapi/types@5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.4.4)':
-    dependencies:
-      '@casl/ability': 6.5.0
-      '@koa/cors': 5.0.0
-      '@koa/router': 12.0.2
-      '@strapi/database': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)
-      '@strapi/logger': 5.12.7
-      '@strapi/permissions': 5.12.7
-      '@strapi/utils': 5.12.7
-      commander: 8.3.0
-      koa: 2.15.4
-      koa-body: 6.0.1
-      node-schedule: 2.1.1
-      typedoc: 0.25.10(typescript@5.4.4)
-      typedoc-github-wiki-theme: 1.1.0(typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.4.4)))(typedoc@0.25.10(typescript@5.4.4))
-      typedoc-plugin-markdown: 3.17.1(typedoc@0.25.10(typescript@5.4.4))
-    transitivePeerDependencies:
-      - '@types/node'
-      - better-sqlite3
-      - mysql
-      - mysql2
-      - pg
-      - pg-native
-      - sqlite3
-      - supports-color
-      - tedious
-      - typescript
-
   '@strapi/types@5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)(typescript@5.8.3)':
     dependencies:
       '@casl/ability': 6.5.0
@@ -10866,8 +10838,36 @@ snapshots:
       koa-body: 6.0.1
       node-schedule: 2.1.1
       typedoc: 0.25.10(typescript@5.8.3)
-      typedoc-github-wiki-theme: 1.1.0(typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.8.3)))(typedoc@0.25.10(typescript@5.8.3))
-      typedoc-plugin-markdown: 3.17.1(typedoc@0.25.10(typescript@5.8.3))
+      typedoc-github-wiki-theme: 1.1.0(typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.4.4)))(typedoc@0.25.10(typescript@5.4.4))
+      typedoc-plugin-markdown: 3.17.1(typedoc@0.25.10(typescript@5.4.4))
+    transitivePeerDependencies:
+      - '@types/node'
+      - better-sqlite3
+      - mysql
+      - mysql2
+      - pg
+      - pg-native
+      - sqlite3
+      - supports-color
+      - tedious
+      - typescript
+
+  '@strapi/types@5.12.7(@types/node@22.15.3)(typescript@5.8.3)':
+    dependencies:
+      '@casl/ability': 6.5.0
+      '@koa/cors': 5.0.0
+      '@koa/router': 12.0.2
+      '@strapi/database': 5.12.7(@types/node@22.15.3)(better-sqlite3@11.9.1)
+      '@strapi/logger': 5.12.7
+      '@strapi/permissions': 5.12.7
+      '@strapi/utils': 5.12.7
+      commander: 8.3.0
+      koa: 2.15.4
+      koa-body: 6.0.1
+      node-schedule: 2.1.1
+      typedoc: 0.25.10(typescript@5.8.3)
+      typedoc-github-wiki-theme: 1.1.0(typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.4.4)))(typedoc@0.25.10(typescript@5.4.4))
+      typedoc-plugin-markdown: 3.17.1(typedoc@0.25.10(typescript@5.4.4))
     transitivePeerDependencies:
       - '@types/node'
       - better-sqlite3
@@ -16639,13 +16639,13 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  survey-core@2.0.7: {}
+  survey-core@2.0.9: {}
 
-  survey-react-ui@2.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(survey-core@2.0.7):
+  survey-react-ui@2.0.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(survey-core@2.0.9):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      survey-core: 2.0.7
+      survey-core: 2.0.9
 
   svg-pathdata@6.0.3:
     optional: true
@@ -16854,31 +16854,13 @@ snapshots:
 
   typedoc-github-wiki-theme@1.1.0(typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.4.4)))(typedoc@0.25.10(typescript@5.4.4)):
     dependencies:
-      typedoc: 0.25.10(typescript@5.4.4)
-      typedoc-plugin-markdown: 3.17.1(typedoc@0.25.10(typescript@5.4.4))
-
-  typedoc-github-wiki-theme@1.1.0(typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.8.3)))(typedoc@0.25.10(typescript@5.8.3)):
-    dependencies:
       typedoc: 0.25.10(typescript@5.8.3)
-      typedoc-plugin-markdown: 3.17.1(typedoc@0.25.10(typescript@5.8.3))
+      typedoc-plugin-markdown: 3.17.1(typedoc@0.25.10(typescript@5.4.4))
 
   typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.4.4)):
     dependencies:
       handlebars: 4.7.8
-      typedoc: 0.25.10(typescript@5.4.4)
-
-  typedoc-plugin-markdown@3.17.1(typedoc@0.25.10(typescript@5.8.3)):
-    dependencies:
-      handlebars: 4.7.8
       typedoc: 0.25.10(typescript@5.8.3)
-
-  typedoc@0.25.10(typescript@5.4.4):
-    dependencies:
-      lunr: 2.3.9
-      marked: 4.3.0
-      minimatch: 9.0.5
-      shiki: 0.14.7
-      typescript: 5.4.4
 
   typedoc@0.25.10(typescript@5.8.3):
     dependencies:

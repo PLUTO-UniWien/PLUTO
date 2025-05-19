@@ -6,7 +6,7 @@ import type {
 } from "@/modules/survey/types";
 import type { StrapiSubmission, SurveyJSSubmission } from "./types";
 
-export function adaptSurveyJsSubmissioToStrapiSubmission(
+export function adaptSurveyJsSubmissionToStrapiSubmission(
   submission: SurveyJSSubmission,
   indexedSurvey: IndexedStrapiSurvey,
   questionTimeSpent: Map<QuestionLabel, number>,
