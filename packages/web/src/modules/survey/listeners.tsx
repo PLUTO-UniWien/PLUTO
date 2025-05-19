@@ -2,7 +2,7 @@
 
 import type { Model } from "survey-react-ui";
 import type { IndexedStrapiSurvey, QuestionLabel, StrapiSurvey } from "./types";
-import { adaptSurveyJsSubmissioToStrapiSubmission } from "@/modules/submission/adapter";
+import { adaptSurveyJsSubmissionToStrapiSubmission } from "@/modules/submission/adapter";
 import { getIndexedSurvey } from "./adapter";
 import { createSubmission } from "@/modules/submission/action";
 import {
@@ -19,6 +19,7 @@ import { mountReactComponent } from "@/modules/common/dom-utils";
 import { useSubmissionStore } from "@/modules/submission/store";
 import type { useRouter } from "next/navigation";
 import type { StrapiGlossaryItem } from "../glossary/types";
+import { useSurveyStore } from "./store";
 
 type SurveyModelListenerContext = {
   strapiSurvey: StrapiSurvey;
@@ -37,6 +38,9 @@ export function attachListenersToSurveyModel(model: Model, context: SurveyModelL
     glossaryItems,
   };
   const listeners = [
+    fixProgressBarAndNavButtonSync,
+    restoreSurveyProgress,
+    persistSurveyProgress,
     trackQuestionTimeSpent,
     trackSurveyStartEvent,
     performAndTrackSurveySubmission,
@@ -55,18 +59,11 @@ export function attachListenersToSurveyModel(model: Model, context: SurveyModelL
 type ListenerContext = {
   indexedSurvey: IndexedStrapiSurvey;
   questionTimeSpent: Map<QuestionLabel, number>;
-  router: ReturnType<typeof useRouter>;
-  glossaryItems: StrapiGlossaryItem[];
-};
+} & Pick<SurveyModelListenerContext, "router" | "glossaryItems">;
 
 function trackSurveyStartEvent(model: Model, _: ListenerContext) {
-  let firstPageVisited = false;
-  model.onAfterRenderPage.add(async (survey) => {
-    const isFirstPage = survey.currentPageNo === 0;
-    if (isFirstPage && !firstPageVisited) {
-      firstPageVisited = true;
-      await trackSurveyStarted();
-    }
+  model.onAfterRenderSurvey.add(async () => {
+    await trackSurveyStarted();
   });
 }
 
@@ -74,7 +71,7 @@ function performAndTrackSurveySubmission(model: Model, context: ListenerContext)
   // Persist submission results and track it in analytics
   const { indexedSurvey, questionTimeSpent, router } = context;
   model.onComplete.add(async (survey) => {
-    const submission = adaptSurveyJsSubmissioToStrapiSubmission(
+    const submission = adaptSurveyJsSubmissionToStrapiSubmission(
       survey.data,
       indexedSurvey,
       questionTimeSpent,
@@ -84,6 +81,9 @@ function performAndTrackSurveySubmission(model: Model, context: ListenerContext)
     const submissionId = result.id;
     router.push("/result");
     await trackSubmission(submissionId);
+
+    // Clear the survey progress after submission
+    useSurveyStore.getState().setSurveyProgress(null);
   });
 }
 
@@ -448,9 +448,76 @@ function trackSurveyPreviewShown(model: Model, _: ListenerContext) {
 
 function trackQuestionVisit(model: Model, context: ListenerContext) {
   const { indexedSurvey } = context;
-  model.onCurrentPageChanged.add(async (_, { newCurrentPage }) => {
-    const questionLabel = newCurrentPage.name.replace("P", "Q") as QuestionLabel;
+  model.onAfterRenderPage.add(async (_, { page }) => {
+    if (page.isPreviewStyle) return;
+    const questionLabel = page.name.replace("P", "Q") as QuestionLabel;
     const strapiQuestion = indexedSurvey[questionLabel].question;
     await trackQuestionVisited(strapiQuestion.id, questionLabel);
+  });
+}
+
+function persistSurveyProgress(model: Model, _: ListenerContext) {
+  const persistProgress = (model: Model) => {
+    const pageNumber = model.currentPageNo;
+    const data = model.data;
+    useSurveyStore.getState().setSurveyProgress({ pageNumber, data });
+  };
+
+  // Persist user answers
+  model.onValueChanged.add((survey) => {
+    persistProgress(survey);
+  });
+
+  // Persist current page
+  // Not using `onCurrentPageChanged` on purpose as it is not triggered when navigating via the nav dots
+  model.onAfterRenderPage.add((survey, options) => {
+    persistProgress(survey);
+  });
+}
+
+function restoreSurveyProgress(model: Model, _: ListenerContext) {
+  const surveyProgress = useSurveyStore.getState().surveyProgress;
+  console.log("surveyProgress", surveyProgress);
+  model.onAfterRenderSurvey.add(() => {
+    if (surveyProgress === null) return;
+
+    const { pageNumber, data } = surveyProgress;
+    // Restore the answers
+    model.data = data;
+
+    // Restore the page where the user left off
+    const answeredQuestionLabels = Object.keys(data) as QuestionLabel[];
+    if (answeredQuestionLabels.length === 0) {
+      return;
+    }
+
+    // Since SurveyJS maintains some non-serializable state in the model object we first must step through all the answered pages,
+    // then navigate back to the page where the user left off (it's possible that the user answered 12 questions but left the survey on page 4)
+    const lastAnsweredQuestionLabel = answeredQuestionLabels[answeredQuestionLabels.length - 1];
+    const lastAnsweredQuestionIndex = +lastAnsweredQuestionLabel.slice(1);
+
+    for (let i = 0; i < lastAnsweredQuestionIndex; i++) {
+      model.nextPage();
+    }
+    for (let i = lastAnsweredQuestionIndex; i !== pageNumber + 1; i--) {
+      model.prevPage();
+    }
+  });
+}
+
+// Patch for SurveyJS to fix a bug in navigation behavior when using both progress bar dots and nav buttons
+// The bug occurs due to SurveyJS's internal state tracking becoming desynchronized:
+// - When a user has completed multiple pages (e.g. pages 1-12 out of 25)
+// - Then jumps to an earlier page using the progress bar dots (e.g. page 3)
+// - The "Previous" navigation button will incorrectly navigate to the last completed page (page 11)
+// - Instead of the expected previous page (page 2)
+// This patch ensures the internal state stays synchronized by updating the currentSingleElement
+// to match the actual current page after any page render
+function fixProgressBarAndNavButtonSync(model: Model, _: ListenerContext) {
+  model.onAfterRenderPage.add((survey, { page }) => {
+    // @ts-ignore
+    const singleElements = survey.getSingleElements() as (typeof survey.currentSingleElement)[];
+    const pageIndex = page.num - 1;
+    survey.currentSingleElement = singleElements[pageIndex];
   });
 }
