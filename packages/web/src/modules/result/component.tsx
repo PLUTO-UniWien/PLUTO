@@ -355,7 +355,7 @@ function useAnalysisResult(
 
   useEffect(() => {
     const redirect = () => {
-      toast.warning("Please take the survey before accessing the results.");
+      toast.warning("Please take the survey before accessing the results. Results will be accessible here once you have taken the survey.");
       router.replace(redirectPath);
     };
 
