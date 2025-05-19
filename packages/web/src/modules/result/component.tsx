@@ -17,6 +17,10 @@ import type { StrapiSubmission } from "@/modules/submission/types";
 import type { StrapiSurvey } from "@/modules/survey/types";
 import Image from "next/image";
 import { toast } from "sonner";
+
+// Define a threshold for showing the disclaimer
+const UNANSWERED_THRESHOLD = 10;
+
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
 };
@@ -43,6 +47,7 @@ export default function ResultComponent({
   // Compute counts for metrics section
   const allQuestionCount = counts.total.risk + counts.total.benefit;
   const answeredQuestionCount = counts.included.risk + counts.included.benefit;
+  const unansweredQuestionCount = counts.excluded.risk + counts.excluded.benefit;
 
   // Log PDF export event to analytics and perform the export
   const handleExportPdf = () => {
@@ -75,6 +80,22 @@ export default function ResultComponent({
             />
           </div>
         </div>
+
+        {/* Prominent Disclaimer for many unanswered questions */}
+        {unansweredQuestionCount >= UNANSWERED_THRESHOLD && (
+          <div
+            className="bg-yellow-100/15 border-l-4 border-yellow-500 p-4 rounded-md mb-3 sm:mb-4"
+            role="alert"
+          >
+            <h2 className="font-bold text-lg mb-1">Important: Limited Results Accuracy</h2>
+            <p className="text-sm text-justify">
+              You have marked {unansweredQuestionCount} questions as &quot;I don&apos;t know&quot;.
+              When {UNANSWERED_THRESHOLD} or more questions are unanswered, the reliability of your
+              results may be compromised. We recommend completing the survey again with more
+              complete responses for a more accurate assessment.
+            </p>
+          </div>
+        )}
 
         {/* Integrated Results Card */}
         <div className="bg-card rounded-lg p-3 sm:p-4 md:p-6 border">
@@ -355,7 +376,9 @@ function useAnalysisResult(
 
   useEffect(() => {
     const redirect = () => {
-      toast.warning("Please take the survey before accessing the results. Results will be accessible here once you have taken the survey.");
+      toast.warning(
+        "Please take the survey before accessing the results. Results will be accessible here once you have taken the survey.",
+      );
       router.replace(redirectPath);
     };
 
