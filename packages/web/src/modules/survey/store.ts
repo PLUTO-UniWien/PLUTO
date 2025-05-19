@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { StrapiSurvey } from "./types";
+import type { QuestionLabel, StrapiSurvey } from "./types";
 
 type SurveyProgress = {
   pageNumber: number;
-  data: Record<string, unknown>;
+  data: Record<QuestionLabel, unknown>;
 };
 
 interface SurveyState {

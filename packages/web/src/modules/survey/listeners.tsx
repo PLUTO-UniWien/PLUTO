@@ -476,8 +476,9 @@ function persistSurveyProgress(model: Model, _: ListenerContext) {
 }
 
 function restoreSurveyProgress(model: Model, _: ListenerContext) {
+  // Accessing the state outside of the callback on purpose to use the progress which was persisted before the survey was rendered again
   const surveyProgress = useSurveyStore.getState().surveyProgress;
-  console.log("surveyProgress", surveyProgress);
+
   model.onAfterRenderSurvey.add(() => {
     if (surveyProgress === null) return;
 
@@ -515,7 +516,7 @@ function restoreSurveyProgress(model: Model, _: ListenerContext) {
 // to match the actual current page after any page render
 function fixProgressBarAndNavButtonSync(model: Model, _: ListenerContext) {
   model.onAfterRenderPage.add((survey, { page }) => {
-    // @ts-ignore
+    // @ts-expect-error SurveyJS does not expose the `getSingleElements` method
     const singleElements = survey.getSingleElements() as (typeof survey.currentSingleElement)[];
     const pageIndex = page.num - 1;
     survey.currentSingleElement = singleElements[pageIndex];
