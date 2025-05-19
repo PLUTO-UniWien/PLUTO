@@ -33,6 +33,21 @@ export const env = createEnv({
       .min(1)
       .optional()
       .describe("The ID of the Umami website to track."),
+    NEXT_PUBLIC_HEYFORM_FORM_ID: z
+      .string()
+      .min(1)
+      .optional()
+      .describe("The ID of the HeyForm form to elicit feedback."),
+    NEXT_PUBLIC_HEYFORM_CUSTOM_URL: z
+      .string()
+      .url()
+      .optional()
+      .describe("The URL of the HeyForm custom endpoint."),
+    NEXT_PUBLIC_HEYFORM_SCRIPT_URL: z
+      .string()
+      .url()
+      .optional()
+      .describe("The URL of the universal HeyForm script."),
   },
   runtimeEnv: {
     // Server
@@ -43,5 +58,8 @@ export const env = createEnv({
     NEXT_PUBLIC_STRAPI_BASE_URL: process.env.NEXT_PUBLIC_STRAPI_BASE_URL,
     NEXT_PUBLIC_UMAMI_SCRIPT_URL: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL,
     NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
+    NEXT_PUBLIC_HEYFORM_FORM_ID: process.env.NEXT_PUBLIC_HEYFORM_FORM_ID,
+    NEXT_PUBLIC_HEYFORM_CUSTOM_URL: process.env.NEXT_PUBLIC_HEYFORM_CUSTOM_URL,
+    NEXT_PUBLIC_HEYFORM_SCRIPT_URL: process.env.NEXT_PUBLIC_HEYFORM_SCRIPT_URL,
   },
 });

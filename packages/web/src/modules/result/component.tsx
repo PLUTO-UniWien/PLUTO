@@ -8,7 +8,7 @@ import { useSubmissionStore } from "@/modules/submission/store";
 import { useSurveyStore } from "@/modules/survey/store";
 import type { StrapiResultPage } from "./types";
 import { Button } from "@/components/ui/button";
-import { FileDown } from "lucide-react";
+import { FileDown, MessageCircleQuestion } from "lucide-react";
 import LoadingComponent from "../loading/component";
 import usePdfExport from "./use-pdf-export";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,10 @@ import type { StrapiSubmission } from "@/modules/submission/types";
 import type { StrapiSurvey } from "@/modules/survey/types";
 import Image from "next/image";
 import { toast } from "sonner";
+import HeyFormEmbed from "@/modules/heyform/component";
+import { env } from "@/env";
+import { getHeyFormInstance } from "@/modules/heyform/service";
+import { trackFeedbackFormOpened } from "@/modules/umami/service";
 
 // Define a threshold for showing the disclaimer
 const UNANSWERED_THRESHOLD = 10;
@@ -170,16 +174,14 @@ export default function ResultComponent({
 
       {/* Explanation Section - Not included in the screenshot */}
       <div className="mt-3 border-t pt-3 px-2">
-        <h2 className="text-lg sm:text-xl font-semibold mb-3 text-center">
-          How to Interpret Your Results
-        </h2>
+        <h2 className="text-2xl font-semibold mb-3 text-center">How to Interpret Your Results</h2>
         <div className="prose prose-sm max-w-none">
           <BlocksRenderer content={explanation} />
         </div>
       </div>
 
       {/* Floating Export Button */}
-      <div className="fixed bottom-8 right-8 z-10">
+      <div className="fixed bottom-20 right-8 z-10">
         <Button
           variant="default"
           onClick={handleExportPdf}
@@ -196,6 +198,11 @@ export default function ResultComponent({
           </span>
           <span className="font-medium">Export PDF</span>
         </Button>
+      </div>
+
+      {/* Floating Feedback Button */}
+      <div className="fixed bottom-8 right-8 z-10">
+        <FeedbackForm submissionId={submission.id} />
       </div>
     </div>
   );
@@ -416,4 +423,53 @@ function useAnalysisResult(
     isLoading,
     analysisResult,
   };
+}
+
+type FeedbackFormProps = {
+  submissionId: number;
+};
+
+function FeedbackForm({ submissionId }: FeedbackFormProps) {
+  const id = env.NEXT_PUBLIC_HEYFORM_FORM_ID;
+  const customUrl = `${env.NEXT_PUBLIC_HEYFORM_CUSTOM_URL}`;
+  const scriptUrl = env.NEXT_PUBLIC_HEYFORM_SCRIPT_URL;
+
+  if (!id || !customUrl || !scriptUrl) {
+    return null;
+  }
+
+  const handleOpenFeedbackForm = async () => {
+    const heyForm = getHeyFormInstance();
+    heyForm.openModal(id);
+    await trackFeedbackFormOpened(submissionId);
+  };
+
+  return (
+    <>
+      <Button
+        variant="outline"
+        onClick={handleOpenFeedbackForm}
+        className="shadow-lg hover:shadow-xl rounded-full flex items-center justify-center gap-2 w-auto h-12 px-4 py-3 ring-2 ring-primary/20 ring-offset-2 hover:ring-primary/50"
+        aria-label="Provide Feedback"
+      >
+        <span className="w-6 h-6 flex items-center justify-center">
+          <MessageCircleQuestion strokeWidth={2} className="h-6 w-6" />
+        </span>
+        <span className="font-medium">Provide Feedback</span>
+      </Button>
+      <HeyFormEmbed
+        strategy="afterInteractive"
+        scriptUrl={scriptUrl}
+        hiddenFields={{ submissionId }}
+        options={{
+          id,
+          customUrl,
+          transparentBackground: false,
+          type: "modal",
+          openTrigger: "click",
+          size: "medium",
+        }}
+      />
+    </>
+  );
 }
