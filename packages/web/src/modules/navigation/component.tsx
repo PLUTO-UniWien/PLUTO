@@ -55,7 +55,7 @@ export function Navigation() {
               <NavigationMenuList className="space-x-1">
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground font-bold")}
                     asChild
                   >
                     <Link href="/survey" passHref>
@@ -66,7 +66,7 @@ export function Navigation() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground font-bold")}
                     asChild
                   >
                     <Link href="/result" passHref>
@@ -77,7 +77,7 @@ export function Navigation() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground font-bold")}
                     asChild
                   >
                     <Link href="/glossary" passHref>
@@ -87,7 +87,7 @@ export function Navigation() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={cn("bg-primary-foreground")}>
+                  <NavigationMenuTrigger className={cn("bg-primary-foreground font-bold")}>
                     Weighting
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-secondary">
@@ -99,7 +99,7 @@ export function Navigation() {
                         asChild
                       >
                         <Link href="/weighting" passHref>
-                          <div className="text-sm font-medium">Overview</div>
+                          <div className="text-sm font-bold">Overview</div>
                           <div className="mt-1 text-xs text-muted-foreground">
                             General information about the weighting process and methodology
                           </div>
@@ -113,7 +113,7 @@ export function Navigation() {
                         asChild
                       >
                         <Link href="/weighting/history" passHref>
-                          <div className="text-sm font-medium">History</div>
+                          <div className="text-sm font-bold">History</div>
                           <div className="mt-1 text-xs text-muted-foreground">
                             Historical data and changes in weighting factors over time
                           </div>
@@ -125,7 +125,7 @@ export function Navigation() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground font-bold")}
                     asChild
                   >
                     <Link href="/feedback" passHref>
@@ -136,7 +136,7 @@ export function Navigation() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-primary-foreground font-bold")}
                     asChild
                   >
                     <Link href="/news" passHref>
@@ -155,57 +155,71 @@ export function Navigation() {
             <nav className="flex flex-col space-y-3">
               <Link
                 href="/survey"
-                className={cn("px-3 py-2 rounded-md bg-primary-foreground transition-colors")}
+                className={cn(
+                  "px-3 py-2 rounded-md bg-primary-foreground transition-colors font-bold",
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Survey
               </Link>
               <Link
                 href="/result"
-                className={cn("px-3 py-2 rounded-md bg-primary-foreground transition-colors")}
+                className={cn(
+                  "px-3 py-2 rounded-md bg-primary-foreground transition-colors font-bold",
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Result
               </Link>
               <Link
                 href="/glossary"
-                className={cn("px-3 py-2 rounded-md bg-primary-foreground transition-colors")}
+                className={cn(
+                  "px-3 py-2 rounded-md bg-primary-foreground transition-colors font-bold",
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Glossary
               </Link>
 
-              <div className="pl-3 font-medium">Weighting</div>
+              <div className="pl-3 font-bold">Weighting</div>
               <Link
                 href="/weighting"
-                className={cn("px-3 py-2 ml-3 rounded-md bg-primary-foreground transition-colors")}
+                className={cn(
+                  "px-3 py-2 ml-3 rounded-md bg-primary-foreground transition-colors font-bold",
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <div className="font-medium">Overview</div>
+                <div className="font-bold">Overview</div>
                 <div className="text-xs text-muted-foreground">
                   General information about the weighting process
                 </div>
               </Link>
               <Link
                 href="/weighting/history"
-                className={cn("px-3 py-2 ml-3 rounded-md bg-primary-foreground transition-colors")}
+                className={cn(
+                  "px-3 py-2 ml-3 rounded-md bg-primary-foreground transition-colors font-bold",
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <div className="font-medium">History</div>
+                <div className="font-bold">History</div>
                 <div className="text-xs text-muted-foreground">
                   Historical weighting factors over time
                 </div>
               </Link>
               <Link
                 href="/feedback"
-                className={cn("px-3 py-2 rounded-md bg-primary-foreground transition-colors")}
+                className={cn(
+                  "px-3 py-2 rounded-md bg-primary-foreground transition-colors font-bold",
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Feedback
               </Link>
               <Link
                 href="/news"
-                className={cn("px-3 py-2 rounded-md bg-primary-foreground transition-colors")}
+                className={cn(
+                  "px-3 py-2 rounded-md bg-primary-foreground transition-colors font-bold",
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 News
