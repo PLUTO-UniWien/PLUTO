@@ -222,18 +222,27 @@ function normalizeScore(score: number, minScore: number, maxScore: number) {
 function determineResultType(scoreRiskNormalized: number, scoreBenefitNormalized: number) {
   const x = scoreRiskNormalized;
   const y = scoreBenefitNormalized;
-  if (x > 0 && y > 0) {
+  const isHighRisk = x > 0;
+  const isLowRisk = x < 0;
+  const isNeutralRisk = x === 0;
+  const isHighBenefit = y > 0;
+  const isLowBenefit = y < 0;
+  const isNeutralBenefit = y === 0;
+
+  if (isHighRisk && isHighBenefit) {
     return { id: "C", label: "High risk • High benefit" };
   }
-  if (x < 0 && y > 0) {
+  if (isLowRisk && isHighBenefit) {
     return { id: "A", label: "Low risk • High benefit" };
   }
-  if (x < 0 && y < 0) {
+  if (isLowRisk && isLowBenefit) {
     return { id: "B", label: "Low risk • Low benefit" };
   }
-  if (x > 0 && y < 0) {
+  if (isHighRisk && isLowBenefit) {
     return { id: "D", label: "High risk • Low benefit" };
   }
 
-  return { id: "Neutral", label: "Neutral" };
+  const riskLabel = isHighRisk ? "High" : isNeutralRisk ? "Neutral" : "Low";
+  const benefitLabel = isHighBenefit ? "High" : isNeutralBenefit ? "Neutral" : "Low";
+  return { id: "Mixed", label: `${riskLabel} risk • ${benefitLabel} benefit` };
 }
