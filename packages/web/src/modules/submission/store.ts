@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { StrapiSubmission } from "./types";
+import type { WithId } from "@/modules/strapi/types";
 
 interface SubmissionState {
   submission: (StrapiSubmission & { submittedAt: string }) | null;
-  setSubmission: (submission: StrapiSubmission | null) => void;
+  setSubmission: (submission: WithId<StrapiSubmission> | null) => void;
 }
 
 export const useSubmissionStore = create<SubmissionState>()(

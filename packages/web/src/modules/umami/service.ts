@@ -65,3 +65,8 @@ export async function trackPdfExport(submissionId: number, status: "success" | "
   const umami = getUmamiInstance();
   await umami.track("pdf-export", { submissionId, status });
 }
+
+export async function trackFeedbackFormOpened(submissionId: number) {
+  const umami = getUmamiInstance();
+  await umami.track("feedback-form-open", { submissionId });
+}
