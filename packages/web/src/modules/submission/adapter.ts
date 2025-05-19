@@ -23,7 +23,7 @@ export function adaptSurveyJsSubmissionToStrapiSubmission(
       ),
     );
 
-  return { items } as StrapiSubmission;
+  return { items } as Omit<StrapiSubmission, "id">;
 }
 
 function isCommentField(questionLabel: string) {

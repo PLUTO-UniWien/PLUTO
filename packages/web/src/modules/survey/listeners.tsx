@@ -76,8 +76,8 @@ function performAndTrackSurveySubmission(model: Model, context: ListenerContext)
       indexedSurvey,
       questionTimeSpent,
     );
-    useSubmissionStore.getState().setSubmission(submission);
     const result = await createSubmission(submission);
+    useSubmissionStore.getState().setSubmission({ id: result.id, ...submission });
     const submissionId = result.id;
     router.push("/result");
     await trackSubmission(submissionId);
