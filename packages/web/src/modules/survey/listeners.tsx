@@ -12,7 +12,7 @@ import {
   trackGlossaryItemInfoViewed,
   trackSurveyPreviewOpened,
   trackQuestionVisited,
-} from "@/modules/umami/service";
+} from "@/modules/analytics/umami/service";
 import { QuestionExplanationComponent } from "@/modules/question-explanation/component";
 import { GlossaryItemInfoComponent } from "@/modules/glossary-item-info/component";
 import { mountReactComponent } from "@/modules/common/dom-utils";

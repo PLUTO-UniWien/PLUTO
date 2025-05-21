@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import UmamiAnalytics from "@/modules/umami/component";
 import { env } from "@/env";
 import { Navigation } from "@/modules/navigation";
 import Footer from "@/modules/footer/component";
 import { Toaster } from "@/components/ui/sonner";
+import ClarityAnalytics from "@/modules/analytics/clarity/component";
+import UmamiAnalytics from "@/modules/analytics/umami/component";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,9 @@ export default function RootLayout({
             scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
             websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           />
+        )}
+        {env.NEXT_PUBLIC_CLARITY_PROJECT_ID && (
+          <ClarityAnalytics projectId={env.NEXT_PUBLIC_CLARITY_PROJECT_ID} />
         )}
         <Toaster position="top-right" expand={true} />
       </body>

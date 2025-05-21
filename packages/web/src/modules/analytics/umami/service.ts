@@ -32,8 +32,6 @@ function handleError(error: unknown, ...args: unknown[]) {
 export async function trackSubmission(submissionId: number) {
   const umami = getUmamiInstance();
   await umami.track("survey-submission", { submissionId });
-  const currentTimestamp = new Date().toISOString();
-  await umami.identify({ [`survey-submission-${currentTimestamp}`]: submissionId });
 }
 
 export async function trackSurveyStarted() {

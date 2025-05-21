@@ -20,7 +20,7 @@ import { toast } from "sonner";
 import HeyFormEmbed from "@/modules/heyform/component";
 import { env } from "@/env";
 import { getHeyFormInstance } from "@/modules/heyform/service";
-import { trackFeedbackFormOpened } from "@/modules/umami/service";
+import { trackFeedbackFormOpened } from "@/modules/analytics/umami/service";
 
 // Define a threshold for showing the disclaimer
 const UNANSWERED_THRESHOLD = 10;
