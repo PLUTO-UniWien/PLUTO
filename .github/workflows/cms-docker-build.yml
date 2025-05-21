@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - ".github/workflows/cms-docker-build.yml"
-      - "package.json"
       - "packages/cms/**"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"

@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - ".github/workflows/web-docker-build.yml"
-      - "package.json"
       - "packages/web/**"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
