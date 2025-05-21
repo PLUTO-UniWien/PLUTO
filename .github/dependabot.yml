@@ -1,5 +1,13 @@
 version: 2
 updates:
+  # Check for python dependencies in analytics package
+  - package-ecosystem: "pip"
+    directory: "/packages/analytics"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 10
+    versioning-strategy: auto
+
   # Check for npm dependencies in web package
   - package-ecosystem: "npm"
     directory: "/packages/web"
