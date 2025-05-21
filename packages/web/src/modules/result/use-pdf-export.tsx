@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { jsPDF } from "jspdf";
 import useScreenshot from "@/modules/common/use-screenshot";
-import { trackPdfExport } from "@/modules/umami/service";
+import { trackPdfExport } from "@/modules/analytics/umami/service";
 
 type PdfExportOptions = {
   /**
