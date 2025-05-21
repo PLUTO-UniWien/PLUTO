@@ -47,8 +47,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const userId = crypto.randomUUID();
-  const sessionId = crypto.randomUUID();
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
@@ -62,18 +60,12 @@ export default function RootLayout({
         {env.NEXT_PUBLIC_UMAMI_SCRIPT_URL && env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <UmamiAnalytics
             strategy="beforeInteractive"
-            userId={userId}
-            sessionId={sessionId}
             scriptUrl={env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
             websiteId={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           />
         )}
         {env.NEXT_PUBLIC_CLARITY_PROJECT_ID && (
-          <ClarityAnalytics
-            userId={userId}
-            sessionId={sessionId}
-            projectId={env.NEXT_PUBLIC_CLARITY_PROJECT_ID}
-          />
+          <ClarityAnalytics projectId={env.NEXT_PUBLIC_CLARITY_PROJECT_ID} />
         )}
         <Toaster position="top-right" expand={true} />
       </body>

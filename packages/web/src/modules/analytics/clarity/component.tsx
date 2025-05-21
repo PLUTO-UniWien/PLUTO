@@ -1,14 +1,14 @@
 "use client";
 import Clarity from "@microsoft/clarity";
 import { useEffect } from "react";
+import { useAnalyticsStore } from "@/modules/analytics/store";
 
 type ClarityAnalyticsProps = {
-  userId: string;
-  sessionId: string;
   projectId: string;
 };
 
-export default function ClarityAnalytics({ userId, sessionId, projectId }: ClarityAnalyticsProps) {
+export default function ClarityAnalytics({ projectId }: ClarityAnalyticsProps) {
+  const { userId, sessionId } = useAnalyticsStore();
   useEffect(() => {
     Clarity.init(projectId);
     Clarity.identify(userId, sessionId);
