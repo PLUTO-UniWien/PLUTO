@@ -10,6 +10,7 @@
     "copy-cms-types": "node --no-warnings --experimental-strip-types scripts/copy-cms-types.ts"
   },
   "dependencies": {
+    "@microsoft/clarity": "^1.0.0",
     "@radix-ui/react-accordion": "^1.2.10",
     "@radix-ui/react-hover-card": "^1.1.13",
     "@radix-ui/react-navigation-menu": "^1.2.12",

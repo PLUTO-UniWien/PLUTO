@@ -48,6 +48,11 @@ export const env = createEnv({
       .url()
       .optional()
       .describe("The URL of the universal HeyForm script."),
+    NEXT_PUBLIC_CLARITY_PROJECT_ID: z
+      .string()
+      .min(1)
+      .optional()
+      .describe("The ID of the Clarity project to track."),
   },
   runtimeEnv: {
     // Server
@@ -61,5 +66,6 @@ export const env = createEnv({
     NEXT_PUBLIC_HEYFORM_FORM_ID: process.env.NEXT_PUBLIC_HEYFORM_FORM_ID,
     NEXT_PUBLIC_HEYFORM_CUSTOM_URL: process.env.NEXT_PUBLIC_HEYFORM_CUSTOM_URL,
     NEXT_PUBLIC_HEYFORM_SCRIPT_URL: process.env.NEXT_PUBLIC_HEYFORM_SCRIPT_URL,
+    NEXT_PUBLIC_CLARITY_PROJECT_ID: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
   },
 });
