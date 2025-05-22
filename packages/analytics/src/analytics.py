@@ -20,6 +20,28 @@ def _(question_time_stats_df):
 
 
 @app.cell(hide_code=True)
+def _(mo, os):
+    def env(key: str) -> str:
+        if key not in os.environ:
+            raise ValueError(f"Environment variable {key} is not set.")
+        return os.environ[key]
+
+    try:
+        STRAPI_API_TOKEN = env("STRAPI_API_TOKEN")
+        STRAPI_API_BASE_URL = env("STRAPI_API_BASE_URL")
+        UMAMI_BASE_URL = env("UMAMI_BASE_URL")
+    except ValueError as e:
+        mo.stop(
+            True,
+            output=mo.callout(
+                "🚨 This dashboard is misconfigured. Please contact your administrator.",
+                kind="danger",
+            ),
+        )
+    return STRAPI_API_BASE_URL, STRAPI_API_TOKEN, UMAMI_BASE_URL
+
+
+@app.cell(hide_code=True)
 def _(
     STRAPI_API_BASE_URL,
     STRAPI_API_TOKEN,
@@ -215,15 +237,6 @@ def _(httpx):
         return response.json()["token"]
 
     return (issue_umami_api_token,)
-
-
-@app.cell(hide_code=True)
-def _(os):
-    # Referenced Environment Variables
-    STRAPI_API_TOKEN = os.getenv("STRAPI_API_TOKEN")
-    STRAPI_API_BASE_URL = os.getenv("STRAPI_API_BASE_URL")
-    UMAMI_BASE_URL = os.getenv("UMAMI_BASE_URL")
-    return STRAPI_API_BASE_URL, STRAPI_API_TOKEN, UMAMI_BASE_URL
 
 
 @app.cell(hide_code=True)
