@@ -1,0 +1,43 @@
+type: http_request
+model: http_request
+id: rq_aPF8EYu3TC
+createdAt: 2025-05-22T07:15:37.620277
+updatedAt: 2025-05-22T08:29:47.541694
+workspaceId: wk_mjJjm269R7
+folderId: fl_Pjs7DiNjaR
+authentication:
+  token: bGRgPdK1zDuhG5C8PCIe4qeT+t4VW0RyhMem6QK5CrYRETYAZxT3n8+3XLqVOVNaEW9IsNCAlsILLJrXolDY1s5kGRGxlaMXbQhRxd3oO+r3ao9l8JAc8uNetlhxwQxtD+2Hs00RNQ33ACbYKkG4gqD5l3IBNf+FWco7+0O75Kf/Ox7CSlzi5EZmoU+6u5uyOLTiZ+a82JB4sHG4pPHMKMkLajcc2gGEX/6U8Y7a1+zwno4sB0tJ+SB3cfUQWYdFNlhR5urxmVQ4Q7NFnu6uwCCiJCsPOsMHk9fOB81eh3ww4N0fyASCbjqFi07rCQEuJI59Kf9wHZBZ7NmmZMDgCkUMjNtYzlU+FFXZ+rAINw1yj4q4wCT/SIxVhG0t
+authenticationType: bearer
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: Events
+sortPriority: 0.0
+url: ${[ UMAMI_BASE_URL ]}/api/websites/:websiteId/events
+urlParameters:
+- enabled: true
+  name: :websiteId
+  value: ${[ UMAMI_WEBSITE_ID ]}
+  id: i4rt5dQrgP
+- enabled: true
+  name: startAt
+  value: '1000000000000'
+  id: Rtgen7U2qQ
+- enabled: true
+  name: endAt
+  value: '2000000000000'
+  id: 05weZRsVv3
+- enabled: true
+  name: page
+  value: '1'
+  id: H6YZEDIaiv
+- enabled: true
+  name: pageSize
+  value: '100'
+  id: PrBgcSCiHB
+- enabled: true
+  name: ''
+  value: ''
+  id: wkHP8siMpt

@@ -1,0 +1,43 @@
+type: http_request
+model: http_request
+id: rq_ScCrNMS26K
+createdAt: 2025-05-22T07:25:30.447201
+updatedAt: 2025-05-22T08:30:24.563364
+workspaceId: wk_mjJjm269R7
+folderId: fl_Pjs7DiNjaR
+authentication:
+  token: bGRgPdK1zDuhG5C8PCIe4qeT+t4VW0RyhMem6QK5CrYRETYAZxT3n8+3XLqVOVNaEW9IsNCAlsILLJrXolDY1s5kGRGxlaMXbQhRxd3oO+r3ao9l8JAc8uNetlhxwQxtD+2Hs00RNQ33ACbYKkG4gqD5l3IBNf+FWco7+0O75Kf/Ox7CSlzi5EZmoU+6u5uyOLTiZ+a82JB4sHG4pPHMKMkLajcc2gGEX/6U8Y7a1+zwno4sB0tJ+SB3cfUQWYdFNlhR5urxmVQ4Q7NFnu6uwCCiJCsPOsMHk9fOB81eh3ww4N0fyASCbjqFi07rCQEuJI59Kf9wHZBZ7NmmZMDgCkUMjNtYzlU+FFXZ+rAINw1yj4q4wCT/SIxVhG0t
+authenticationType: bearer
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: Event Values
+sortPriority: 3000.0
+url: ${[ UMAMI_BASE_URL ]}/api/websites/:websiteId/event-data/values
+urlParameters:
+- enabled: true
+  name: :websiteId
+  value: ${[ UMAMI_WEBSITE_ID ]}
+  id: i4rt5dQrgP
+- enabled: true
+  name: startAt
+  value: '1000000000000'
+  id: Rtgen7U2qQ
+- enabled: true
+  name: endAt
+  value: '2000000000000'
+  id: 05weZRsVv3
+- enabled: true
+  name: eventName
+  value: glossary-item-info-view
+  id: 9WGrgQhk8T
+- enabled: true
+  name: propertyName
+  value: glossaryItemName
+  id: wAZbVH4tAD
+- enabled: true
+  name: ''
+  value: ''
+  id: y4SWSsq9E4

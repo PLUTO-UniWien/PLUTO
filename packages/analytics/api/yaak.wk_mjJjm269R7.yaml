@@ -1,0 +1,11 @@
+type: workspace
+model: workspace
+id: wk_mjJjm269R7
+createdAt: 2025-05-22T07:13:11.167693
+updatedAt: 2025-05-22T08:25:51.958806
+name: PLUTO
+description: ''
+encryptionKeyChallenge: eUE0azNuQwF4FjOw17V5+e3bxSIMHeFwNR4gfZNtn3FuBBTpxAVMQN3R9cTYzLOAoeJtJRii5OMSlNmhV7sGbS06mpK8aa8a1R2zgwLgwdMiQ1VjeZhsdQONAL4eKp0Vg+Y=
+settingValidateCertificates: true
+settingFollowRedirects: true
+settingRequestTimeout: 0
