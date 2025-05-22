@@ -1,0 +1,71 @@
+type: http_request
+model: http_request
+id: rq_e3qbEGZbU4
+createdAt: 2025-05-22T12:45:55.864007
+updatedAt: 2025-05-22T12:51:07.906651
+workspaceId: wk_mjJjm269R7
+folderId: fl_Lymz8LrMSp
+authentication:
+  token: ${[ secure(value=b64'WUVOQ19lVUUwYXpOdVF3RklCWnZhZE13c1M4MXIyQTFPSDVmTUE5dXpVdDlNOVJEdlcwOXVzak5Tc0tocEt0M2ZuSE1KK1pIRHlhZjlZWFU0cjUwcnhxMXArS2VRL3FKQjdhRT0') ]}
+authenticationType: bearer
+body: {}
+bodyType: binary
+description: ''
+headers:
+- enabled: true
+  name: Accept
+  value: application/json
+  id: null
+- enabled: true
+  name: Authorization
+  value: ••••••
+  id: null
+method: POST
+name: Upload
+sortPriority: 0.0
+url: ${[ STRAPI_API_BASE_URL ]}/upload
+urlParameters:
+- enabled: false
+  name: sort
+  value: ad eiusmod commodo aliquip
+  id: uueC93w4PK
+- enabled: false
+  name: pagination[withCount]
+  value: 'true'
+  id: YItVv0yWJf
+- enabled: false
+  name: pagination[page]
+  value: '-91444920'
+  id: ecyVGCs9uy
+- enabled: false
+  name: pagination[pageSize]
+  value: '100'
+  id: 6JVQVS7E4c
+- enabled: false
+  name: pagination[start]
+  value: '-91444920'
+  id: 9FVWByADIz
+- enabled: false
+  name: pagination[limit]
+  value: '-91444920'
+  id: QMipWPZMyX
+- enabled: false
+  name: fields
+  value: groups
+  id: nwIcxGPr6s
+- enabled: true
+  name: populate
+  value: groups.questions.choices
+  id: fJHdddtwsf
+- enabled: false
+  name: filters[cillum2]
+  value: voluptate
+  id: IjBQdmpPrn
+- enabled: false
+  name: locale
+  value: ad eiusmod commodo aliquip
+  id: DXT9tQj9iP
+- enabled: true
+  name: ''
+  value: ''
+  id: DvWYWIVA2r
