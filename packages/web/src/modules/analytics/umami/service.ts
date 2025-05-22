@@ -29,42 +29,39 @@ function handleError(error: unknown, ...args: unknown[]) {
   console.error("Error while tracking event with args:", args, "Error:", error);
 }
 
-export async function trackSubmission(submissionId: number) {
+async function trackEvent(event: string, properties: Record<string, unknown>) {
   const umami = getUmamiInstance();
-  await umami.track("survey-submission", { submissionId });
+  await umami.track(event, { properties: JSON.stringify(properties) });
+}
+
+export async function trackSubmission(submissionId: number) {
+  await trackEvent("survey-submission", { submissionId });
 }
 
 export async function trackSurveyStarted() {
-  const umami = getUmamiInstance();
-  await umami.track("survey-start", {});
+  await trackEvent("survey-start", {});
 }
 
 export async function trackQuestionExplanationViewed(questionId: number, questionLabel: string) {
-  const umami = getUmamiInstance();
-  await umami.track("question-explanation-view", { questionId, questionLabel });
+  await trackEvent("question-explanation-view", { questionId, questionLabel });
 }
 
 export async function trackGlossaryItemInfoViewed(questionId: number, glossaryItemName: string) {
-  const umami = getUmamiInstance();
-  await umami.track("glossary-item-info-view", { questionId, glossaryItemName });
+  await trackEvent("glossary-item-info-view", { questionId, glossaryItemName });
 }
 
 export async function trackSurveyPreviewOpened() {
-  const umami = getUmamiInstance();
-  await umami.track("survey-preview-open", {});
+  await trackEvent("survey-preview-open", {});
 }
 
 export async function trackQuestionVisited(questionId: number, questionLabel: string) {
-  const umami = getUmamiInstance();
-  await umami.track("question-visit", { questionId, questionLabel });
+  await trackEvent("question-visit", { questionId, questionLabel });
 }
 
 export async function trackPdfExport(submissionId: number, status: "success" | "failure") {
-  const umami = getUmamiInstance();
-  await umami.track("pdf-export", { submissionId, status });
+  await trackEvent("pdf-export", { submissionId, status });
 }
 
 export async function trackFeedbackFormOpened(submissionId: number) {
-  const umami = getUmamiInstance();
-  await umami.track("feedback-form-open", { submissionId });
+  await trackEvent("feedback-form-open", { submissionId });
 }
