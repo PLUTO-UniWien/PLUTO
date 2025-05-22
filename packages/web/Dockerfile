@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM node:22-slim AS base
+FROM node:24-slim AS base
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
