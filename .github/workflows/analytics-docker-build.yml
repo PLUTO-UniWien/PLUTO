@@ -1,19 +1,17 @@
-name: Build and Push CMS Docker Image
+name: Build and Push Analytics Docker Image
 
 on:
   push:
     paths:
-      - ".github/workflows/cms-docker-build.yml"
-      - "packages/cms/**"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
+      - ".github/workflows/analytics-docker-build.yml"
+      - "packages/analytics/**"
   release:
     types: [published]
   workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/cms
+  IMAGE_NAME: ${{ github.repository_owner }}/analytics
 
 jobs:
   build-and-push:
@@ -54,7 +52,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: packages/cms/Dockerfile
+          file: packages/analytics/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}

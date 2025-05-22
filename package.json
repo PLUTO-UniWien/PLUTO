@@ -3,7 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "format": "biome format --write ./"
+    "format:js": "biome format --write ./",
+    "format:py": "uvx ruff format packages/analytics",
+    "format": "pnpm run format:js && pnpm run format:py"
   },
   "devDependencies": {
     "@biomejs/biome": "latest"

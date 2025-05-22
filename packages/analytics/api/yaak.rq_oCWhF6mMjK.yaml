@@ -1,0 +1,27 @@
+type: http_request
+model: http_request
+id: rq_oCWhF6mMjK
+createdAt: 2025-05-22T07:13:36.686756
+updatedAt: 2025-05-22T08:29:27.797345
+workspaceId: wk_mjJjm269R7
+folderId: fl_ESBaSdfonZ
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "username": "${[ UMAMI_USERNAME ]}",
+      "password": "${[ UMAMI_PASSWORD ]}"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: ufc4E686H5
+method: POST
+name: Auth
+sortPriority: 0.0
+url: ${[ UMAMI_BASE_URL ]}/api/auth/login
+urlParameters: []

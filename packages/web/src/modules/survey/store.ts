@@ -23,7 +23,7 @@ export const useSurveyStore = create<SurveyState>()(
       setSurveyProgress: (surveyProgress) => set({ surveyProgress }),
     }),
     {
-      name: "survey",
+      name: "pluto:survey",
       storage: createJSONStorage(() => localStorage),
     },
   ),
