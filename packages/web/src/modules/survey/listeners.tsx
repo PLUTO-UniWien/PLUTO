@@ -20,6 +20,7 @@ import { useSubmissionStore } from "@/modules/submission/store";
 import type { useRouter } from "next/navigation";
 import type { StrapiGlossaryItem } from "../glossary/types";
 import { useSurveyStore } from "./store";
+import { useAnalyticsStore } from "@/modules/analytics/store";
 
 type SurveyModelListenerContext = {
   strapiSurvey: StrapiSurvey;
@@ -76,7 +77,8 @@ function performAndTrackSurveySubmission(model: Model, context: ListenerContext)
       indexedSurvey,
       questionTimeSpent,
     );
-    const result = await createSubmission(submission);
+    const { userId, sessionId } = useAnalyticsStore.getState();
+    const result = await createSubmission({ ...submission, userId, sessionId });
     useSubmissionStore.getState().setSubmission({ id: result.id, ...submission });
     const submissionId = result.id;
     router.push("/result");

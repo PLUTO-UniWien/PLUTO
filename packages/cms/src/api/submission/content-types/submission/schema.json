@@ -17,6 +17,12 @@
       "repeatable": true,
       "component": "submission.item",
       "required": true
+    },
+    "userId": {
+      "type": "string"
+    },
+    "sessionId": {
+      "type": "string"
     }
   }
 }

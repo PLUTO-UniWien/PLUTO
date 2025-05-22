@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { v4 as uuidv4 } from "uuid";
+import { humanId } from "human-id";
 
 type AnalyticsState = {
   userId: string;
@@ -8,15 +8,23 @@ type AnalyticsState = {
   resetSession: () => void;
 };
 
+function generateId() {
+  return humanId({
+    adjectiveCount: 2,
+    capitalize: false,
+    separator: "-",
+  });
+}
+
 export const useAnalyticsStore = create<AnalyticsState>()(
   persist(
     (set) => ({
-      userId: uuidv4(),
-      sessionId: uuidv4(),
-      resetSession: () => set({ sessionId: uuidv4() }),
+      userId: generateId(),
+      sessionId: generateId(),
+      resetSession: () => set({ sessionId: generateId() }),
     }),
     {
-      name: "analytics",
+      name: "pluto:analytics",
       storage: createJSONStorage(() => localStorage),
     },
   ),

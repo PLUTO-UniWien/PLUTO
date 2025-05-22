@@ -18,7 +18,7 @@ export const useSubmissionStore = create<SubmissionState>()(
         }),
     }),
     {
-      name: "submission",
+      name: "pluto:submission",
       storage: createJSONStorage(() => localStorage),
     },
   ),
