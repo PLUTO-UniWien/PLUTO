@@ -7,4 +7,4 @@ COPY ./packages/analytics /app
 
 RUN uv sync --locked
 EXPOSE 2718
-CMD ["/bin/sh", "-c", "uv run marimo run src/analytics.py --port 2718 --token --token-password \"$MARIMO_TOKEN_PASSWORD\""]
+CMD ["/bin/sh", "-c", "uv run marimo run src/analytics.py --host 0.0.0.0 --port 2718 --token --token-password \"$MARIMO_TOKEN_PASSWORD\""]
