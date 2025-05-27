@@ -1,6 +1,7 @@
 import type { BlocksContent } from "@strapi/blocks-react-renderer";
 import BlocksRenderer from "@/modules/strapi/blocks-renderer";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { useState } from "react";
 
 type GlossaryItemInfoComponentProps = {
   name: string;
@@ -13,9 +14,18 @@ export function GlossaryItemInfoComponent({
   description,
   onOpenChange,
 }: GlossaryItemInfoComponentProps) {
+  const [isCardOpen, setIsCardOpen] = useState(false);
+
+  const handleOpenChange = (open: boolean) => {
+    setIsCardOpen(open);
+    if (onOpenChange) {
+      onOpenChange(open);
+    }
+  };
+
   return (
-    <HoverCard openDelay={150} onOpenChange={onOpenChange}>
-      <HoverCardTrigger asChild>
+    <HoverCard openDelay={150} open={isCardOpen} onOpenChange={handleOpenChange}>
+      <HoverCardTrigger asChild onClick={() => handleOpenChange(!isCardOpen)}>
         <span className="underline cursor-help">{name}</span>
       </HoverCardTrigger>
       <HoverCardContent
