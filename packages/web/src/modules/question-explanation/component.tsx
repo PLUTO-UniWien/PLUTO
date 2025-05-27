@@ -3,7 +3,7 @@ import BlocksRenderer from "@/modules/strapi/blocks-renderer";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Button } from "@/components/ui/button";
 import { HelpCircle } from "lucide-react";
-import { useState } from "react";
+import { useHoverCardState } from "@/modules/common/use-hover-card-state";
 
 type QuestionExplanationComponentProps = {
   explanation: BlocksContent;
@@ -14,18 +14,11 @@ export function QuestionExplanationComponent({
   explanation,
   onOpenChange,
 }: QuestionExplanationComponentProps) {
-  const [isCardOpen, setIsCardOpen] = useState(false);
-
-  const handleOpenChange = (open: boolean) => {
-    setIsCardOpen(open);
-    if (onOpenChange) {
-      onOpenChange(open);
-    }
-  };
+  const { isCardOpen, handleOpenChange, toggleOpen } = useHoverCardState(onOpenChange);
 
   return (
     <HoverCard openDelay={150} open={isCardOpen} onOpenChange={handleOpenChange}>
-      <HoverCardTrigger asChild onClick={() => handleOpenChange(!isCardOpen)}>
+      <HoverCardTrigger asChild onClick={toggleOpen}>
         <Button variant="ghost" size="icon" className="rounded-full" asChild>
           <HelpCircle className="text-primary w-6 h-6 ml-4" />
         </Button>
