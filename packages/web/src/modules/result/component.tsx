@@ -29,10 +29,10 @@ const UNANSWERED_THRESHOLD = 10;
 
 // Result type descriptions for hover tooltips
 const RESULT_TYPE_DESCRIPTIONS = {
-  A: "Likely creates significant public value as it will plausibly yield significant benefits without posing unacceptably high risks. These types should be supported (Pillar I)",
-  B: "Unlikely to yield significant public benefits, but also poses minimal risks. Financial profits from Type B uses should be partially returned to the public domain (Pillar III)",
-  C: "Produces significant public benefits, but poses unacceptably high risks. Type C uses are only permissible if risks can be reduced to acceptable levels (Pillar II)",
-  D: "Likely does not create significant public value while at the same time posing unacceptably high risks. These activities should be banned (Pillar II)",
+  A: "Likely creates significant public value as it will plausibly yield significant benefits without posing unacceptably high risks. These types should be supported",
+  B: "Unlikely to yield significant public benefits, but also poses minimal risks. Financial profits from Type B uses should be partially returned to the public domain",
+  C: "Produces significant public benefits, but poses unacceptably high risks. Type C uses are only permissible if risks can be reduced to acceptable levels",
+  D: "Likely does not create significant public value while at the same time posing unacceptably high risks. These activities should be banned",
 } as const;
 
 type ResultComponentProps = {
@@ -282,55 +282,27 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
         </div>
         <div className="flex-1 flex flex-col justify-center">
           <div className="flex flex-col gap-4 sm:gap-6">
-            {/* Risk score */}
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <p className="text-xs sm:text-sm font-medium">Risk</p>
-                <p className="text-xs sm:text-sm font-semibold">{risk.toFixed(2)}</p>
-              </div>
-              <div className="relative mb-0.5">
-                <div className="h-1.5 sm:h-2 w-full bg-gradient-to-r from-[#d9edd6] via-[#faf1d3] to-[#f2cfcc] rounded-full" />
-                <div
-                  className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
-                  style={{ left: `calc(${riskPosition}% - 5px)` }}
-                />
-              </div>
-              <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
-                <div className="text-left">
-                  <div className="text-[#4e9c59] font-medium">-1.0</div>
-                  <div className="text-[#4e9c59] font-medium mt-0.5">Low Risk</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-[#d55c55] font-medium">1.0</div>
-                  <div className="text-[#d55c55] font-medium mt-0.5">High Risk</div>
-                </div>
-              </div>
-            </div>
+            <ScoreDisplay
+              label="Risk"
+              score={risk}
+              position={riskPosition}
+              gradientColors="bg-gradient-to-r from-[#d9edd6] via-[#faf1d3] to-[#f2cfcc]"
+              lowLabel="Low Risk"
+              highLabel="High Risk"
+              lowColor="text-[#4e9c59]"
+              highColor="text-[#d55c55]"
+            />
 
-            {/* Benefit score */}
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <p className="text-xs sm:text-sm font-medium">Benefit</p>
-                <p className="text-xs sm:text-sm font-semibold">{benefit.toFixed(2)}</p>
-              </div>
-              <div className="relative mb-0.5">
-                <div className="h-1.5 sm:h-2 w-full bg-gradient-to-r from-[#f2cfcc] via-[#faf1d3] to-[#d9edd6] rounded-full" />
-                <div
-                  className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
-                  style={{ left: `calc(${benefitPosition}% - 5px)` }}
-                />
-              </div>
-              <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
-                <div className="text-left">
-                  <div className="text-[#d55c55] font-medium">-1.0</div>
-                  <div className="text-[#d55c55] font-medium mt-0.5">Low Benefit</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-[#4e9c59] font-medium">1.0</div>
-                  <div className="text-[#4e9c59] font-medium mt-0.5">High Benefit</div>
-                </div>
-              </div>
-            </div>
+            <ScoreDisplay
+              label="Benefit"
+              score={benefit}
+              position={benefitPosition}
+              gradientColors="bg-gradient-to-r from-[#f2cfcc] via-[#faf1d3] to-[#d9edd6]"
+              lowLabel="Low Benefit"
+              highLabel="High Benefit"
+              lowColor="text-[#d55c55]"
+              highColor="text-[#4e9c59]"
+            />
           </div>
         </div>
       </div>
@@ -361,55 +333,27 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
 
           {/* Score Column (small screens) */}
           <div className="flex flex-col gap-4 sm:gap-6">
-            {/* Risk score */}
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <p className="text-xs sm:text-sm font-medium">Risk</p>
-                <p className="text-xs sm:text-sm font-semibold">{risk.toFixed(2)}</p>
-              </div>
-              <div className="relative mb-0.5">
-                <div className="h-1.5 sm:h-2 w-full bg-gradient-to-r from-[#d9edd6] via-[#faf1d3] to-[#f2cfcc] rounded-full" />
-                <div
-                  className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
-                  style={{ left: `calc(${riskPosition}% - 5px)` }}
-                />
-              </div>
-              <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
-                <div className="text-left">
-                  <div className="text-[#4e9c59] font-medium">-1.0</div>
-                  <div className="text-[#4e9c59] font-medium mt-0.5">Low Risk</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-[#d55c55] font-medium">1.0</div>
-                  <div className="text-[#d55c55] font-medium mt-0.5">High Risk</div>
-                </div>
-              </div>
-            </div>
+            <ScoreDisplay
+              label="Risk"
+              score={risk}
+              position={riskPosition}
+              gradientColors="bg-gradient-to-r from-[#d9edd6] via-[#faf1d3] to-[#f2cfcc]"
+              lowLabel="Low Risk"
+              highLabel="High Risk"
+              lowColor="text-[#4e9c59]"
+              highColor="text-[#d55c55]"
+            />
 
-            {/* Benefit score */}
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <p className="text-xs sm:text-sm font-medium">Benefit</p>
-                <p className="text-xs sm:text-sm font-semibold">{benefit.toFixed(2)}</p>
-              </div>
-              <div className="relative mb-0.5">
-                <div className="h-1.5 sm:h-2 w-full bg-gradient-to-r from-[#f2cfcc] via-[#faf1d3] to-[#d9edd6] rounded-full" />
-                <div
-                  className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
-                  style={{ left: `calc(${benefitPosition}% - 5px)` }}
-                />
-              </div>
-              <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
-                <div className="text-left">
-                  <div className="text-[#d55c55] font-medium">-1.0</div>
-                  <div className="text-[#d55c55] font-medium mt-0.5">Low Benefit</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-[#4e9c59] font-medium">1.0</div>
-                  <div className="text-[#4e9c59] font-medium mt-0.5">High Benefit</div>
-                </div>
-              </div>
-            </div>
+            <ScoreDisplay
+              label="Benefit"
+              score={benefit}
+              position={benefitPosition}
+              gradientColors="bg-gradient-to-r from-[#f2cfcc] via-[#faf1d3] to-[#d9edd6]"
+              lowLabel="Low Benefit"
+              highLabel="High Benefit"
+              lowColor="text-[#d55c55]"
+              highColor="text-[#4e9c59]"
+            />
           </div>
         </div>
       </div>
@@ -478,6 +422,54 @@ function ResultTypeItem({ type, isActive, description }: ResultTypeItemProps) {
         </div>
       </HoverCardContent>
     </HoverCard>
+  );
+}
+
+type ScoreDisplayProps = {
+  label: string;
+  score: number;
+  position: number;
+  gradientColors: string;
+  lowLabel: string;
+  highLabel: string;
+  lowColor: string;
+  highColor: string;
+};
+
+function ScoreDisplay({
+  label,
+  score,
+  position,
+  gradientColors,
+  lowLabel,
+  highLabel,
+  lowColor,
+  highColor,
+}: ScoreDisplayProps) {
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-1">
+        <p className="text-xs sm:text-sm font-medium">{label}</p>
+        <p className="text-xs sm:text-sm font-semibold">{score.toFixed(2)}</p>
+      </div>
+      <div className="relative mb-0.5">
+        <div className={`h-1.5 sm:h-2 w-full ${gradientColors} rounded-full`} />
+        <div
+          className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
+          style={{ left: `calc(${position}% - 5px)` }}
+        />
+      </div>
+      <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
+        <div className="text-left">
+          <div className={`${lowColor} font-medium`}>-1.0</div>
+          <div className={`${lowColor} font-medium mt-0.5`}>{lowLabel}</div>
+        </div>
+        <div className="text-right">
+          <div className={`${highColor} font-medium`}>1.0</div>
+          <div className={`${highColor} font-medium mt-0.5`}>{highLabel}</div>
+        </div>
+      </div>
+    </div>
   );
 }
 
