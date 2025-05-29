@@ -17,7 +17,7 @@ export function GlossaryItemInfoComponent({
   const { isCardOpen, handleOpenChange, toggleOpen } = useHoverCardState(onOpenChange);
 
   return (
-    <HoverCard openDelay={150} open={isCardOpen} onOpenChange={handleOpenChange}>
+    <HoverCard openDelay={50} open={isCardOpen} onOpenChange={handleOpenChange}>
       <HoverCardTrigger asChild onClick={toggleOpen}>
         <span className="underline cursor-help">{name}</span>
       </HoverCardTrigger>

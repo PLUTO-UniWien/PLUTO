@@ -195,7 +195,7 @@ const QuadrantPlotHoverCard = ({
   scoreLabels,
 }: QuadrantPlotHoverCardProps) => {
   return (
-    <HoverCard openDelay={150}>
+    <HoverCard openDelay={50}>
       <HoverCardTrigger asChild>
         <div
           className="absolute pointer-events-auto"
