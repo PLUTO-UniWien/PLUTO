@@ -1,27 +1,30 @@
 "use client";
-import QuadrantPlot from "@/modules/quadrant-plot/component";
-import type { AnalysisResult } from "./analysis";
-import BlocksRenderer from "../strapi/blocks-renderer";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { toast } from "sonner";
+import { FileDown, MessageCircleQuestion } from "lucide-react";
 import type { BlocksContent } from "@strapi/blocks-react-renderer";
+
+import QuadrantPlot from "@/modules/quadrant-plot/component";
+import BlocksRenderer from "@/modules/strapi/blocks-renderer";
+import LoadingComponent from "@/modules/loading/component";
+import HeyFormEmbed from "@/modules/heyform/component";
+import { Button } from "@/components/ui/button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+
+import type { AnalysisResult } from "@/modules/result/analysis";
+import type { StrapiResultPage } from "@/modules/result/types";
+import type { StrapiSubmission } from "@/modules/submission/types";
+import type { StrapiSurvey } from "@/modules/survey/types";
+
 import { analyzeSubmission } from "@/modules/result/analysis";
 import { useSubmissionStore } from "@/modules/submission/store";
 import { useSurveyStore } from "@/modules/survey/store";
-import type { StrapiResultPage } from "./types";
-import { Button } from "@/components/ui/button";
-import { FileDown, MessageCircleQuestion } from "lucide-react";
-import LoadingComponent from "../loading/component";
-import usePdfExport from "./use-pdf-export";
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import type { StrapiSubmission } from "@/modules/submission/types";
-import type { StrapiSurvey } from "@/modules/survey/types";
-import Image from "next/image";
-import { toast } from "sonner";
-import HeyFormEmbed from "@/modules/heyform/component";
+import usePdfExport from "@/modules/result/use-pdf-export";
 import { env } from "@/env";
 import { getHeyFormInstance } from "@/modules/heyform/service";
 import { trackFeedbackFormOpened } from "@/modules/analytics/umami/service";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { useHoverCardState } from "@/modules/common/use-hover-card-state";
 
 // Define a threshold for showing the disclaimer
@@ -29,10 +32,10 @@ const UNANSWERED_THRESHOLD = 10;
 
 // Result type descriptions for hover tooltips
 const RESULT_TYPE_DESCRIPTIONS = {
-  A: "Likely creates significant public value as it will plausibly yield significant benefits without posing unacceptably high risks. These types should be supported",
-  B: "Unlikely to yield significant public benefits, but also poses minimal risks. Financial profits from Type B uses should be partially returned to the public domain",
-  C: "Produces significant public benefits, but poses unacceptably high risks. Type C uses are only permissible if risks can be reduced to acceptable levels",
-  D: "Likely does not create significant public value while at the same time posing unacceptably high risks. These activities should be banned",
+  A: "Likely creates significant public value as it will plausibly yield significant benefits without posing unacceptably high risks. These types should be supported.",
+  B: "Unlikely to yield significant public benefits, but also poses minimal risks. Financial profits from Type B uses should be partially returned to the public domain.",
+  C: "Produces significant public benefits, but poses unacceptably high risks. Type C uses are only permissible if risks can be reduced to acceptable levels.",
+  D: "Likely does not create significant public value while at the same time posing unacceptably high risks. These activities should be banned.",
 } as const;
 
 type ResultComponentProps = {
@@ -121,7 +124,7 @@ export default function ResultComponent({
 
           {/* Secondary Metrics Section */}
           <div className="mt-6 sm:mt-8 border-t pt-4 sm:pt-6">
-            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-3">
               <div className="flex flex-col">
                 <h3 className="text-xs sm:text-sm font-medium mb-1 text-center">
                   You have answered
@@ -133,7 +136,7 @@ export default function ResultComponent({
                       of {allQuestionCount}
                     </span>
                   </p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 md:mt-1">
+                  <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 md:mt-1">
                     questions
                   </p>
                 </div>
@@ -143,12 +146,12 @@ export default function ResultComponent({
                 <h3 className="text-xs sm:text-sm font-medium mb-1 text-center">
                   Questions by Impact
                 </h3>
-                <div className="flex justify-center gap-6 sm:gap-8 md:gap-12">
+                <div className="flex justify-center gap-5 sm:gap-8 md:gap-12">
                   <div className="text-center">
                     <p className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold mb-0">
                       {counts.included.risk}
                     </p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 md:mt-1">
+                    <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 md:mt-1">
                       risk
                     </p>
                   </div>
@@ -156,7 +159,7 @@ export default function ResultComponent({
                     <p className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold mb-0">
                       {counts.included.benefit}
                     </p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 md:mt-1">
+                    <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 md:mt-1">
                       benefit
                     </p>
                   </div>
@@ -247,10 +250,10 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
       {/* Large screens: First column - Result Type */}
       <div className="hidden lg:flex lg:flex-none lg:w-48 flex-col">
         <div className="text-center w-full">
-          <h3 className="text-base font-medium mb-2 sm:mb-3">Result Type</h3>
+          <h3 className="text-lg font-medium mb-2 sm:mb-3">Result Type</h3>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center">
-          <p className="text-md text-muted-foreground mb-3">{resultType.label}</p>
+          <p className="text-md font-medium mb-4">{resultType.label}</p>
           <ResultTypeScale currentType={resultType.id} />
           <div className="mt-2 flex justify-between text-[10px] sm:text-xs text-muted-foreground w-full">
             <span>Preferred</span>
@@ -261,7 +264,7 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
 
       {/* Always: Quadrant Plot (centered) */}
       <div className="flex-1 flex flex-col items-center">
-        <h3 className="text-base font-medium mb-2 sm:mb-3 text-center">Risk-Benefit Assessment</h3>
+        <h3 className="text-lg font-medium mb-2 sm:mb-3 text-center">Risk-Benefit Assessment</h3>
         <div className="w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[320px] aspect-square mx-auto">
           <QuadrantPlot
             xLowerBound={-1}
@@ -278,7 +281,7 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
       {/* Large screens: Third column - Score */}
       <div className="hidden lg:flex lg:flex-none lg:w-48 flex-col">
         <div className="text-center w-full">
-          <h3 className="text-base font-medium mb-2 sm:mb-3">Score</h3>
+          <h3 className="text-lg font-medium mb-2 sm:mb-3">Score</h3>
         </div>
         <div className="flex-1 flex flex-col justify-center">
           <div className="flex flex-col gap-4 sm:gap-6">
@@ -309,51 +312,59 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
 
       {/* Small/Medium screens: Two columns below plot */}
       <div className="flex-1 flex-col justify-center mt-2 lg:hidden">
-        <div className="grid grid-cols-2 gap-3 sm:gap-6 mb-4 sm:mb-6">
+        {/* Headers - responsive layout */}
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 sm:gap-6 mb-3 sm:mb-6">
           <div className="text-center">
             <h3 className="text-sm sm:text-base font-medium mb-2 sm:mb-3">Result Type</h3>
           </div>
-          <div className="text-center">
+          <div className="text-center min-[480px]:block hidden">
             <h3 className="text-sm sm:text-base font-medium mb-2 sm:mb-3">Score</h3>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-6">
-          {/* Result Type Column (small screens) */}
-          <div className="flex flex-col items-center justify-center border-r pr-2 sm:pr-6">
+        {/* Content - stack vertically on very small screens */}
+        <div className="flex flex-col min-[480px]:grid min-[480px]:grid-cols-2 gap-4 sm:gap-6">
+          {/* Result Type Section */}
+          <div className="flex flex-col items-center justify-center min-[480px]:border-r min-[480px]:pr-3 sm:pr-6">
             <div className="text-center w-full">
-              <p className="text-xs sm:text-sm text-muted-foreground mb-3">{resultType.label}</p>
+              <p className="text-xs sm:text-sm font-medium mb-2 sm:mb-4">{resultType.label}</p>
               <ResultTypeScale currentType={resultType.id} />
-              <div className="mt-2 flex justify-between text-[10px] sm:text-xs text-muted-foreground">
+              <div className="mt-2 flex justify-between text-[9px] min-[480px]:text-[10px] sm:text-xs text-muted-foreground">
                 <span>Preferred</span>
                 <span>Discouraged</span>
               </div>
             </div>
           </div>
 
-          {/* Score Column (small screens) */}
-          <div className="flex flex-col gap-4 sm:gap-6">
-            <ScoreDisplay
-              label="Risk"
-              score={risk}
-              position={riskPosition}
-              gradientColors="bg-gradient-to-r from-[#d9edd6] via-[#faf1d3] to-[#f2cfcc]"
-              lowLabel="Low Risk"
-              highLabel="High Risk"
-              lowColor="text-[#4e9c59]"
-              highColor="text-[#d55c55]"
-            />
+          {/* Score Section */}
+          <div className="flex flex-col">
+            {/* Show header on small screens when stacked */}
+            <div className="text-center min-[480px]:hidden mb-3">
+              <h3 className="text-sm font-medium">Score</h3>
+            </div>
+            <div className="flex flex-col gap-4 sm:gap-6">
+              <ScoreDisplay
+                label="Risk"
+                score={risk}
+                position={riskPosition}
+                gradientColors="bg-gradient-to-r from-[#d9edd6] via-[#faf1d3] to-[#f2cfcc]"
+                lowLabel="Low Risk"
+                highLabel="High Risk"
+                lowColor="text-[#4e9c59]"
+                highColor="text-[#d55c55]"
+              />
 
-            <ScoreDisplay
-              label="Benefit"
-              score={benefit}
-              position={benefitPosition}
-              gradientColors="bg-gradient-to-r from-[#f2cfcc] via-[#faf1d3] to-[#d9edd6]"
-              lowLabel="Low Benefit"
-              highLabel="High Benefit"
-              lowColor="text-[#d55c55]"
-              highColor="text-[#4e9c59]"
-            />
+              <ScoreDisplay
+                label="Benefit"
+                score={benefit}
+                position={benefitPosition}
+                gradientColors="bg-gradient-to-r from-[#f2cfcc] via-[#faf1d3] to-[#d9edd6]"
+                lowLabel="Low Benefit"
+                highLabel="High Benefit"
+                lowColor="text-[#d55c55]"
+                highColor="text-[#4e9c59]"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -371,7 +382,7 @@ function ResultTypeScale({ currentType }: ResultTypeScaleProps) {
   return (
     <div className="flex flex-col items-center">
       {/* Type items */}
-      <div className="flex justify-center gap-1 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2">
+      <div className="flex justify-center gap-1.5 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2">
         {types.map((type) => (
           <ResultTypeItem
             key={type}
@@ -399,7 +410,7 @@ function ResultTypeItem({ type, isActive, description }: ResultTypeItemProps) {
       <HoverCardTrigger asChild onClick={toggleOpen}>
         <div
           className={`
-            w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-10 lg:h-10
+            w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-10 lg:h-10
             rounded-lg flex items-center justify-center cursor-help transition-all duration-200
             ${
               isActive
@@ -418,7 +429,9 @@ function ResultTypeItem({ type, isActive, description }: ResultTypeItemProps) {
       >
         <div className="space-y-2">
           <h4 className="font-bold text-sm">Type {type}</h4>
-          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed text-justify">
+            {description}
+          </p>
         </div>
       </HoverCardContent>
     </HoverCard>
@@ -452,21 +465,21 @@ function ScoreDisplay({
         <p className="text-xs sm:text-sm font-medium">{label}</p>
         <p className="text-xs sm:text-sm font-semibold">{score.toFixed(2)}</p>
       </div>
-      <div className="relative mb-0.5">
-        <div className={`h-1.5 sm:h-2 w-full ${gradientColors} rounded-full`} />
+      <div className="relative mb-1">
+        <div className={`h-2 sm:h-2 w-full ${gradientColors} rounded-full`} />
         <div
-          className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
-          style={{ left: `calc(${position}% - 5px)` }}
+          className="absolute top-0 w-3 sm:w-3 h-3 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5 shadow-sm"
+          style={{ left: `calc(${position}% - 6px)` }}
         />
       </div>
-      <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
+      <div className="flex justify-between items-start w-full text-[9px] min-[480px]:text-[10px] sm:text-[10px] mt-1">
         <div className="text-left">
           <div className={`${lowColor} font-medium`}>-1.0</div>
-          <div className={`${lowColor} font-medium mt-0.5`}>{lowLabel}</div>
+          <div className={`${lowColor} font-medium mt-0.5 leading-tight`}>{lowLabel}</div>
         </div>
         <div className="text-right">
           <div className={`${highColor} font-medium`}>1.0</div>
-          <div className={`${highColor} font-medium mt-0.5`}>{highLabel}</div>
+          <div className={`${highColor} font-medium mt-0.5 leading-tight`}>{highLabel}</div>
         </div>
       </div>
     </div>
