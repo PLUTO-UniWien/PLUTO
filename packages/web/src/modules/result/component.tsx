@@ -21,9 +21,19 @@ import HeyFormEmbed from "@/modules/heyform/component";
 import { env } from "@/env";
 import { getHeyFormInstance } from "@/modules/heyform/service";
 import { trackFeedbackFormOpened } from "@/modules/analytics/umami/service";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { useHoverCardState } from "@/modules/common/use-hover-card-state";
 
 // Define a threshold for showing the disclaimer
 const UNANSWERED_THRESHOLD = 10;
+
+// Result type descriptions for hover tooltips
+const RESULT_TYPE_DESCRIPTIONS = {
+  A: "Likely creates significant public value as it will plausibly yield significant benefits without posing unacceptably high risks. These types should be supported (Pillar I)",
+  B: "Unlikely to yield significant public benefits, but also poses minimal risks. Financial profits from Type B uses should be partially returned to the public domain (Pillar III)",
+  C: "Produces significant public benefits, but poses unacceptably high risks. Type C uses are only permissible if risks can be reduced to acceptable levels (Pillar II)",
+  D: "Likely does not create significant public value while at the same time posing unacceptably high risks. These activities should be banned (Pillar II)",
+} as const;
 
 type ResultComponentProps = {
   resultPage: StrapiResultPage;
@@ -233,8 +243,23 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
   const benefitPosition = clamp(((benefit + 1) / 2) * 100);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
-      {/* Left side: Quadrant Plot */}
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+      {/* Large screens: First column - Result Type */}
+      <div className="hidden lg:flex lg:flex-none lg:w-48 flex-col">
+        <div className="text-center w-full">
+          <h3 className="text-base font-medium mb-2 sm:mb-3">Result Type</h3>
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <p className="text-md text-muted-foreground mb-3">{resultType.label}</p>
+          <ResultTypeScale currentType={resultType.id} />
+          <div className="mt-2 flex justify-between text-[10px] sm:text-xs text-muted-foreground w-full">
+            <span>Preferred</span>
+            <span>Discouraged</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Always: Quadrant Plot (centered) */}
       <div className="flex-1 flex flex-col items-center">
         <h3 className="text-base font-medium mb-2 sm:mb-3 text-center">Risk-Benefit Assessment</h3>
         <div className="w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[320px] aspect-square mx-auto">
@@ -250,19 +275,12 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
         </div>
       </div>
 
-      {/* Right side: Metrics */}
-      <div className="flex-1 flex flex-col justify-center mt-2 lg:mt-0">
-        <div className="grid grid-cols-2 gap-3 sm:gap-6 mb-4 sm:mb-6">
-          <div className="text-center">
-            <h3 className="text-sm sm:text-base font-medium mb-2 sm:mb-3">Score</h3>
-          </div>
-          <div className="text-center">
-            <h3 className="text-sm sm:text-base font-medium mb-2 sm:mb-3">Result Type</h3>
-          </div>
+      {/* Large screens: Third column - Score */}
+      <div className="hidden lg:flex lg:flex-none lg:w-48 flex-col">
+        <div className="text-center w-full">
+          <h3 className="text-base font-medium mb-2 sm:mb-3">Score</h3>
         </div>
-
-        <div className="grid grid-cols-2 gap-3 sm:gap-6">
-          {/* Score Column */}
+        <div className="flex-1 flex flex-col justify-center">
           <div className="flex flex-col gap-4 sm:gap-6">
             {/* Risk score */}
             <div>
@@ -314,19 +332,152 @@ function IntegratedResultsSection({ risk, benefit, resultType }: IntegratedResul
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Result Type Column */}
-          <div className="flex flex-col items-center justify-center border-l pl-2 sm:pl-6">
-            <div className="text-center">
-              <p className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 sm:mb-3">
-                {resultType.id}
-              </p>
-              <p className="text-xs sm:text-sm text-muted-foreground">{resultType.label}</p>
+      {/* Small/Medium screens: Two columns below plot */}
+      <div className="flex-1 flex-col justify-center mt-2 lg:hidden">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 mb-4 sm:mb-6">
+          <div className="text-center">
+            <h3 className="text-sm sm:text-base font-medium mb-2 sm:mb-3">Result Type</h3>
+          </div>
+          <div className="text-center">
+            <h3 className="text-sm sm:text-base font-medium mb-2 sm:mb-3">Score</h3>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
+          {/* Result Type Column (small screens) */}
+          <div className="flex flex-col items-center justify-center border-r pr-2 sm:pr-6">
+            <div className="text-center w-full">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-3">{resultType.label}</p>
+              <ResultTypeScale currentType={resultType.id} />
+              <div className="mt-2 flex justify-between text-[10px] sm:text-xs text-muted-foreground">
+                <span>Preferred</span>
+                <span>Discouraged</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Score Column (small screens) */}
+          <div className="flex flex-col gap-4 sm:gap-6">
+            {/* Risk score */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <p className="text-xs sm:text-sm font-medium">Risk</p>
+                <p className="text-xs sm:text-sm font-semibold">{risk.toFixed(2)}</p>
+              </div>
+              <div className="relative mb-0.5">
+                <div className="h-1.5 sm:h-2 w-full bg-gradient-to-r from-[#d9edd6] via-[#faf1d3] to-[#f2cfcc] rounded-full" />
+                <div
+                  className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
+                  style={{ left: `calc(${riskPosition}% - 5px)` }}
+                />
+              </div>
+              <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
+                <div className="text-left">
+                  <div className="text-[#4e9c59] font-medium">-1.0</div>
+                  <div className="text-[#4e9c59] font-medium mt-0.5">Low Risk</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[#d55c55] font-medium">1.0</div>
+                  <div className="text-[#d55c55] font-medium mt-0.5">High Risk</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Benefit score */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <p className="text-xs sm:text-sm font-medium">Benefit</p>
+                <p className="text-xs sm:text-sm font-semibold">{benefit.toFixed(2)}</p>
+              </div>
+              <div className="relative mb-0.5">
+                <div className="h-1.5 sm:h-2 w-full bg-gradient-to-r from-[#f2cfcc] via-[#faf1d3] to-[#d9edd6] rounded-full" />
+                <div
+                  className="absolute top-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-[#3586cf] rounded-full -mt-0.5"
+                  style={{ left: `calc(${benefitPosition}% - 5px)` }}
+                />
+              </div>
+              <div className="flex justify-between items-start w-full text-[9px] sm:text-[10px] mt-1">
+                <div className="text-left">
+                  <div className="text-[#d55c55] font-medium">-1.0</div>
+                  <div className="text-[#d55c55] font-medium mt-0.5">Low Benefit</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[#4e9c59] font-medium">1.0</div>
+                  <div className="text-[#4e9c59] font-medium mt-0.5">High Benefit</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+type ResultTypeScaleProps = {
+  currentType: string;
+};
+
+function ResultTypeScale({ currentType }: ResultTypeScaleProps) {
+  const types = ["A", "B", "C", "D"] as const;
+
+  return (
+    <div className="flex flex-col items-center">
+      {/* Type items */}
+      <div className="flex justify-center gap-1 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2">
+        {types.map((type) => (
+          <ResultTypeItem
+            key={type}
+            type={type}
+            isActive={type === currentType}
+            description={RESULT_TYPE_DESCRIPTIONS[type]}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+type ResultTypeItemProps = {
+  type: string;
+  isActive: boolean;
+  description: string;
+};
+
+function ResultTypeItem({ type, isActive, description }: ResultTypeItemProps) {
+  const { isCardOpen, handleOpenChange, toggleOpen } = useHoverCardState();
+
+  return (
+    <HoverCard openDelay={50} open={isCardOpen} onOpenChange={handleOpenChange}>
+      <HoverCardTrigger asChild onClick={toggleOpen}>
+        <div
+          className={`
+            w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-10 lg:h-10
+            rounded-lg flex items-center justify-center cursor-help transition-all duration-200
+            ${
+              isActive
+                ? "bg-[#3586cf] text-white shadow-md"
+                : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+            }
+          `}
+        >
+          <span className="text-sm sm:text-base md:text-lg lg:text-base font-bold">{type}</span>
+        </div>
+      </HoverCardTrigger>
+      <HoverCardContent
+        className="w-full sm:w-[400px] md:w-[500px] max-w-[85vw] p-4 shadow-lg"
+        side="bottom"
+        align="center"
+      >
+        <div className="space-y-2">
+          <h4 className="font-bold text-sm">Type {type}</h4>
+          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
   );
 }
 
