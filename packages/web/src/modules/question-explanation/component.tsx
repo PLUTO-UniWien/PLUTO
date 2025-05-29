@@ -17,7 +17,7 @@ export function QuestionExplanationComponent({
   const { isCardOpen, handleOpenChange, toggleOpen } = useHoverCardState(onOpenChange);
 
   return (
-    <HoverCard openDelay={150} open={isCardOpen} onOpenChange={handleOpenChange}>
+    <HoverCard openDelay={50} open={isCardOpen} onOpenChange={handleOpenChange}>
       <HoverCardTrigger asChild onClick={toggleOpen}>
         <Button variant="ghost" size="icon" className="rounded-full" asChild>
           <HelpCircle className="text-primary w-6 h-6 ml-4" />
