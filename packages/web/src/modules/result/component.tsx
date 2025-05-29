@@ -412,11 +412,7 @@ function ResultTypeItem({ type, isActive, description }: ResultTypeItemProps) {
           className={`
             w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-10 lg:h-10
             rounded-lg flex items-center justify-center cursor-help transition-all duration-200
-            ${
-              isActive
-                ? "bg-[#3586cf] text-white shadow-md"
-                : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-            }
+            ${isActive ? "bg-[#3586cf] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}
           `}
         >
           <span className="text-sm sm:text-base md:text-lg lg:text-base font-bold">{type}</span>
