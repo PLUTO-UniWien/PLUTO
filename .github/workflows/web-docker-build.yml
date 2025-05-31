@@ -2,6 +2,8 @@ name: Build and Push Web Docker Image
 
 on:
   push:
+    branches-ignore:
+      - prod
     paths:
       - ".github/workflows/web-docker-build.yml"
       - "packages/web/**"

@@ -2,6 +2,8 @@ name: Build and Push CMS Docker Image
 
 on:
   push:
+    branches-ignore:
+      - prod
     paths:
       - ".github/workflows/cms-docker-build.yml"
       - "packages/cms/**"

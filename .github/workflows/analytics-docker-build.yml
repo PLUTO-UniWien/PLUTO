@@ -2,6 +2,8 @@ name: Build and Push Analytics Docker Image
 
 on:
   push:
+    branches-ignore:
+      - prod
     paths:
       - ".github/workflows/analytics-docker-build.yml"
       - "packages/analytics/**"
