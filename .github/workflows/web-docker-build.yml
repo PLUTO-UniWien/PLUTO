@@ -10,6 +10,47 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      strapi_webhook_secret:
+        description: "Strapi Webhook Secret (optional - falls back to secret)"
+        required: false
+        type: string
+      next_public_strapi_base_url:
+        description: "Next.js Public Strapi Base URL (optional - falls back to secret)"
+        required: false
+        type: string
+      strapi_api_base_url:
+        description: "Strapi API Base URL (optional - falls back to secret)"
+        required: false
+        type: string
+      strapi_api_token:
+        description: "Strapi API Token (optional - falls back to secret)"
+        required: false
+        type: string
+      next_public_umami_script_url:
+        description: "Next.js Public Umami Script URL (optional - falls back to secret)"
+        required: false
+        type: string
+      next_public_umami_website_id:
+        description: "Next.js Public Umami Website ID (optional - falls back to secret)"
+        required: false
+        type: string
+      next_public_heyform_form_id:
+        description: "Next.js Public HeyForm Form ID (optional - falls back to secret)"
+        required: false
+        type: string
+      next_public_heyform_custom_url:
+        description: "Next.js Public HeyForm Custom URL (optional - falls back to secret)"
+        required: false
+        type: string
+      next_public_heyform_script_url:
+        description: "Next.js Public HeyForm Script URL (optional - falls back to secret)"
+        required: false
+        type: string
+      next_public_clarity_project_id:
+        description: "Next.js Public Clarity Project ID (optional - falls back to secret)"
+        required: false
+        type: string
 
 env:
   REGISTRY: ghcr.io
@@ -34,16 +75,16 @@ jobs:
         run: |
           mkdir -p packages/web
           cat > packages/web/.env.local << EOF
-          STRAPI_WEBHOOK_SECRET=${{ secrets.STRAPI_WEBHOOK_SECRET }}
-          NEXT_PUBLIC_STRAPI_BASE_URL=${{ secrets.NEXT_PUBLIC_STRAPI_BASE_URL }}
-          STRAPI_API_BASE_URL=${{ secrets.STRAPI_API_BASE_URL }}
-          STRAPI_API_TOKEN=${{ secrets.STRAPI_API_TOKEN }}
-          NEXT_PUBLIC_UMAMI_SCRIPT_URL=${{ secrets.NEXT_PUBLIC_UMAMI_SCRIPT_URL }}
-          NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
-          NEXT_PUBLIC_HEYFORM_FORM_ID=${{ secrets.NEXT_PUBLIC_HEYFORM_FORM_ID }}
-          NEXT_PUBLIC_HEYFORM_CUSTOM_URL=${{ secrets.NEXT_PUBLIC_HEYFORM_CUSTOM_URL }}
-          NEXT_PUBLIC_HEYFORM_SCRIPT_URL=${{ secrets.NEXT_PUBLIC_HEYFORM_SCRIPT_URL }}
-          NEXT_PUBLIC_CLARITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_CLARITY_PROJECT_ID }}
+          STRAPI_WEBHOOK_SECRET=${{ inputs.strapi_webhook_secret || secrets.STRAPI_WEBHOOK_SECRET }}
+          NEXT_PUBLIC_STRAPI_BASE_URL=${{ inputs.next_public_strapi_base_url || secrets.NEXT_PUBLIC_STRAPI_BASE_URL }}
+          STRAPI_API_BASE_URL=${{ inputs.strapi_api_base_url || secrets.STRAPI_API_BASE_URL }}
+          STRAPI_API_TOKEN=${{ inputs.strapi_api_token || secrets.STRAPI_API_TOKEN }}
+          NEXT_PUBLIC_UMAMI_SCRIPT_URL=${{ inputs.next_public_umami_script_url || secrets.NEXT_PUBLIC_UMAMI_SCRIPT_URL }}
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ inputs.next_public_umami_website_id || secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
+          NEXT_PUBLIC_HEYFORM_FORM_ID=${{ inputs.next_public_heyform_form_id || secrets.NEXT_PUBLIC_HEYFORM_FORM_ID }}
+          NEXT_PUBLIC_HEYFORM_CUSTOM_URL=${{ inputs.next_public_heyform_custom_url || secrets.NEXT_PUBLIC_HEYFORM_CUSTOM_URL }}
+          NEXT_PUBLIC_HEYFORM_SCRIPT_URL=${{ inputs.next_public_heyform_script_url || secrets.NEXT_PUBLIC_HEYFORM_SCRIPT_URL }}
+          NEXT_PUBLIC_CLARITY_PROJECT_ID=${{ inputs.next_public_clarity_project_id || secrets.NEXT_PUBLIC_CLARITY_PROJECT_ID }}
           EOF
 
       - name: Set up Docker Buildx
