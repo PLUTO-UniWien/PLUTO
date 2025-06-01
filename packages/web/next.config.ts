@@ -13,6 +13,20 @@ try {
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  async redirects() {
+    return [
+      {
+        source: "/appendix-weighting",
+        destination: "/weighting",
+        permanent: true,
+      },
+      {
+        source: "/weighting-history",
+        destination: "/weighting/history",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
