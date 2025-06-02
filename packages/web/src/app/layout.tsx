@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { env } from "@/env";
+import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { getCanonicalUrl } from "@/modules/seo/utils";
 import { Navigation } from "@/modules/navigation";
-import Footer from "@/modules/footer/component";
+import { StructuredData } from "@/modules/seo/structured-data";
 import { Toaster } from "@/components/ui/sonner";
 import ClarityAnalytics from "@/modules/analytics/clarity/component";
+import Footer from "@/modules/footer/component";
 import UmamiAnalytics from "@/modules/analytics/umami/component";
-import { getCanonicalUrl } from "@/modules/seo/utils";
-import { StructuredData } from "@/modules/seo/structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +19,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 // Static default metadata, to be overridden by page-specific metadata
 export const metadata: Metadata = {
@@ -67,10 +72,6 @@ export const metadata: Metadata = {
     images: [
       "https://raw.githubusercontent.com/PLUTO-UniWien/PLUTO/refs/heads/main/packages/web/public/pluto-og-image-generic.png",
     ],
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
   },
   ...(getCanonicalUrl() && {
     alternates: {
