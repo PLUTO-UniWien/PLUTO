@@ -10,6 +10,7 @@ import { createSingleTypeGenerateMetadataCallback } from "@/modules/seo/service"
 export const generateMetadata = createSingleTypeGenerateMetadataCallback(
   strapiClient,
   fetchWeightingOverviewPageSeo,
+  "/weighting",
 );
 
 export default async function Page() {

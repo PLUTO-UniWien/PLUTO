@@ -43,7 +43,7 @@ type ResultComponentProps = {
 };
 
 export default function ResultComponent({
-  resultPage: { resultsReadyTitle, explanation },
+  resultPage: { displayFeedbackForm, resultsReadyTitle, explanation },
 }: ResultComponentProps) {
   // Access the submission and survey from the store which were set after a valid survey submission was made
   const submission = useSubmissionStore((state) => state.submission);
@@ -214,9 +214,11 @@ export default function ResultComponent({
       </div>
 
       {/* Floating Feedback Button */}
-      <div className="fixed bottom-8 right-8 z-10">
-        <FeedbackForm submissionId={submission.id} />
-      </div>
+      {displayFeedbackForm && (
+        <div className="fixed bottom-8 right-8 z-10">
+          <FeedbackForm submissionId={submission.id} />
+        </div>
+      )}
     </div>
   );
 }

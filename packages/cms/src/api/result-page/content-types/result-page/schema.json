@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "resultsReadyTitle": {
       "type": "string",
@@ -19,10 +20,14 @@
       "type": "blocks",
       "required": true
     },
+    "displayFeedbackForm": {
+      "type": "boolean",
+      "default": false
+    },
     "seo": {
       "type": "component",
-      "repeatable": false,
-      "component": "shared.seo"
+      "component": "shared.seo",
+      "repeatable": false
     }
   }
 }

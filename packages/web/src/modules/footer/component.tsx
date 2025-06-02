@@ -1,5 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { siGithub } from "simple-icons";
+
+// GitHub Icon Component
+const GitHubIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="GitHub">
+    <path d={siGithub.path} />
+  </svg>
+);
 
 export default function Footer() {
   return (
@@ -30,6 +38,20 @@ export default function Footer() {
               className="transition-opacity hover:opacity-80"
             >
               <Image src="/logo-digitize.png" alt="Digitize Logo" width={200} height={75} />
+            </Link>
+          </div>
+
+          {/* Social Media Section */}
+          <div className="flex justify-center">
+            <Link
+              href="https://github.com/PLUTO-UniWien/PLUTO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors p-2 rounded-lg hover:bg-gray-50"
+              aria-label="View PLUTO on GitHub"
+            >
+              <GitHubIcon className="h-6 w-6" />
+              <span className="text-sm font-medium">View on GitHub</span>
             </Link>
           </div>
 

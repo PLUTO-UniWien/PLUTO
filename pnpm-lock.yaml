@@ -17,7 +17,7 @@ importers:
     dependencies:
       '@strapi/plugin-documentation':
         specifier: 5.14.0
-        version: 5.14.0(d78f002193aa7b7a0974ae6cf2ad5cda)
+        version: 5.14.0(984745fb086c471c913fc4af37080c05)
       '@strapi/plugin-seo':
         specifier: ^2.0.8
         version: 2.0.8(06015f1224a17cbfc02b5c7da32d7217)
@@ -124,6 +124,9 @@ importers:
       sharp:
         specifier: ^0.34.2
         version: 0.34.2
+      simple-icons:
+        specifier: ^15.0.0
+        version: 15.0.0
       sonner:
         specifier: ^2.0.4
         version: 2.0.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -7214,6 +7217,10 @@ packages:
   simple-get@4.0.1:
     resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
 
+  simple-icons@15.0.0:
+    resolution: {integrity: sha512-r6iy7Oqu13XZZ0IFcoqZnNkb8dqJwc+lyZW6KV/C/cbCJVMEMmPKNlntMrOfzVzzx+Uj8p9m13vOHWzU29jCVw==}
+    engines: {node: '>=0.12.18'}
+
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
@@ -10471,7 +10478,7 @@ snapshots:
   '@strapi/data-transfer@5.14.0(@types/node@22.15.29)(better-sqlite3@11.10.0)(typescript@5.8.3)':
     dependencies:
       '@strapi/logger': 5.14.0
-      '@strapi/types': 5.14.0(@types/node@22.15.29)(better-sqlite3@11.10.0)(typescript@5.4.4)
+      '@strapi/types': 5.14.0(@types/node@22.15.29)(better-sqlite3@11.10.0)(typescript@5.8.3)
       '@strapi/utils': 5.14.0
       chalk: 4.1.2
       cli-table3: 0.6.5
@@ -10667,7 +10674,7 @@ snapshots:
       qs: 6.11.1
       sift: 16.0.1
 
-  '@strapi/plugin-documentation@5.14.0(d78f002193aa7b7a0974ae6cf2ad5cda)':
+  '@strapi/plugin-documentation@5.14.0(984745fb086c471c913fc4af37080c05)':
     dependencies:
       '@reduxjs/toolkit': 1.9.7(react-redux@8.1.3(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(redux@4.2.1))(react@18.3.1)
       '@strapi/admin': 5.14.0(@babel/runtime@7.27.4)(@codemirror/autocomplete@6.18.6)(@codemirror/language@6.11.0)(@codemirror/lint@6.8.4)(@codemirror/search@6.5.10)(@codemirror/state@6.5.2)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.37.1)(@strapi/data-transfer@5.14.0(@types/node@22.15.29)(better-sqlite3@11.10.0)(typescript@5.4.4))(@types/hoist-non-react-statics@3.3.6)(@types/node@22.15.29)(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(better-sqlite3@11.10.0)(codemirror@5.65.19)(debug@4.3.4)(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(redux@4.2.1)(styled-components@6.1.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -16553,6 +16560,8 @@ snapshots:
       decompress-response: 6.0.0
       once: 1.4.0
       simple-concat: 1.0.1
+
+  simple-icons@15.0.0: {}
 
   simple-swizzle@0.2.2:
     dependencies:

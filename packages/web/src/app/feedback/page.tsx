@@ -6,6 +6,7 @@ import { createSingleTypeGenerateMetadataCallback } from "@/modules/seo/service"
 export const generateMetadata = createSingleTypeGenerateMetadataCallback(
   strapiClient,
   fetchFeedbackPageSeo,
+  "/feedback",
 );
 
 export default async function Page() {

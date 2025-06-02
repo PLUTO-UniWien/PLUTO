@@ -538,6 +538,7 @@ export interface ApiResultPageResultPage extends Struct.SingleTypeSchema {
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    displayFeedbackForm: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     explanation: Schema.Attribute.Blocks & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<"oneToMany", "api::result-page.result-page"> &

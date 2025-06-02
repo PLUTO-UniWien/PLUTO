@@ -25,6 +25,15 @@ export const env = createEnv({
       .describe("Secret for the Strapi webhook, used to authenticate webhook requests."),
   },
   client: {
+    NEXT_PUBLIC_APP_FLAVOR: z
+      .enum(["dev", "prod"])
+      .default("dev")
+      .describe("The flavor of the app."),
+    NEXT_PUBLIC_APP_URL: z
+      .string()
+      .url()
+      .default("http://localhost:3000")
+      .describe("The URL of the app."),
     NEXT_PUBLIC_STRAPI_BASE_URL: z
       .string()
       .url()
@@ -56,6 +65,8 @@ export const env = createEnv({
     STRAPI_API_TOKEN: process.env.STRAPI_API_TOKEN,
     STRAPI_WEBHOOK_SECRET: process.env.STRAPI_WEBHOOK_SECRET,
     // Client
+    NEXT_PUBLIC_APP_FLAVOR: process.env.NEXT_PUBLIC_APP_FLAVOR,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_STRAPI_BASE_URL: process.env.NEXT_PUBLIC_STRAPI_BASE_URL,
     NEXT_PUBLIC_UMAMI_SCRIPT_URL: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL,
     NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
