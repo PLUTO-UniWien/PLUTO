@@ -36,3 +36,18 @@ export async function fetchPostSeoBySlug(client: StrapiClient, slug: string) {
   }
   return matchingPosts.data[0].seo as StrapiSeo | undefined;
 }
+
+export async function fetchLatestPosts(client: StrapiClient, limit = 100) {
+  const posts = client.collection("posts");
+  const response = (await posts.find({
+    pagination: {
+      limit,
+    },
+    sort: ["updatedAt:desc"],
+    fields: ["slug", "updatedAt"],
+  })) as unknown as APIResponseCollection<"api::post.post">;
+  return response.data.map((post) => ({
+    updatedAt: post.updatedAt,
+    slug: post.slug,
+  }));
+}

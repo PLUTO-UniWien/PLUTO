@@ -1,6 +1,15 @@
 import { PostPreviewList } from "@/modules/posts/component";
 import { fetchPostPreviews } from "@/modules/posts/service";
 import strapiClient from "@/modules/strapi/client";
+import { createMetadataWithCanonical } from "@/modules/seo/utils";
+import type { Metadata } from "next";
+
+export function generateMetadata(): Metadata {
+  return createMetadataWithCanonical("/news", {
+    title: "News - PLUTO",
+    description: "Latest news and updates from the PLUTO public value assessment tool project.",
+  });
+}
 
 export default async function Page() {
   const postPreviews = await fetchPostPreviews(strapiClient);

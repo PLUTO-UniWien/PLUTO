@@ -7,6 +7,8 @@ import Footer from "@/modules/footer/component";
 import { Toaster } from "@/components/ui/sonner";
 import ClarityAnalytics from "@/modules/analytics/clarity/component";
 import UmamiAnalytics from "@/modules/analytics/umami/component";
+import { getCanonicalUrl } from "@/modules/seo/utils";
+import { StructuredData } from "@/modules/seo/structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +22,12 @@ const geistMono = Geist_Mono({
 
 // Static default metadata, to be overridden by page-specific metadata
 export const metadata: Metadata = {
-  title: "PLUTO - Public Value Assessment Tool",
+  title: {
+    default: "PLUTO - Public Value Assessment Tool",
+    template: "%s | PLUTO",
+  },
   description: "A tool for assessing the benefits and risks of specific instances of data use",
+  keywords: ["data governance", "public value", "assessment tool", "data ethics", "privacy"],
   authors: [
     { name: "Seliem El-Sayed" },
     { name: "Barbara Prainsack" },
@@ -31,15 +37,46 @@ export const metadata: Metadata = {
     { name: "Laura Koesten" },
     { name: "Péter Ferenc Gyarmati", url: "https://peter.gy" },
   ],
-  openGraph: {
-    title: "PLUTO - Public Value Assessment Tool",
-    description: "A tool for assessing the benefits and risks of specific instances of data use",
-    images: {
-      url: "https://minio.peter.gy/static/assets/pluto/pluto-og-image-generic.png",
-      width: 1200,
-      height: 630,
+  creator: "PLUTO Project Team",
+  publisher: "University of Vienna",
+  robots: {
+    index: env.NEXT_PUBLIC_APP_FLAVOR === "prod",
+    follow: env.NEXT_PUBLIC_APP_FLAVOR === "prod",
+    googleBot: {
+      index: env.NEXT_PUBLIC_APP_FLAVOR === "prod",
+      follow: env.NEXT_PUBLIC_APP_FLAVOR === "prod",
     },
   },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "PLUTO - Public Value Assessment Tool",
+    description: "A tool for assessing the benefits and risks of specific instances of data use",
+    siteName: "PLUTO",
+    images: {
+      url: "https://raw.githubusercontent.com/PLUTO-UniWien/PLUTO/refs/heads/main/packages/web/public/pluto-og-image-generic.png",
+      width: 1200,
+      height: 630,
+      alt: "PLUTO - Public Value Assessment Tool",
+    },
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PLUTO - Public Value Assessment Tool",
+    description: "A tool for assessing the benefits and risks of specific instances of data use",
+    images: [
+      "https://raw.githubusercontent.com/PLUTO-UniWien/PLUTO/refs/heads/main/packages/web/public/pluto-og-image-generic.png",
+    ],
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+  ...(getCanonicalUrl() && {
+    alternates: {
+      canonical: getCanonicalUrl(),
+    },
+  }),
 };
 
 export default function RootLayout({
@@ -49,6 +86,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
         <div className="flex flex-col min-h-screen">
           <Navigation />

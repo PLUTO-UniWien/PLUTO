@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const seo = await fetchPostSeoBySlug(strapiClient, slug);
   if (!seo) return {};
-  return adaptStrapiSeoToNextMetadata(seo);
+  return adaptStrapiSeoToNextMetadata(seo, `/news/${slug}`);
 }
 
 export default async function Page({ params }: Props) {
