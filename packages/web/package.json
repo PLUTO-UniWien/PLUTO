@@ -34,8 +34,8 @@
     "survey-core": "^2.1.0",
     "survey-react-ui": "^2.1.0",
     "tailwind-merge": "^3.3.0",
-    "tw-animate-css": "^1.3.2",
-    "zod": "^3.25.42",
+    "tw-animate-css": "^1.3.3",
+    "zod": "^3.25.48",
     "zustand": "^5.0.5",
     "zustand-persist": "^0.4.0"
   },
