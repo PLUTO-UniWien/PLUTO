@@ -106,7 +106,10 @@ export default function RootLayout({
           />
         )}
         {env.NEXT_PUBLIC_CLARITY_PROJECT_ID && (
-          <ClarityAnalytics projectId={env.NEXT_PUBLIC_CLARITY_PROJECT_ID} />
+          <ClarityAnalytics
+            strategy="afterInteractive"
+            projectId={env.NEXT_PUBLIC_CLARITY_PROJECT_ID}
+          />
         )}
         <Toaster position="top-right" expand={true} />
       </body>
