@@ -12,6 +12,7 @@ try {
 }
 
 const nextConfig: NextConfig = {
+  productionBrowserSourceMaps: true,
   output: "standalone",
   async redirects() {
     return [
