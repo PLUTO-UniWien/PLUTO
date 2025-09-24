@@ -4,7 +4,7 @@ updates:
   - package-ecosystem: "pip"
     directory: "/packages/analytics"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     open-pull-requests-limit: 10
     versioning-strategy: auto
 
@@ -12,7 +12,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/packages/web"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     open-pull-requests-limit: 10
     versioning-strategy: auto
 
@@ -20,7 +20,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/packages/cms"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     open-pull-requests-limit: 10
     versioning-strategy: auto
 
@@ -28,19 +28,19 @@ updates:
   - package-ecosystem: "docker"
     directory: "/packages/web"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     open-pull-requests-limit: 5
 
   # Check for updates to Docker in cms package
   - package-ecosystem: "docker"
     directory: "/packages/cms"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     open-pull-requests-limit: 5
 
   # Check for updates to GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     open-pull-requests-limit: 5
