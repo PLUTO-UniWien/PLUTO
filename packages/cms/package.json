@@ -11,10 +11,10 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-documentation": "5.23.6",
+    "@strapi/plugin-documentation": "5.24.1",
     "@strapi/plugin-seo": "^2.0.8",
-    "@strapi/plugin-users-permissions": "5.23.6",
-    "@strapi/strapi": "5.23.6",
+    "@strapi/plugin-users-permissions": "5.24.1",
+    "@strapi/strapi": "5.24.1",
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
     "better-sqlite3": "11.10.0",
