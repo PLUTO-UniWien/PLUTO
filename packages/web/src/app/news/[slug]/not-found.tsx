@@ -13,7 +13,7 @@ export default function NotFound() {
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-foreground">News Article Not Found</h1>
           <p className="text-lg text-muted-foreground max-w-md">
-            Sorry, the news article you're looking for doesn't exist or has been moved.
+            Sorry, the news article you are looking for does not exist or has been moved.
           </p>
         </div>
 
