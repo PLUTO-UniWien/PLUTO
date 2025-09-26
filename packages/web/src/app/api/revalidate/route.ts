@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
     // If there's a matching path, revalidate it
     if (pathToRevalidate) {
       console.log(`Revalidating path: ${pathToRevalidate} for content type: ${uid}`);
-      revalidatePath(pathToRevalidate, 'layout');
+      revalidatePath(pathToRevalidate, "layout");
       return NextResponse.json(
         {
           success: true,

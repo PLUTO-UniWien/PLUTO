@@ -25,3 +25,5 @@ export async function generateStaticParams() {
   const postPreviews = await fetchPostPreviews(strapiClient);
   return postPreviews.map(({ slug }) => ({ slug }));
 }
+
+export const dynamicParams = true;
