@@ -1,8 +1,9 @@
-import type { StrapiContentTypeID } from "@/modules/strapi/types";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { revalidatePath } from "next/cache";
 import { env } from "@/env";
+import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
+import logger from "nexlog";
+import type { NextRequest } from "next/server";
+import type { StrapiContentTypeID } from "@/modules/strapi/types";
 
 // Webhook event uid -> to-be-revalidated path mapping
 const revalidationMap: Map<StrapiContentTypeID, string> = new Map([
@@ -74,7 +75,7 @@ export async function POST(request: NextRequest) {
 
     // If there's a matching path, revalidate it
     if (pathToRevalidate) {
-      console.log(`Revalidating path: ${pathToRevalidate} for content type: ${uid}`);
+      logger.info(`Revalidating path: ${pathToRevalidate} for content type: ${uid}`);
       revalidatePath(pathToRevalidate, "layout");
       return NextResponse.json(
         {

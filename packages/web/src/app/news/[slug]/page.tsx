@@ -3,6 +3,7 @@ import { fetchPostBySlug, fetchPostPreviews, fetchPostSeoBySlug } from "@/module
 import { adaptStrapiSeoToNextMetadata } from "@/modules/seo/adapter";
 import strapiClient from "@/modules/strapi/client";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -18,6 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { slug } = await params;
   const post = await fetchPostBySlug(strapiClient, slug);
+
+  if (!post) {
+    notFound();
+  }
+
   return <PostComponent post={post} />;
 }
 
