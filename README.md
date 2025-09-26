@@ -1,5 +1,7 @@
 # PLUTO - Public Value Assessment Tool <img src="./packages/web/public/logo-pluto.png" align="right" alt="Public Value Assessment Tool Logo" width="150"/>
 
+[![arXiv](https://img.shields.io/badge/arXiv-2509.12773-b31b1b.svg)](https://arxiv.org/abs/2509.12773)
+
 The risks and harms of digital data do not lie in the data itself; they come from how the data is used. PLUTO is a tool for assessing the benefits and risks of specific instances of data use. The weighing of risks and benefits results in a score that indicates the public value of data use.
 
 PLUTO can be used by anyone wanting to know how much public value the use of data for a specific purpose generates: By companies, organisations, public bodies, or citizens. It asks questions in four categories:
