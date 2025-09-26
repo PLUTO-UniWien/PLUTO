@@ -22,13 +22,13 @@ export async function fetchPostBySlug(client: StrapiClient, slug: string) {
   })) as unknown as APIResponseCollection<"api::post.post">;
 
   if (matchingPosts.data.length === 0) {
-    logger.warn(`No post found with slug: ${slug}`);
+    logger.warn("No post found with slug", { slug });
     return null;
   }
 
   if (matchingPosts.data.length > 1) {
     const msg = `Multiple posts found with slug: ${slug}`;
-    logger.error(msg);
+    logger.error(msg, { slug });
     throw new Error(msg);
   }
 
@@ -43,13 +43,13 @@ export async function fetchPostSeoBySlug(client: StrapiClient, slug: string) {
   })) as unknown as APIResponseCollection<"api::post.post">;
 
   if (matchingPosts.data.length === 0) {
-    logger.warn(`No post found with slug: ${slug}`);
+    logger.warn("No post found with slug", { slug });
     return null;
   }
 
   if (matchingPosts.data.length > 1) {
     const msg = `Multiple posts found with slug: ${slug}`;
-    logger.error(msg);
+    logger.error(msg, { slug });
     throw new Error(msg);
   }
 
