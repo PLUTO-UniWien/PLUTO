@@ -107,8 +107,8 @@ importers:
         specifier: ^0.544.0
         version: 0.544.0(react@19.1.1)
       nexlog:
-        specifier: ^5.2.1
-        version: 5.2.1(react@19.1.1)(typescript@5.9.2)
+        specifier: ^3.1.0
+        version: 3.1.0(react@19.1.1)(typescript@5.9.2)
       next:
         specifier: 15.5.4
         version: 15.5.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -6105,11 +6105,11 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  nexlog@5.2.1:
-    resolution: {integrity: sha512-04l4e9/NX1BpxPWfjEjLU50RO157BtzoDWsU3bKd9C4SlesPvoPNb6zNW2294dLnNZcV+zmFaA5lrU51x0qKfw==}
+  nexlog@3.1.0:
+    resolution: {integrity: sha512-YuU9WN1Hg6AQdhZutAj6xcvhBHnpGmoyBHKmZ7NBRjAwLIV8r4YyXWgXJnuAm/huTmBg6aBwT271Euty/4tR2w==}
     engines: {bun: '>=0.1.0'}
     peerDependencies:
-      react: ^19.1.1
+      react: ^18.0.0
       typescript: ^5.0.0
 
   next-themes@0.4.6:
@@ -15427,7 +15427,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nexlog@5.2.1(react@19.1.1)(typescript@5.9.2):
+  nexlog@3.1.0(react@19.1.1)(typescript@5.9.2):
     dependencies:
       react: 19.1.1
       typescript: 5.9.2
