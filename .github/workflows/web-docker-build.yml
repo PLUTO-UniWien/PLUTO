@@ -29,8 +29,8 @@ env:
 
 jobs:
   build-and-push:
-    name: Build and Push Docker Image
-    runs-on: ubuntu-latest
+    name: Build and Push Docker Image (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
     if: ${{ github.actor != 'dependabot[bot]' }}
     environment: ${{ inputs.environment || 'Preview' }}
     permissions:
@@ -38,6 +38,15 @@ jobs:
       packages: write
       id-token: write
       actions: read
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-latest
+            platform: linux/amd64
+          - arch: arm64
+            runner: macos-latest
+            platform: linux/arm64
 
     steps:
       - name: Checkout repository
@@ -88,7 +97,7 @@ jobs:
           context: .
           file: packages/web/Dockerfile
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ matrix.platform }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
