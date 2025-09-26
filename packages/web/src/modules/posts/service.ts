@@ -38,15 +38,21 @@ export async function fetchPostBySlug(client: StrapiClient, slug: string) {
 export async function fetchPostSeoBySlug(client: StrapiClient, slug: string) {
   const posts = client.collection("posts");
   const matchingPosts = (await posts.find({
-    filters: { slug: { eq: slug } },
+    filters: { slug: { $eq: slug } },
     populate: ["seo", "seo.metaImage", "seo.openGraph", "seo.openGraph.ogImage"],
   })) as unknown as APIResponseCollection<"api::post.post">;
 
   if (matchingPosts.data.length === 0) {
-    const msg = `No post found with slug: ${slug}`;
+    logger.warn(`No post found with slug: ${slug}`);
+    return null;
+  }
+
+  if (matchingPosts.data.length > 1) {
+    const msg = `Multiple posts found with slug: ${slug}`;
     logger.error(msg);
     throw new Error(msg);
   }
+
   return matchingPosts.data[0].seo as StrapiSeo | undefined;
 }
 
