@@ -18,14 +18,14 @@
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
     "better-sqlite3": "11.10.0",
-    "react": "^18.3.1",
+    "react": "^19.2.3",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.2",
     "strapi-plugin-init-admin-user": "^0.2.3",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "@types/react": "^18.3.27",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^18.3.7",
     "typescript": "^5.9.3"
   },
