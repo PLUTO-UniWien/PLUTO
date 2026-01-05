@@ -86,7 +86,7 @@ export function Navigation() {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                <NavigationMenuItem value="weighting">
                   <NavigationMenuTrigger className={cn("bg-primary-foreground font-bold")}>
                     Weighting
                   </NavigationMenuTrigger>
