@@ -6,7 +6,7 @@
     "dev": "pnpm run copy-cms-types && pnpm -w run format && next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "pnpm -w exec biome lint packages/web/src --diagnostic-level=error",
     "copy-cms-types": "node --no-warnings --experimental-strip-types scripts/copy-cms-types.ts"
   },
   "engines": {
@@ -44,7 +44,6 @@
     "zustand-persist": "^0.4.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
     "@strapi/types": "^5.33.1",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/d3": "^7.4.3",
