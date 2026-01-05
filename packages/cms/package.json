@@ -14,7 +14,7 @@
     "@strapi/plugin-documentation": "5.33.1",
     "@strapi/plugin-seo": "^2.0.9",
     "@strapi/plugin-users-permissions": "5.31.1",
-    "@strapi/strapi": "5.31.1",
+    "@strapi/strapi": "5.33.1",
     "ajv": "^8.17.1",
     "ajv-keywords": "^5.1.0",
     "better-sqlite3": "11.10.0",
