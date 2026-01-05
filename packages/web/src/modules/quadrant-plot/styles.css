@@ -4,7 +4,9 @@
 }
 
 /* Remove shadow only for webkit browsers, as it messes up the PDF export */
+/* biome-ignore lint/correctness/noUnknownTypeSelector: intentional webkit-only selector hack for PDF export */
 _::-webkit-full-page-media,
+/* biome-ignore lint/correctness/noUnknownTypeSelector: intentional webkit-only selector hack for PDF export */
 _:future,
 :root .quadrant-plot svg {
   box-shadow: none;

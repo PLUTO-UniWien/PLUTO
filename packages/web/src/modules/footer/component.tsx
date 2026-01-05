@@ -16,7 +16,13 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-center space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center justify-items-center w-full max-w-4xl">
             <Link href="/" className="transition-opacity hover:opacity-80">
-              <Image src="/logo-pluto.png" alt="PLUTO Logo" width={150} height={75} />
+              <Image
+                src="/logo-pluto.png"
+                alt="PLUTO Logo"
+                width={150}
+                height={75}
+                className="h-auto w-auto"
+              />
             </Link>
             <Link
               href="https://politikwissenschaft.univie.ac.at/en/"
@@ -29,6 +35,7 @@ export default function Footer() {
                 alt="University of Vienna Logo"
                 width={175}
                 height={75}
+                className="h-auto w-auto"
               />
             </Link>
             <Link
@@ -37,7 +44,13 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="transition-opacity hover:opacity-80"
             >
-              <Image src="/logo-digitize.png" alt="Digitize Logo" width={200} height={75} />
+              <Image
+                src="/logo-digitize.png"
+                alt="Digitize Logo"
+                width={200}
+                height={75}
+                className="h-auto w-auto"
+              />
             </Link>
           </div>
 
