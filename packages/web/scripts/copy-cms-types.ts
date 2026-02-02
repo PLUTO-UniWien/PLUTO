@@ -27,6 +27,10 @@ function processFile(file: string) {
   // Replace all occurrences of '@strapi/strapi' with '@strapi/types' to make sure the web package does not need to depend on @strapi/strapi
   processed = processed.replace(/@strapi\/strapi/g, "@strapi/types");
 
+  // Strapi's generated typings still use `export module`, which is deprecated in TS.
+  // Biome flags this as an error, so normalize it here.
+  processed = processed.replace(/\bexport module\b/g, "export namespace");
+
   // Disable eslint for the file
   processed = [
     "/* eslint-disable */",
