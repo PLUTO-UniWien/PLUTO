@@ -4,8 +4,8 @@ FROM node:24-slim AS base
 
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
-    PNPM_HOME="/pnpm" \
-    PATH="$PNPM_HOME:$PATH"
+    PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
 
@@ -16,6 +16,7 @@ FROM base AS builder
 # Install deps first (better layer caching).
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY packages/web/package.json packages/web/package.json
+COPY packages/jwk-to-pem packages/jwk-to-pem
 RUN pnpm config set store-dir /pnpm/store
 RUN --mount=type=cache,target=/pnpm/store \
     pnpm install --filter web --frozen-lockfile

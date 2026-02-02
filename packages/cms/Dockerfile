@@ -4,8 +4,8 @@ FROM node:24-slim AS base
 
 ENV NODE_ENV=production \
     STRAPI_TELEMETRY_DISABLED=true \
-    PNPM_HOME="/pnpm" \
-    PATH="$PNPM_HOME:$PATH"
+    PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
 
@@ -21,6 +21,7 @@ RUN apt-get update && \
 # Install only what the CMS needs (better layer caching).
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY packages/cms/package.json packages/cms/package.json
+COPY packages/jwk-to-pem packages/jwk-to-pem
 RUN pnpm config set store-dir /pnpm/store
 RUN --mount=type=cache,target=/pnpm/store \
     pnpm install --filter cms --prod --frozen-lockfile
@@ -42,6 +43,7 @@ WORKDIR /app
 
 COPY --from=builder /workspace/node_modules ./node_modules
 COPY --from=builder /workspace/packages/cms ./packages/cms
+COPY --from=builder /workspace/packages/jwk-to-pem ./packages/jwk-to-pem
 COPY --from=builder /workspace/package.json ./package.json
 COPY --from=builder /workspace/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /workspace/pnpm-workspace.yaml ./pnpm-workspace.yaml
@@ -56,4 +58,4 @@ EXPOSE 1337
 
 WORKDIR /app/packages/cms
 
-CMD ["node", "node_modules/@strapi/strapi/bin/strapi.js", "start"]
+CMD ["node", "/app/packages/cms/node_modules/@strapi/strapi/bin/strapi.js", "start"]
