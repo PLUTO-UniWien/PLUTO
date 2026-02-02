@@ -1,5 +1,7 @@
 .git
 .gitignore
+.github
+.vscode
 *.md
 **/.DS_Store
 **/.gitignore
@@ -10,5 +12,7 @@
 **/dist
 **/export*
 **/node_modules
+**/.env
+**/.env.*
 .venv
 __marimo__
