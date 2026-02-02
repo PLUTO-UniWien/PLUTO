@@ -30,9 +30,7 @@ RUN --mount=type=secret,id=env_file,target=/workspace/packages/web/.env.local \
 
 FROM base AS runner
 
-ENV NODE_ENV=production \
-    NEXT_TELEMETRY_DISABLED=1 \
-    HOME=/app
+ENV HOME=/app
 
 # Add a non-root user
 RUN addgroup --system --gid 1001 nodejs && \
