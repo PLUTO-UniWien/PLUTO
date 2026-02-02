@@ -6,6 +6,9 @@ on:
       - prod
     paths:
       - ".github/workflows/cms-docker-build.yml"
+      - ".dockerignore"
+      - ".npmrc"
+      - "packages/jwk-to-pem/**"
       - "packages/cms/**"
       - "package.json"
       - "pnpm-lock.yaml"

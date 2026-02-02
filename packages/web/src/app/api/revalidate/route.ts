@@ -1,7 +1,7 @@
 import { env } from "@/env";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import logger from "nexlog";
+import logger from "@/modules/common/logger";
 import type { NextRequest } from "next/server";
 import type { StrapiContentTypeID } from "@/modules/strapi/types";
 

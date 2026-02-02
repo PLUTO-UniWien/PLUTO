@@ -1,4 +1,4 @@
-import logger from "nexlog";
+import logger from "@/modules/common/logger";
 import type { APIResponseCollection } from "@/modules/strapi/types";
 import type { StrapiClient } from "@/modules/strapi/client";
 import type { StrapiPost, StrapiPostPreview } from "./types";

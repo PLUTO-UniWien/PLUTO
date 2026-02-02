@@ -1,6 +1,10 @@
 .git
 .gitignore
+.github
+.vscode
 *.md
+docs
+nogit
 **/.DS_Store
 **/.gitignore
 **/.next
@@ -10,5 +14,10 @@
 **/dist
 **/export*
 **/node_modules
+**/.env
+**/.env.*
+**/.mypy_cache
+**/.ruff_cache
+**/.pytest_cache
 .venv
 __marimo__

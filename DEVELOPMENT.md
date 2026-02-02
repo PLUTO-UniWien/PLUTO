@@ -4,7 +4,7 @@
 
 Before you begin, ensure you have the following installed:
 
-- [Node.js v22](https://nodejs.org/en/)
+- [Node.js v24](https://nodejs.org/en/)
 - [pnpm v10](https://pnpm.io/)
 
 ## Initial Setup
