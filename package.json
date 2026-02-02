@@ -27,6 +27,7 @@
     ],
     "overrides": {
       "esbuild@<=0.24.2": ">=0.25.0",
+      "jwk-to-pem": "link:packages/jwk-to-pem",
       "rimraf": "5.0.5",
       "tmp@<=0.2.3": ">=0.2.4",
       "qs@<6.14.1": ">=6.14.1",
@@ -37,11 +38,6 @@
       "tar@<7.5.7": ">=7.5.7",
       "typedoc": "0.28.16",
       "zod@3.25.67": "3.25.76"
-    },
-    "auditConfig": {
-      "ignoreCves": [
-        "CVE-2025-14505"
-      ]
     }
   },
   "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264"
