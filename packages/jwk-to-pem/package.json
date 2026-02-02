@@ -1,0 +1,11 @@
+{
+  "name": "jwk-to-pem",
+  "version": "2.0.5",
+  "description": "Convert a JSON Web Key to a PEM (elliptic-free, Node crypto-based)",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.x.x <=24.x.x"
+  }
+}
