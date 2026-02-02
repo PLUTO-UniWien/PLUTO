@@ -10,7 +10,7 @@
     "copy-cms-types": "node --no-warnings --experimental-strip-types scripts/copy-cms-types.ts"
   },
   "engines": {
-    "node": ">=20.9.0 <=22.x.x"
+    "node": ">=22.x.x <=24.x.x"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
