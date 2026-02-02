@@ -29,9 +29,16 @@ function jwkToPem(jwk, opts) {
   } else {
     try {
       keyObject = crypto.createPublicKey({ key: jwk, format: "jwk" });
-    } catch {
-      // Some JWKs may include private key material; fall back to deriving the public key.
-      keyObject = crypto.createPublicKey(crypto.createPrivateKey({ key: jwk, format: "jwk" }));
+    } catch (originalErr) {
+      try {
+        // Some JWKs may include private key material; fall back to deriving the public key.
+        keyObject = crypto.createPublicKey(crypto.createPrivateKey({ key: jwk, format: "jwk" }));
+      } catch (fallbackErr) {
+        throw new AggregateError(
+          [originalErr, fallbackErr],
+          "Failed to create public key from JWK",
+        );
+      }
     }
   }
 
