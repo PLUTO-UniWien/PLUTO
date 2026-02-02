@@ -4,10 +4,11 @@ FROM node:24-slim AS base
 
 ENV NODE_ENV=production \
     STRAPI_TELEMETRY_DISABLED=true \
-    PNPM_HOME="/pnpm"
+    PNPM_HOME="/pnpm" \
+    COREPACK_HOME="/usr/local/share/corepack"
 ENV PATH="$PNPM_HOME:$PATH"
 
-RUN corepack enable
+RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
 
 WORKDIR /workspace
 
@@ -58,4 +59,4 @@ EXPOSE 1337
 
 WORKDIR /app/packages/cms
 
-CMD ["node", "/app/packages/cms/node_modules/@strapi/strapi/bin/strapi.js", "start"]
+CMD ["pnpm", "exec", "strapi", "start"]
