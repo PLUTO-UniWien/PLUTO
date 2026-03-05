@@ -43,7 +43,7 @@
     "zustand-persist": "^0.4.0"
   },
   "devDependencies": {
-    "@strapi/types": "^5.38.0",
+    "@strapi/types": "5.38.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/d3": "^7.4.3",
     "@types/node": "^24.1.0",
