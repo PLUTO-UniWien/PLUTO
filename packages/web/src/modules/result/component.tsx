@@ -503,20 +503,27 @@ type FeedbackListProps = {
 };
 
 function FeedbackList({ title, blocksValue }: FeedbackListProps) {
+  const feedbackSlug = title.toLowerCase().replace(/ /g, "-");
+  const keyOccurrences = new Map<string, number>();
+
   return (
     <>
       <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-1.5 sm:mb-2 md:mb-3">
         {title}
       </h3>
       <ul className="space-y-1.5 sm:space-y-2 list-disc pl-4 sm:pl-5 text-sm sm:text-base">
-        {blocksValue.map((blocks, index) => (
-          <li
-            key={`feedback-${title.toLowerCase().replace(/ /g, "-")}-${index}`}
-            className="text-foreground"
-          >
-            <BlocksRenderer content={blocks} />
-          </li>
-        ))}
+        {blocksValue.map((blocks) => {
+          const baseKey = `feedback-${feedbackSlug}-${JSON.stringify(blocks)}`;
+          const occurrence = keyOccurrences.get(baseKey) ?? 0;
+          keyOccurrences.set(baseKey, occurrence + 1);
+          const key = occurrence === 0 ? baseKey : `${baseKey}-${occurrence}`;
+
+          return (
+            <li key={key} className="text-foreground">
+              <BlocksRenderer content={blocks} />
+            </li>
+          );
+        })}
       </ul>
     </>
   );
