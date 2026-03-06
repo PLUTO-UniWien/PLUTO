@@ -1,0 +1,77 @@
+cff-version: 1.2.0
+message: "If you use PLUTO, please cite the preferred article below."
+title: "PLUTO: Public Value Assessment Tool"
+type: software
+authors:
+  - family-names: Koesten
+    given-names: Laura
+    affiliation: "University of Vienna, Vienna, Austria"
+  - family-names: Gyarmati
+    given-names: Péter Ferenc
+    affiliation: "University of Vienna, Vienna, Austria"
+    website: "https://peter.gy"
+  - family-names: Hogan
+    given-names: Connor
+    affiliation: "University of Vienna, Vienna, Austria"
+  - family-names: Jordan
+    given-names: Bernhard
+    affiliation: "University of Vienna, Vienna, Austria"
+  - family-names: El-Sayed
+    given-names: Seliem
+    affiliation: "University of Vienna, Vienna, Austria"
+  - family-names: Prainsack
+    given-names: Barbara
+    affiliation: "University of Vienna, Vienna, Austria"
+  - family-names: Möller
+    given-names: Torsten
+    affiliation: "University of Vienna, Vienna, Austria"
+abstract: >-
+  PLUTO is a tool for assessing the benefits and risks of specific instances
+  of data use. It supports structured public value assessment by weighing
+  benefits, risks, and institutional safeguards for a given data use case.
+keywords:
+  - public value
+  - data governance
+  - data ethics
+  - risk assessment
+  - benefit assessment
+  - decision support
+  - visualization
+  - usability
+license: MIT
+url: "https://pluto.univie.ac.at"
+repository-code: "https://github.com/PLUTO-UniWien/PLUTO"
+version: "1.0.0"
+preferred-citation:
+  type: article
+  title: "PLUTO: A Public Value Assessment Tool"
+  authors:
+    - family-names: Koesten
+      given-names: Laura
+      affiliation: "University of Vienna, Vienna, Austria"
+    - family-names: Gyarmati
+      given-names: Péter Ferenc
+      affiliation: "University of Vienna, Vienna, Austria"
+    - family-names: Hogan
+      given-names: Connor
+      affiliation: "University of Vienna, Vienna, Austria"
+    - family-names: Jordan
+      given-names: Bernhard
+      affiliation: "University of Vienna, Vienna, Austria"
+    - family-names: El-Sayed
+      given-names: Seliem
+      affiliation: "University of Vienna, Vienna, Austria"
+    - family-names: Prainsack
+      given-names: Barbara
+      affiliation: "University of Vienna, Vienna, Austria"
+    - family-names: Möller
+      given-names: Torsten
+      affiliation: "University of Vienna, Vienna, Austria"
+  journal: "IEEE Computer Graphics and Applications"
+  year: 2026
+  start: 1
+  end: 14
+  doi: "10.1109/MCG.2025.3649342"
+  publisher:
+    name: "Institute of Electrical and Electronics Engineers (IEEE)"
+  url: "https://doi.org/10.1109/MCG.2025.3649342"
