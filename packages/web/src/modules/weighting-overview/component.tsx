@@ -80,9 +80,9 @@ function ExplainedQuestion({ label, question }: ExplainedQuestionProps) {
         <p className="text-sm font-medium text-gray-700">Impact: {question.metadata.impact}</p>
       </div>
       <div className="space-y-2">
-        {question.choices.map((choice, index) => (
+        {question.choices.map((choice) => (
           <QuestionAnswerChoiceItem
-            key={`${question.id}-${index}`}
+            key={(choice as AnswerChoice).id}
             impact={question.metadata.impact}
             choice={choice as AnswerChoice}
           />
