@@ -17,7 +17,7 @@
     "@strapi/strapi": "5.38.0",
     "ajv": "8.18.0",
     "ajv-keywords": "^5.1.0",
-    "better-sqlite3": "12.6.2",
+    "better-sqlite3": "12.8.0",
     "codemirror": "^6.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
