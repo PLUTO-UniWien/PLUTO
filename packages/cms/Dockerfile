@@ -8,7 +8,7 @@ ENV NODE_ENV=production \
     COREPACK_HOME="/usr/local/share/corepack"
 ENV PATH="$PNPM_HOME:$PATH"
 
-RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
+RUN corepack enable && corepack prepare pnpm@10.33.2 --activate
 
 WORKDIR /workspace
 

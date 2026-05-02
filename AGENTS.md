@@ -11,7 +11,7 @@ These rules apply to the whole repository (all packages).
 
 ## Required Toolchain
 
-- **Node:** v24 (use `nvm use` in repo root; `.nvmrc` is authoritative)
+- **Node:** v24, managed by `pnpm` via `package.json#devEngines.runtime`
 - **Package manager:** `pnpm` via Corepack (see `package.json#packageManager`)
 - **Python (analytics):** CPython >= 3.13, managed via `uv`
 
@@ -19,7 +19,6 @@ These rules apply to the whole repository (all packages).
 
 1) Install / bootstrap
 ```bash
-nvm use
 pnpm install
 ```
 
@@ -59,7 +58,6 @@ uvx pip-audit -r /tmp/pluto-analytics-requirements.txt --no-deps --disable-pip
 You are almost certainly on the wrong Node version or have stale native builds.
 
 ```bash
-nvm use
 pnpm install --force --no-side-effects-cache
 pnpm --filter cms run dev
 ```
