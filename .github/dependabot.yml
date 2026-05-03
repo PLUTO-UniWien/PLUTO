@@ -15,6 +15,12 @@ updates:
       interval: "quarterly"
     open-pull-requests-limit: 10
     versioning-strategy: auto
+    ignore:
+      # eslint-config-next 16.2.x still pulls ESLint plugins whose peer ranges
+      # stop at ESLint 9.
+      - dependency-name: "eslint"
+        update-types:
+          - "version-update:semver-major"
 
   # Check for npm dependencies in cms package
   - package-ecosystem: "npm"
@@ -23,6 +29,27 @@ updates:
       interval: "quarterly"
     open-pull-requests-limit: 10
     versioning-strategy: auto
+    ignore:
+      # Strapi 5.44.x and the SEO plugin require React 18 / React Router 6.
+      - dependency-name: "react"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "@types/react"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "react-dom"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "@types/react-dom"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "react-router-dom"
+        update-types:
+          - "version-update:semver-major"
+      # Strapi's react-intl / formatjs chain currently peers on TypeScript 5.
+      - dependency-name: "typescript"
+        update-types:
+          - "version-update:semver-major"
 
   # Check for updates to Docker in web package
   - package-ecosystem: "docker"
