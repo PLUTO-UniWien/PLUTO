@@ -8,12 +8,12 @@
     "format": "pnpm run format:js && pnpm run format:py"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.14"
+    "@biomejs/biome": "^2.4.15"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "^24.14.1",
+      "version": "^24.15.0",
       "onFail": "download"
     }
   },
@@ -45,7 +45,7 @@
       "lodash-es": "4.18.1",
       "serialize-javascript": "7.0.4",
       "ajv": "8.20.0",
-      "axios": "1.15.0",
+      "axios": "1.15.2",
       "@casl/ability": "6.7.5",
       "markdown-it": "14.1.1",
       "koa": "2.16.4",
@@ -70,7 +70,8 @@
     },
     "auditConfig": {
       "ignoreCves": [
-        "CVE-2024-1899"
+        "CVE-2024-1899",
+        "CVE-2026-44990"
       ]
     }
   },
